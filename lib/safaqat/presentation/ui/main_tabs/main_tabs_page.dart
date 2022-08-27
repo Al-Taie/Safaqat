@@ -5,7 +5,7 @@ import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/tabbed_page.dart';
 
-import '../home/home_page.dart';
+import '../splash/splash_page.dart';
 
 class MainTabsPage extends StatefulWidget {
   const MainTabsPage({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class _MainTabsPageState extends State<MainTabsPage> {
   int _selectedTabIndex = 0;
   final List<TabbedPage> _pages = [
     TabbedPage(
-      page: const HomePage(),
+      page: const SplashPage(),
       label: AppStrings.home,
       iconAssets: AppDrawable.icTabHome,
     ),
