@@ -40,7 +40,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       // home: isLoggedIn ? const MainTabsPage() : const LoginPage(),
-      home: const SplashPage(),
+      home: const LoginPage(),
       initialBinding: AppBindings(),
       translations: AppTranslation(),
       locale: Get.deviceLocale,

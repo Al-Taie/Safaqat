@@ -10,4 +10,6 @@ final Map<String, String> enUS = {
       'Your internet connection is currently not available please check or try again.',
   tryAgainKey: 'Try again',
   noThingFoundKey: 'No Thing Found',
+  usernameOrPhoneKey: 'Username or phone',
+  passwordKey: 'Password',
 };

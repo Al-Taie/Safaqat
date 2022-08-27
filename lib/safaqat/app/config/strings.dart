@@ -8,6 +8,8 @@ const noInternetConnectionKey = 'noInternetConnection';
 const internetConnectionMessageKey = 'internetConnectionMessage';
 const tryAgainKey = 'tryAgain';
 const noThingFoundKey = 'noThingFound';
+const usernameOrPhoneKey = 'usernameOrPhone';
+const passwordKey = 'password';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -18,4 +20,6 @@ class AppStrings {
   static final internetConnectionMessage = internetConnectionMessageKey.tr;
   static final tryAgain = tryAgainKey.tr;
   static final noThingFound = noThingFoundKey.tr;
+  static final usernameOrPhone = usernameOrPhoneKey.tr;
+  static final password = passwordKey.tr;
 }

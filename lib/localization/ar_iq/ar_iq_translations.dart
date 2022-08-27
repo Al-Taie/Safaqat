@@ -11,4 +11,6 @@ final Map<String, String> arIQ = {
   'اتصال الإنترنت الخاص بك غير متاح حاليًا ، يرجى التحقق أو المحاولة مرة أخرى.',
   tryAgainKey: 'حاول مرة أخرى',
   noThingFoundKey: 'لم يتم العثور على نتائج',
+  usernameOrPhoneKey: 'اسم المستخدم او رقم الهاتف',
+  passwordKey: 'كلمة المرور',
 };
