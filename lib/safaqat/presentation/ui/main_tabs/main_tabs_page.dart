@@ -3,9 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/home/home_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/tabbed_page.dart';
-
-import '../splash/splash_page.dart';
 
 class MainTabsPage extends StatefulWidget {
   const MainTabsPage({Key? key}) : super(key: key);
@@ -18,8 +18,13 @@ class _MainTabsPageState extends State<MainTabsPage> {
   int _selectedTabIndex = 0;
   final List<TabbedPage> _pages = [
     TabbedPage(
-      page: const SplashPage(),
+      page: const HomePage(),
       label: AppStrings.home,
+      iconAssets: AppDrawable.icTabHome,
+    ),
+    TabbedPage(
+      page: const LoginPage(),
+      label: AppStrings.login,
       iconAssets: AppDrawable.icTabHome,
     ),
   ];
@@ -36,15 +41,13 @@ class _MainTabsPageState extends State<MainTabsPage> {
     return BottomNavigationBar(
       items: _pages
           .map((e) => BottomNavigationBarItem(
-        icon: SvgPicture.asset(
-          e.iconAssets,
-        ),
-        label: e.label,
-        activeIcon: SvgPicture.asset(
-          e.iconAssets,
-          color: AppColors.primaryColor,
-        ),
-      ))
+                icon: SvgPicture.asset(e.iconAssets),
+                label: e.label,
+                activeIcon: SvgPicture.asset(
+                  e.iconAssets,
+                  color: AppColors.primaryColor,
+                ),
+              ))
           .toList(),
       type: BottomNavigationBarType.shifting,
       selectedItemColor: AppColors.primaryColor,
@@ -53,7 +56,7 @@ class _MainTabsPageState extends State<MainTabsPage> {
       onTap: (value) {
         _selectedTabIndex = value;
         setState(
-              () {},
+          () {},
         );
       },
     );

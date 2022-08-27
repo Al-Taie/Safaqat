@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/app_binding.dart';
+import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/main_tabs_page.dart';
 
@@ -13,7 +14,7 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarIconBrightness: Brightness.dark,
-      statusBarColor: Color(0xffaa0000),
+      statusBarColor: AppColors.primaryColor,
     ),
   );
 
