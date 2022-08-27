@@ -1,10 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/app_binding.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/main_tabs_page.dart';
 
-import 'safaqat/app/config/strings.dart';
+import 'localization/app_translation.dart';
+
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -15,6 +18,8 @@ void main() {
   );
 
   WidgetsFlutterBinding.ensureInitialized();
+
+  Logger.init(kReleaseMode ? LogMode.live : LogMode.debug);
 
   runApp(const MyApp());
 }
@@ -30,6 +35,7 @@ class MyApp extends StatelessWidget {
       initialBinding: AppBindings(),
       translations: AppTranslation(),
       locale: Get.deviceLocale,
+      fallbackLocale: const Locale('en', 'US'),
       theme: ThemeData(),
       debugShowCheckedModeBanner: false,
     );
