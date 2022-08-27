@@ -38,6 +38,7 @@ dependencies:
   retrofit: ^3.0.1+1
   dio: ^4.0.6
   dio_logging_interceptor: ^1.0.1
+  shared_preferences: ^2.0.15
   tuple: ^2.0.0
   flutter_svg: ^1.0.4
   flutter_spinkit: ^5.1.0
