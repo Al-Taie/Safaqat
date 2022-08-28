@@ -13,9 +13,10 @@ final Map<String, String> arIQ = {
   noThingFoundKey: 'لم يتم العثور على نتائج',
   usernameOrPhoneKey: 'اسم المستخدم او رقم الهاتف',
   passwordKey: 'كلمة المرور',
-  welcomeKey: 'مرحبا بكم في منصة صفقات',
+  welcomeToSafaqatKey: 'مرحبا بكم في منصة صفقات',
   dontHaveAccountKey: 'لا تمتلك حساباً؟ سجل الان',
   haveAccountKey: 'تمتلك حساب',
-  loginWithoutRegisterKey: 'دخول بدون تسجيل',
+  enterWithoutRegisterKey: 'دخول بدون تسجيل',
   sendResetCodeKey: 'ارسال رمز الاسترجاع',
+  registerNewAccountKey: 'تسجيل حساب جديد',
 };

@@ -18,4 +18,6 @@ class AppColors {
   static const Color shadow = Color(0x30122940);
 
   static const Color blueLightTernary = Color(0x66c3d1f6);
+
+  static const Color ternary = Color(0xffC4FF0E);
 }
