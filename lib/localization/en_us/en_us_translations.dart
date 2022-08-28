@@ -12,4 +12,9 @@ final Map<String, String> enUS = {
   noThingFoundKey: 'No Thing Found',
   usernameOrPhoneKey: 'Username or phone',
   passwordKey: 'Password',
+  welcomeKey: 'Welcome to you at Safaqat',
+  loginWithoutRegisterKey: 'Login without register' ,
+  sendResetCodeKey: 'Send reset code' ,
+  haveAccountKey: 'Have an account',
+  dontHaveAccountKey: 'Don\'t have an account',
 };

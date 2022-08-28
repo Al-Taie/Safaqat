@@ -10,6 +10,11 @@ const tryAgainKey = 'tryAgain';
 const noThingFoundKey = 'noThingFound';
 const usernameOrPhoneKey = 'usernameOrPhone';
 const passwordKey = 'password';
+const welcomeKey = 'welcome';
+const dontHaveAccountKey = 'dontHaveAccount';
+const haveAccountKey = 'haveAccount';
+const loginWithoutRegisterKey = 'loginWithoutRegister';
+const sendResetCodeKey = 'sendResetCode';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -22,4 +27,9 @@ class AppStrings {
   static final noThingFound = noThingFoundKey.tr;
   static final usernameOrPhone = usernameOrPhoneKey.tr;
   static final password = passwordKey.tr;
+  static final welcome = welcomeKey.tr;
+  static final dontHaveAccount = dontHaveAccountKey.tr;
+  static final haveAccount = haveAccountKey.tr;
+  static final loginWithoutRegister = loginWithoutRegisterKey.tr;
+  static final sendResetCode = sendResetCodeKey.tr;
 }
