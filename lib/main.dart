@@ -6,6 +6,7 @@ import 'package:safaqat/app_binding.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/preferences_keys.dart';
 import 'package:safaqat/safaqat/app/utils/logger.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forgot_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/main_tabs_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/splash/splash_page.dart';
@@ -40,7 +41,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       // home: isLoggedIn ? const MainTabsPage() : const LoginPage(),
-      home: const LoginPage(),
+      home: const ForgotPage(),
       initialBinding: AppBindings(),
       translations: AppTranslation(),
       locale: Get.deviceLocale,
