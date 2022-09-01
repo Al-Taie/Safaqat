@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forgot_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/confirm/confirm_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forget_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/register_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/home_controller.dart';
@@ -12,6 +13,7 @@ class AppBindings implements Bindings {
     Get.lazyPut(() => HomeController());
     Get.lazyPut(() => LoginController());
     Get.lazyPut(() => RegisterController());
-    Get.lazyPut(() => ForgotController());
+    Get.lazyPut(() => ForgetController());
+    Get.lazyPut(() => ConfirmController());
   }
 }
