@@ -38,6 +38,12 @@ const agreeTermsAndPolicyKey = 'agreeTermsAndPolicy';
 const receiveNewslettersKey = 'receiveNewsletters';
 const jobPositionKey = 'jobPosition';
 const reviewInfoAndRegisterKey = 'reviewInfoAndRegister';
+const confirmCodeKey = 'confirmCode';
+const pleaseWriteConfirmCodeKey = 'pleaseWriteConfirmCode';
+const resendKey = 'resend';
+const cancelAndReturnToLoginKey = 'cancelAndReturnToLogin';
+const sendConfirmCodeKey = 'sendConfirmCode';
+const reviewInformationKey = 'reviewInformation';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -78,4 +84,10 @@ class AppStrings {
   static final receiveNewsletters = receiveNewslettersKey.tr;
   static final jobPosition = jobPositionKey.tr;
   static final reviewInfoAndRegister = reviewInfoAndRegisterKey.tr;
+  static final confirmCode = confirmCodeKey.tr;
+  static final pleaseWriteConfirmCode = pleaseWriteConfirmCodeKey.tr;
+  static final resend = resendKey.tr;
+  static final cancelAndReturnToLogin = cancelAndReturnToLoginKey.tr;
+  static final sendConfirmCode = sendConfirmCodeKey.tr;
+  static final reviewInformation = reviewInformationKey.tr;
 }

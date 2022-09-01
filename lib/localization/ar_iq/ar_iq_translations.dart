@@ -39,4 +39,11 @@ final Map<String, String> arIQ = {
   accountCreationAndTermsPolicyKey: 'انشاء الحساب و سياسة الشروط',
   jobPositionKey: 'المنصب الوظيفي',
   reviewInfoAndRegisterKey: 'مرجعة المعلومات والتسجيل',
+  confirmCodeKey: 'رمز التأكيد',
+  pleaseWriteConfirmCodeKey: 'الرجاء كتابة رمز التاكيد',
+  resendKey: 'اعادة الارسال؟',
+  cancelAndReturnToLoginKey: 'الالغاء والرجوع لصفحة تسجيل الدخول؟',
+  sendConfirmCodeKey: 'ارسال رمز التأكيد',
+  reviewInformationKey: 'مراجعة المعلومات',
+
 };

@@ -41,4 +41,11 @@ final Map<String, String> enUS = {
   accountCreationAndTermsPolicyKey: 'Account creation and terms policy',
   jobPositionKey: 'Job position',
   reviewInfoAndRegisterKey: 'Review info and register',
+  confirmCodeKey: 'Confirm code',
+  pleaseWriteConfirmCodeKey: 'Please write confirm code',
+  resendKey: 'Resend?',
+  cancelAndReturnToLoginKey: 'Cancel and return to login page?',
+  sendConfirmCodeKey: 'Send confirm code',
+reviewInformationKey: 'Review Information:',
+
 };
