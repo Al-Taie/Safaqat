@@ -8,6 +8,7 @@ import 'package:safaqat/safaqat/app/config/preferences_keys.dart';
 import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forgot_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/register/register_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/main_tabs_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/splash/splash_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -41,7 +42,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       // home: isLoggedIn ? const MainTabsPage() : const LoginPage(),
-      home: const ForgotPage(),
+      home: const RegisterPage(),
       initialBinding: AppBindings(),
       translations: AppTranslation(),
       locale: Get.deviceLocale,

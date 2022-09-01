@@ -6,7 +6,7 @@ class AppColors {
   static const Color shadeTernary = Color(0x61122940);
   static const Color shadeQuaternary = Color(0x14122940);
 
-  static const Color background = Color(0xFFFBFDFF);
+  static const Color background = Color(0xFFF4F4F4);
 
   static const Color primaryColor = Color(0xFF0080FF);
   static const Color darkCardColor = Color(0xFF122940);
