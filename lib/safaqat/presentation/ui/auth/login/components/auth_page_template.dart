@@ -9,7 +9,7 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 class AuthPageTemplate extends StatelessWidget {
   final String? title;
   final bool showLogo;
-  final EdgeInsets padding;
+  final EdgeInsets contentPadding, titlePadding;
   final String secondaryTitle;
   final List<Widget> children;
   final Alignment alignment;
@@ -20,7 +20,8 @@ class AuthPageTemplate extends StatelessWidget {
     this.title,
     this.showLogo = true,
     this.alignment = Alignment.bottomCenter,
-    this.padding = const EdgeInsets.symmetric(horizontal: 42.0, vertical: 28),
+    this.contentPadding = const EdgeInsets.symmetric(horizontal: 42.0, vertical: 28),
+    this.titlePadding = EdgeInsets.zero,
     required this.secondaryTitle,
   }) : super(key: key);
 
@@ -73,12 +74,20 @@ class AuthPageTemplate extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   showLogo ? const SizedBox()
-                  : Container(
+                  :             Container(
                     width: 164,
                     height: 164,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 6, color: Colors.white),
+                      border: Border.all(width: 5, color: AppColors.background),
                       shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 3,
+                          blurRadius: 2,
+                          offset: const Offset(0, 1), // changes position of shadow
+                        ),
+                      ],
                     ),
                     child: ClipOval(
                       child: SvgPicture.asset(
@@ -91,24 +100,31 @@ class AuthPageTemplate extends StatelessWidget {
                     height: showLogo? 0 : 36,
                   ),
 
-                  Text(
-                    title ?? AppStrings.welcomeToSafaqat,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  Text(
-                    secondaryTitle,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16,
-                      color: AppColors.ternary,
+                  Padding(
+                    padding: titlePadding,
+                    child: Column(
+                      children: [
+                        Text(
+                          title ?? AppStrings.welcomeToSafaqat,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Text(
+                          secondaryTitle,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16,
+                            color: AppColors.ternary,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Padding(
-                    padding: padding,
+                    padding: contentPadding,
                     child: Column(
                       children: [...children],
                     ),
