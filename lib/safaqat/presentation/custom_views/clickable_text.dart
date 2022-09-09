@@ -9,7 +9,7 @@ class ClickableText extends StatelessWidget {
   const ClickableText({
     Key? key,
     this.onPressed,
-    this.fontSize = 11,
+    this.fontSize = 10,
     this.color = Colors.white,
     required this.text,
   }) : super(key: key);

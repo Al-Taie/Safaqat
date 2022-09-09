@@ -46,6 +46,6 @@ final Map<String, String> enUS = {
   resendKey: 'Resend?',
   cancelAndReturnToLoginKey: 'Cancel and return to login page?',
   sendConfirmCodeKey: 'Send confirm code',
-reviewInformationKey: 'Review Information:',
+reviewInformationKey: 'Review Information',
 
 };
