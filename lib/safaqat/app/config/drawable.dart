@@ -19,5 +19,10 @@ class AppDrawable {
   static const greenLine = '$_drawable/green_line.svg';
   static const avatarPlaceholder = '$_drawable/avatar_placeholder.svg';
   static const grayLine = '$_drawable/gray_line.svg';
+  static const icCheekMark = '$_drawable/ic_check_mark.svg';
+  static const icContact = '$_drawable/ic_contact.svg';
+  static const icPerson = '$_drawable/ic_person.svg';
+  static const icTopArrow = '$_drawable/ic_top_arrow.svg';
+  static const icDownArrow = '$_drawable/ic_down_arrow.svg';
 
 }

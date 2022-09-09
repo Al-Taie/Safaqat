@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:safaqat/safaqat/app/config/drawable.dart';
 
 class ExpansionWidget extends StatelessWidget {
   final ValueChanged<bool>? onExpansionChanged;
@@ -14,6 +16,7 @@ class ExpansionWidget extends StatelessWidget {
   final BorderRadiusGeometry borderRadius;
   final Color foregroundColor;
   final IconData? icon;
+  final String iconSvg;
 
   ExpansionWidget({
     Key? key,
@@ -21,6 +24,7 @@ class ExpansionWidget extends StatelessWidget {
     this.children = const <Widget>[],
     this.title = '',
     this.icon,
+    this.iconSvg = '',
     this.headerColor,
     this.foregroundColor = Colors.white,
     this.contentPadding = EdgeInsets.zero,
@@ -67,10 +71,13 @@ class ExpansionWidget extends StatelessWidget {
                   : titleWidget(
                 text: title,
                 icon: icon,
+                iconSvg: iconSvg,
                 color: foregroundColor,
               ),
-              trailing: Icon(
-                _isExpanded.value ? Icons.expand_less : Icons.expand_more,
+              trailing: SvgPicture.asset(
+                _isExpanded.value ? AppDrawable.icTopArrow : AppDrawable.icDownArrow,
+                width: 24,
+                height: 24,
                 color: foregroundColor,
               ),
             ),
@@ -102,18 +109,24 @@ class ExpansionWidget extends StatelessWidget {
 Widget titleWidget({
   required String text,
   IconData? icon,
+  String iconSvg = '',
   required Color color,
 }) {
   return Row(
     children: [
-      Icon(
+      icon != null? Icon(
         icon,
+        color: color,
+      ): SvgPicture.asset(
+        iconSvg,
+        width: 24,
+        height: 24,
         color: color,
       ),
       const SizedBox(width: 4),
       Text(
         text,
-        style: TextStyle(color: color, fontSize: 14, fontWeight: FontWeight.w700),
+        style: TextStyle(color: color, fontSize: 13, fontWeight: FontWeight.w700),
       ),
     ],
   );

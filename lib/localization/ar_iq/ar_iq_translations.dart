@@ -48,5 +48,7 @@ final Map<String, String> arIQ = {
   accountWillBeActivatedSoonKey: 'سيتم تفعيل حسابك في المنصة قريبا',
   personalAccountKey: 'الحساب الشخصي',
   mainPageKey: 'الصفحة الرئيسية',
+  agreeTermsAndPolicyKey: 'اوافق على الاحكام والشروط الخاصة للتسجيل واستخدام منصة صفقات.',
+  receiveNewslettersKey: 'ارغب في استلام النشرات البريدية.',
 
 };

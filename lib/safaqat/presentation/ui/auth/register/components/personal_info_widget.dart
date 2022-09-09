@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
+import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/textfiled_form.dart';
@@ -14,7 +15,7 @@ class PersonalInfoWidget extends StatelessWidget {
       foregroundColor: Colors.white,
       contentPadding: const EdgeInsets.all(10),
       title: AppStrings.personalInfo,
-      icon: Icons.person_outlined,
+      iconSvg: AppDrawable.icPerson,
       children: [
         Row(
           children: [

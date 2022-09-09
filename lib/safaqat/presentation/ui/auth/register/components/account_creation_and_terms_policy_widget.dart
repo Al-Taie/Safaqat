@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
+import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/checkbox_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
@@ -15,7 +17,7 @@ class AccountCreationAndTermsPolicyWidget extends StatelessWidget {
       foregroundColor: Colors.white,
       contentPadding: const EdgeInsets.all(10),
       title: AppStrings.accountCreationAndTermsPolicy,
-      icon: Icons.contacts_outlined,
+      iconSvg: AppDrawable.icCheekMark,
       children: [
         TextFiledForm(
           hintText: AppStrings.username,
