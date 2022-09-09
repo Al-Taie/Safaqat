@@ -45,10 +45,12 @@ final Map<String, String> arIQ = {
   cancelAndReturnToLoginKey: 'الالغاء والرجوع لصفحة تسجيل الدخول؟',
   sendConfirmCodeKey: 'ارسال رمز التأكيد',
   reviewInformationKey: 'مراجعة المعلومات',
-  accountWillBeActivatedSoonKey: 'سيتم تفعيل حسابك في المنصة قريبا',
+  accountWillBeActivatedSoonKey: 'سيتم تفعيل حسابك قريبا',
   personalAccountKey: 'الحساب الشخصي',
   mainPageKey: 'الصفحة الرئيسية',
   agreeTermsAndPolicyKey: 'اوافق على الاحكام والشروط الخاصة للتسجيل واستخدام منصة صفقات.',
   receiveNewslettersKey: 'ارغب في استلام النشرات البريدية.',
+  nameArabicKey: 'الاسم بالعربية',
+  nameEnglishKey: 'الاسم بالانجليزية',
 
 };

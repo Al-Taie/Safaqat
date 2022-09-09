@@ -48,7 +48,13 @@ final Map<String, String> enUS = {
   sendConfirmCodeKey: 'Send confirm code',
   reviewInformationKey: 'Review Information',
   accountWillBeActivatedSoonKey:
-      'Your account on the platform will be activated soon',
+      'Your account will be activated soon',
   personalAccountKey: 'Personal account',
   mainPageKey: 'Main page',
+  nameArabicKey: 'Arabic Name',
+  nameEnglishKey: 'English Name',
+  firstNameEnglishKey: 'First Name',
+  midNameEnglishKey: 'Mid Name',
+  lastNameEnglishKey: 'Last Name',
+
 };

@@ -47,6 +47,11 @@ const reviewInformationKey = 'reviewInformation';
 const accountWillBeActivatedSoonKey = 'accountWillBeActivatedSoon';
 const personalAccountKey = 'personalAccount';
 const mainPageKey = 'mainPage';
+const nameArabicKey = 'nameArabic';
+const nameEnglishKey = 'nameEnglish';
+const firstNameEnglishKey = 'firstNameEnglish';
+const midNameEnglishKey = 'midNameEnglish';
+const lastNameEnglishKey = 'lastNameEnglish';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -96,4 +101,10 @@ class AppStrings {
   static final accountWillBeActivatedSoon = accountWillBeActivatedSoonKey.tr;
   static final personalAccount = personalAccountKey.tr;
   static final mainPage = mainPageKey.tr;
+  static final nameArabic = nameArabicKey.tr;
+  static final nameEnglish = nameEnglishKey.tr;
+  static final firstNameEnglish = firstNameEnglishKey.tr;
+  static final middleNameEnglish = midNameEnglishKey.tr;
+  static final lastNameEnglish = lastNameEnglishKey.tr;
+
 }

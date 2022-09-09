@@ -1,7 +1,7 @@
 import 'dart:io';
 
 class AppDrawable {
-  static final bool _isRTL = Platform.localeName.split('_')[0] == 'ar';
+  static final bool isRTL = Platform.localeName.split('_')[0] == 'ar';
 
   //path
   static const _drawable = 'assets/drawable';
@@ -24,5 +24,6 @@ class AppDrawable {
   static const icPerson = '$_drawable/ic_person.svg';
   static const icTopArrow = '$_drawable/ic_top_arrow.svg';
   static const icDownArrow = '$_drawable/ic_down_arrow.svg';
+  static const icGallery = '$_drawable/ic_gallery.svg';
 
 }
