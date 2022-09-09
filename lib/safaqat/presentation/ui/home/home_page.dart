@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(SplashController());
     return Scaffold(
-      body: Container(),
+      body: Center(child: Text('HOME')),
     );
   }
 }

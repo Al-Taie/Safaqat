@@ -17,5 +17,7 @@ class AppDrawable {
   static const centerSplashTitle = '$_drawable/center_splash_title.svg';
   static const centerBaseLayer = '$_drawable/center_base_layer.svg';
   static const greenLine = '$_drawable/green_line.svg';
+  static const avatarPlaceholder = '$_drawable/avatar_placeholder.svg';
+  static const grayLine = '$_drawable/gray_line.svg';
 
 }
