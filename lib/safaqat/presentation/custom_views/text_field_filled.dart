@@ -11,8 +11,9 @@ import '../../app/config/colors.dart';
 class FilledTextField extends StatelessWidget {
   final String? iconPrefixAsset, iconSuffixAsset, hint;
   final int? maxLength;
+  final TextStyle? style;
   final ValueChanged<String>? onTextChanged;
-  late bool isPasswordField, isIconSuffix;
+  late bool isPasswordField, isIconSuffix, isDense;
   final EdgeInsetsGeometry? contentPadding;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
@@ -22,7 +23,9 @@ class FilledTextField extends StatelessWidget {
         this.iconPrefixAsset,
         this.iconSuffixAsset,
         this.hint,
+        this.style,
         required this.onTextChanged,
+        this.isDense = false,
         this.isPasswordField = false,
         this.contentPadding,
         this.isIconSuffix = false,
@@ -41,59 +44,64 @@ class FilledTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return TextField(
-      maxLength: maxLength,
-      controller: controller,
-      keyboardType: keyboardType,
-      obscureText: _obscureText.value,
-      inputFormatters: inputFormatters,
-      decoration: InputDecoration(
-          contentPadding: contentPadding,
-          suffixIcon: isIconSuffix
-              ? InkWell(
-            onTap: _toggle,
-            child: Padding(
+    return SizedBox(
+      height: 42,
+      child: TextField(
+        maxLength: maxLength,
+        controller: controller,
+        keyboardType: keyboardType,
+        obscureText: _obscureText.value,
+        inputFormatters: inputFormatters,
+        style: style,
+        decoration: InputDecoration(
+            isDense : isDense,
+            contentPadding: contentPadding,
+            suffixIcon: isIconSuffix
+                ? InkWell(
+              onTap: _toggle,
+              child: Padding(
+                padding: const EdgeInsets.all(
+                  16.0,
+                ),
+                child: isIconSuffix
+                    ? Icon(
+                  _obscureText.value
+                      ? Icons.visibility_outlined
+                      : Icons.visibility_off_outlined,
+                )
+                    : null,
+              ),
+            )
+                : null,
+            prefixIcon: iconPrefixAsset != null
+                ? Padding(
               padding: const EdgeInsets.all(
                 16.0,
               ),
-              child: isIconSuffix
-                  ? Icon(
-                _obscureText.value
-                    ? Icons.visibility_outlined
-                    : Icons.visibility_off_outlined,
-              )
-                  : null,
-            ),
-          )
-              : null,
-          prefixIcon: iconPrefixAsset != null
-              ? Padding(
-            padding: const EdgeInsets.all(
-              16.0,
-            ),
-            child: SvgPicture.asset(
-              iconPrefixAsset!,
-            ),
-          )
-              : null,
-          hintText: hint,
-          hintStyle: AppTextStyle.hint,
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.transparent,
-              width: 1,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-          ),
-          enabledBorder: const OutlineInputBorder(
+              child: SvgPicture.asset(
+                iconPrefixAsset!,
+              ),
+            )
+                : null,
+            hintText: hint,
+            hintStyle: AppTextStyle.hint,
+            focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                 color: Colors.transparent,
                 width: 1,
               ),
-              borderRadius: BorderRadius.all(Radius.circular(12))),
-          filled: true,
-          fillColor: AppColors.background),
-      onChanged: onTextChanged,
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+            enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.transparent,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(12))),
+            filled: true,
+            fillColor: AppColors.background),
+        onChanged: onTextChanged,
+      ),
     );
   }
 }
