@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/components/account_creation_and_terms_policy_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/components/business_and_contact_info_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/components/personal_info_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/register_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/review/review_page.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -45,7 +47,7 @@ class RegisterPage extends StatelessWidget {
               color: AppColors.ternary,
               textColor: AppColors.primaryColor,
               text: AppStrings.reviewInfoAndRegister,
-              onPressed: () => {},
+              onPressed: const ReviewPage().navTo,
             ),
           ],
         ),

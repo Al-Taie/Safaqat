@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/clickable_text.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forget_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/components/auth_page_template.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/register/register_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/home/home_page.dart';
 
 import '../../../../app/config/colors.dart';
 import '../../../../app/config/drawable.dart';
@@ -18,7 +22,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
     return AuthPageTemplate(
-      secondaryTitle: AppStrings.welcomeToSafaqat,
+      secondaryTitle: AppStrings.login,
       children: [
         FilledTextField(
           controller: TextEditingController(
@@ -36,7 +40,7 @@ class LoginPage extends StatelessWidget {
           height: 16,
         ),
         FilledTextField(
-          isIconSuffix: true,
+          isIconSuffix: false,
           isPasswordField: true,
           controller: TextEditingController(
             text: Get.arguments?['password'],
@@ -56,7 +60,7 @@ class LoginPage extends StatelessWidget {
           color: AppColors.ternary,
           textColor: AppColors.primaryColor,
           text: AppStrings.login,
-          onPressed: () => null,
+          onPressed: const HomePage().navTo,
         ),
         const SizedBox(
           height: 8,
@@ -66,11 +70,11 @@ class LoginPage extends StatelessWidget {
           children: [
             ClickableText(
               text: AppStrings.forgotPassword,
-              onPressed: null,
+              onPressed: const ForgetPage().navTo,
             ),
             ClickableText(
               text: AppStrings.dontHaveAccount,
-              onPressed: null,
+              onPressed: const RegisterPage().navTo,
             ),
           ],
         ),
@@ -85,7 +89,7 @@ class LoginPage extends StatelessWidget {
           color: Colors.white,
           textColor: AppColors.primaryColor,
           text: AppStrings.enterWithoutRegister,
-          onPressed: () => null,
+          onPressed: const HomePage().navTo,
         )
       ],
     );

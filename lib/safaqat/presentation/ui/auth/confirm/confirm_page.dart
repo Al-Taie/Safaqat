@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/clickable_text.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_field_filled.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/confirm/confirm_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/components/auth_page_template.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/home/home_page.dart';
 
 class ConfirmPage extends StatelessWidget {
   const ConfirmPage({Key? key}) : super(key: key);
@@ -50,14 +53,14 @@ class ConfirmPage extends StatelessWidget {
           color: AppColors.ternary,
           textColor: AppColors.primaryColor,
           text: AppStrings.login,
-          onPressed: () => null,
+          onPressed: const HomePage().navTo,
         ),
         const SizedBox(
           height: 8,
         ),
         ClickableText(
           text: AppStrings.cancelAndReturnToLogin,
-          onPressed: null,
+          onPressed: const LoginPage().navTo,
         ),
       ],
     );

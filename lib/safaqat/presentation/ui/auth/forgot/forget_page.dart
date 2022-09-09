@@ -4,11 +4,16 @@ import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/clickable_text.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_field_filled.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/confirm/confirm_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forget_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/components/auth_page_template.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/register/register_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/home/home_page.dart';
 
 class ForgetPage extends StatelessWidget {
   const ForgetPage({Key? key}) : super(key: key);
@@ -36,7 +41,7 @@ class ForgetPage extends StatelessWidget {
           color: AppColors.ternary,
           textColor: AppColors.primaryColor,
           text: AppStrings.sendResetCode,
-          onPressed: () => null,
+          onPressed: const ConfirmPage().navTo,
         ),
         const SizedBox(
           height: 8,
@@ -46,11 +51,11 @@ class ForgetPage extends StatelessWidget {
           children: [
             ClickableText(
               text: AppStrings.haveAccount,
-              onPressed: null,
+              onPressed: const LoginPage().navTo,
             ),
             ClickableText(
               text: AppStrings.dontHaveAccount,
-              onPressed: null,
+              onPressed: const RegisterPage().navTo,
             ),
           ],
         ),
@@ -65,7 +70,7 @@ class ForgetPage extends StatelessWidget {
           color: Colors.white,
           textColor: AppColors.primaryColor,
           text: AppStrings.enterWithoutRegister,
-          onPressed: () => null,
+          onPressed: const HomePage().navTo,
         )
       ],
     );
