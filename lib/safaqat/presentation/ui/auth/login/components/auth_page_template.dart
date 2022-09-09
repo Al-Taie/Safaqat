@@ -8,13 +8,19 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 
 class AuthPageTemplate extends StatelessWidget {
   final String? title;
+  final bool showLogo;
+  final EdgeInsets padding;
   final String secondaryTitle;
   final List<Widget> children;
+  final Alignment alignment;
 
   const AuthPageTemplate({
     Key? key,
     this.children = const <Widget>[],
     this.title,
+    this.showLogo = true,
+    this.alignment = Alignment.bottomCenter,
+    this.padding = const EdgeInsets.symmetric(horizontal: 42.0, vertical: 28),
     required this.secondaryTitle,
   }) : super(key: key);
 
@@ -45,25 +51,46 @@ class AuthPageTemplate extends StatelessWidget {
                 ),
               ),
             ),
+            showLogo
+                ? Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 24.0,
+                      ),
+                      child: Image.asset(
+                        AppDrawable.topRightSplashLogo,
+                        height: 100,
+                        width: 100,
+                      ),
+                    ),
+                  )
+                : const SizedBox(),
             Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 24.0,
-                ),
-                child: Image.asset(
-                  AppDrawable.topRightSplashLogo,
-                  height: 100,
-                  width: 100,
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
+              alignment: alignment,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  showLogo ? const SizedBox()
+                  : Container(
+                    width: 164,
+                    height: 164,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 6, color: Colors.white),
+                      shape: BoxShape.circle,
+                    ),
+                    child: ClipOval(
+                      child: SvgPicture.asset(
+                        AppDrawable.avatarPlaceholder,
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: showLogo? 0 : 36,
+                  ),
+
                   Text(
                     title ?? AppStrings.welcomeToSafaqat,
                     style: const TextStyle(
@@ -81,8 +108,7 @@ class AuthPageTemplate extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 42.0, vertical: 28),
+                    padding: padding,
                     child: Column(
                       children: [...children],
                     ),

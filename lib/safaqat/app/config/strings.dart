@@ -44,6 +44,9 @@ const resendKey = 'resend';
 const cancelAndReturnToLoginKey = 'cancelAndReturnToLogin';
 const sendConfirmCodeKey = 'sendConfirmCode';
 const reviewInformationKey = 'reviewInformation';
+const accountWillBeActivatedSoonKey = 'accountWillBeActivatedSoon';
+const personalAccountKey = 'personalAccount';
+const mainPageKey = 'mainPage';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -90,4 +93,7 @@ class AppStrings {
   static final cancelAndReturnToLogin = cancelAndReturnToLoginKey.tr;
   static final sendConfirmCode = sendConfirmCodeKey.tr;
   static final reviewInformation = reviewInformationKey.tr;
+  static final accountWillBeActivatedSoon = accountWillBeActivatedSoonKey.tr;
+  static final personalAccount = personalAccountKey.tr;
+  static final mainPage = mainPageKey.tr;
 }

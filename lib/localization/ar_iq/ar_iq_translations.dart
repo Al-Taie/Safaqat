@@ -45,5 +45,8 @@ final Map<String, String> arIQ = {
   cancelAndReturnToLoginKey: 'الالغاء والرجوع لصفحة تسجيل الدخول؟',
   sendConfirmCodeKey: 'ارسال رمز التأكيد',
   reviewInformationKey: 'مراجعة المعلومات',
+  accountWillBeActivatedSoonKey: 'سيتم تفعيل حسابك في المنصة قريبا',
+  personalAccountKey: 'الحساب الشخصي',
+  mainPageKey: 'الصفحة الرئيسية',
 
 };

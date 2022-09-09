@@ -9,10 +9,13 @@ import 'package:safaqat/safaqat/presentation/custom_views/text_field_filled.dart
 import 'package:safaqat/safaqat/presentation/ui/auth/confirm/confirm_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/components/auth_page_template.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/welcome/welcome_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/home_page.dart';
 
 class ConfirmPage extends StatelessWidget {
-  const ConfirmPage({Key? key}) : super(key: key);
+  final ConfirmType type;
+
+  const ConfirmPage({Key? key, this.type = ConfirmType.forgetPassword}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +30,8 @@ class ConfirmPage extends StatelessWidget {
           iconPrefixAsset: null,
           hint: AppStrings.confirmCode,
           onTextChanged: (
-              value,
-              ) {},
+            value,
+          ) {},
         ),
         const SizedBox(
           height: 16,
@@ -53,7 +56,9 @@ class ConfirmPage extends StatelessWidget {
           color: AppColors.ternary,
           textColor: AppColors.primaryColor,
           text: AppStrings.login,
-          onPressed: const HomePage().navTo,
+          onPressed: type == ConfirmType.register
+              ? const WelcomePage().navTo
+              : const HomePage().navTo,
         ),
         const SizedBox(
           height: 8,
@@ -66,3 +71,5 @@ class ConfirmPage extends StatelessWidget {
     );
   }
 }
+
+enum ConfirmType { register, forgetPassword }
