@@ -61,41 +61,56 @@ class ExpansionWidget extends StatelessWidget {
           InkWell(
             customBorder: RoundedRectangleBorder(borderRadius: borderRadius),
             onTap: toggleExpansion,
-            child: ListTile(
-              tileColor: headerColor,
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
-              contentPadding: headerContentPadding,
-              title: isCustomHeader
-                  ? customHeader
-                  : titleWidget(
-                text: title,
-                icon: icon,
-                iconSvg: iconSvg,
-                color: foregroundColor,
-              ),
-              trailing: SvgPicture.asset(
-                _isExpanded.value ? AppDrawable.icTopArrow : AppDrawable.icDownArrow,
-                width: 24,
-                height: 24,
-                color: foregroundColor,
-              ),
+            child: Stack(
+              children: [
+                SizedBox(
+                  height: 42,
+                  child: ListTile(
+                    tileColor: headerColor,
+                    isThreeLine: true,
+                    subtitle: const Text(''),
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    contentPadding: headerContentPadding,
+                    title: isCustomHeader
+                        ? customHeader
+                        : titleWidget(
+                            text: title,
+                            icon: icon,
+                            iconSvg: iconSvg,
+                            color: foregroundColor,
+                          ),
+                  ),
+                ),
+                Align(
+                  alignment: AppDrawable.isRTL
+                      ? Alignment.centerLeft
+                      : Alignment.centerRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 16, top: 12, right: 16),
+                    child: SvgPicture.asset(
+                      _isExpanded.value
+                          ? AppDrawable.icTopArrow
+                          : AppDrawable.icDownArrow,
+                      width: 20,
+                      height: 20,
+                      color: foregroundColor,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Container(
             decoration: BoxDecoration(
-              color: const Color(0xFFFBFBFB),
-              borderRadius: borderRadius
-            ),
+                color: const Color(0xFFFBFBFB), borderRadius: borderRadius),
             child: ClipRect(
               child: Align(
                 heightFactor: _isExpanded.value ? 1 : 0,
                 child: Padding(
                   padding: contentPadding,
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                      children: children
-                  ),
+                      mainAxisSize: MainAxisSize.min, children: children),
                 ),
               ),
             ),
@@ -114,19 +129,22 @@ Widget titleWidget({
 }) {
   return Row(
     children: [
-      icon != null? Icon(
-        icon,
-        color: color,
-      ): SvgPicture.asset(
-        iconSvg,
-        width: 24,
-        height: 24,
-        color: color,
-      ),
+      icon != null
+          ? Icon(
+              icon,
+              color: color,
+            )
+          : SvgPicture.asset(
+              iconSvg,
+              width: 24,
+              height: 24,
+              color: color,
+            ),
       const SizedBox(width: 4),
       Text(
         text,
-        style: TextStyle(color: color, fontSize: 13, fontWeight: FontWeight.w700),
+        style:
+            TextStyle(color: color, fontSize: 13, fontWeight: FontWeight.w700),
       ),
     ],
   );
