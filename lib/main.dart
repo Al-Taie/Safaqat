@@ -10,6 +10,7 @@ import 'package:safaqat/safaqat/presentation/ui/auth/confirm/confirm_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forget_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/register_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/review/review_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/main_tabs_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/splash/splash_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,12 +44,14 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       // home: isLoggedIn ? const MainTabsPage() : const LoginPage(),
-      home: const ConfirmPage(),
+      home: const LoginPage(),
       initialBinding: AppBindings(),
       translations: AppTranslation(),
       locale: Get.deviceLocale,
       fallbackLocale: const Locale('en', 'US'),
-      theme: ThemeData(),
+      theme: ThemeData(
+          fontFamily: 'Cairo',
+      ),
       debugShowCheckedModeBanner: false,
     );
   }

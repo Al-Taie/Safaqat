@@ -69,3 +69,22 @@ flutter:
   assets:
     - assets/drawable/
 
+  fonts:
+    - family: Cairo
+      fonts:
+#        - asset: assets/fonts/cairo/cairo_extra_light.ttf
+#          weight: 200
+#        - asset: assets/fonts/cairo/cairo_light.ttf
+#          weight: 300
+#        - asset: assets/fonts/cairo/cairo_regular.ttf
+#          weight: 400
+#        - asset: assets/fonts/cairo/cairo_medium.ttf
+#          weight: 500
+#        - asset: assets/fonts/cairo/cairo_semi_bold.ttf
+#          weight: 600
+        - asset: assets/fonts/cairo/cairo_bold.ttf
+#          weight: 700
+#        - asset: assets/fonts/cairo/cairo_extra_bold.ttf
+#          weight: 800
+#        - asset: assets/fonts/cairo/cairo_black.ttf
+#          weight: 900
