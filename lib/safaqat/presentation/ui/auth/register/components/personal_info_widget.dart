@@ -50,7 +50,9 @@ class PersonalInfoWidget extends StatelessWidget {
             Flexible(
               flex: 1,
               child: TextFiledForm(
-                hintText: AppStrings.firstName,
+                hintText: AppStrings.firstNameEnglish,
+                textDirection: TextDirection.ltr,
+                textAlign: TextAlign.left,
               ),
             ),
             const SizedBox(
@@ -59,7 +61,9 @@ class PersonalInfoWidget extends StatelessWidget {
             Flexible(
               flex: 1,
               child: TextFiledForm(
-                hintText: AppStrings.middleName,
+                hintText: AppStrings.middleNameEnglish,
+                textDirection: TextDirection.ltr,
+                textAlign: TextAlign.left,
               ),
             ),
           ],
@@ -68,7 +72,9 @@ class PersonalInfoWidget extends StatelessWidget {
           height: 8,
         ),
         TextFiledForm(
-          hintText: AppStrings.lastName,
+          hintText: AppStrings.lastNameEnglish,
+          textDirection: TextDirection.ltr,
+          textAlign: TextAlign.left,
         ),
         const SizedBox(
           height: 8,
@@ -92,7 +98,7 @@ class PersonalInfoWidget extends StatelessWidget {
               child: Container(),
             ),
             Flexible(
-              flex: 2,
+              flex: 3,
               child: TextFiledForm(
                 hintText: AppStrings.profilePicture,
                 prefixIcon: const Icon(Icons.photo_library_outlined),

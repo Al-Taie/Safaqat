@@ -14,6 +14,8 @@ class TextFiledForm extends StatelessWidget {
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
   final TextEditingController? controller;
+  final TextDirection? textDirection;
+  final TextAlign textAlign;
 
   const TextFiledForm({
     Key? key,
@@ -27,6 +29,8 @@ class TextFiledForm extends StatelessWidget {
     this.prefixIconColor,
     this.readOnly = false,
     this.hintText,
+    this.textDirection,
+    this.textAlign = TextAlign.start,
   }) : super(key: key);
 
   @override
@@ -35,6 +39,7 @@ class TextFiledForm extends StatelessWidget {
       controller: controller,
       onChanged: onTextChanged,
       readOnly: readOnly,
+      textAlign: textAlign,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: AppTextStyle.hint,

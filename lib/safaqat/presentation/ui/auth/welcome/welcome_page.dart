@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
-import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
@@ -18,38 +16,36 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(WelcomeController());
     return AuthPageTemplate(
-            showLogo: false,
-            alignment: Alignment.center,
-            secondaryTitle: AppStrings.accountWillBeActivatedSoon,
-            padding: const EdgeInsets.only(
-              left: 16,
-              right: 16,
-              top: 48
+      showLogo: false,
+      alignment: Alignment.center,
+      secondaryTitle: AppStrings.accountWillBeActivatedSoon,
+      titlePadding: const EdgeInsets.symmetric(horizontal: 16),
+      contentPadding: const EdgeInsets.only(left: 16, right: 16, top: 48),
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomButton(
+              width: 128,
+              color: AppColors.ternary,
+              textColor: AppColors.primaryColor,
+              text: AppStrings.mainPage,
+              onPressed: const HomePage().navTo,
             ),
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomButton(
-                    width: 128,
-                    color: AppColors.ternary,
-                    textColor: AppColors.primaryColor,
-                    text: AppStrings.mainPage,
-                    onPressed: const HomePage().navTo,
-                  ),
-                  CustomButton(
-                    width: 128,
-                    color: AppColors.ternary,
-                    textColor: AppColors.primaryColor,
-                    text: AppStrings.personalAccount,
-                    onPressed: const LoginPage().navTo,
-                  ),
-                ],
-              ),
-              SizedBox(height: 48,)
-
-            ],
+            CustomButton(
+              width: 128,
+              color: AppColors.ternary,
+              textColor: AppColors.primaryColor,
+              text: AppStrings.personalAccount,
+              onPressed: const LoginPage().navTo,
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 48,
+        )
+      ],
     );
   }
 }
