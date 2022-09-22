@@ -1,4 +1,4 @@
 
 abstract class NoParamUseCase<Type>{
-  Future<Type> execute();
+  Future<Type> call();
 }

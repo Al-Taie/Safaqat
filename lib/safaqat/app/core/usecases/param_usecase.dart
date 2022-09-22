@@ -1,4 +1,4 @@
 
 abstract class ParamUseCase<Type, Params>{
-  Future<Type> execute(Params params);
+  Future<Type> call ({required Params params});
 }
