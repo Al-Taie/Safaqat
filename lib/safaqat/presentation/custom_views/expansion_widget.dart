@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
+import 'package:safaqat/safaqat/app/utils/utils.dart';
 
 class ExpansionWidget extends StatelessWidget {
   final ValueChanged<bool>? onExpansionChanged;
@@ -83,7 +84,7 @@ class ExpansionWidget extends StatelessWidget {
                   ),
                 ),
                 Align(
-                  alignment: AppDrawable.isRTL
+                  alignment: Utils.isRTL
                       ? Alignment.centerLeft
                       : Alignment.centerRight,
                   child: Padding(
