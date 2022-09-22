@@ -52,6 +52,10 @@ const nameEnglishKey = 'nameEnglish';
 const firstNameEnglishKey = 'firstNameEnglish';
 const midNameEnglishKey = 'midNameEnglish';
 const lastNameEnglishKey = 'lastNameEnglish';
+const loginFailedKey = 'loginFailed';
+const registerFailedKey = 'registerFailed';
+const registerSuccessKey = 'registerSuccess';
+const addressKey = 'address';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -106,5 +110,9 @@ class AppStrings {
   static final firstNameEnglish = firstNameEnglishKey.tr;
   static final middleNameEnglish = midNameEnglishKey.tr;
   static final lastNameEnglish = lastNameEnglishKey.tr;
+  static final loginFailed = loginFailedKey.tr;
+  static final registerFailed = registerFailedKey.tr;
+  static final registerSuccess = registerSuccessKey.tr;
+  static final address = addressKey.tr;
 
 }

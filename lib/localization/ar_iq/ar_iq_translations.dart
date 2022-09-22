@@ -52,5 +52,12 @@ final Map<String, String> arIQ = {
   receiveNewslettersKey: 'ارغب في استلام النشرات البريدية.',
   nameArabicKey: 'الاسم بالعربية',
   nameEnglishKey: 'الاسم بالانجليزية',
+  loginFailedKey: 'فشل في تسجيل الدخول',
+  registerFailedKey: 'فشل التسجيل',
+  registerSuccessKey: 'تم التسجيل',
+  addressKey: 'العنوان',
+  firstNameEnglishKey: 'First Name',
+  midNameEnglishKey: 'Mid Name',
+  lastNameEnglishKey: 'Last Name',
 
 };

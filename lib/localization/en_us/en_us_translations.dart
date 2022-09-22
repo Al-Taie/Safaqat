@@ -21,9 +21,6 @@ final Map<String, String> enUS = {
   agreeTermsAndPolicyKey:
       'I agree to the terms and conditions for registering and using the deals platform.',
   receiveNewslettersKey: 'I would like to receive newsletters.',
-  firstNameKey: 'First name',
-  middleNameKey: 'Middle name',
-  lastNameKey: 'Last name',
   bornKey: 'Born',
   nationalityKey: 'Nationality',
   profilePictureKey: 'Profile picture',
@@ -56,5 +53,9 @@ final Map<String, String> enUS = {
   firstNameEnglishKey: 'First Name',
   midNameEnglishKey: 'Mid Name',
   lastNameEnglishKey: 'Last Name',
+  loginFailedKey: 'Login Failed',
+  registerFailedKey: 'Register Failed',
+  registerSuccessKey: 'Register Success',
+  addressKey: 'Address',
 
 };
