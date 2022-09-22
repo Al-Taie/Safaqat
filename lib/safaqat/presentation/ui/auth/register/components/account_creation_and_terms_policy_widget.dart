@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/checkbox_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/textfiled_form.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/register/register_controller.dart';
 
 class AccountCreationAndTermsPolicyWidget extends StatelessWidget {
   const AccountCreationAndTermsPolicyWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(RegisterController());
+
     return ExpansionWidget(
       headerColor: AppColors.primaryColor,
       foregroundColor: Colors.white,
@@ -21,31 +24,45 @@ class AccountCreationAndTermsPolicyWidget extends StatelessWidget {
       children: [
         TextFiledForm(
           hintText: AppStrings.username,
+          onTextChanged: (value) {
+            controller.username = value;
+          },
         ),
         const SizedBox(
           height: 8,
         ),
         TextFiledForm(
           hintText: AppStrings.password,
+          onTextChanged: (value) {
+            controller.password = value;
+          },
         ),
         const SizedBox(
           height: 8,
         ),
         TextFiledForm(
           hintText: AppStrings.confirmPassword,
+          onTextChanged: (value) {
+            controller.confirmPassword = value;
+          },
         ),
         const SizedBox(
           height: 8,
         ),
-        CheckBoxWidget(
-          value: false,
-          onChanged: (any) => {},
-          title: AppStrings.agreeTermsAndPolicy,
+        Obx(
+          () => CheckBoxWidget(
+            value: controller.agreeTerms,
+            onChanged: (state) => {controller.agreeTerms = (state == true)},
+            title: AppStrings.agreeTermsAndPolicy,
+          ),
         ),
-        CheckBoxWidget(
-          value: false,
-          onChanged: (any) => {},
-          title: AppStrings.receiveNewsletters,
+        Obx(
+          () => CheckBoxWidget(
+            value: controller.receiveNewsletters,
+            onChanged: (state) =>
+                {controller.receiveNewsletters = (state == true)},
+            title: AppStrings.receiveNewsletters,
+          ),
         ),
       ],
     );

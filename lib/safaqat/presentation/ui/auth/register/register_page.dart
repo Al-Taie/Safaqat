@@ -15,7 +15,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(RegisterController());
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.background,
