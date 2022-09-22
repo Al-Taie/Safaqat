@@ -1,8 +1,6 @@
 import 'dart:io';
 
 class AppDrawable {
-  static final bool isRTL = Platform.localeName.split('_')[0] == 'ar';
-
   //path
   static const _drawable = 'assets/drawable';
 

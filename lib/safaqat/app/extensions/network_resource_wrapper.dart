@@ -1,34 +1,40 @@
 
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:retrofit/dio.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 
 import '../../data/models/base_response.dart';
 import '../../domain/entities/resources.dart';
 
 extension ResoursesWrapping on HttpResponse<BaseResponse> {
   Resources<T> toResources<T>() {
+
     switch (response.statusCode) {
       case 200:
-        {
-          if (data.result is List) {
-            if ((data.result as List).isEmpty) {
-              return Resources<T>.empty(data.result);
+      {
+        Logger.log(data.response);
+          if (data.response is List) {
+            if ((data.response as List).isEmpty) {
+              return Resources<T>.empty(data.response);
             }
           }
           try {
             return Resources<T>.success(
-              data.result!,
-              null, // replace null by another response after added to base response.
+              data.response!,
+                response.statusCode?.toDouble() ?? 0
             );
           } catch (e) {
-            throw null ?? 0; // replace null by another response after added to base response.
+            return Resources<T>.successNullable(
+                data.response,
+                response.statusCode?.toDouble() ?? 0
+            );
           }
-        }
+      }
       default:
         {
           return Resources<T>.error(
             response.statusMessage,
-            null, // replace null by another response after added to base response.
+            response.statusCode?.toDouble() ?? 0,
           );
         }
     }
@@ -47,4 +53,3 @@ extension CallManger on Future<HttpResponse<BaseResponse>> {
     });
   }
 }
-

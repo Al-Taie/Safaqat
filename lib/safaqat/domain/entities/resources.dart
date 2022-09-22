@@ -30,6 +30,17 @@ class Resources<T> {
     );
   }
 
+  factory Resources.successNullable(
+      T? data,
+      double? statusCode,
+      ) {
+    return Resources._(
+      status: Status.success,
+      data: data,
+      statusCode: statusCode,
+    );
+  }
+
   factory Resources.empty(T? data) {
     return Resources._(
       status: Status.empty,
