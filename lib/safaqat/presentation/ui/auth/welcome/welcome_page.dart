@@ -6,6 +6,7 @@ import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/components/auth_page_template.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/register/register_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/welcome/welcome_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/home_page.dart';
 
@@ -14,7 +15,7 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(WelcomeController());
+    final controller = Get.put(RegisterController());
     return AuthPageTemplate(
       showLogo: false,
       alignment: Alignment.center,

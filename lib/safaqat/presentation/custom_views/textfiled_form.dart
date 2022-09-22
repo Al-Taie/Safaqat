@@ -16,6 +16,9 @@ class TextFiledForm extends StatelessWidget {
   final TextEditingController? controller;
   final TextDirection? textDirection;
   final TextAlign textAlign;
+  final GestureTapCallback? onTap;
+  final FocusNode? focusNode;
+  final VoidCallback? onFieldSubmitted;
 
   const TextFiledForm({
     Key? key,
@@ -31,6 +34,9 @@ class TextFiledForm extends StatelessWidget {
     this.hintText,
     this.textDirection,
     this.textAlign = TextAlign.start,
+    this.onTap,
+    this.focusNode,
+    this.onFieldSubmitted,
   }) : super(key: key);
 
   @override
@@ -38,11 +44,18 @@ class TextFiledForm extends StatelessWidget {
     return TextFormField(
       controller: controller,
       onChanged: onTextChanged,
+      keyboardType: keyboardType,
+      onTap: onTap,
       readOnly: readOnly,
       textAlign: textAlign,
+      focusNode: focusNode,
+      textDirection: textDirection,
+      onFieldSubmitted: (String value) {
+        onFieldSubmitted?.call();
+      },
       decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: AppTextStyle.hint,
+        label: Text(hintText ?? ''),
+        labelStyle: AppTextStyle.hint,
         fillColor: const Color(0xFFF4F4F4),
         filled: true,
         prefixIcon: prefixIcon,

@@ -6,13 +6,8 @@ import 'package:safaqat/app_binding.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/preferences_keys.dart';
 import 'package:safaqat/safaqat/app/utils/logger.dart';
-import 'package:safaqat/safaqat/presentation/ui/auth/confirm/confirm_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forget_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/auth/register/register_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/auth/review/review_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/main_tabs/main_tabs_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/splash/splash_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/home/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'localization/app_translation.dart';
@@ -31,26 +26,37 @@ void main() async {
 
   Logger.init(kReleaseMode ? LogMode.live : LogMode.debug);
 
-  runApp(MainApp(isLoggedIn: isLoggedIn));
+  runApp(
+    MainApp(
+      isLoggedIn: isLoggedIn,
+      preferences: preferences,
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
   final bool isLoggedIn;
+  final SharedPreferences preferences;
 
-  const MainApp({Key? key, this.isLoggedIn = false}) : super(key: key);
+  const MainApp({
+    Key? key,
+    required this.preferences,
+    this.isLoggedIn = false,
+  }) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final isArabicLanguage = Get.deviceLocale?.languageCode == 'ar';
+
     return GetMaterialApp(
-      // home: isLoggedIn ? const MainTabsPage() : const LoginPage(),
-      home: const LoginPage(),
-      initialBinding: AppBindings(),
+      home: isLoggedIn ? const HomePage() : const LoginPage(),
+      initialBinding: AppBindings(preferences),
       translations: AppTranslation(),
       locale: Get.deviceLocale,
-      fallbackLocale: const Locale('en', 'US'),
+      fallbackLocale: const Locale('ar', 'IQ'),
       theme: ThemeData(
-          fontFamily: 'Cairo',
+        fontFamily: (isArabicLanguage) ? 'Cairo' : '',
       ),
       debugShowCheckedModeBanner: false,
     );

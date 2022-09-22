@@ -4,19 +4,37 @@ import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
-import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
+import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
+import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
-import 'package:safaqat/safaqat/presentation/ui/auth/confirm/confirm_page.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/register/register_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/review/components/review_page_template.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/review/components/text_label.dart';
-import 'package:safaqat/safaqat/presentation/ui/auth/review/review_controller.dart';
 
 class ReviewPage extends StatelessWidget {
   const ReviewPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ReviewController());
+    final controller = Get.put(RegisterController());
+
+    controller.status.listen((result) {
+
+      switch (result.status) {
+        case Status.success:
+          Get.offAll(const LoginPage());
+          AppStrings.registerSuccess.toToast();
+          break;
+        case Status.error:
+          AppStrings.registerFailed.toToast();
+          break;
+        default:
+          break;
+      }
+    });
+
     return Stack(
       children: [
         ReviewPageTemplate(
@@ -25,26 +43,27 @@ class ReviewPage extends StatelessWidget {
               height: 16,
             ),
             Container(
-              width: 128,
-              height: 128,
-              decoration: BoxDecoration(
-                border: Border.all(width: 3, color: AppColors.background),
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    spreadRadius: 3,
-                    blurRadius: 2,
-                    offset: const Offset(0, 1), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: ClipOval(
-                child: SvgPicture.asset(
-                  AppDrawable.avatarPlaceholder,
+                width: 128,
+                height: 128,
+                decoration: BoxDecoration(
+                  border: Border.all(width: 3, color: AppColors.background),
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 3,
+                      blurRadius: 2,
+                      offset: const Offset(0, 1), // changes position of shadow
+                    ),
+                  ],
                 ),
-              ),
-            ),
+                child: Center(
+                  child: CircleAvatar(
+                    radius: 60.0,
+                    backgroundImage: MemoryImage(controller.imageBytes),
+                    backgroundColor: Colors.transparent,
+                  ),
+                )),
             const SizedBox(
               height: 16,
             ),
@@ -52,21 +71,21 @@ class ReviewPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  AppStrings.nameArabic,
+                  controller.fullNameAr,
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(
                   height: 8,
                 ),
                 Text(
-                  AppStrings.nameEnglish,
+                  controller.fullNameEn,
                   style: const TextStyle(fontSize: 14),
                 ),
                 const SizedBox(
                   height: 8,
                 ),
                 Text(
-                  AppStrings.born,
+                  controller.born,
                   style: const TextStyle(fontSize: 12),
                 ),
               ],
@@ -80,35 +99,42 @@ class ReviewPage extends StatelessWidget {
             ),
             TextLabel(
               label: '${AppStrings.nationality}:',
-              text: '-',
+              text: controller.nationality.name,
             ),
+            const SizedBox(height: 8),
             TextLabel(
-              label: '${AppStrings.city}:',
-              text: '-',
+              label: '${AppStrings.address}:',
+              text: controller.address,
             ),
+            const SizedBox(height: 8),
             TextLabel(
               label: '${AppStrings.phone}:',
-              text: '-',
+              text: controller.phone,
             ),
+            const SizedBox(height: 8),
             TextLabel(
               label: '${AppStrings.email}:',
-              text: '-',
+              text: controller.email,
             ),
+            const SizedBox(height: 8),
             TextLabel(
               label: '${AppStrings.organization}:',
-              text: '-',
+              text: controller.organization,
             ),
+            const SizedBox(height: 8),
             TextLabel(
               label: '${AppStrings.jobPosition}:',
-              text: '-',
+              text: controller.jobPosition,
             ),
+            const SizedBox(height: 8),
             TextLabel(
               label: '${AppStrings.username}:',
-              text: '-',
+              text: controller.username,
             ),
+            const SizedBox(height: 8),
             TextLabel(
               label: '${AppStrings.password}:',
-              text: '-',
+              text: controller.password,
             ),
             const SizedBox(height: 48),
           ],
@@ -119,7 +145,13 @@ class ReviewPage extends StatelessWidget {
             color: AppColors.ternary,
             textColor: AppColors.primaryColor,
             text: AppStrings.sendConfirmCode,
-            onPressed: const ConfirmPage(type: ConfirmType.register).navTo,
+            // onPressed: const ConfirmPage(type: ConfirmType.register).navTo,
+            onPressed: controller.register,
+          ),
+        ),
+        Obx(
+              () => LoadingView(
+            resource: controller.status.value,
           ),
         ),
       ],

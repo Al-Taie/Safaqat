@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
@@ -20,7 +17,8 @@ class AuthPageTemplate extends StatelessWidget {
     this.title,
     this.showLogo = true,
     this.alignment = Alignment.bottomCenter,
-    this.contentPadding = const EdgeInsets.symmetric(horizontal: 42.0, vertical: 28),
+    this.contentPadding =
+        const EdgeInsets.symmetric(horizontal: 42.0, vertical: 28),
     this.titlePadding = EdgeInsets.zero,
     required this.secondaryTitle,
   }) : super(key: key);
@@ -28,113 +26,44 @@ class AuthPageTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.background,
-        body: Stack(
-          fit: StackFit.expand,
-          children: [
-            SvgPicture.asset(
-              AppDrawable.centerBaseLayer,
-              fit: BoxFit.fill,
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 1.87,
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                      topRight: Radius.elliptical(100, 15)),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                    child: const SizedBox(),
+        child: Scaffold(
+      backgroundColor: AppColors.primaryColor,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Padding(
+            padding: contentPadding,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  AppDrawable.topRightSplashLogo,
+                  height: 100,
+                  width: 100,
+                ),
+                Text(
+                  title ?? AppStrings.welcomeToSafaqat,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
-              ),
+                Text(
+                  secondaryTitle,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    color: AppColors.ternary,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                ...children,
+              ],
             ),
-            showLogo
-                ? Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 24.0,
-                      ),
-                      child: Image.asset(
-                        AppDrawable.topRightSplashLogo,
-                        height: 100,
-                        width: 100,
-                      ),
-                    ),
-                  )
-                : const SizedBox(),
-            Align(
-              alignment: alignment,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  showLogo ? const SizedBox()
-                  :             Container(
-                    width: 164,
-                    height: 164,
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 5, color: AppColors.background),
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 3,
-                          blurRadius: 2,
-                          offset: const Offset(0, 1), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    child: ClipOval(
-                      child: SvgPicture.asset(
-                        AppDrawable.avatarPlaceholder,
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: showLogo? 0 : 36,
-                  ),
-
-                  Padding(
-                    padding: titlePadding,
-                    child: Column(
-                      children: [
-                        Text(
-                          title ?? AppStrings.welcomeToSafaqat,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        Text(
-                          secondaryTitle,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16,
-                            color: AppColors.ternary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: contentPadding,
-                    child: Column(
-                      children: [...children],
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+          ),
+        ],
       ),
-    );
+    ));
   }
 }
