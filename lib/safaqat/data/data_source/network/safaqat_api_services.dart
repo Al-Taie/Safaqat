@@ -9,6 +9,7 @@ import 'package:safaqat/safaqat/data/models/base_response.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
+import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/data/models/news/publish_news_body.dart';
 
 part 'safaqat_api_services.g.dart';
@@ -44,6 +45,11 @@ abstract class SafaqatApiServices {
   Future<HttpResponse<BaseResponse<List<CountryDto>>>> searchNews(
       @Query('SearchString') String query);
 
+  @GET('News/NewsList')
+  Future<HttpResponse<BaseResponse<NewsResponse>>> getNews(
+      @Query('pageSize') int pageSize,
+      @Query('pageNumber') int pageNumber
+      );
   // @POST('News/Publish')
   // Future<HttpResponse<BaseResponse<dynamic>>> publishNews(
   //     @Body() PublishNewsBody body);

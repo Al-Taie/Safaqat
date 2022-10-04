@@ -4,6 +4,8 @@ import 'package:safaqat/safaqat/data/data_source/network/safaqat_api_services.da
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
+import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
+import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 
 import '../../domain/repositories/safaqat_repository.dart';
@@ -26,4 +28,12 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
   @override
   Future<Resources<List<CityDto>>> getCities(int countryCode)  =>
       _apiServices.getCities(countryCode).call();
+
+  @override
+  Future<Resources<NewsResponse>> getNews({
+    required int pageSize,
+    required int pageNumber
+  }) {
+    return _apiServices.getNews(pageSize, pageNumber).call();
+  }
 }
