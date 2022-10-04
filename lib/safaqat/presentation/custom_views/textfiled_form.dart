@@ -7,6 +7,7 @@ class TextFiledForm extends StatelessWidget {
   final int? maxLength;
   final Icon? prefixIcon;
   final Color? prefixIconColor;
+  final double radius;
   final bool readOnly;
   final String? hintText;
   final ValueChanged<String>? onTextChanged;
@@ -19,10 +20,12 @@ class TextFiledForm extends StatelessWidget {
   final GestureTapCallback? onTap;
   final FocusNode? focusNode;
   final VoidCallback? onFieldSubmitted;
+  final String? Function(String? value)? validator;
 
   const TextFiledForm({
     Key? key,
     this.maxLength,
+    this.radius = 10.0,
     this.onTextChanged,
     this.contentPadding,
     this.keyboardType,
@@ -37,13 +40,18 @@ class TextFiledForm extends StatelessWidget {
     this.onTap,
     this.focusNode,
     this.onFieldSubmitted,
+    this.validator,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      onChanged: onTextChanged,
+      validator: validator,
+      onChanged: (value) {
+        validator?.call(value) ?? '';
+        onTextChanged?.call(value);
+      },
       keyboardType: keyboardType,
       onTap: onTap,
       readOnly: readOnly,
@@ -60,9 +68,12 @@ class TextFiledForm extends StatelessWidget {
         filled: true,
         prefixIcon: prefixIcon,
         prefixIconColor: prefixIconColor,
+          focusedBorder: UnderlineInputBorder(
+              borderSide: const BorderSide(color: AppColors.primaryColor),
+              borderRadius: BorderRadius.circular(radius)),
         enabledBorder: UnderlineInputBorder(
             borderSide: const BorderSide(color: AppColors.primaryColor),
-            borderRadius: BorderRadius.circular(10.0)),
+            borderRadius: BorderRadius.circular(radius)),
       ),
     );
   }
