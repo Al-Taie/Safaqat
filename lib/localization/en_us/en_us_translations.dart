@@ -57,5 +57,12 @@ final Map<String, String> enUS = {
   registerFailedKey: 'Register Failed',
   registerSuccessKey: 'Register Success',
   addressKey: 'Address',
+  emailHintKey: 'invalid email!',
+  phoneHintKey: 'invalid phone!',
+  passwordHintKey: 'Must be at least 8 characters including upper, lower case letters and or a symbol ( e.g ythhYT8!)',
+  passwordNotMatchedKey:'Password not matched!',
+  showLatestNewsKey:'Show latest news',
+  hashtagsKey:'Hashtags',
+
 
 };

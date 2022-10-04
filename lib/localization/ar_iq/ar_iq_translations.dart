@@ -59,5 +59,12 @@ final Map<String, String> arIQ = {
   firstNameEnglishKey: 'First Name',
   midNameEnglishKey: 'Mid Name',
   lastNameEnglishKey: 'Last Name',
+  emailHintKey: 'رقم هاتف غير صالح!',
+  phoneHintKey: 'إيميل غير صالح!',
+  passwordHintKey: 'يجب ألا يقل عدد الأحرف عن 8 أحرف بما في ذلك الأحرف الكبيرة والصغيرة و/أو الرموز ( مثال: ythhYT8!).',
+  passwordNotMatchedKey:'كلمة السر غير متطابقة!',
+  showLatestNewsKey: 'عرض آخر الأخبار',
+  hashtagsKey: 'هاشتاكات',
+
 
 };

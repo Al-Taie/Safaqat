@@ -5,6 +5,7 @@ import 'package:safaqat/safaqat/app/config/preferences_keys.dart';
 import 'package:safaqat/safaqat/domain/usecase/auth/register/get_cities_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecase/auth/register/get_countires_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecase/auth/register/register_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecase/news/get_news_usecase.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/home_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -39,6 +40,7 @@ class AppBindings implements Bindings {
     Get.put(GetCitiesUseCase());
     Get.put(RegisterUseCase());
     Get.put(SaveUserInfoUseCase());
+    Get.put(GetNewsUseCase());
 
     Get.lazyPut(() => LoginController());
     Get.lazyPut(() => RegisterController());

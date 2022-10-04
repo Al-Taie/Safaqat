@@ -56,6 +56,12 @@ const loginFailedKey = 'loginFailed';
 const registerFailedKey = 'registerFailed';
 const registerSuccessKey = 'registerSuccess';
 const addressKey = 'address';
+const emailHintKey = 'emailHint';
+const phoneHintKey = 'phoneHint';
+const passwordHintKey = 'passwordHint';
+const passwordNotMatchedKey = 'passwordNotMatched';
+const showLatestNewsKey = 'showLatestNews';
+const hashtagsKey = 'hashtags';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -114,5 +120,11 @@ class AppStrings {
   static final registerFailed = registerFailedKey.tr;
   static final registerSuccess = registerSuccessKey.tr;
   static final address = addressKey.tr;
+  static final emailHint = emailHintKey.tr;
+  static final phoneHint = phoneHintKey.tr;
+  static final passwordHint = passwordHintKey.tr;
+  static final passwordNotMatched = passwordNotMatchedKey.tr;
+  static final showLatestNews = showLatestNewsKey.tr;
+  static final hashtags = hashtagsKey.tr;
 
 }

@@ -23,5 +23,8 @@ class AppDrawable {
   static const icTopArrow = '$_drawable/ic_top_arrow.svg';
   static const icDownArrow = '$_drawable/ic_down_arrow.svg';
   static const icGallery = '$_drawable/ic_gallery.svg';
+  static const icSearch = '$_drawable/ic_search.svg';
+  static const icName = '$_drawable/ic_name.svg';
+  static const icDate = '$_drawable/ic_date.svg';
 
 }
