@@ -8,7 +8,7 @@ class NewsResponse {
   @JsonKey(name: 'numberOfPages')
   int? numberOfPages;
   @JsonKey(name: 'news')
-  List<News>? news;
+  List<NewsDto>? news;
 
   NewsResponse({this.numberOfPages, this.news});
 

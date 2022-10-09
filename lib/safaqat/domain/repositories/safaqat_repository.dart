@@ -25,5 +25,5 @@ abstract class SafaqatRepository {
     required int pageNumber
 });
 
-  // Future<Resources> publishNews(PublishNewsBody body);
+  Future<Resources> addNews({required PublishNewsBody body});
 }

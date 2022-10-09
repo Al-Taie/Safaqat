@@ -50,7 +50,7 @@ abstract class SafaqatApiServices {
       @Query('pageSize') int pageSize,
       @Query('pageNumber') int pageNumber
       );
-  // @POST('News/Publish')
-  // Future<HttpResponse<BaseResponse<dynamic>>> publishNews(
-  //     @Body() PublishNewsBody body);
+  @POST('News/Publish')
+  Future<HttpResponse<BaseResponse<dynamic>>> publishNews(
+      @Body() PublishNewsBody body);
 }

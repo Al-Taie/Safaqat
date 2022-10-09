@@ -6,6 +6,7 @@ import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
+import 'package:safaqat/safaqat/data/models/news/publish_news_body.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 
 import '../../domain/repositories/safaqat_repository.dart';
@@ -36,4 +37,10 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
   }) {
     return _apiServices.getNews(pageSize, pageNumber).call();
   }
+
+  @override
+  Future<Resources> addNews({
+    required PublishNewsBody body,
+  }) => _apiServices.publishNews(body).call();
+
 }
