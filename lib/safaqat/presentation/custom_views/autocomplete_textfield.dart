@@ -33,7 +33,9 @@ class AutocompleteTextField<T extends Object> extends StatelessWidget {
       hintText: hintText,
       onTextChanged: onTextChanged,
       controller: textEditingController,
-      onFieldSubmitted: onFieldSubmitted,
+      onFieldSubmitted: (value) {
+        onFieldSubmitted();
+      },
     );
   }
 
@@ -44,7 +46,8 @@ class AutocompleteTextField<T extends Object> extends StatelessWidget {
       onSelected: onSelected,
       options: options,
       maxOptionsHeight: optionsMaxHeight,
-      maxOptionsWidth: maxOptionsWidth ?? (MediaQuery.of(context).size.width) - 52,
+      maxOptionsWidth:
+          maxOptionsWidth ?? (MediaQuery.of(context).size.width) - 52,
     );
   }
 

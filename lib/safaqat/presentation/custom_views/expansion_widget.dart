@@ -88,7 +88,8 @@ class ExpansionWidget extends StatelessWidget {
                       ? Alignment.centerLeft
                       : Alignment.centerRight,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 16, top: 12, right: 16),
+                    padding:
+                        const EdgeInsets.only(left: 16, top: 12, right: 16),
                     child: SvgPicture.asset(
                       _isExpanded.value
                           ? AppDrawable.icTopArrow
@@ -135,12 +136,14 @@ Widget titleWidget({
               icon,
               color: color,
             )
-          : SvgPicture.asset(
-              iconSvg,
-              width: 24,
-              height: 24,
-              color: color,
-            ),
+          : iconSvg.isNotEmpty
+              ? SvgPicture.asset(
+                  iconSvg,
+                  width: 24,
+                  height: 24,
+                  color: color,
+                )
+              : Container(),
       const SizedBox(width: 4),
       Text(
         text,

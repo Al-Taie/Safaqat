@@ -19,7 +19,7 @@ class TextFiledForm extends StatelessWidget {
   final TextAlign textAlign;
   final GestureTapCallback? onTap;
   final FocusNode? focusNode;
-  final VoidCallback? onFieldSubmitted;
+  final ValueChanged<String>? onFieldSubmitted;
   final String? Function(String? value)? validator;
 
   const TextFiledForm({
@@ -58,9 +58,7 @@ class TextFiledForm extends StatelessWidget {
       textAlign: textAlign,
       focusNode: focusNode,
       textDirection: textDirection,
-      onFieldSubmitted: (String value) {
-        onFieldSubmitted?.call();
-      },
+      onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
         label: Text(hintText ?? ''),
         labelStyle: AppTextStyle.hint,

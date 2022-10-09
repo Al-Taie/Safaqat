@@ -6,7 +6,8 @@ extension AnimatedNavigation on Widget {
     Get.to(
       this,
       duration: const Duration(milliseconds: 500),
-      transition: Transition.cupertino, arguments: arguments,
+      transition: Transition.cupertino,
+      arguments: arguments,
     );
   }
 }
