@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 class Utils {
   static final bool isRTL = Platform.localeName.split('_')[0] == 'ar';
-
+  static const int maxInt32Value = 0x7FFFFFFF;
   static String formatDate({required String? dateStr, String format = 'yyyy-MM-dd'}) {
     if (dateStr == null) {
       return '-';

@@ -18,10 +18,6 @@ class HomeController extends GetxController {
   int get pageNumber => _pageNumber.value;
   set pageNumber(int value) => _pageNumber.value = value;
 
-  final _pageSize = 10.obs;
-  int get pageSize => _pageSize.value;
-  set pageSize(int value) => _pageSize.value = value;
-
   final _newsData = NewsDto().obs;
   NewsDto get newsData  => _newsData .value;
   set newsData (NewsDto value) => _newsData.value = value;
@@ -31,7 +27,6 @@ class HomeController extends GetxController {
 
   void getNews() async {
     final body = NewsBody(
-        pageSize: pageSize,
         pageNumber: pageNumber
     );
 
