@@ -44,8 +44,7 @@ final Map<String, String> enUS = {
   cancelAndReturnToLoginKey: 'Cancel and return to login page?',
   sendConfirmCodeKey: 'Send confirm code',
   reviewInformationKey: 'Review Information',
-  accountWillBeActivatedSoonKey:
-      'Your account will be activated soon',
+  accountWillBeActivatedSoonKey: 'Your account will be activated soon',
   personalAccountKey: 'Personal account',
   mainPageKey: 'Main page',
   nameArabicKey: 'Arabic Name',
@@ -59,10 +58,21 @@ final Map<String, String> enUS = {
   addressKey: 'Address',
   emailHintKey: 'invalid email!',
   phoneHintKey: 'invalid phone!',
-  passwordHintKey: 'Must be at least 8 characters including upper, lower case letters and or a symbol ( e.g ythhYT8!)',
-  passwordNotMatchedKey:'Password not matched!',
-  showLatestNewsKey:'Show latest news',
-  hashtagsKey:'Hashtags',
+  passwordHintKey:
+      'Must be at least 8 characters including upper, lower case letters and or a symbol ( e.g ythhYT8!)',
+  passwordNotMatchedKey: 'Password not matched!',
+  showLatestNewsKey: 'Show latest news',
+  hashtagsKey: 'Hashtags',
+  tagsKey: 'Tags',
+  postKey: 'Post',
+  contentKey: 'Content',
+  titleKey: 'Title',
+  editKey: 'Edit',
+  picturesKey: 'Pictures',
+  arabicKey: 'Arabic',
+  englishKey: 'English',
+  publishKey: 'Publish',
+  noPreviewKey: 'No Preview',
 
 
 };

@@ -26,5 +26,6 @@ class AppDrawable {
   static const icSearch = '$_drawable/ic_search.svg';
   static const icName = '$_drawable/ic_name.svg';
   static const icDate = '$_drawable/ic_date.svg';
+  static const icBack = '$_drawable/ic_backward.svg';
 
 }

@@ -65,6 +65,15 @@ final Map<String, String> arIQ = {
   passwordNotMatchedKey:'كلمة السر غير متطابقة!',
   showLatestNewsKey: 'عرض آخر الأخبار',
   hashtagsKey: 'هاشتاكات',
-
+  tagsKey:'الكلمات الدلالية',
+  postKey:'نشر',
+  contentKey:'المحتوى',
+  titleKey:'العنوان',
+  editKey:'تعديل',
+  picturesKey:'الصور',
+  arabicKey:'العربية',
+  englishKey:'الانجليزية',
+  publishKey:'نشر',
+  noPreviewKey: 'العرض غير متوفر',
 
 };

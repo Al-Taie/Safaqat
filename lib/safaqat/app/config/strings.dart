@@ -62,6 +62,16 @@ const passwordHintKey = 'passwordHint';
 const passwordNotMatchedKey = 'passwordNotMatched';
 const showLatestNewsKey = 'showLatestNews';
 const hashtagsKey = 'hashtags';
+const titleKey = 'title';
+const contentKey = 'content';
+const tagsKey = 'tags';
+const postKey = 'post';
+const editKey = 'edit';
+const picturesKey = 'pictures';
+const arabicKey = 'arabic';
+const englishKey = 'english';
+const publishKey = 'publish';
+const noPreviewKey = 'noPreview';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -126,5 +136,15 @@ class AppStrings {
   static final passwordNotMatched = passwordNotMatchedKey.tr;
   static final showLatestNews = showLatestNewsKey.tr;
   static final hashtags = hashtagsKey.tr;
+  static final tags = tagsKey.tr;
+  static final content = contentKey.tr;
+  static final title = titleKey.tr;
+  static final post = postKey.tr;
+  static final pictures = picturesKey.tr;
+  static final edit = editKey.tr;
+  static final arabic = arabicKey.tr;
+  static final english = englishKey.tr;
+  static final publish = publishKey.tr;
+  static final noPreview = noPreviewKey.tr;
 
 }
