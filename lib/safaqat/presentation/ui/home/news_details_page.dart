@@ -1,27 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
+import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_icon.dart';
+import 'package:safaqat/safaqat/presentation/ui/news/details/components/tags_viewer_widget.dart';
 
 class NewsDetailsPage extends StatelessWidget {
   const NewsDetailsPage({Key? key, required this.news}) : super(key: key);
 
-  final News news;
+  final NewsDto news;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.transparent,
+        elevation: 0,
+        leading: SvgIconButton(
+          icon: AppDrawable.icBack,
+          onPressed: Get.back,
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+
               SizedBox(
                 width: Get.width,
                 child: Text(
@@ -33,20 +45,20 @@ class NewsDetailsPage extends StatelessWidget {
               Row(
                 children: [
                   TextIcon(
-                    icon: AppDrawable.icName,
-                    text: news.ownerName ?? '-',
+                    icon: AppDrawable.icDate,
+                    text: Utils.formatDate(dateStr: news.date),
                   ),
                   const SizedBox(width: 4),
                   TextIcon(
-                    icon: AppDrawable.icDate,
-                    text: Utils.formatDate(dateStr: news.date),
-                  )
+                    icon: AppDrawable.icName,
+                    text: news.ownerName ?? '-',
+                  ),
                 ],
               ),
               const SizedBox(height: 16),
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.network(news.image1 ?? ''),
+                child: Image.network(news.images?.firstOrNull ?? ''),
               ),
               const SizedBox(height: 16),
               SizedBox(
@@ -72,34 +84,12 @@ class NewsDetailsPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              TagsWidget(
+              TagsViewerWidget(
                 tags: Utils.isRTL ? news.tagsAr : news.tagsEn,
               )
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class TagsWidget extends StatelessWidget {
-  const TagsWidget({
-    Key? key,
-    this.tags,
-  }) : super(key: key);
-  final List<String>? tags;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: AlignedGridView.count(
-        crossAxisCount: 3,
-        mainAxisSpacing: 7,
-        crossAxisSpacing: 3,
-        physics: const BouncingScrollPhysics(),
-        itemCount: tags?.length ?? 0,
-        itemBuilder: (context, index) => Chip(label: Text(tags?[index] ?? '-')),
       ),
     );
   }

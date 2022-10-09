@@ -22,9 +22,9 @@ class HomeController extends GetxController {
   int get pageSize => _pageSize.value;
   set pageSize(int value) => _pageSize.value = value;
 
-  final _newsData = News().obs;
-  News get newsData  => _newsData .value;
-  set newsData (News value) => _newsData.value = value;
+  final _newsData = NewsDto().obs;
+  NewsDto get newsData  => _newsData .value;
+  set newsData (NewsDto value) => _newsData.value = value;
 
   Rx<Resources<NewsResponse>> news =
       Resources<NewsResponse>.init().obs;
