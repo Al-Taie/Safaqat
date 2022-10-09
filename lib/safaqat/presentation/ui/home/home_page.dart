@@ -32,6 +32,7 @@ class HomePage extends StatelessWidget {
                 onClickTryAgain: controller.getNews,
                 child: Expanded(
                   child: ListView.builder(
+                      controller: controller.scrollController,
                       physics: const BouncingScrollPhysics(),
                       padding: const EdgeInsets.fromLTRB(
                         16,
