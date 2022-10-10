@@ -9,6 +9,7 @@ import 'package:safaqat/safaqat/data/models/base_response.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
+import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/data/models/news/publish_news_body.dart';
 
@@ -42,7 +43,7 @@ abstract class SafaqatApiServices {
   Future<HttpResponse<BaseResponse<List<CountryDto>>>> getCountries();
 
   @GET('News/Search')
-  Future<HttpResponse<BaseResponse<List<CountryDto>>>> searchNews(
+  Future<HttpResponse<BaseResponse<List<NewsDto>>>> searchNews(
       @Query('SearchString') String query);
 
   @GET('News/NewsList')

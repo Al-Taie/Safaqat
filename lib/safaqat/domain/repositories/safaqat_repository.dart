@@ -18,7 +18,7 @@ abstract class SafaqatRepository {
 
   Future<Resources<List<CountryDto>>> getCountries();
 
-  Future<Resources<List<CountryDto>>> searchNews(String query);
+  Future<Resources<List<NewsDto>>> searchNews({required String query});
 
   Future<Resources<NewsResponse>> getNews({
     required int pageSize,

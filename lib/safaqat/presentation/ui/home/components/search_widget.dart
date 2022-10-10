@@ -3,19 +3,40 @@ import 'package:safaqat/safaqat/presentation/custom_views/textfiled_form.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/components/search_button_widget.dart';
 
 class SearchWidget extends StatelessWidget {
-  const SearchWidget({super.key});
+  const SearchWidget({
+    super.key,
+    this.hintText,
+    this.controller,
+    required this.onPressed, this.onTextChanged,
+  });
+
+  final String? hintText;
+  final TextEditingController? controller;
+  final VoidCallback onPressed;
+  final ValueChanged<String>? onTextChanged;
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: const [
+    return Row(children: [
       Flexible(
         flex: 10,
         child: SizedBox(
-          height: 40,
-            child: TextFiledForm(radius: 25)),
+          height: 50,
+          child: TextFiledForm(
+            radius: 25,
+            hintText: hintText,
+            controller: controller,
+              onTextChanged: onTextChanged,
+          ),
+        ),
       ),
-      SizedBox(width: 16),
-      Flexible(flex: 4, child: SearchButtonWidget()),
+      const SizedBox(width: 16),
+      Flexible(
+        flex: 4,
+        child: SearchButtonWidget(
+          onPressed: onPressed,
+        ),
+      ),
     ]);
   }
 }

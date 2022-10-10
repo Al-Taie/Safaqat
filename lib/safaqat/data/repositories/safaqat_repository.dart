@@ -23,7 +23,7 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
       _apiServices.getCustomers().call();
 
   @override
-  Future<Resources<List<CountryDto>>> searchNews(String query) =>
+  Future<Resources<List<NewsDto>>> searchNews({required String query}) =>
       _apiServices.searchNews(query).call();
 
   @override

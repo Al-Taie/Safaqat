@@ -7,9 +7,11 @@ import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecase/news/get_news_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecase/news/search_news_usecase.dart';
 
 class HomeController extends GetxController {
-  final GetNewsUseCase _getNewsUseCase = Get.find();
+  final GetNewsUseCase _getNewsUseCase = Get.put(GetNewsUseCase());
+  final SearchNewsUseCase _searchNewsUseCase = Get.put(SearchNewsUseCase());
   final scrollController = ScrollController();
 
   @override
@@ -20,7 +22,7 @@ class HomeController extends GetxController {
   }
 
   final _pageNumber = 1.obs;
-  var _maxNumberOfPages = 0;
+  var _maxNumberOfPages = 1;
 
   int get pageNumber => _pageNumber.value;
 
@@ -34,6 +36,12 @@ class HomeController extends GetxController {
 
   Rx<Resources<NewsResponse>> news = Resources<NewsResponse>.init().obs;
 
+  final _query = ''.obs;
+
+  String get query => _query.value;
+
+  set query(String value) => _query.value = value;
+
   void getNews() async {
     final body = NewsBody(pageNumber: pageNumber);
 
@@ -41,13 +49,30 @@ class HomeController extends GetxController {
 
     final result = await _getNewsUseCase(params: body);
     news.value = result;
-    _maxNumberOfPages = result.data?.numberOfPages ?? 0;
+    _maxNumberOfPages = result.data?.numberOfPages ?? 1;
+  }
+
+  void searchNews() async {
+    news.value = Resources.loading();
+
+    final result = await _searchNewsUseCase(params: query);
+    final data = NewsResponse(numberOfPages: 1, news: result.data);
+
+    if (result.status == Status.success) {
+      news.value = Resources.success(data, result.statusCode);
+    } else if (result.status == Status.error) {
+      news.value = Resources.error(result.error, result.statusCode);
+    }
   }
 
   void _pagination() {
     if (scrollController.position.isMaxScroll &&
         (pageNumber < _maxNumberOfPages)) {
       pageNumber++;
+      getNews();
+    } else if (scrollController.position.isMinScroll && pageNumber > 1) {
+      pageNumber--;
+      getNews();
     }
   }
 }

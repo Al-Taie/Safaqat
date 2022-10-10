@@ -18,18 +18,24 @@ class NewsDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.transparent,
-        elevation: 0,
-        leading: SvgIconButton(
-          icon: AppDrawable.icBack,
-          onPressed: Get.back,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        appBar: AppBar(
+          title: Text(
+            AppStrings.newsDetails,
+            style: AppTextStyle.title.copyWith(fontSize: 18),
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.transparent,
+          elevation: 0,
+          leading: SvgIconButton(
+            icon: AppDrawable.icBack,
+            onPressed: Get.back,
+          ),
         ),
-      ),
-      body: SafeArea(
-        child: Padding(
+        body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
