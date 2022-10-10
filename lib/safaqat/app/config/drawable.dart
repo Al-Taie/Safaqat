@@ -31,4 +31,5 @@ class AppDrawable {
   static const _icBack = '$_drawable/ic_backward.svg';
   static const _icForward = '$_drawable/ic_forward.svg';
   static String get icBack => Utils.isRTL ? _icForward : _icBack;
+  static const icAdd = '$_drawable/ic_add.svg';
 }

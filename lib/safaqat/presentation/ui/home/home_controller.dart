@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/news/news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
@@ -18,8 +19,10 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     scrollController.addListener(_pagination);
+    scrollController.addListener(_floatingButtonState);
     getNews();
   }
+  final isFloatingButtonExtended = true.obs;
 
   final _pageNumber = 1.obs;
   var _maxNumberOfPages = 1;
@@ -69,10 +72,21 @@ class HomeController extends GetxController {
     if (scrollController.position.isMaxScroll &&
         (pageNumber < _maxNumberOfPages)) {
       pageNumber++;
+      isFloatingButtonExtended.value = true;
       getNews();
     } else if (scrollController.position.isMinScroll && pageNumber > 1) {
       pageNumber--;
+      isFloatingButtonExtended.value = true;
       getNews();
+    }
+  }
+
+  void _floatingButtonState(){
+    if(scrollController.position.isMinScroll) {
+      Logger.log(scrollController.position);
+      isFloatingButtonExtended.value = true;
+    } else {
+      isFloatingButtonExtended.value = false;
     }
   }
 }

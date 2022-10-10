@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
@@ -42,7 +43,7 @@ class TopHomeWidget extends StatelessWidget {
                   bottomRight:
                       Utils.isRTL ? Radius.zero : const Radius.circular(100),
                 ),
-                color: const Color.fromRGBO(164, 250, 0, 1),
+                color: AppColors.ternary,
               ),
             ),
           ),
@@ -80,7 +81,7 @@ class TopHomeWidget extends StatelessWidget {
                   bottomRight:
                       Utils.isRTL ? Radius.zero : const Radius.circular(100),
                 ),
-                color: const Color.fromRGBO(68, 104, 255, 0.800000011920929),
+                color: AppColors.primaryColor,
               ),
             ),
           ),

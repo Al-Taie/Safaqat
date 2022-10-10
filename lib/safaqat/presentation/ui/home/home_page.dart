@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/custom_floating_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/components/news_card_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/components/top_home_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/home_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/news/add/add_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/details/news_details_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,6 +20,16 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
     return Scaffold(
+      floatingActionButton: Obx(
+            () => CustomFloatingButton(
+          title: AppStrings.addNewNews,
+          icon: AppDrawable.icAdd,
+          isExtended: controller.isFloatingButtonExtended.value,
+          onClick: () {
+            const AddNewsPage().navTo();
+          },
+        ),
+      ),
       body: Column(
         children: [
           TopHomeWidget(
