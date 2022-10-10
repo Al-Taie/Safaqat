@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:safaqat/safaqat/app/utils/utils.dart';
+
 class AppDrawable {
   //path
   static const _drawable = 'assets/drawable';
@@ -26,6 +28,7 @@ class AppDrawable {
   static const icSearch = '$_drawable/ic_search.svg';
   static const icName = '$_drawable/ic_name.svg';
   static const icDate = '$_drawable/ic_date.svg';
-  static const icBack = '$_drawable/ic_backward.svg';
-
+  static const _icBack = '$_drawable/ic_backward.svg';
+  static const _icForward = '$_drawable/ic_forward.svg';
+  static String get icBack => Utils.isRTL ? _icForward : _icBack;
 }

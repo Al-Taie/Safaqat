@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/components/search_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/home/home_controller.dart';
 
 class TopHomeWidget extends StatelessWidget {
-  const TopHomeWidget({
+  TopHomeWidget({
     super.key,
     required this.title,
     required this.width,
@@ -14,6 +16,8 @@ class TopHomeWidget extends StatelessWidget {
 
   final String title;
   final double width, height;
+  final HomeController controller = Get.find();
+  final _textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +112,21 @@ class TopHomeWidget extends StatelessWidget {
               child: SizedBox(
                 width: Get.width / 1.2,
                 height: 50,
-                child: const SearchWidget(),
+                child: SearchWidget(
+                    controller: _textController,
+                    hintText: AppStrings.search,
+                    onTextChanged: (value){
+                      if (value.isEmpty) {
+                        controller.getNews();
+                      }
+                    },
+                    onPressed: () {
+                      controller.query = _textController.text;
+
+                      if (_textController.text.isNotEmpty) {
+                        controller.searchNews();
+                      }
+                    }),
               ),
             ),
           ),

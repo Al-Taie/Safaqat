@@ -15,15 +15,13 @@ class PublishNewsBody {
   @JsonKey(name: 'newsDetailsE')
   String? detailsEn;
   @JsonKey(name: 'showName')
-  int? showName;
+  bool showName;
   @JsonKey(name: 'tagsA')
   List<String>? tagsAr;
   @JsonKey(name: 'tagsE')
   List<String>? tagsEn;
   @JsonKey(name: 'images')
   List<String>? images;
-  @JsonKey(name: 'statusDesc')
-  String? statusDesc;
 
   PublishNewsBody({
     this.username,
@@ -31,11 +29,10 @@ class PublishNewsBody {
     this.titleEn,
     this.detailsAr,
     this.detailsEn,
-    this.showName,
+    this.showName = false,
     this.tagsAr,
     this.tagsEn,
     this.images,
-    this.statusDesc,
   });
 
   factory PublishNewsBody.fromJson(Map<String, dynamic> json) =>

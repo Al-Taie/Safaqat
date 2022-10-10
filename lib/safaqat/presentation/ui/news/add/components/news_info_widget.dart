@@ -14,21 +14,21 @@ class NewsInfoWidget extends StatelessWidget {
     required this.title,
     required this.newsTitle,
     required this.content,
+    required this.tagsHint,
     required this.tags,
     required this.onTitleChange,
     required this.onContentChange,
     required this.onTagsChange,
   }) : super(key: key);
 
-  final String title, newsTitle, content, tags;
+  final String title, newsTitle, content, tagsHint;
   final bool rtl;
+  final List<String> tags;
   final ValueChanged<String> onTitleChange, onContentChange;
   final Function(List<String> value) onTagsChange;
 
   @override
   Widget build(BuildContext context) {
-    AddNewsController controller = Get.find();
-
     return ExpansionWidget(
       headerColor: AppColors.primaryColor,
       foregroundColor: Colors.white,
@@ -54,9 +54,9 @@ class NewsInfoWidget extends StatelessWidget {
           height: 8,
         ),
         TagsWidget(
-          hint: tags,
+          hint: tagsHint,
           rtl: rtl,
-          tags: controller.tagsAr,
+          tags: tags,
         ),
       ],
     );

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
+import 'package:safaqat/safaqat/app/utils/utils.dart';
 
 class SvgIconButton extends StatelessWidget {
   const SvgIconButton({
@@ -20,7 +21,12 @@ class SvgIconButton extends StatelessWidget {
       onTap: onPressed,
       borderRadius: BorderRadius.circular(10),
       child: Padding(
-        padding: const EdgeInsets.only(top: 10, bottom: 10, right: 8),
+        padding: EdgeInsets.only(
+            top: 16,
+            bottom: 16,
+            right: Utils.isRTL ? 0 : 10,
+            left: Utils.isRTL ? 10 : 0
+        ),
         child: SvgPicture.asset(
           icon,
           color: AppColors.shadeSecondary,

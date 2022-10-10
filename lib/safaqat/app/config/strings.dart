@@ -72,6 +72,10 @@ const arabicKey = 'arabic';
 const englishKey = 'english';
 const publishKey = 'publish';
 const noPreviewKey = 'noPreview';
+const searchKey = 'search';
+const addKey = 'add';
+const addNewNewsKey = 'addNewNews';
+const newsDetailsKey = 'newsDetails';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -146,5 +150,9 @@ class AppStrings {
   static final english = englishKey.tr;
   static final publish = publishKey.tr;
   static final noPreview = noPreviewKey.tr;
+  static final search = searchKey.tr;
+  static final addNewNews = addNewNewsKey.tr;
+  static final add = addKey.tr;
+  static final newsDetails = newsDetailsKey.tr;
 
 }

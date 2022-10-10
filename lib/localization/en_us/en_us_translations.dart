@@ -73,6 +73,10 @@ final Map<String, String> enUS = {
   englishKey: 'English',
   publishKey: 'Publish',
   noPreviewKey: 'No Preview',
+  searchKey: 'Search',
+  addNewNewsKey: 'Add new news',
+  addKey: 'Add',
+  newsDetailsKey: 'News details',
 
 
 };

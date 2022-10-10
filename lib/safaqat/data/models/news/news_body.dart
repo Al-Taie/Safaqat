@@ -10,7 +10,7 @@ class NewsBody {
   @JsonKey(name: 'pageNumber')
   int pageNumber;
 
-  NewsBody({this.pageSize = Utils.maxInt32Value, required this.pageNumber});
+  NewsBody({this.pageSize = 10, required this.pageNumber});
 
   factory NewsBody.fromJson(Map<String, dynamic> json) =>
       _$NewsBodyFromJson(json);

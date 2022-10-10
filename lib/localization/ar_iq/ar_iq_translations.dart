@@ -75,5 +75,9 @@ final Map<String, String> arIQ = {
   englishKey:'الانجليزية',
   publishKey:'نشر',
   noPreviewKey: 'العرض غير متوفر',
+  searchKey: 'البحث',
+  addNewNewsKey: 'إضافة خبر جديد',
+  addKey: 'إضافة',
+  newsDetailsKey: 'تفاصيل الخبر',
 
 };

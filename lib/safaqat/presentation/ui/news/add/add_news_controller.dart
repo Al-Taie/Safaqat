@@ -41,6 +41,10 @@ class AddNewsController extends GetxController {
   String get detailsEn => _detailsEn.value;
   set detailsEn(String value) => _detailsEn.value = value;
 
+  final _showName = false.obs;
+  bool get showName => _showName.value;
+  set showName(bool value) => _showName.value = value;
+
   void publish() async {
     List<String> images = [];
 
@@ -57,6 +61,7 @@ class AddNewsController extends GetxController {
       images: images,
       tagsAr: tagsAr,
       tagsEn: tagsEn,
+      showName: showName,
     );
 
     final result = await _addNewsUseCase(params: body);
