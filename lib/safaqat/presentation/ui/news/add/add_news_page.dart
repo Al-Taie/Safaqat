@@ -28,8 +28,7 @@ class AddNewsPage extends StatelessWidget {
             style: AppTextStyle.title.copyWith(fontSize: 18),
           ),
           centerTitle: true,
-          backgroundColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
+          backgroundColor: AppColors.background,
           elevation: 0,
           leading: SvgIconButton(
             icon: AppDrawable.icBack,

@@ -8,7 +8,7 @@ import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/components/news_card_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/components/top_home_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/home_controller.dart';
-import 'package:safaqat/safaqat/presentation/ui/home/news_details_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/news/details/news_details_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
