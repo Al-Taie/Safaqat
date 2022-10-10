@@ -11,13 +11,13 @@ class TagsWidget extends StatelessWidget {
   });
 
   final TextEditingController _textEditingController = TextEditingController();
-  final List<String>? tags;
+  final List<String> tags;
   final String hint;
   final bool rtl;
 
   List<Widget> _builder() {
     return tags
-            ?.map(
+            .map(
               (e) => Padding(
                 padding: EdgeInsets.only(
                   left: rtl ? 0 : 8.0,
@@ -33,7 +33,7 @@ class TagsWidget extends StatelessWidget {
                     ),
                   ),
                   onDeleted: () {
-                    tags?.remove(e);
+                    tags.remove(e);
                   },
                 ),
               ),
@@ -44,27 +44,28 @@ class TagsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextFiledForm(
-          controller: _textEditingController,
-          hintText: hint,
-          textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
-          textAlign: rtl ? TextAlign.right : TextAlign.left,
-          onFieldSubmitted: (value) {
-            tags?.add(value);
-            _textEditingController.clear();
-          },
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        Obx(
-          () => Align(
+    return Obx(
+      () => Column(
+        children: [
+          if (tags.length < 10)
+            TextFiledForm(
+              controller: _textEditingController,
+              hintText: hint,
+              textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
+              textAlign: rtl ? TextAlign.right : TextAlign.left,
+              onFieldSubmitted: (value) {
+                tags.add(value);
+                _textEditingController.clear();
+              },
+            ),
+          const SizedBox(
+            height: 8,
+          ),
+          Align(
               alignment: rtl ? Alignment.topRight : Alignment.topLeft,
               child: Wrap(children: _builder())),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
