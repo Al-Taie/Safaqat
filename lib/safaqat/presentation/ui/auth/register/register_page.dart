@@ -15,6 +15,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RegisterController controller = Get.find();
 
     return SafeArea(
       child: Scaffold(
@@ -39,7 +40,7 @@ class RegisterPage extends StatelessWidget {
                   SizedBox(
                     height: 16,
                   ),
-                  AccountCreationAndTermsPolicyWidget(),
+                  AccountCreationAndTermsPolicyWidget()
                 ],
               ),
             ),

@@ -9,7 +9,7 @@ import 'package:safaqat/safaqat/presentation/custom_views/textfiled_form.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/register_controller.dart';
 
 class AccountCreationAndTermsPolicyWidget extends StatelessWidget {
-  const AccountCreationAndTermsPolicyWidget({Key? key}) : super(key: key);
+   const AccountCreationAndTermsPolicyWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +32,11 @@ class AccountCreationAndTermsPolicyWidget extends StatelessWidget {
           height: 8,
         ),
         TextFiledForm(
-          hintText: AppStrings.password,
-          onTextChanged: (value) {
-            controller.password = value;
-          },
+              hintText: AppStrings.password,
+              // validator: controller.passwordValidator,
+              onTextChanged: (value) {
+                controller.password = value;
+              },
         ),
         const SizedBox(
           height: 8,

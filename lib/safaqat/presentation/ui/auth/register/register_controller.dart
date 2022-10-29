@@ -3,7 +3,9 @@ import 'dart:typed_data';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/int_extension.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/auth/register/register_body.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
@@ -239,5 +241,50 @@ class RegisterController extends GetxController {
       cities.value = result.data!;
     }
     status.value = result;
+  }
+
+  String? emailValidator(String? value) {
+    if (value != null && value.isEmail) {
+      return null;
+    }
+    return AppStrings.emailHint;
+  }
+
+  String? phoneValidator(String? value) {
+    if (value != null && value.isPhoneNumber) {
+      return null;
+    }
+    return AppStrings.phoneHint;
+  }
+
+  final passwordErrorMessage = ''.obs;
+
+  void passwordValidator(String value) {
+    var hasCapital = RegExp(r'[A-Z]{1,}').hasMatch(value);
+    var hasSmall = RegExp(r'[a-z]{1,}').hasMatch(value);
+    var hasSpecial = RegExp(r'[\W]{1,}').hasMatch(value);
+
+    if (hasSmall && hasCapital && hasSpecial && value.length >= 8) {
+      passwordErrorMessage.value = '';
+    }
+    Logger.log(value);
+    passwordErrorMessage.value = AppStrings.passwordHint;
+    Logger.log(passwordErrorMessage.value);
+  }
+
+  bool checkValidation() {
+    var isStringFields = [
+      firstNameAr,
+      firstNameEn,
+      lastNameAr,
+      lastNameEn,
+      secondNameAr,
+      secondNameEn,
+      organization,
+      jobPosition,
+      username
+    ].every((element) => element.isNotEmpty && element.isBlank == false);
+
+    return isStringFields && phone.isPhoneNumber && email.isEmail;
   }
 }

@@ -76,6 +76,14 @@ const searchKey = 'search';
 const addKey = 'add';
 const addNewNewsKey = 'addNewNews';
 const newsDetailsKey = 'newsDetails';
+const incomingKey = 'incoming';
+const outgoingKey = 'outgoing';
+const notificationsKey = 'notification';
+const readKey = 'read';
+const unreadKey = 'unread';
+const senderKey = 'sender';
+const dateKey = 'date';
+const statusKey = 'status';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -154,5 +162,13 @@ class AppStrings {
   static final addNewNews = addNewNewsKey.tr;
   static final add = addKey.tr;
   static final newsDetails = newsDetailsKey.tr;
+  static final incoming = incomingKey.tr;
+  static final outgoing = outgoingKey.tr;
+  static final notifications = notificationsKey.tr;
+  static final read = readKey.tr;
+  static final unread = unreadKey.tr;
+  static final sender = senderKey.tr;
+  static final date = dateKey.tr;
+  static final status = statusKey.tr;
 
 }

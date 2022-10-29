@@ -79,5 +79,14 @@ final Map<String, String> arIQ = {
   addNewNewsKey: 'إضافة خبر جديد',
   addKey: 'إضافة',
   newsDetailsKey: 'تفاصيل الخبر',
+  incomingKey: 'الصادرة',
+  outgoingKey: 'الواردة',
+  readKey: 'مقروء',
+  unreadKey: 'غير مقروء',
+  notificationsKey: 'الإشعارات',
+  senderKey: 'المرسل',
+  dateKey: 'التاريخ',
+  statusKey: 'الحالة',
+
 
 };

@@ -76,32 +76,24 @@ class BusinessAndContactInfoWidget extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        Row(
-          children: [
-            Flexible(
-              flex: 1,
-              child: TextFiledForm(
-                hintText: AppStrings.email,
-                keyboardType: TextInputType.emailAddress,
-                onTextChanged: (value) {
-                  controller.email = value;
-                },
-              ),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Flexible(
-              flex: 1,
-              child: TextFiledForm(
-                hintText: AppStrings.anotherEmail,
-                keyboardType: TextInputType.emailAddress,
-                onTextChanged: (value) {
-                  controller.anotherEmail = value;
-                },
-              ),
-            ),
-          ],
+        TextFiledForm(
+          hintText: AppStrings.email,
+          keyboardType: TextInputType.emailAddress,
+          validator: controller.emailValidator,
+          onTextChanged: (value) {
+            controller.email = value;
+          },
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        TextFiledForm(
+          hintText: AppStrings.anotherEmail,
+          keyboardType: TextInputType.emailAddress,
+          validator: controller.emailValidator,
+          onTextChanged: (value) {
+            controller.anotherEmail = value;
+          },
         ),
         const SizedBox(
           height: 8,

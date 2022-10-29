@@ -77,6 +77,14 @@ final Map<String, String> enUS = {
   addNewNewsKey: 'Add new news',
   addKey: 'Add',
   newsDetailsKey: 'News details',
+  incomingKey: 'Incoming',
+  outgoingKey: 'Outgoing',
+  readKey: 'Read',
+  unreadKey: 'Unread',
+  notificationsKey: 'Notifications',
+  senderKey: 'Sender',
+  dateKey: 'Date',
+  statusKey: 'Status',
 
 
 };

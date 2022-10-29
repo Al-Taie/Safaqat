@@ -9,6 +9,8 @@ import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/data/models/news/publish_news_body.dart';
+import 'package:safaqat/safaqat/data/models/notifications/notification_dto.dart';
+import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 
 abstract class SafaqatRepository {
@@ -26,4 +28,10 @@ abstract class SafaqatRepository {
 });
 
   Future<Resources> addNews({required PublishNewsBody body});
+
+  Future<Resources<NotificationsResponse>> getNotification({
+    required String customerId,
+    required int pageSize,
+    required int pageNumber
+  });
 }
