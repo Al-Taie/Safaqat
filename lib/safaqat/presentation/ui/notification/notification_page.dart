@@ -132,6 +132,7 @@ class NotificationPage extends StatelessWidget {
                             return NotificationWidget(
                               name: item.customerName ?? '-',
                               read: item.isRead,
+                              description: item.description ?? '-',
                               incoming: item.isIncoming,
                               date: Utils.formatDate(
                                 dateStr: item.date,

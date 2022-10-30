@@ -12,7 +12,7 @@ class NotificationDto {
   @JsonKey(name: 'type')
   int? type;
   @JsonKey(name: 'text')
-  String? text;
+  String? description;
   @JsonKey(name: 'state')
   int? state;
 
@@ -23,7 +23,7 @@ class NotificationDto {
     this.customerName,
     this.date,
     this.type,
-    this.text,
+    this.description,
     this.state,
   });
 
