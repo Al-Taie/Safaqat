@@ -2,14 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:dio_logging_interceptor/dio_logging_interceptor.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/preferences_keys.dart';
-import 'package:safaqat/safaqat/domain/usecase/auth/register/get_cities_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/auth/register/get_countires_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/auth/register/register_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/notification/get_notification_usecase.dart';
-import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/home/home_controller.dart';
-import 'package:safaqat/safaqat/presentation/ui/notification/notification_controller.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:safaqat/safaqat/data/data_source/network/safaqat_api_services.dart';
 import 'package:safaqat/safaqat/data/repositories/authentication_repository.dart';
 import 'package:safaqat/safaqat/data/repositories/safaqat_repository.dart';
@@ -17,11 +9,16 @@ import 'package:safaqat/safaqat/domain/repositories/authentication_repository.da
 import 'package:safaqat/safaqat/domain/repositories/safaqat_repository.dart';
 import 'package:safaqat/safaqat/domain/usecase/auth/login/login_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecase/auth/login/save_use_info_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecase/auth/register/get_cities_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecase/auth/register/get_countires_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecase/auth/register/register_usecase.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/confirm/confirm_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forget_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/register_controller.dart';
-
+import 'package:safaqat/safaqat/presentation/ui/home/home_controller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppBindings implements Bindings {
   final SharedPreferences preferences;
@@ -73,8 +70,7 @@ class AppBindings implements Bindings {
 
   InterceptorsWrapper _provideAuthenticationInterceptor() {
     return InterceptorsWrapper(onRequest: (options, handler) {
-      final token = 'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoi2KfYrdmF2K8iLCJDSUQiOiJJUTIwMDAxMDAwMDAwMiIsImV4cCI6MTY2NzE0MzAzNH0.J7EX6pyVjE0L6bLExB8hAwPDY6tSiDXN8464CGYrpu73SiENw_ZNrnt9QApl_Ma0q0Vp5YRwLFhtUOku5WJMxw';
-
+      final token = preferences.getString(PrefsKeys.token);
 
       options.headers['authorization'] = 'bearer $token';
       options.headers['Content-Type'] = 'application/json';

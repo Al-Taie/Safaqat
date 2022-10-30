@@ -9,10 +9,10 @@ import 'package:safaqat/safaqat/data/models/base_response.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
+import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
-import 'package:safaqat/safaqat/data/models/news/publish_news_body.dart';
-import 'package:safaqat/safaqat/data/models/notifications/notification_dto.dart';
+import 'package:safaqat/safaqat/data/models/news/publish/publish_news_body.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
 
 part 'safaqat_api_services.g.dart';
@@ -54,6 +54,11 @@ abstract class SafaqatApiServices {
   @POST('News/Publish')
   Future<HttpResponse<BaseResponse<dynamic>>> publishNews(
       @Body() PublishNewsBody body);
+
+  @POST('News/Edit')
+  Future<HttpResponse<BaseResponse<dynamic>>> editNews(
+      @Query('news_id') String newsId,
+      @Body() EditNewsBody body);
 
   @GET('Notification/GetNotification')
   Future<HttpResponse<BaseResponse<NotificationsResponse>>> getNotification(

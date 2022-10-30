@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/news/news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
@@ -9,7 +10,7 @@ import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecase/news/get_news_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecase/news/search_news_usecase.dart';
 
-class HomeController extends GetxController {
+class NewsController extends GetxController {
   final GetNewsUseCase _getNewsUseCase = Get.put(GetNewsUseCase());
   final SearchNewsUseCase _searchNewsUseCase = Get.put(SearchNewsUseCase());
   final scrollController = ScrollController();
@@ -82,6 +83,7 @@ class HomeController extends GetxController {
 
   void _floatingButtonState(){
     if(scrollController.position.isMinScroll) {
+      Logger.log(scrollController.position);
       isFloatingButtonExtended.value = true;
     } else {
       isFloatingButtonExtended.value = false;

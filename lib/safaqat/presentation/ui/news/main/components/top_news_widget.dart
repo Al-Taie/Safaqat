@@ -4,11 +4,11 @@ import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
-import 'package:safaqat/safaqat/presentation/ui/home/components/search_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/home_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/news/main/components/search_widget.dart';
 
-class TopHomeWidget extends StatelessWidget {
-  TopHomeWidget({
+class TopNewsWidget extends StatelessWidget {
+  TopNewsWidget({
     super.key,
     required this.title,
     required this.width,

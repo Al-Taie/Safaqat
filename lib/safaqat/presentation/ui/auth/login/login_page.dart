@@ -28,7 +28,7 @@ class LoginPage extends StatelessWidget {
     controller.auth.listen((result) {
       switch (result.status) {
         case Status.success:
-          Get.offAll(const HomePage());
+          Get.offAll(const HomePage(isLogged: true));
           break;
         case Status.error:
           AppStrings.loginFailed.toToast();

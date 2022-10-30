@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/textfiled_form.dart';
-import 'package:safaqat/safaqat/presentation/ui/home/components/search_button_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/news/main/components/search_button_widget.dart';
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({

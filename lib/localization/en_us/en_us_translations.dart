@@ -1,10 +1,10 @@
 import '../../safaqat/app/config/strings.dart';
 
 final Map<String, String> enUS = {
-  homeKey: 'home',
-  loginKey: 'login',
-  registerKey: 'register',
-  forgotPasswordKey: 'forgot password',
+  homeKey: 'Home',
+  loginKey: 'Login',
+  registerKey: 'Register',
+  forgotPasswordKey: 'Forgot password',
   noInternetConnectionKey: 'No internet connection',
   internetConnectionMessageKey:
       'Your internet connection is currently not available please check or try again.',
@@ -29,7 +29,7 @@ final Map<String, String> enUS = {
   cityKey: 'City',
   phoneKey: 'Phone',
   anotherPhoneKey: 'Another phone',
-  emailKey: 'email',
+  emailKey: 'Email',
   anotherEmailKey: 'Another email',
   organizationKey: 'Organization',
   usernameKey: 'Username',
@@ -85,6 +85,7 @@ final Map<String, String> enUS = {
   senderKey: 'Sender',
   dateKey: 'Date',
   statusKey: 'Status',
+  newsKey: 'News',
 
 
 };

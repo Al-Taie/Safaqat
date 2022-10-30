@@ -6,7 +6,7 @@ class AppDrawable {
   //path
   static const _drawable = 'assets/drawable';
 
-  static const icTabHome = '$_drawable/ic_tab_home.svg';
+  static const icHome = '$_drawable/ic_home.svg';
   static const icNoWifi = '$_drawable/ic_no_wifi.svg';
   static const empty = '$_drawable/empty.png';
   static const icEmail = '$_drawable/ic_email.svg';
@@ -32,4 +32,6 @@ class AppDrawable {
   static const _icForward = '$_drawable/ic_forward.svg';
   static String get icBack => Utils.isRTL ? _icForward : _icBack;
   static const icAdd = '$_drawable/ic_add.svg';
+  static const icNews = '$_drawable/ic_news.svg';
+  static const icNotifications = '$_drawable/ic_notifications.svg';
 }

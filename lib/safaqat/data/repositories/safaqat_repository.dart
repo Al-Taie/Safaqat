@@ -6,8 +6,8 @@ import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
-import 'package:safaqat/safaqat/data/models/news/publish_news_body.dart';
-import 'package:safaqat/safaqat/data/models/notifications/notification_dto.dart';
+import 'package:safaqat/safaqat/data/models/news/publish/publish_news_body.dart';
+import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 
@@ -44,6 +44,13 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
   Future<Resources> addNews({
     required PublishNewsBody body,
   }) => _apiServices.publishNews(body).call();
+
+  @override
+  Future<Resources> editNews({
+    required String newsId,
+    required EditNewsBody body,
+  }) => _apiServices.editNews(newsId, body).call();
+
 
   @override
   Future<Resources<NotificationsResponse>> getNotification({

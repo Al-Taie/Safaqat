@@ -87,6 +87,7 @@ final Map<String, String> arIQ = {
   senderKey: 'المرسل',
   dateKey: 'التاريخ',
   statusKey: 'الحالة',
+  newsKey: 'الأخبار',
 
 
 };

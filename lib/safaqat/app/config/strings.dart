@@ -78,12 +78,13 @@ const addNewNewsKey = 'addNewNews';
 const newsDetailsKey = 'newsDetails';
 const incomingKey = 'incoming';
 const outgoingKey = 'outgoing';
-const notificationsKey = 'notification';
+const notificationsKey = 'notifications';
 const readKey = 'read';
 const unreadKey = 'unread';
 const senderKey = 'sender';
 const dateKey = 'date';
 const statusKey = 'status';
+const newsKey = 'news';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -170,5 +171,6 @@ class AppStrings {
   static final sender = senderKey.tr;
   static final date = dateKey.tr;
   static final status = statusKey.tr;
+  static final news = newsKey.tr;
 
 }

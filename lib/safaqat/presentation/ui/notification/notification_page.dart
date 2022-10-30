@@ -28,10 +28,10 @@ class NotificationPage extends StatelessWidget {
           centerTitle: true,
           backgroundColor: AppColors.background,
           elevation: 0,
-          leading: SvgIconButton(
-            icon: AppDrawable.icBack,
-            onPressed: Get.back,
-          ),
+          // leading: SvgIconButton(
+          //   icon: AppDrawable.icBack,
+          //   onPressed: Get.back,
+          // ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -69,7 +69,6 @@ class NotificationPage extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Container(
-                height: 50,
                 width: Get.width,
                 decoration: const BoxDecoration(
                     color: AppColors.primaryColor,

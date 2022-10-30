@@ -7,23 +7,45 @@ import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_floating_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/home/home_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/add/add_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/details/news_details_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/main/components/news_card_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/main/components/top_news_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/news/main/news_controller.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key, this.isLogged = false}) : super(key: key);
+class NewsPage extends StatelessWidget {
+  const NewsPage({Key? key, this.isLogged = false}) : super(key: key);
 
   final bool isLogged;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeController());
-    return SafeArea(
-      child: Column(
+    final controller = Get.put(NewsController());
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+        floatingActionButton: isLogged
+            ? Obx(
+                () => CustomFloatingButton(
+                  title: AppStrings.addNewNews,
+                  icon: AppDrawable.icAdd,
+                  isExtended: controller.isFloatingButtonExtended.value,
+                  onClick: () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    const AddNewsPage().navTo();
+                  },
+                ),
+              )
+            : null,
+        body: Column(
           children: [
+            TopNewsWidget(
+              width: Get.width,
+              height: Get.height / 2.945,
+              title: AppStrings.showLatestNews,
+            ),
             Obx(
               () {
                 var news = controller.news.value.data?.news;
@@ -65,6 +87,7 @@ class HomePage extends StatelessWidget {
               },
             ),
           ],
+        ),
       ),
     );
   }
