@@ -55,6 +55,14 @@ abstract class SafaqatApiServices {
   Future<HttpResponse<BaseResponse<dynamic>>> publishNews(
       @Body() PublishNewsBody body);
 
+  // @POST("Message")
+  // @MultiPart()
+  // Future<HttpResponse<BaseResponse<MessageDto>>> sendMessageWithFile(
+  //     @Part() String? messageTitle,
+  //     @Part() String? messageText,
+  //     @Part() List<String>? toGuid,
+  //     @Part() List<Part> files);
+
   @POST('News/Edit')
   Future<HttpResponse<BaseResponse<dynamic>>> editNews(
       @Query('news_id') String newsId,

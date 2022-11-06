@@ -11,11 +11,12 @@ import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forget_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/components/auth_page_template.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/register_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/home_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/main_tabs/main_tabs_page.dart';
 
-import '../../../../app/config/colors.dart';
-import '../../../../app/config/drawable.dart';
-import '../../../../app/config/strings.dart';
-import '../../../custom_views/text_field_filled.dart';
+import 'package:safaqat/safaqat/app/config/colors.dart';
+import 'package:safaqat/safaqat/app/config/drawable.dart';
+import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/text_field_filled.dart';
 import 'login_controller.dart';
 
 class LoginPage extends StatelessWidget {
@@ -28,7 +29,7 @@ class LoginPage extends StatelessWidget {
     controller.auth.listen((result) {
       switch (result.status) {
         case Status.success:
-          Get.offAll(const HomePage(isLogged: true));
+          Get.offAll(MainTabsPage());
           break;
         case Status.error:
           AppStrings.loginFailed.toToast();

@@ -4,23 +4,23 @@ part 'publish_news_body.g.dart';
 
 @JsonSerializable(ignoreUnannotated: false)
 class PublishNewsBody {
-  @JsonKey(name: 'username')
+  @JsonKey(name: 'Username')
   String? username;
-  @JsonKey(name: 'newsTitleA')
+  @JsonKey(name: 'NewsTitleA')
   String? titleAr;
-  @JsonKey(name: 'newsTitleE')
+  @JsonKey(name: 'NewsTitleE')
   String? titleEn;
-  @JsonKey(name: 'newsDetailsA')
+  @JsonKey(name: 'NewsDetailsA')
   String? detailsAr;
-  @JsonKey(name: 'newsDetailsE')
+  @JsonKey(name: 'NewsDetailsE')
   String? detailsEn;
-  @JsonKey(name: 'showName')
+  @JsonKey(name: 'ShowName')
   bool showName;
-  @JsonKey(name: 'tagsA')
+  @JsonKey(name: 'TagsA')
   List<String>? tagsAr;
-  @JsonKey(name: 'tagsE')
+  @JsonKey(name: 'TagsE')
   List<String>? tagsEn;
-  @JsonKey(name: 'images')
+  @JsonKey(name: 'Images')
   List<String>? images;
 
   PublishNewsBody({
