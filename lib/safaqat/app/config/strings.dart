@@ -85,6 +85,8 @@ const senderKey = 'sender';
 const dateKey = 'date';
 const statusKey = 'status';
 const newsKey = 'news';
+const publishSuccessKey = 'publishSuccess';
+const publishFailedKey = 'publishFailed';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -172,5 +174,7 @@ class AppStrings {
   static final date = dateKey.tr;
   static final status = statusKey.tr;
   static final news = newsKey.tr;
+  static final publishSuccess = publishSuccessKey.tr;
+  static final publishFailed = publishFailedKey.tr;
 
 }

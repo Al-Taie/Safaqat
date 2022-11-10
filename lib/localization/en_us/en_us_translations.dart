@@ -86,6 +86,8 @@ final Map<String, String> enUS = {
   dateKey: 'Date',
   statusKey: 'Status',
   newsKey: 'News',
+  publishSuccessKey: 'Publish Success',
+  publishFailedKey: 'Publish Failed',
 
 
 };

@@ -1,16 +1,17 @@
-import 'dart:convert';
-import 'dart:typed_data';
+import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/data/models/news/publish/publish_news_body.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecase/news/add_news_usecase.dart';
+import 'package:tuple/tuple.dart';
 
 class AddNewsController extends GetxController {
   final _addNewsUseCase = Get.put(AddNewsUseCase());
 
   final Rx<Resources> status = Resources.init().obs;
-  Iterable<Uint8List?> imagesBytes = <Uint8List?>[];
+  List<File> images = <File>[];
+
   final RxList<String> tagsAr = <String>[].obs;
   final RxList<String> tagsEn = <String>[].obs;
 
@@ -35,25 +36,19 @@ class AddNewsController extends GetxController {
   set showName(bool value) => _showName.value = value;
 
   void publish() async {
-    List<String> images = [];
-
-    for (var element in imagesBytes) {
-        images.addIf(element != null, base64Encode(element!));
-    }
-
     status.value = Resources.loading();
     final PublishNewsBody body = PublishNewsBody(
+      username: 'ahmadmonis',
       titleAr: titleAr,
       titleEn: titleEn,
       detailsAr: detailsAr,
       detailsEn: detailsEn,
-      images: images,
       tagsAr: tagsAr,
       tagsEn: tagsEn,
       showName: showName,
     );
 
-    final result = await _addNewsUseCase(params: body);
+    final result = await _addNewsUseCase(params: Tuple2(body, images));
     status.value = result;
   }
 }

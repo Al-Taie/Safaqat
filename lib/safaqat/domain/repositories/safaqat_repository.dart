@@ -1,8 +1,4 @@
 
-import 'package:safaqat/safaqat/data/models/auth/change_password/change_password_body.dart';
-import 'package:safaqat/safaqat/data/models/auth/login/login_body.dart';
-import 'package:safaqat/safaqat/data/models/auth/login/login_dto.dart';
-import 'package:safaqat/safaqat/data/models/auth/register/register_body.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
@@ -10,9 +6,10 @@ import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/data/models/news/publish/publish_news_body.dart';
-import 'package:safaqat/safaqat/data/models/notifications/notification_dto.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
+import 'dart:io';
+
 
 abstract class SafaqatRepository {
   Future<Resources<CustomerResponse>> getCustomers();
@@ -28,7 +25,7 @@ abstract class SafaqatRepository {
     required int pageNumber
 });
 
-  Future<Resources> addNews({required PublishNewsBody body});
+  Future<Resources> addNews({required PublishNewsBody body, required List<File> images});
 
   Future<Resources> editNews({required String newsId, required EditNewsBody body});
 

@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:safaqat/safaqat/app/config/base_end_points.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/auth/change_password/change_password_body.dart';
 import 'package:safaqat/safaqat/data/models/auth/login/login_body.dart';
 import 'package:safaqat/safaqat/data/models/auth/login/login_dto.dart';
@@ -12,9 +15,8 @@ import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
 import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
-import 'package:safaqat/safaqat/data/models/news/publish/publish_news_body.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
-
+import 'package:http_parser/http_parser.dart';
 part 'safaqat_api_services.g.dart';
 
 @RestApi(baseUrl: URLs.baseApiUrl)
@@ -26,8 +28,7 @@ abstract class SafaqatApiServices {
 
   @PUT('ChangePassword')
   Future<HttpResponse<BaseResponse<dynamic>>> changePassword(
-    @Body() ChangePasswordBody body,
-  );
+      @Body() ChangePasswordBody body,);
 
   @POST('Customer/Register')
   Future<HttpResponse<BaseResponse<dynamic>>> register(
@@ -52,16 +53,19 @@ abstract class SafaqatApiServices {
       @Query('pageSize') int pageSize, @Query('pageNumber') int pageNumber);
 
   @POST('News/Publish')
-  Future<HttpResponse<BaseResponse<dynamic>>> publishNews(
-      @Body() PublishNewsBody body);
-
-  // @POST("Message")
-  // @MultiPart()
-  // Future<HttpResponse<BaseResponse<MessageDto>>> sendMessageWithFile(
-  //     @Part() String? messageTitle,
-  //     @Part() String? messageText,
-  //     @Part() List<String>? toGuid,
-  //     @Part() List<Part> files);
+  @MultiPart()
+  @Header('Accept: application/json')
+  Future<HttpResponse<BaseResponse<dynamic>>> publishNews({
+    @Part(name: 'Username') String? username,
+    @Part(name: 'NewsTitleA') String? titleAr,
+    @Part(name: 'NewsTitleE') String? titleEn,
+    @Part(name: 'NewsDetailsA') String? detailsAr,
+    @Part(name: 'NewsDetailsE') String? detailsEn,
+    @Part(name: 'ShowName') bool? showName,
+    @Part(name: 'TagsA') List<String>? tagsAr,
+    @Part(name: 'TagsE') List<String>? tagsEn,
+    @Part(name: 'Images') List<File>? images
+  });
 
   @POST('News/Edit')
   Future<HttpResponse<BaseResponse<dynamic>>> editNews(

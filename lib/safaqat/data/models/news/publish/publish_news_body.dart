@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-
 part 'publish_news_body.g.dart';
 
 @JsonSerializable(ignoreUnannotated: false)
@@ -20,8 +19,6 @@ class PublishNewsBody {
   List<String>? tagsAr;
   @JsonKey(name: 'TagsE')
   List<String>? tagsEn;
-  @JsonKey(name: 'Images')
-  List<String>? images;
 
   PublishNewsBody({
     this.username,
@@ -32,7 +29,6 @@ class PublishNewsBody {
     this.showName = false,
     this.tagsAr,
     this.tagsEn,
-    this.images,
   });
 
   factory PublishNewsBody.fromJson(Map<String, dynamic> json) =>

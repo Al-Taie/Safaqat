@@ -65,6 +65,12 @@ class AppBindings implements Bindings {
       compact: false,
     ));
     dio.interceptors.add(authInterceptor);
+    dio.interceptors.add(LogInterceptor(
+        requestBody: true,
+        responseBody: true,
+        request: true,
+        requestHeader: true,
+        responseHeader: true));
     return dio;
   }
 

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
@@ -65,7 +67,7 @@ class PublishNewsWidget extends StatelessWidget {
             );
           },
           onChange: (values) {
-            controller.imagesBytes = values.map((e) => e.bytes);
+            controller.images = values.map((e) => File(e.path.toString())).toList();
           },
         ),
       ],
