@@ -29,6 +29,7 @@ class LoginController extends GetxController {
     auth.value = Resources.loading();
 
     final result = await _loginUseCase(params: body);
+    result.data?.username = username;
     _saveUserInfo(result.data);
     auth.value = result;
   }

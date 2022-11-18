@@ -32,9 +32,7 @@ class NewsController extends GetxController {
   set pageNumber(int value) => _pageNumber.value = value;
 
   final _newsData = NewsDto().obs;
-
   NewsDto get newsData => _newsData.value;
-
   set newsData(NewsDto value) => _newsData.value = value;
 
   Rx<Resources<NewsResponse>> news = Resources<NewsResponse>.init().obs;

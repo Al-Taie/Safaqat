@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:safaqat/safaqat/app/utils/utils.dart';
 part 'news_body.g.dart';
 
 @JsonSerializable(ignoreUnannotated: false)

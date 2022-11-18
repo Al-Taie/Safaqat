@@ -43,7 +43,7 @@ class ConfirmPage extends StatelessWidget {
               text: AppStrings.resend,
               onPressed: null,
             ),
-            ClickableText(
+            const ClickableText(
               text: '6:00',
               onPressed: null,
             ),

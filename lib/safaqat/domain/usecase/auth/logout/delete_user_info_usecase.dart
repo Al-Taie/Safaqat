@@ -5,10 +5,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class DeleteUserInfoUseCase extends NoParamUseCase<bool> {
   @override
   Future<bool> call() async {
-    final SharedPreferences _preferences =
+    final SharedPreferences preferences =
     await SharedPreferences.getInstance();
 
-    await _preferences.remove(PrefsKeys.token);
+    await preferences.remove(PrefsKeys.token);
     return Future.value(true);
   }
 }

@@ -2,20 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
-import 'package:safaqat/safaqat/data/models/news/news_body.dart';
-import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
-import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_body.dart';
-import 'package:safaqat/safaqat/data/models/notifications/notification_dto.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
-import 'package:safaqat/safaqat/domain/usecase/news/get_news_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/news/search_news_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecase/notification/get_notification_usecase.dart';
 
 class NotificationController extends GetxController {
-  final GetNotificationsUseCase _getNotificationsUseCase = Get.put(GetNotificationsUseCase());
+  final GetNotificationsUseCase _getNotificationsUseCase =
+      Get.put(GetNotificationsUseCase());
   final incomeScrollController = ScrollController();
   final outgoingScrollController = ScrollController();
 
@@ -31,25 +25,27 @@ class NotificationController extends GetxController {
   var _maxNumberOfPagesIncome = 1;
 
   int get pageNumberIncome => _pageNumberIncome.value;
+
   set pageNumberIncome(int value) => _pageNumberIncome.value = value;
 
   final _pageNumberOutgoing = 1.obs;
-  var _maxNumberOfPagesOutgoing = 1;
 
   int get pageNumberOutgoing => _pageNumberOutgoing.value;
+
   set pageNumberOutgoing(int value) => _pageNumberOutgoing.value = value;
 
   final _customerId = 'AF200010000005'.obs;
+
   String get customerId => _customerId.value;
+
   set customerId(String value) => _customerId.value = value;
 
-  Rx<Resources<NotificationsResponse>> notifications = Resources<NotificationsResponse>.init().obs;
+  Rx<Resources<NotificationsResponse>> notifications =
+      Resources<NotificationsResponse>.init().obs;
 
   void getNotificationsIncome() async {
-    final body = NotificationBody(
-      customerId: customerId,
-        pageNumber: pageNumberIncome
-    );
+    final body =
+        NotificationBody(customerId: customerId, pageNumber: pageNumberIncome);
 
     notifications.value = Resources.loading();
 
@@ -63,10 +59,10 @@ class NotificationController extends GetxController {
         (pageNumberIncome < _maxNumberOfPagesIncome)) {
       pageNumberIncome++;
       getNotificationsIncome();
-    } else if (incomeScrollController.position.isMinScroll && pageNumberIncome > 1) {
+    } else if (incomeScrollController.position.isMinScroll &&
+        pageNumberIncome > 1) {
       pageNumberIncome--;
       getNotificationsIncome();
     }
   }
-
 }

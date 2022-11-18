@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
-import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 
 class TextIcon extends StatelessWidget {

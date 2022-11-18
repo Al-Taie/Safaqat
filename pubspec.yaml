@@ -30,6 +30,7 @@ dependencies:
   multi_image_picker_view: ^0.0.6
   carousel_slider: ^4.1.1
   expand_widget: ^3.1.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test: {sdk: flutter}

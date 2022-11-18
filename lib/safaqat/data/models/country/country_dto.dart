@@ -1,5 +1,7 @@
+// ignore_for_file: overridden_fields
+
 import 'package:json_annotation/json_annotation.dart';
-import 'package:safaqat/safaqat/data/models/baseiInfo.dart';
+import 'package:safaqat/safaqat/data/models/base_info.dart';
 
 part 'country_dto.g.dart';
 

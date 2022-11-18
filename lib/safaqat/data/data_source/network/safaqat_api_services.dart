@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:safaqat/safaqat/app/config/base_end_points.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/auth/change_password/change_password_body.dart';
 import 'package:safaqat/safaqat/data/models/auth/login/login_body.dart';
 import 'package:safaqat/safaqat/data/models/auth/login/login_dto.dart';
@@ -16,7 +15,6 @@ import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
-import 'package:http_parser/http_parser.dart';
 part 'safaqat_api_services.g.dart';
 
 @RestApi(baseUrl: URLs.baseApiUrl)

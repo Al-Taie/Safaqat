@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 
@@ -29,8 +31,9 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: color,
-        onSurface: isEnabled ? null : color,
+        backgroundColor: color,
+        disabledForegroundColor: isEnabled ? null : color.withOpacity(0.38),
+        disabledBackgroundColor: isEnabled ? null : color.withOpacity(0.12),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             radius,

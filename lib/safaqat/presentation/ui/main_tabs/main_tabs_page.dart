@@ -8,11 +8,12 @@ import 'package:safaqat/safaqat/presentation/ui/main_tabs/components/bottom_nav_
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/tabbed_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/main/news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/notification/notification_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/profile/profile_page.dart';
 
 class MainTabsPage extends StatelessWidget {
   MainTabsPage({Key? key}) : super(key: key);
 
-  final _selectedTabIndex = 0.obs;
+  final _selectedTabIndex = 1.obs;
   final List<TabbedPage> _pages = [
     TabbedPage(
       page: const HomePage(),
@@ -28,6 +29,11 @@ class MainTabsPage extends StatelessWidget {
       page: const NotificationPage(),
       label: AppStrings.notifications,
       iconAssets: AppDrawable.icNotifications,
+    ),
+    TabbedPage(
+      page: const ProfilePage(),
+      label: AppStrings.profile,
+      iconAssets: AppDrawable.icTabPerson,
     ),
   ];
 

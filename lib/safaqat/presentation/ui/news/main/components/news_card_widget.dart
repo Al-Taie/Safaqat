@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/card_icon.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_icon.dart';
 
 class NewsCardWidget extends StatelessWidget {
@@ -12,11 +14,15 @@ class NewsCardWidget extends StatelessWidget {
     required this.name,
     required this.image,
     required this.date,
-    required this.onPressed,
+    this.isLogged = false,
+    this.onPressed,
+    this.onEdit,
+    this.onDelete,
   }) : super(key: key);
 
   final String title, name, date, image;
-  final VoidCallback onPressed;
+  final bool isLogged;
+  final VoidCallback? onPressed, onEdit, onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +61,32 @@ class NewsCardWidget extends StatelessWidget {
                     icon: AppDrawable.icName,
                     text: name,
                   ),
-                  TextIcon(
-                    icon: AppDrawable.icDate,
-                    text: date,
-                  )
+                  if (isLogged)
+                    SizedBox(
+                      width: Get.width - 136,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextIcon(
+                            icon: AppDrawable.icDate,
+                            text: date,
+                          ),
+                          Row(
+                            children: [
+                              SvgIconButton(
+                                  icon: AppDrawable.icTrash, onPressed: onDelete),
+                              SvgIconButton(
+                                  icon: AppDrawable.icEdit, onPressed: onEdit),
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  else
+                    TextIcon(
+                      icon: AppDrawable.icDate,
+                      text: date,
+                    ),
                 ],
               )
             ],

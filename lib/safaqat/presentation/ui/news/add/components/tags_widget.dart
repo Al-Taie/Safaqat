@@ -38,8 +38,7 @@ class TagsWidget extends StatelessWidget {
                 ),
               ),
             )
-            .toList() ??
-        [];
+            .toList();
   }
 
   @override

@@ -1,5 +1,7 @@
+// ignore_for_file: overridden_fields
+
 import 'package:json_annotation/json_annotation.dart';
-import 'package:safaqat/safaqat/data/models/baseiInfo.dart';
+import 'package:safaqat/safaqat/data/models/base_info.dart';
 
 part 'city_dto.g.dart'; 
 
@@ -16,6 +18,7 @@ class CityDto extends BaseInfo {
   @JsonKey(name: 'cityNameE')
   String? nameEn;
 
+  @override
   @JsonKey(name: 'isoAlpha3')
   String? iso3;
   @JsonKey(name: 'countryCode')

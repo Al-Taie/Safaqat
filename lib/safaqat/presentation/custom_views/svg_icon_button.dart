@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
-import 'package:safaqat/safaqat/app/config/drawable.dart';
-import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 
 class SvgIconButton extends StatelessWidget {
   const SvgIconButton({
     Key? key,
     required this.icon,
-    required this.onPressed
+    this.onPressed
   }) : super(key: key);
 
   final String icon;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

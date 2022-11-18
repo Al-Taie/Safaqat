@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_dto.dart';
 
 part 'notification_response.g.dart';

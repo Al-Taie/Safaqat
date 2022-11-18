@@ -55,6 +55,15 @@ class DisconnectedWidget extends StatelessWidget {
             onPressed: () {
               onClickTryAgain.call();
             },
+            style: OutlinedButton.styleFrom(
+              side: const BorderSide(
+                width: 1,
+                color: AppColors.primaryColor,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 48,
@@ -67,15 +76,6 @@ class DisconnectedWidget extends StatelessWidget {
                   fontSize: 18,
                   color: AppColors.primaryColor,
                 ),
-              ),
-            ),
-            style: OutlinedButton.styleFrom(
-              side: const BorderSide(
-                width: 1,
-                color: AppColors.primaryColor,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
               ),
             ),
           ),
