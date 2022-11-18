@@ -1,0 +1,142 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:safaqat/safaqat/app/config/colors.dart';
+import 'package:safaqat/safaqat/app/config/drawable.dart';
+import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/app/utils/utils.dart';
+
+class AppDrawer extends StatelessWidget {
+  const AppDrawer({
+    Key? key,
+    required this.name,
+    required this.imageUrl,
+    this.onProfile,
+    this.onManageNews,
+    this.onSettings,
+    this.onSupport,
+    this.onTerms,
+    this.onLogout,
+  }) : super(key: key);
+
+  final String name, imageUrl;
+  final VoidCallback? onProfile,
+      onManageNews,
+      onSettings,
+      onSupport,
+      onTerms,
+      onLogout;
+
+  Widget item({text, icon, onClick}) {
+    return ListTile(
+      title: Text(
+        text,
+        style: const TextStyle(fontSize: 15),
+      ),
+      leading: SvgPicture.asset(icon),
+      onTap: onClick,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Utils.isRTL ? Radius.zero : const Radius.circular(16),
+          topLeft: Utils.isRTL ? const Radius.circular(16) : Radius.zero,
+          bottomRight: Utils.isRTL ? Radius.zero : const Radius.circular(16),
+          bottomLeft: Utils.isRTL ? const Radius.circular(16) : Radius.zero,
+        ),
+      ),
+      child: ListView(
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: AppColors.ternary.withOpacity(.3),
+              borderRadius: BorderRadius.only(
+                topLeft: Utils.isRTL ? const Radius.circular(8) : Radius.zero,
+                topRight: Utils.isRTL ? Radius.zero : const Radius.circular(8),
+              ),
+            ),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  if (!Utils.isRTL)
+                    Flexible(
+                      child: Text(
+                        name,
+                        style: const TextStyle(
+                          color: AppColors.primaryColor,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft:
+                          Utils.isRTL ? const Radius.circular(32) : Radius.zero,
+                      topRight:
+                          Utils.isRTL ? Radius.zero : const Radius.circular(32),
+                      bottomRight: const Radius.circular(32),
+                      bottomLeft: const Radius.circular(32),
+                    ),
+                    child: Image.network(
+                      imageUrl,
+                      height: 80,
+                      width: 80,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  if (Utils.isRTL)
+                    Flexible(
+                      child: Text(
+                        name,
+                        style: const TextStyle(
+                          color: AppColors.primaryColor,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ),
+          item(
+            text: AppStrings.profile,
+            icon: AppDrawable.icTabPerson,
+            onClick: onProfile,
+          ),
+          item(
+            text: AppStrings.manageNews,
+            icon: AppDrawable.icNews,
+            onClick: onManageNews,
+          ),
+          item(
+            text: AppStrings.settings,
+            icon: AppDrawable.icSettings,
+            onClick: onSettings,
+          ),
+          item(
+            text: AppStrings.support,
+            icon: AppDrawable.icSupport,
+            onClick: onSupport,
+          ),
+          item(
+            text: AppStrings.termsAndPolicy,
+            icon: AppDrawable.icTerms,
+            onClick: onTerms,
+          ),
+          item(
+            text: AppStrings.logout,
+            icon: AppDrawable.icLogout,
+            onClick: onLogout,
+          ),
+        ],
+      ),
+    );
+  }
+}

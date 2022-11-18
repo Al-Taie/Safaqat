@@ -25,6 +25,7 @@ final Map<String, String> arIQ = {
   bornKey: 'المواليد',
   nationalityKey: 'الجنسية',
   profilePictureKey: 'صورة شخصية',
+  profileKey: 'الملف الشخصي',
   personalInfoKey: 'معلومات شخصية',
   countryKey: 'الدولة',
   cityKey: 'المدينة',
@@ -88,6 +89,16 @@ final Map<String, String> arIQ = {
   dateKey: 'التاريخ',
   statusKey: 'الحالة',
   newsKey: 'الأخبار',
+  draftsKey: 'المسودات',
+  postedKey: 'المنشورة',
+  waitedKey: 'المنتظرة',
+  manageNewsKey: 'إدارة الأخبار',
+  publishSuccessKey: 'تم النشر بنجاح',
+  publishFailedKey: 'فشل النشر',
+  supportKey: 'الدعم',
+  settingsKey: 'الإعدادات',
+  termsAndPolicyKey: 'الخصوصية والشروط',
+  logoutKey: 'تسجيل الخروج',
 
 
 };

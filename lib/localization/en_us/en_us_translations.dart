@@ -24,6 +24,7 @@ final Map<String, String> enUS = {
   bornKey: 'Born',
   nationalityKey: 'Nationality',
   profilePictureKey: 'Profile picture',
+  profileKey: 'Profile',
   personalInfoKey: 'Personal info',
   countryKey: 'Country',
   cityKey: 'City',
@@ -88,6 +89,13 @@ final Map<String, String> enUS = {
   newsKey: 'News',
   publishSuccessKey: 'Publish Success',
   publishFailedKey: 'Publish Failed',
-
+  draftsKey: 'Drafts',
+  postedKey: 'Posted',
+  waitedKey: 'Waited',
+  manageNewsKey: 'Manage News',
+  supportKey: 'Support',
+  settingsKey: 'Settings',
+  termsAndPolicyKey: 'Terms And Policy',
+  logoutKey: 'Logout',
 
 };

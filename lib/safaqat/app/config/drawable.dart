@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 
 class AppDrawable {
@@ -22,6 +20,7 @@ class AppDrawable {
   static const icCheekMark = '$_drawable/ic_check_mark.svg';
   static const icContact = '$_drawable/ic_contact.svg';
   static const icPerson = '$_drawable/ic_person.svg';
+  static const icTabPerson = '$_drawable/ic_tab_person.svg';
   static const icTopArrow = '$_drawable/ic_top_arrow.svg';
   static const icDownArrow = '$_drawable/ic_down_arrow.svg';
   static const icGallery = '$_drawable/ic_gallery.svg';
@@ -34,4 +33,11 @@ class AppDrawable {
   static const icAdd = '$_drawable/ic_add.svg';
   static const icNews = '$_drawable/ic_news.svg';
   static const icNotifications = '$_drawable/ic_notifications.svg';
+  static const icEdit = '$_drawable/ic_edit.svg';
+  static const icTrash = '$_drawable/ic_trash.svg';
+  static const icDrawer = '$_drawable/ic_drawer.svg';
+  static const icSettings = '$_drawable/ic_settings.svg';
+  static const icSupport = '$_drawable/ic_support.svg';
+  static const icTerms = '$_drawable/ic_terms.svg';
+  static const icLogout = '$_drawable/ic_logout.svg';
 }

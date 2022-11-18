@@ -22,6 +22,7 @@ const lastNameKey = 'lastName';
 const bornKey = 'born';
 const nationalityKey = 'nationality';
 const profilePictureKey = 'profilePicture';
+const profileKey = 'profile';
 const personalInfoKey = 'personalInfo';
 const countryKey = 'country';
 const cityKey = 'city';
@@ -87,6 +88,14 @@ const statusKey = 'status';
 const newsKey = 'news';
 const publishSuccessKey = 'publishSuccess';
 const publishFailedKey = 'publishFailed';
+const draftsKey = 'drafts';
+const postedKey = 'posted';
+const waitedKey = 'waited';
+const manageNewsKey = 'manageNews';
+const settingsKey = 'settings';
+const supportKey = 'support';
+const termsAndPolicyKey = 'termsAndPolicy';
+const logoutKey = 'logout';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -111,6 +120,7 @@ class AppStrings {
   static final born = bornKey.tr;
   static final nationality = nationalityKey.tr;
   static final profilePicture = profilePictureKey.tr;
+  static final profile = profileKey.tr;
   static final personalInfo = personalInfoKey.tr;
   static final country = countryKey.tr;
   static final city = cityKey.tr;
@@ -176,5 +186,12 @@ class AppStrings {
   static final news = newsKey.tr;
   static final publishSuccess = publishSuccessKey.tr;
   static final publishFailed = publishFailedKey.tr;
-
+  static final manageNews = manageNewsKey.tr;
+  static final drafts = draftsKey.tr;
+  static final posted = postedKey.tr;
+  static final waited = waitedKey.tr;
+  static final settings = settingsKey.tr;
+  static final support = supportKey.tr;
+  static final termsAndPolicy = termsAndPolicyKey.tr;
+  static final logout = logoutKey.tr;
 }
