@@ -89,7 +89,7 @@ final Map<String, String> enUS = {
   newsKey: 'News',
   publishSuccessKey: 'Publish Success',
   publishFailedKey: 'Publish Failed',
-  draftsKey: 'Drafts',
+  rejectedKey: 'Rejected',
   postedKey: 'Posted',
   waitedKey: 'Waited',
   manageNewsKey: 'Manage News',
@@ -97,5 +97,4 @@ final Map<String, String> enUS = {
   settingsKey: 'Settings',
   termsAndPolicyKey: 'Terms And Policy',
   logoutKey: 'Logout',
-
 };

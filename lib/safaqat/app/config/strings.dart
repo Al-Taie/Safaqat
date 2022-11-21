@@ -88,7 +88,7 @@ const statusKey = 'status';
 const newsKey = 'news';
 const publishSuccessKey = 'publishSuccess';
 const publishFailedKey = 'publishFailed';
-const draftsKey = 'drafts';
+const rejectedKey = 'rejected';
 const postedKey = 'posted';
 const waitedKey = 'waited';
 const manageNewsKey = 'manageNews';
@@ -132,7 +132,8 @@ class AppStrings {
   static final username = usernameKey.tr;
   static final confirmPassword = confirmPasswordKey.tr;
   static final businessAndContactInfo = businessAndContactInfoKey.tr;
-  static final accountCreationAndTermsPolicy = accountCreationAndTermsPolicyKey.tr;
+  static final accountCreationAndTermsPolicy =
+      accountCreationAndTermsPolicyKey.tr;
   static final agreeTermsAndPolicy = agreeTermsAndPolicyKey.tr;
   static final receiveNewsletters = receiveNewslettersKey.tr;
   static final jobPosition = jobPositionKey.tr;
@@ -187,7 +188,7 @@ class AppStrings {
   static final publishSuccess = publishSuccessKey.tr;
   static final publishFailed = publishFailedKey.tr;
   static final manageNews = manageNewsKey.tr;
-  static final drafts = draftsKey.tr;
+  static final rejected = rejectedKey.tr;
   static final posted = postedKey.tr;
   static final waited = waitedKey.tr;
   static final settings = settingsKey.tr;

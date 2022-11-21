@@ -1,4 +1,3 @@
-
 import '../../safaqat/app/config/strings.dart';
 
 final Map<String, String> arIQ = {
@@ -8,7 +7,7 @@ final Map<String, String> arIQ = {
   forgotPasswordKey: 'نسيت كلمة السر',
   noInternetConnectionKey: 'لا يوجد اتصال بالانترنت',
   internetConnectionMessageKey:
-  'اتصال الإنترنت الخاص بك غير متاح حاليًا ، يرجى التحقق أو المحاولة مرة أخرى.',
+      'اتصال الإنترنت الخاص بك غير متاح حاليًا ، يرجى التحقق أو المحاولة مرة أخرى.',
   tryAgainKey: 'حاول مرة أخرى',
   noThingFoundKey: 'لم يتم العثور على نتائج',
   usernameOrPhoneKey: 'اسم المستخدم او رقم الهاتف',
@@ -49,7 +48,8 @@ final Map<String, String> arIQ = {
   accountWillBeActivatedSoonKey: 'سيتم تفعيل حسابك قريبا',
   personalAccountKey: 'الحساب الشخصي',
   mainPageKey: 'الصفحة الرئيسية',
-  agreeTermsAndPolicyKey: 'اوافق على الاحكام والشروط الخاصة للتسجيل واستخدام منصة صفقات.',
+  agreeTermsAndPolicyKey:
+      'اوافق على الاحكام والشروط الخاصة للتسجيل واستخدام منصة صفقات.',
   receiveNewslettersKey: 'ارغب في استلام النشرات البريدية.',
   nameArabicKey: 'الاسم بالعربية',
   nameEnglishKey: 'الاسم بالانجليزية',
@@ -62,19 +62,20 @@ final Map<String, String> arIQ = {
   lastNameEnglishKey: 'Last Name',
   emailHintKey: 'رقم هاتف غير صالح!',
   phoneHintKey: 'إيميل غير صالح!',
-  passwordHintKey: 'يجب ألا يقل عدد الأحرف عن 8 أحرف بما في ذلك الأحرف الكبيرة والصغيرة و/أو الرموز ( مثال: ythhYT8!).',
-  passwordNotMatchedKey:'كلمة السر غير متطابقة!',
+  passwordHintKey:
+      'يجب ألا يقل عدد الأحرف عن 8 أحرف بما في ذلك الأحرف الكبيرة والصغيرة و/أو الرموز ( مثال: ythhYT8!).',
+  passwordNotMatchedKey: 'كلمة السر غير متطابقة!',
   showLatestNewsKey: 'عرض آخر الأخبار',
   hashtagsKey: 'هاشتاكات',
-  tagsKey:'الكلمات الدلالية',
-  postKey:'نشر',
-  contentKey:'المحتوى',
-  titleKey:'العنوان',
-  editKey:'تعديل',
-  picturesKey:'الصور',
-  arabicKey:'العربية',
-  englishKey:'الانجليزية',
-  publishKey:'نشر',
+  tagsKey: 'الكلمات الدلالية',
+  postKey: 'نشر',
+  contentKey: 'المحتوى',
+  titleKey: 'العنوان',
+  editKey: 'تعديل',
+  picturesKey: 'الصور',
+  arabicKey: 'العربية',
+  englishKey: 'الانجليزية',
+  publishKey: 'نشر',
   noPreviewKey: 'العرض غير متوفر',
   searchKey: 'البحث',
   addNewNewsKey: 'إضافة خبر جديد',
@@ -89,7 +90,7 @@ final Map<String, String> arIQ = {
   dateKey: 'التاريخ',
   statusKey: 'الحالة',
   newsKey: 'الأخبار',
-  draftsKey: 'المسودات',
+  rejectedKey: 'المرفوضة',
   postedKey: 'المنشورة',
   waitedKey: 'المنتظرة',
   manageNewsKey: 'إدارة الأخبار',
@@ -99,6 +100,4 @@ final Map<String, String> arIQ = {
   settingsKey: 'الإعدادات',
   termsAndPolicyKey: 'الخصوصية والشروط',
   logoutKey: 'تسجيل الخروج',
-
-
 };

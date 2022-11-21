@@ -99,7 +99,7 @@ class MyNewsPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(11.7),
-                    child: Text(AppStrings.drafts),
+                    child: Text(AppStrings.rejected),
                   ),
                 ],
               ),
