@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
-import 'package:safaqat/safaqat/data/models/news/news_body.dart';
+import 'package:safaqat/safaqat/data/models/news/news_query.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
@@ -21,6 +21,7 @@ class HomeController extends GetxController {
     scrollController.addListener(_floatingButtonState);
     getNews();
   }
+
   final isFloatingButtonExtended = true.obs;
 
   final _pageNumber = 1.obs;
@@ -45,7 +46,7 @@ class HomeController extends GetxController {
   set query(String value) => _query.value = value;
 
   void getNews() async {
-    final body = NewsBody(pageNumber: pageNumber);
+    final body = NewsQuery(pageNumber: pageNumber);
 
     news.value = Resources.loading();
 
@@ -80,8 +81,8 @@ class HomeController extends GetxController {
     }
   }
 
-  void _floatingButtonState(){
-    if(scrollController.position.isMinScroll) {
+  void _floatingButtonState() {
+    if (scrollController.position.isMinScroll) {
       isFloatingButtonExtended.value = true;
     } else {
       isFloatingButtonExtended.value = false;

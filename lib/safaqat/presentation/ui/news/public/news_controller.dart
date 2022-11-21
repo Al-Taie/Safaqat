@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
 import 'package:safaqat/safaqat/app/utils/logger.dart';
-import 'package:safaqat/safaqat/data/models/news/news_body.dart';
+import 'package:safaqat/safaqat/data/models/news/news_query.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
@@ -22,6 +22,7 @@ class NewsController extends GetxController {
     scrollController.addListener(_floatingButtonState);
     getNews();
   }
+
   final isFloatingButtonExtended = true.obs;
 
   final _pageNumber = 1.obs;
@@ -35,7 +36,9 @@ class NewsController extends GetxController {
   NewsDto get newsData => _newsData.value;
   set newsData(NewsDto value) => _newsData.value = value;
 
-  Rx<Resources<NewsResponse>> news = Resources<NewsResponse>.init().obs;
+  Rx<Resources<NewsResponse>> status = Resources<NewsResponse>.init().obs;
+
+  RxList<NewsDto> news = <NewsDto>[].obs;
 
   final _query = ''.obs;
 
@@ -44,25 +47,33 @@ class NewsController extends GetxController {
   set query(String value) => _query.value = value;
 
   void getNews() async {
-    final body = NewsBody(pageNumber: pageNumber);
+    final body = NewsQuery(pageNumber: pageNumber);
 
-    news.value = Resources.loading();
+    status.value = Resources.loading();
 
     final result = await _getNewsUseCase(params: body);
-    news.value = result;
+    status.value = result;
+      
+      if (result.data?.news != null) {
+      news.value = result.data!.news!;
+    }
     _maxNumberOfPages = result.data?.numberOfPages ?? 1;
   }
 
   void searchNews() async {
-    news.value = Resources.loading();
+    status.value = Resources.loading();
 
     final result = await _searchNewsUseCase(params: query);
     final data = NewsResponse(numberOfPages: 1, news: result.data);
 
     if (result.status == Status.success) {
-      news.value = Resources.success(data, result.statusCode);
+      status.value = Resources.success(data, result.statusCode);
     } else if (result.status == Status.error) {
-      news.value = Resources.error(result.error, result.statusCode);
+      status.value = Resources.error(result.error, result.statusCode);
+    }
+
+    if (result.data != null) {
+      news.value = result.data!;
     }
   }
 
@@ -79,8 +90,8 @@ class NewsController extends GetxController {
     }
   }
 
-  void _floatingButtonState(){
-    if(scrollController.position.isMinScroll) {
+  void _floatingButtonState() {
+    if (scrollController.position.isMinScroll) {
       Logger.log(scrollController.position);
       isFloatingButtonExtended.value = true;
     } else {

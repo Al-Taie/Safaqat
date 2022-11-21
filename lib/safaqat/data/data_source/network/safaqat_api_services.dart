@@ -15,6 +15,7 @@ import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
+
 part 'safaqat_api_services.g.dart';
 
 @RestApi(baseUrl: URLs.baseApiUrl)
@@ -26,7 +27,8 @@ abstract class SafaqatApiServices {
 
   @PUT('ChangePassword')
   Future<HttpResponse<BaseResponse<dynamic>>> changePassword(
-      @Body() ChangePasswordBody body,);
+    @Body() ChangePasswordBody body,
+  );
 
   @POST('Customer/Register')
   Future<HttpResponse<BaseResponse<dynamic>>> register(
@@ -48,7 +50,17 @@ abstract class SafaqatApiServices {
 
   @GET('News/List')
   Future<HttpResponse<BaseResponse<NewsResponse>>> getNews(
-      @Query('pageSize') int pageSize, @Query('pageNumber') int pageNumber);
+    @Query('pageSize') int pageSize,
+    @Query('pageNumber') int pageNumber,
+  );
+
+  @GET('News/List')
+  Future<HttpResponse<BaseResponse<NewsResponse>>> getMyNews(
+    @Query('pageSize') int pageSize,
+    @Query('pageNumber') int pageNumber,
+    @Query('type') int type,
+    @Header('Authorization') String token,
+  );
 
   @POST('News/Publish')
   @MultiPart()
@@ -62,17 +74,25 @@ abstract class SafaqatApiServices {
     @Part(name: 'ShowName') bool? showName,
     @Part(name: 'TagsA') List<String>? tagsAr,
     @Part(name: 'TagsE') List<String>? tagsEn,
-    @Part(name: 'Images') List<File>? images
+    @Part(name: 'Images') List<File>? images,
   });
 
   @POST('News/Edit')
   Future<HttpResponse<BaseResponse<dynamic>>> editNews(
+    @Query('news_id') String newsId,
+    @Body() EditNewsBody body,
+  );
+
+  @POST('News/Delete')
+  Future<HttpResponse<BaseResponse<dynamic>>> deleteNews(
       @Query('news_id') String newsId,
-      @Body() EditNewsBody body);
+      @Header('Authorization') String token,
+      );
 
   @GET('Notification/GetNotification')
   Future<HttpResponse<BaseResponse<NotificationsResponse>>> getNotification(
-      @Query('customerId') String customerId,
-      @Query('pageSize') int pageSize,
-      @Query('pageNumber') int pageNumber);
+    @Query('customerId') String customerId,
+    @Query('pageSize') int pageSize,
+    @Query('pageNumber') int pageNumber,
+  );
 }

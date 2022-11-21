@@ -20,8 +20,6 @@ class EditNewsBody {
   List<String>? tagsAr;
   @JsonKey(name: 'tagsE')
   List<String>? tagsEn;
-  @JsonKey(name: 'images')
-  List<String>? images;
 
   EditNewsBody({
     this.username,
@@ -32,7 +30,6 @@ class EditNewsBody {
     this.showName = false,
     this.tagsAr,
     this.tagsEn,
-    this.images,
   });
 
   factory EditNewsBody.fromJson(Map<String, dynamic> json) =>

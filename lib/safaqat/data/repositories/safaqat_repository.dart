@@ -41,21 +41,29 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
   }
 
   @override
-  Future<Resources> addNews({
-    required PublishNewsBody body,
-    required List<File> images
+  Future<Resources<NewsResponse>> getMyNews({
+    required int pageSize,
+    required int pageNumber,
+    required int type,
+    required String token,
   }) =>
-      _apiServices.publishNews(
-          username: body.username,
-          titleAr: body.titleAr,
-          titleEn: body.titleEn,
-          detailsAr: body.detailsAr,
-          detailsEn: body.detailsEn,
-          showName: body.showName,
-          tagsAr: body.tagsAr,
-          tagsEn: body.tagsEn,
-          images: images
-      ).call();
+      _apiServices.getMyNews(pageSize, pageNumber, type, token).call();
+
+  @override
+  Future<Resources> addNews(
+          {required PublishNewsBody body, required List<File> images}) =>
+      _apiServices
+          .publishNews(
+              username: body.username,
+              titleAr: body.titleAr,
+              titleEn: body.titleEn,
+              detailsAr: body.detailsAr,
+              detailsEn: body.detailsEn,
+              showName: body.showName,
+              tagsAr: body.tagsAr,
+              tagsEn: body.tagsEn,
+              images: images)
+          .call();
 
   @override
   Future<Resources> editNews({
@@ -65,10 +73,11 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
       _apiServices.editNews(newsId, body).call();
 
   @override
-  Future<Resources<NotificationsResponse>> getNotification(
-      {required String customerId,
-      required int pageSize,
-      required int pageNumber}) {
+  Future<Resources<NotificationsResponse>> getNotification({
+    required String customerId,
+    required int pageSize,
+    required int pageNumber,
+  }) {
     return _apiServices
         .getNotification(customerId, pageSize, pageNumber)
         .call();

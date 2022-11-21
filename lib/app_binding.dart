@@ -76,9 +76,8 @@ class AppBindings implements Bindings {
 
   InterceptorsWrapper _provideAuthenticationInterceptor() {
     return InterceptorsWrapper(onRequest: (options, handler) {
-      final token = preferences.getString(PrefsKeys.token);
-
-      options.headers['authorization'] = 'bearer $token';
+      // final token = preferences.getString(PrefsKeys.token);
+      // options.headers['authorization'] = 'bearer $token';
       options.headers['Content-Type'] = 'application/json';
 
       return handler.next(options);

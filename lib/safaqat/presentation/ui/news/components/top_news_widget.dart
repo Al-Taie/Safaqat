@@ -5,7 +5,7 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/home_controller.dart';
-import 'package:safaqat/safaqat/presentation/ui/news/main/components/search_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/news/components/search_widget.dart';
 
 class TopNewsWidget extends StatelessWidget implements PreferredSizeWidget {
   TopNewsWidget(
@@ -15,11 +15,13 @@ class TopNewsWidget extends StatelessWidget implements PreferredSizeWidget {
       required this.height,
       this.toolbarHeight,
       this.bottom,
+      this.onBack,
       required this.rate})
       : preferredSize = Size(height - rate * 80, width);
 
   final String title;
   final double width, height, rate;
+  final VoidCallback? onBack;
   final HomeController controller = Get.find();
   final _textController = TextEditingController();
   final double? toolbarHeight;
@@ -33,7 +35,7 @@ class TopNewsWidget extends StatelessWidget implements PreferredSizeWidget {
     final bool hasDrawer = scaffold?.hasDrawer ?? false;
     Widget? leading;
 
-    if (hasDrawer) {
+    if (hasDrawer && onBack == null) {
       leading = IconButton(
         icon: const Icon(Icons.menu),
         iconSize: 24,
@@ -43,9 +45,18 @@ class TopNewsWidget extends StatelessWidget implements PreferredSizeWidget {
       );
     }
 
+  if (onBack!= null){
+    leading = IconButton(
+      icon: const Icon(Icons.arrow_back_ios_new_rounded),
+      iconSize: 24,
+      color: AppColors.ternary,
+      onPressed: onBack,
+    );
+  }
+
     return SizedBox(
       width: width,
-      height: height - rate * 15,
+      height: height - rate * (bottom != null ? 15 : 80),
       child: Column(
         children: [
           Flexible(
