@@ -26,14 +26,14 @@ class NewsPage extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
-          drawer: AppDrawer(
+          drawer: isLogged ? AppDrawer(
             name: 'Ahmed Mones Ahmed',
             imageUrl:
                 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wyTK?ver=a46a',
             onManageNews: const MyNewsPage(isLogged: true).navTo,
             onProfile: () {},
             onLogout: controller.logout,
-          ),
+          ) : null,
           appBar: TopNewsWidget(
             width: Get.width,
             height: Get.height / 3.5,

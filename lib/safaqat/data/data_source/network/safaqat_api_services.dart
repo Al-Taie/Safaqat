@@ -50,16 +50,14 @@ abstract class SafaqatApiServices {
 
   @GET('News/List')
   Future<HttpResponse<BaseResponse<NewsResponse>>> getNews(
-    @Query('pageSize') int pageSize,
-    @Query('pageNumber') int pageNumber,
-  );
+      @Query('pageSize') int pageSize, @Query('pageNumber') int pageNumber,
+      {@Header('No-Authentication') bool noAuth = true});
 
   @GET('News/List')
   Future<HttpResponse<BaseResponse<NewsResponse>>> getMyNews(
     @Query('pageSize') int pageSize,
     @Query('pageNumber') int pageNumber,
     @Query('type') int type,
-    @Header('Authorization') String token,
   );
 
   @POST('News/Publish')
@@ -85,9 +83,9 @@ abstract class SafaqatApiServices {
 
   @POST('News/Delete')
   Future<HttpResponse<BaseResponse<dynamic>>> deleteNews(
-      @Query('news_id') String newsId,
-      @Header('Authorization') String token,
-      );
+    @Query('news_id') String newsId,
+    @Header('Authorization') String token,
+  );
 
   @GET('Notification/GetNotification')
   Future<HttpResponse<BaseResponse<NotificationsResponse>>> getNotification(

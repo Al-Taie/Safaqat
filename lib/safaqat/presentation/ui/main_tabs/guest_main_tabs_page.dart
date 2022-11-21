@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/home_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/components/bottom_nav_bar.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/tabbed_page.dart';
@@ -10,10 +11,10 @@ import 'package:safaqat/safaqat/presentation/ui/news/public/news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/notification/notification_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/profile/profile_page.dart';
 
-class MainTabsPage extends StatelessWidget {
-  MainTabsPage({Key? key}) : super(key: key);
+class GuestMainTabsPage extends StatelessWidget {
+  GuestMainTabsPage({Key? key}) : super(key: key);
 
-  final _selectedTabIndex = 1.obs;
+  final _selectedTabIndex = 0.obs;
   final List<TabbedPage> _pages = [
     TabbedPage(
       page: const HomePage(),
@@ -21,20 +22,15 @@ class MainTabsPage extends StatelessWidget {
       iconAssets: AppDrawable.icHome,
     ),
     TabbedPage(
-      page: const NewsPage(isLogged: true),
+      page: const NewsPage(),
       label: AppStrings.news,
       iconAssets: AppDrawable.icNews,
     ),
     TabbedPage(
-      page: const NotificationPage(),
-      label: AppStrings.notifications,
-      iconAssets: AppDrawable.icNotifications,
-    ),
-    TabbedPage(
-      page: const ProfilePage(),
-      label: AppStrings.profile,
-      iconAssets: AppDrawable.icTabPerson,
-    ),
+      page: const LoginPage(),
+      label: AppStrings.login,
+      iconAssets: AppDrawable.icLogin,
+    )
   ];
 
   @override

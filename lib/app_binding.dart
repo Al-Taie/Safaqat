@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:dio_logging_interceptor/dio_logging_interceptor.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/preferences_keys.dart';
+import 'package:safaqat/safaqat/app/extensions/boolean_extension.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/data_source/network/safaqat_api_services.dart';
 import 'package:safaqat/safaqat/data/repositories/authentication_repository.dart';
 import 'package:safaqat/safaqat/data/repositories/safaqat_repository.dart';
@@ -76,8 +78,16 @@ class AppBindings implements Bindings {
 
   InterceptorsWrapper _provideAuthenticationInterceptor() {
     return InterceptorsWrapper(onRequest: (options, handler) {
-      // final token = preferences.getString(PrefsKeys.token);
-      // options.headers['authorization'] = 'bearer $token';
+    Logger.log(options.headers);
+      if (options.headers.containsKey('No-Authentication')) {
+        options.headers.remove('authorization');
+        Logger.log('NO-AUTHENTICATION');
+      } else {
+        final token = preferences.getString(PrefsKeys.token);
+        options.headers['authorization'] = 'bearer $token';
+        Logger.log('AUTHENTICATION');
+      }
+
       options.headers['Content-Type'] = 'application/json';
 
       return handler.next(options);

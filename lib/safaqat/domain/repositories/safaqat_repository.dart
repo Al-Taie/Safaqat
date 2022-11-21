@@ -29,7 +29,6 @@ abstract class SafaqatRepository {
     required int pageSize,
     required int pageNumber,
     required int type,
-    required String token,
   });
 
   Future<Resources> addNews({required PublishNewsBody body, required List<File> images});

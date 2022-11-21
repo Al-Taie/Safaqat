@@ -10,8 +10,8 @@ import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forget_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/components/auth_page_template.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/register_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/home/home_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/main_tabs/main_tabs_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/main_tabs/authorized_main_tabs_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/main_tabs/guest_main_tabs_page.dart';
 
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
     controller.auth.listen((result) {
       switch (result.status) {
         case Status.success:
-          Get.offAll(MainTabsPage());
+          Get.offAll(AuthorizedMainTabsPage());
           break;
         case Status.error:
           AppStrings.loginFailed.toToast();
@@ -109,7 +109,9 @@ class LoginPage extends StatelessWidget {
               color: Colors.white,
               textColor: AppColors.primaryColor,
               text: AppStrings.enterWithoutRegister,
-              onPressed: const HomePage().navTo,
+              onPressed: (){
+                Get.offAll(()=> GuestMainTabsPage());
+              },
             )
           ],
         ),

@@ -45,9 +45,8 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
     required int pageSize,
     required int pageNumber,
     required int type,
-    required String token,
   }) =>
-      _apiServices.getMyNews(pageSize, pageNumber, type, token).call();
+      _apiServices.getMyNews(pageSize, pageNumber, type).call();
 
   @override
   Future<Resources> addNews(
