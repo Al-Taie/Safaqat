@@ -32,6 +32,7 @@ class NewsPage extends StatelessWidget {
                 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wyTK?ver=a46a',
             onManageNews: const MyNewsPage(isLogged: true).navTo,
             onProfile: () {},
+            onLogout: controller.logout,
           ),
           appBar: TopNewsWidget(
             width: Get.width,
