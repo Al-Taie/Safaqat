@@ -1,17 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:safaqat/safaqat/app/extensions/shared_preferences.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_body.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecase/notification/get_notification_usecase.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationController extends GetxController {
   final GetNotificationsUseCase _getNotificationsUseCase =
       Get.put(GetNotificationsUseCase());
   final incomeScrollController = ScrollController();
   final outgoingScrollController = ScrollController();
+  final SharedPreferences _preferences = Get.find();
 
   @override
   void onInit() {
@@ -34,18 +37,12 @@ class NotificationController extends GetxController {
 
   set pageNumberOutgoing(int value) => _pageNumberOutgoing.value = value;
 
-  final _customerId = 'AF200010000005'.obs;
-
-  String get customerId => _customerId.value;
-
-  set customerId(String value) => _customerId.value = value;
-
   Rx<Resources<NotificationsResponse>> notifications =
       Resources<NotificationsResponse>.init().obs;
 
   void getNotificationsIncome() async {
     final body =
-        NotificationBody(customerId: customerId, pageNumber: pageNumberIncome);
+        NotificationBody(customerId: _preferences.id, pageNumber: pageNumberIncome);
 
     notifications.value = Resources.loading();
 

@@ -1,5 +1,5 @@
 
 class PrefsKeys {
   static const token = 'TOKEN';
-  static const username = 'USERNAME';
+  static const id = 'ID';
 }

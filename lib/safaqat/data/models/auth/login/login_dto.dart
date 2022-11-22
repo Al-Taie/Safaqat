@@ -8,11 +8,12 @@ class LoginDto {
   @JsonKey(name: 'token')
   String? token;
 
-  String? username;
+  @JsonKey(name: 'customerId')
+  String? id;
 
   LoginDto({
     this.token,
-    this.username
+    this.id
   });
 
   factory LoginDto.fromJson(Map<String, dynamic> json) =>
