@@ -13,6 +13,7 @@ import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/add/add_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/news_card_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/top_news_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/news/details/news_details_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_controller.dart';
 
 class MyNewsPage extends StatelessWidget {
@@ -20,12 +21,12 @@ class MyNewsPage extends StatelessWidget {
 
   final bool isLogged;
 
-  Widget tabItem({
-    required Status status,
-    required VoidCallback apiCall,
-    required ScrollController scrollController,
-    required List<NewsDto> data,
-  }) {
+  Widget tabItem(
+      {required Status status,
+      required VoidCallback apiCall,
+      required ScrollController scrollController,
+      required List<NewsDto> data,
+      required MyNewsController controller}) {
     return StatusWidget(
       status: status,
       onClickTryAgain: apiCall,
@@ -47,6 +48,10 @@ class MyNewsPage extends StatelessWidget {
                 name: item.ownerName ?? '-',
                 image: item.images?.firstOrNull ?? '',
                 date: Utils.formatDate(dateStr: item.date),
+                onPressed: () {
+                  controller.newsData = item;
+                  NewsDetailsPage(news: controller.newsData).navTo();
+                },
               );
             }),
       ),
@@ -112,18 +117,21 @@ class MyNewsPage extends StatelessWidget {
                       apiCall: controller.getApprovedNews,
                       scrollController: controller.acceptedScrollController,
                       data: controller.acceptedNews,
+                      controller: controller,
                     )),
                 Obx(() => tabItem(
                       status: controller.status.value.status,
                       apiCall: controller.getWaitedNews,
                       scrollController: controller.waitedScrollController,
                       data: controller.waitedNews,
+                      controller: controller,
                     )),
                 Obx(() => tabItem(
                       status: controller.status.value.status,
                       apiCall: controller.getRejectedNews,
                       scrollController: controller.rejectedScrollController,
                       data: controller.rejectedNews,
+                      controller: controller,
                     )),
               ],
             ),

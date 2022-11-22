@@ -29,11 +29,11 @@ class AppBindings implements Bindings {
 
   @override
   void dependencies() {
+    Get.putAsync(() => SharedPreferences.getInstance());
     Get.put(_provideDioClient(_provideAuthenticationInterceptor()));
     Get.put(_provideSafaqatApiServices(Get.find<Dio>()));
     Get.put(_provideAuthenticationRepository());
     Get.put(_provideSafaqatRepository());
-    Get.putAsync(() => SharedPreferences.getInstance());
 
     Get.put(LoginUseCase());
     Get.put(GetCountriesUseCase());

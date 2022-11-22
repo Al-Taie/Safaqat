@@ -7,12 +7,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class SaveUserInfoUseCase extends ParamUseCase<bool, LoginDto> {
-  final SharedPreferences _preferences = Get.find();
 
   @override
   Future<bool> call({required LoginDto params}) async {
-    _preferences.setString(PrefsKeys.token, params.token!);
-    _preferences.setString(PrefsKeys.id, params.id!);
+    final SharedPreferences preferences = Get.find();
+    preferences.setString(PrefsKeys.token, params.token!);
+    preferences.setString(PrefsKeys.id, params.id!);
     return Future.value(true);
   }
 }
