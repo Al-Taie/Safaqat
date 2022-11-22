@@ -38,7 +38,6 @@ class AddNewsController extends GetxController {
   void publish() async {
     status.value = Resources.loading();
     final PublishNewsBody body = PublishNewsBody(
-      username: 'ahmadmonis',
       titleAr: titleAr,
       titleEn: titleEn,
       detailsAr: detailsAr,

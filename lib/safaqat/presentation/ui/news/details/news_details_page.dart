@@ -36,9 +36,8 @@ class NewsDetailsPage extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
+          child: ListView(
             children: [
-
               SizedBox(
                 width: Get.width,
                 child: Text(

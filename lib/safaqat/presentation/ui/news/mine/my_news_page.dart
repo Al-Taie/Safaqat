@@ -4,59 +4,16 @@ import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
-import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
-import 'package:safaqat/safaqat/app/utils/utils.dart';
-import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
-import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_floating_button.dart';
-import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/add/add_news_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/news/components/news_card_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/news/components/news_items_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/top_news_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/news/details/news_details_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_controller.dart';
 
 class MyNewsPage extends StatelessWidget {
   const MyNewsPage({Key? key, this.isLogged = false}) : super(key: key);
 
   final bool isLogged;
-
-  Widget tabItem(
-      {required Status status,
-      required VoidCallback apiCall,
-      required ScrollController scrollController,
-      required List<NewsDto> data,
-      required MyNewsController controller}) {
-    return StatusWidget(
-      status: status,
-      onClickTryAgain: apiCall,
-      child: Expanded(
-        child: ListView.builder(
-            controller: scrollController,
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.fromLTRB(
-              16,
-              8,
-              16,
-              16,
-            ),
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              var item = data[index];
-              return NewsCardWidget(
-                title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
-                name: item.ownerName ?? '-',
-                image: item.images?.firstOrNull ?? '',
-                date: Utils.formatDate(dateStr: item.date),
-                onPressed: () {
-                  controller.newsData = item;
-                  NewsDetailsPage(news: controller.newsData).navTo();
-                },
-              );
-            }),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,26 +69,32 @@ class MyNewsPage extends StatelessWidget {
             ),
             body: TabBarView(
               children: [
-                Obx(() => tabItem(
-                      status: controller.status.value.status,
+                Obx(() => NewsItemsWidget(
+                      status: controller.acceptedStatus.value.status,
                       apiCall: controller.getApprovedNews,
                       scrollController: controller.acceptedScrollController,
                       data: controller.acceptedNews,
-                      controller: controller,
+                      onPressed: (value) {
+                        controller.newsData = value;
+                      },
                     )),
-                Obx(() => tabItem(
-                      status: controller.status.value.status,
+                Obx(() => NewsItemsWidget(
+                      status: controller.waitedStatus.value.status,
                       apiCall: controller.getWaitedNews,
                       scrollController: controller.waitedScrollController,
                       data: controller.waitedNews,
-                      controller: controller,
+                      onPressed: (value) {
+                        controller.newsData = value;
+                      },
                     )),
-                Obx(() => tabItem(
-                      status: controller.status.value.status,
+                Obx(() => NewsItemsWidget(
+                      status: controller.rejectedStatus.value.status,
                       apiCall: controller.getRejectedNews,
                       scrollController: controller.rejectedScrollController,
                       data: controller.rejectedNews,
-                      controller: controller,
+                      onPressed: (value) {
+                        controller.newsData = value;
+                      },
                     )),
               ],
             ),

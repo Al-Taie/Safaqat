@@ -3,8 +3,6 @@ part 'publish_news_body.g.dart';
 
 @JsonSerializable(ignoreUnannotated: false)
 class PublishNewsBody {
-  @JsonKey(name: 'Username')
-  String? username;
   @JsonKey(name: 'NewsTitleA')
   String? titleAr;
   @JsonKey(name: 'NewsTitleE')
@@ -21,7 +19,6 @@ class PublishNewsBody {
   List<String>? tagsEn;
 
   PublishNewsBody({
-    this.username,
     this.titleAr,
     this.titleEn,
     this.detailsAr,

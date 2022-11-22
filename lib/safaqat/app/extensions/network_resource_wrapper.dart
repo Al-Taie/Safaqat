@@ -1,18 +1,14 @@
-
-import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:retrofit/dio.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
+import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 
 import '../../data/models/base_response.dart';
 import '../../domain/entities/resources.dart';
 
 extension ResoursesWrapping on HttpResponse<BaseResponse> {
   Resources<T> toResources<T>() {
-
     switch (response.statusCode) {
       case 200:
-      {
-        Logger.log(data.response);
+        {
           if (data.response is List) {
             if ((data.response as List).isEmpty) {
               return Resources<T>.empty(data.response);
@@ -20,16 +16,18 @@ extension ResoursesWrapping on HttpResponse<BaseResponse> {
           }
           try {
             return Resources<T>.success(
-              data.response!,
-                response.statusCode?.toDouble() ?? 0
-            );
+                data.response!, response.statusCode?.toDouble() ?? 0);
           } catch (e) {
-            return Resources<T>.successNullable(
+            if (data.isSuccess) {
+              return Resources<T>.successNullable(
                 data.response,
-                response.statusCode?.toDouble() ?? 0
-            );
+                response.statusCode?.toDouble() ?? 0,
+              );
+            } else {
+              return Resources<T>.empty(data.response);
+            }
           }
-      }
+        }
       default:
         {
           return Resources<T>.error(

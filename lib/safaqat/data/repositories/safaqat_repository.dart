@@ -53,7 +53,6 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
           {required PublishNewsBody body, required List<File> images}) =>
       _apiServices
           .publishNews(
-              username: body.username,
               titleAr: body.titleAr,
               titleEn: body.titleEn,
               detailsAr: body.detailsAr,

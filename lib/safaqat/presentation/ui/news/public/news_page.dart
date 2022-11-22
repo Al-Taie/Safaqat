@@ -4,6 +4,7 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/app_drawer.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/news_card_widget.dart';
@@ -39,39 +40,47 @@ class NewsPage extends StatelessWidget {
               : null,
           appBar: TopNewsWidget(
             width: Get.width,
-            height: Get.height / 3.5,
+            height: Get.height / 3.4,
             rate: 0.75,
             title: AppStrings.showLatestNews,
           ),
-          body: Obx(() {
-            return StatusWidget(
-              status: controller.status.value.status,
-              onClickTryAgain: controller.getNews,
-              child: ListView.builder(
-                  controller: controller.scrollController,
-                  physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.fromLTRB(
-                    16,
-                    8,
-                    16,
-                    16,
-                  ),
-                  itemCount: controller.news.length,
-                  itemBuilder: (context, index) {
-                    var item = controller.news[index];
-                    return NewsCardWidget(
-                      title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
-                      name: item.ownerName ?? '-',
-                      image: item.images?.firstOrNull ?? '',
-                      date: Utils.formatDate(dateStr: item.date),
-                      onPressed: () {
-                        controller.newsData = item;
-                        NewsDetailsPage(news: controller.newsData).navTo();
-                      },
-                    );
-                  }),
-            );
-          }),
+          body: Stack(
+            children: [
+              Obx(() {
+                return StatusWidget(
+                  status: controller.status.value.status,
+                  onClickTryAgain: controller.getNews,
+                  child: ListView.builder(
+                      controller: controller.scrollController,
+                      physics: const BouncingScrollPhysics(),
+                      padding: const EdgeInsets.fromLTRB(
+                        16,
+                        8,
+                        16,
+                        16,
+                      ),
+                      itemCount: controller.news.length,
+                      itemBuilder: (context, index) {
+                        var item = controller.news[index];
+                        return NewsCardWidget(
+                          title: (Utils.isRTL ? item.titleAr : item.titleEn) ??
+                              '-',
+                          name: item.ownerName ?? '-',
+                          image: item.images?.firstOrNull ?? '',
+                          date: Utils.formatDate(dateStr: item.date),
+                          onPressed: () {
+                            controller.newsData = item;
+                            NewsDetailsPage(news: controller.newsData).navTo();
+                          },
+                        );
+                      }),
+                );
+              }),
+              Obx(() => LoadingView(
+                    resource: controller.status.value,
+                  )),
+            ],
+          ),
         ),
       ),
     );

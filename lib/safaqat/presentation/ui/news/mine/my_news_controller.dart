@@ -92,7 +92,9 @@ class MyNewsController extends GetxController {
   NewsDto get newsData => _newsData.value;
   set newsData(NewsDto value) => _newsData.value = value;
 
-  Rx<Resources<NewsResponse>> status = Resources<NewsResponse>.init().obs;
+  Rx<Resources<NewsResponse>> acceptedStatus = Resources<NewsResponse>.init().obs;
+  Rx<Resources<NewsResponse>> waitedStatus = Resources<NewsResponse>.init().obs;
+  Rx<Resources<NewsResponse>> rejectedStatus = Resources<NewsResponse>.init().obs;
 
   RxList<NewsDto> acceptedNews = <NewsDto>[].obs;
   RxList<NewsDto> waitedNews = <NewsDto>[].obs;
@@ -110,10 +112,10 @@ class MyNewsController extends GetxController {
       type: NewsType.accepted.index,
     );
 
-    status.value = Resources.loading();
+    acceptedStatus.value = Resources.loading();
 
     final result = await _getMyNewsUseCase(params: params);
-    status.value = result;
+    acceptedStatus.value = result;
 
     if(result.data?.news != null){
       acceptedNews.value = result.data!.news!;
@@ -128,10 +130,10 @@ class MyNewsController extends GetxController {
       type: NewsType.waited.index,
     );
 
-    status.value = Resources.loading();
+    waitedStatus.value = Resources.loading();
 
     final result = await _getMyNewsUseCase(params: params);
-    status.value = result;
+    waitedStatus.value = result;
 
     if(result.data?.news != null){
       waitedNews.value = result.data!.news!;
@@ -146,10 +148,10 @@ class MyNewsController extends GetxController {
       type: NewsType.rejected.index,
     );
 
-    status.value = Resources.loading();
+    rejectedStatus.value = Resources.loading();
 
     final result = await _getMyNewsUseCase(params: params);
-    status.value = result;
+    rejectedStatus.value = result;
 
     if(result.data?.news != null){
       rejectedNews.value = result.data!.news!;
@@ -159,15 +161,15 @@ class MyNewsController extends GetxController {
   }
 
   void searchNews() async {
-    status.value = Resources.loading();
+    acceptedStatus.value = Resources.loading();
 
     final result = await _searchNewsUseCase(params: query);
     final data = NewsResponse(numberOfPages: 1, news: result.data);
 
     if (result.status == Status.success) {
-      status.value = Resources.success(data, result.statusCode);
+      acceptedStatus.value = Resources.success(data, result.statusCode);
     } else if (result.status == Status.error) {
-      status.value = Resources.error(result.error, result.statusCode);
+      acceptedStatus.value = Resources.error(result.error, result.statusCode);
     }
   }
 
