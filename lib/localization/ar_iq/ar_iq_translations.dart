@@ -72,6 +72,7 @@ final Map<String, String> arIQ = {
   contentKey: 'المحتوى',
   titleKey: 'العنوان',
   editKey: 'تعديل',
+  deleteKey: 'حذف',
   picturesKey: 'الصور',
   arabicKey: 'العربية',
   englishKey: 'الانجليزية',
@@ -100,4 +101,10 @@ final Map<String, String> arIQ = {
   settingsKey: 'الإعدادات',
   termsAndPolicyKey: 'الخصوصية والشروط',
   logoutKey: 'تسجيل الخروج',
+  noKey: 'نعم',
+  yesKey: 'لا',
+  deleteDescriptionKey: 'سيتم حذف الخبر. هل أنت متأكد أنك تريد الحذف؟',
+deletedSuccessfullyKey: 'تم الحذف بنجاح',
+  deletedFailedKey: 'فشل الحذف!',
+  deleteNewsKey: 'حذف الخبر'
 };

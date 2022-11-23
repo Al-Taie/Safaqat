@@ -11,9 +11,7 @@ import 'package:safaqat/safaqat/presentation/ui/news/components/top_news_widget.
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_controller.dart';
 
 class MyNewsPage extends StatelessWidget {
-  const MyNewsPage({Key? key, this.isLogged = false}) : super(key: key);
-
-  final bool isLogged;
+  const MyNewsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,19 +26,17 @@ class MyNewsPage extends StatelessWidget {
         length: 3,
         child: SafeArea(
           child: Scaffold(
-            floatingActionButton: isLogged
-                ? Obx(
-                    () => CustomFloatingButton(
-                      title: AppStrings.addNewNews,
-                      icon: AppDrawable.icAdd,
-                      isExtended: controller.isFloatingButtonExtended.value,
-                      onClick: () {
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        const AddNewsPage().navTo();
-                      },
-                    ),
-                  )
-                : null,
+            floatingActionButton: Obx(
+              () => CustomFloatingButton(
+                title: AppStrings.addNewNews,
+                icon: AppDrawable.icAdd,
+                isExtended: controller.isFloatingButtonExtended.value,
+                onClick: () {
+                  FocusScope.of(context).requestFocus(FocusNode());
+                  const AddNewsPage().navTo();
+                },
+              ),
+            ),
             appBar: TopNewsWidget(
               width: Get.width,
               height: Get.height / 3.5,
@@ -74,6 +70,13 @@ class MyNewsPage extends StatelessWidget {
                       apiCall: controller.getApprovedNews,
                       scrollController: controller.acceptedScrollController,
                       data: controller.acceptedNews,
+                      isLogged: true,
+                      onEdit: (value) {
+                        // TODO: ON EDIT
+                      },
+                      onDelete: (value) {
+                        // TODO: ON DELETE
+                      },
                       onPressed: (value) {
                         controller.newsData = value;
                       },
@@ -83,6 +86,13 @@ class MyNewsPage extends StatelessWidget {
                       apiCall: controller.getWaitedNews,
                       scrollController: controller.waitedScrollController,
                       data: controller.waitedNews,
+                      isLogged: true,
+                      onEdit: (value) {
+                        // TODO: ON EDIT
+                      },
+                      onDelete: (value) {
+                        // TODO: ON DELETE
+                      },
                       onPressed: (value) {
                         controller.newsData = value;
                       },
@@ -92,6 +102,13 @@ class MyNewsPage extends StatelessWidget {
                       apiCall: controller.getRejectedNews,
                       scrollController: controller.rejectedScrollController,
                       data: controller.rejectedNews,
+                      isLogged: true,
+                      onEdit: (value) {
+                        // TODO: ON EDIT
+                      },
+                      onDelete: (value) {
+                        // TODO: ON DELETE
+                      },
                       onPressed: (value) {
                         controller.newsData = value;
                       },

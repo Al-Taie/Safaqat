@@ -9,17 +9,25 @@ import 'package:safaqat/safaqat/presentation/ui/news/components/news_card_widget
 import 'package:safaqat/safaqat/presentation/ui/news/details/news_details_page.dart';
 
 class NewsItemsWidget extends StatelessWidget {
-  const NewsItemsWidget({Key? key,required this.status,
+  const NewsItemsWidget({
+    Key? key,
+    required this.status,
     required this.apiCall,
     required this.scrollController,
     required this.data,
-    required this.onPressed,}) : super(key: key);
+    required this.onPressed,
+    this.isLogged = false,
+    this.onEdit,
+    this.onDelete,
+  }) : super(key: key);
 
   final Status status;
   final VoidCallback apiCall;
+  final bool isLogged;
   final ScrollController scrollController;
   final List<NewsDto> data;
   final ValueChanged<NewsDto> onPressed;
+  final ValueChanged<NewsDto>? onDelete, onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +52,13 @@ class NewsItemsWidget extends StatelessWidget {
                 name: item.ownerName ?? '-',
                 image: item.images?.firstOrNull ?? '',
                 date: Utils.formatDate(dateStr: item.date),
+                isLogged: isLogged,
+                onEdit: (){
+                  onEdit?.call(item);
+                },
+                onDelete: (){
+                  onDelete?.call(item);
+                },
                 onPressed: () {
                   onPressed(item);
                   NewsDetailsPage(news: item).navTo();

@@ -69,6 +69,7 @@ final Map<String, String> enUS = {
   contentKey: 'Content',
   titleKey: 'Title',
   editKey: 'Edit',
+  deleteKey: 'Delete',
   picturesKey: 'Pictures',
   arabicKey: 'Arabic',
   englishKey: 'English',
@@ -97,4 +98,11 @@ final Map<String, String> enUS = {
   settingsKey: 'Settings',
   termsAndPolicyKey: 'Terms And Policy',
   logoutKey: 'Logout',
+  noKey: 'No',
+  yesKey: 'Yes',
+  deleteDescriptionKey:
+  'The news will be deleted. Are you sure you want to delete it?',
+  deletedSuccessfullyKey: 'Deleted Successfully',
+  deletedFailedKey: 'Deleted Failed!',
+  deleteNewsKey: 'Delete News',
 };

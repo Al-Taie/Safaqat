@@ -68,6 +68,7 @@ const contentKey = 'content';
 const tagsKey = 'tags';
 const postKey = 'post';
 const editKey = 'edit';
+const deleteKey = 'delete';
 const picturesKey = 'pictures';
 const arabicKey = 'arabic';
 const englishKey = 'english';
@@ -96,6 +97,12 @@ const settingsKey = 'settings';
 const supportKey = 'support';
 const termsAndPolicyKey = 'termsAndPolicy';
 const logoutKey = 'logout';
+const noKey = 'no';
+const yesKey = 'yes';
+const deleteDescriptionKey = 'deleteDescription';
+const deleteNewsKey = 'deleteNews';
+const deletedFailedKey = 'deletedFailed';
+const deletedSuccessfullyKey = 'deletedSuccessfully';
 
 class AppStrings {
   static final home = homeKey.tr;
@@ -168,6 +175,7 @@ class AppStrings {
   static final post = postKey.tr;
   static final pictures = picturesKey.tr;
   static final edit = editKey.tr;
+  static final delete = deleteKey.tr;
   static final arabic = arabicKey.tr;
   static final english = englishKey.tr;
   static final publish = publishKey.tr;
@@ -195,4 +203,10 @@ class AppStrings {
   static final support = supportKey.tr;
   static final termsAndPolicy = termsAndPolicyKey.tr;
   static final logout = logoutKey.tr;
+  static final no = noKey.tr;
+  static final yes = yesKey.tr;
+  static final deleteNews = deleteNewsKey.tr;
+  static final deleteDescription = deleteDescriptionKey.tr;
+  static final deletedFailed = deletedFailedKey.tr;
+  static final deletedSuccessfully = deletedSuccessfullyKey.tr;
 }

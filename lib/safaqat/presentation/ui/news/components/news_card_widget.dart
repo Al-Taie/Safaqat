@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
+import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
+import 'package:safaqat/safaqat/app/utils/show_menu.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/alert_dialog_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/card_icon.dart';
-import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_icon.dart';
 
 class NewsCardWidget extends StatelessWidget {
@@ -16,8 +19,8 @@ class NewsCardWidget extends StatelessWidget {
     required this.date,
     this.isLogged = false,
     this.onPressed,
-    this.onEdit,
     this.onDelete,
+    this.onEdit,
   }) : super(key: key);
 
   final String title, name, date, image;
@@ -28,70 +31,90 @@ class NewsCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPressed,
-      child: Card(
-        color: const Color(0xffF0EFFF),
-        elevation: 3,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topRight: const Radius.circular(5),
-            topLeft: const Radius.circular(5),
-            bottomLeft: Utils.isRTL
-                ? const Radius.circular(20)
-                : const Radius.circular(5),
-            bottomRight: Utils.isRTL
-                ? const Radius.circular(5)
-                : const Radius.circular(20),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              CardImage(image: image),
-              const SizedBox(width: 8),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
+        alignment: Utils.isRTL ? Alignment.topLeft : Alignment.topRight,
+        children: [
+          Card(
+            color: const Color(0xffF0EFFF),
+            elevation: 3,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topRight: const Radius.circular(5),
+                topLeft: const Radius.circular(5),
+                bottomLeft: Utils.isRTL
+                    ? const Radius.circular(20)
+                    : const Radius.circular(5),
+                bottomRight: Utils.isRTL
+                    ? const Radius.circular(5)
+                    : const Radius.circular(20),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
                 children: [
-                  Text(
-                    title,
-                    style: AppTextStyle.title.copyWith(fontSize: 12),
-                  ),
-                  const SizedBox(height: 4),
-                  TextIcon(
-                    icon: AppDrawable.icName,
-                    text: name,
-                  ),
-                  if (isLogged)
-                    SizedBox(
-                      width: Get.width - 136,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextIcon(
-                            icon: AppDrawable.icDate,
-                            text: date,
-                          ),
-                          Row(
-                            children: [
-                              SvgIconButton(
-                                  icon: AppDrawable.icTrash, onPressed: onDelete),
-                              SvgIconButton(
-                                  icon: AppDrawable.icEdit, onPressed: onEdit),
-                            ],
-                          )
-                        ],
+                  CardImage(image: image),
+                  const SizedBox(width: 8),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: AppTextStyle.title.copyWith(fontSize: 12),
                       ),
-                    )
-                  else
-                    TextIcon(
-                      icon: AppDrawable.icDate,
-                      text: date,
-                    ),
+                      const SizedBox(height: 4),
+                      TextIcon(
+                        icon: AppDrawable.icName,
+                        text: name,
+                      ),
+                      TextIcon(
+                        icon: AppDrawable.icDate,
+                        text: date,
+                      ),
+                    ],
+                  )
                 ],
-              )
-            ],
+              ),
+            ),
           ),
-        ),
+          if (onEdit != null && onDelete != null && isLogged)
+            SizedBox(
+              height: 42,
+              width: 42,
+              child: GestureDetector(
+                onTapDown: (TapDownDetails details) {
+                  ShowMenu.showPopup(
+                    offset: details.globalPosition,
+                    context: context,
+                    menuItems: [
+                      MenuItems.edit,
+                      MenuItems.delete,
+                    ],
+                    onEditPressed: onEdit,
+                    onDeletePressed: () async {
+                      await showDialog(
+                        context: context,
+                        builder: (context) => AlertDialogWidget(
+                          onAccept: onDelete,
+                          onCancel: Get.back,
+                          title: AppStrings.deleteNews,
+                          description: AppStrings.deleteDescription,
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SvgPicture.asset(
+                    AppDrawable.icTwoDots,
+                    height: 12,
+                    width: 6,
+                  ),
+                ),
+              ),
+            )
+        ],
       ),
     );
   }

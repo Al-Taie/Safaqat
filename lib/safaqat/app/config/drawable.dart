@@ -41,4 +41,5 @@ class AppDrawable {
   static const icTerms = '$_drawable/ic_terms.svg';
   static const icLogout = '$_drawable/ic_logout.svg';
   static const icLogin = '$_drawable/ic_login.svg';
+  static const icTwoDots = '$_drawable/ic_two_dots.svg';
 }
