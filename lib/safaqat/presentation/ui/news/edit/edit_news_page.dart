@@ -24,7 +24,8 @@ class EditNewsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(EditNewsController());
     controller.news = news;
-    
+    controller.loadNews(news);
+
     controller.status.listen((result) {
       switch (result.status) {
         case Status.success:
@@ -74,9 +75,9 @@ class EditNewsPage extends StatelessWidget {
                         newsTitle: AppStrings.title,
                         content: AppStrings.content,
                         tagsHint: AppStrings.tags,
-                        tags: news.tagsAr ?? [],
-                        titleInitialValue: news.titleAr,
-                        contentInitialValue: news.detailsAr,
+                        tags: controller.tagsAr,
+                        titleInitialValue: controller.titleAr,
+                        contentInitialValue: controller.detailsAr,
                         rtl: true,
                         onTitleChange: (String value) {
                           controller.titleAr = value;
@@ -96,9 +97,9 @@ class EditNewsPage extends StatelessWidget {
                         newsTitle: AppStrings.title,
                         content: AppStrings.content,
                         tagsHint: AppStrings.tags,
-                        titleInitialValue: news.titleEn,
-                        contentInitialValue: news.detailsEn,
-                        tags: news.tagsEn ?? [],
+                        titleInitialValue: controller.titleEn,
+                        contentInitialValue: controller.detailsEn,
+                        tags: controller.tagsEn,
                         onTitleChange: (String value) {
                           controller.titleEn = value;
                         },

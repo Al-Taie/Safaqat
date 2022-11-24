@@ -8,8 +8,6 @@ import 'package:safaqat/safaqat/presentation/ui/home/home_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/components/bottom_nav_bar.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/tabbed_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/public/news_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/notification/notification_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/profile/profile_page.dart';
 
 class GuestMainTabsPage extends StatelessWidget {
   GuestMainTabsPage({Key? key}) : super(key: key);

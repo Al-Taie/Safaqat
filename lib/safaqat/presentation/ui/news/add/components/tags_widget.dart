@@ -43,27 +43,28 @@ class TagsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        if (tags.length < 10)
-          TextFiledForm(
-            controller: _textEditingController,
-            hintText: hint,
-            textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
-            textAlign: rtl ? TextAlign.right : TextAlign.left,
-            onFieldSubmitted: (value) {
-              tags.add(value);
-              _textEditingController.clear();
-            },
+    return Obx(() {
+      return Column(
+        children: [
+          if (tags.length < 10)
+            TextFiledForm(
+              controller: _textEditingController,
+              hintText: hint,
+              textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
+              textAlign: rtl ? TextAlign.right : TextAlign.left,
+              onFieldSubmitted: (value) {
+                tags.add(value);
+                _textEditingController.clear();
+              },
+            ),
+          const SizedBox(
+            height: 8,
           ),
-        const SizedBox(
-          height: 8,
-        ),
-        Align(
-            alignment: rtl ? Alignment.topRight : Alignment.topLeft,
-            child: Wrap(children: _builder())),
-      ],
-    );
-    
+          Align(
+              alignment: rtl ? Alignment.topRight : Alignment.topLeft,
+              child: Wrap(children: _builder())),
+        ],
+      );
+    });
   }
 }

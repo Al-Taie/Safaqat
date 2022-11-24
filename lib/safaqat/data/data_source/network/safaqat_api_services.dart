@@ -62,7 +62,6 @@ abstract class SafaqatApiServices {
 
   @POST('News/Publish')
   @MultiPart()
-  @Header('Accept: application/json')
   Future<HttpResponse<BaseResponse<NewsDto>>> publishNews({
     @Part(name: 'Username') String? username,
     @Part(name: 'NewsTitleA') String? titleAr,
@@ -76,10 +75,16 @@ abstract class SafaqatApiServices {
   });
 
   @PUT('News/Edit')
-  Future<HttpResponse<BaseResponse<dynamic>>> editNews(
+  Future<HttpResponse<BaseResponse<NewsDto>>> editNews(
     @Query('news_id') String? newsId,
     @Body() EditNewsBody body,
   );
+
+  @POST('News/EditImage')
+  @MultiPart()
+  Future<HttpResponse<BaseResponse<dynamic>>> editNewsImage({
+    @Part(name: 'Images') List<File>? images,
+  });
 
   @DELETE('News/Delete')
   Future<HttpResponse<BaseResponse<dynamic>>> deleteNews(

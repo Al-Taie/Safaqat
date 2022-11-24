@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/app/extensions/boolean_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
 import 'package:safaqat/safaqat/app/utils/logger.dart';
@@ -22,7 +23,18 @@ class MyNewsController extends GetxController {
   final acceptedScrollController = ScrollController();
   final waitedScrollController = ScrollController();
   final rejectedScrollController = ScrollController();
-  
+
+  final _isRejectedScrollable = false.obs;
+  bool get isRejectedScrollable => _isRejectedScrollable.value;
+  set isRejectedScrollable(bool value) => _isRejectedScrollable.value = value;
+
+  final _isAcceptedScrollable = false.obs;
+  bool get isAcceptedScrollable => _isAcceptedScrollable.value;
+  set isAcceptedScrollable(bool value) => _isAcceptedScrollable.value = value;
+
+  final _isWaitedScrollable = false.obs;
+  bool get isWaitedScrollable => _isWaitedScrollable.value;
+  set isWaitedScrollable(bool value) => _isWaitedScrollable.value = value;
 
   @override
   void onInit() {
@@ -39,16 +51,16 @@ class MyNewsController extends GetxController {
         ));
 
     waitedScrollController.addListener(() {
-          return _pagination(
-            apiCall: getWaitedNews,
-            onValueChange: (int value) {
-              waitedPageNumber = value;
-            },
-            scrollController: waitedScrollController,
-            pageNumber: waitedPageNumber,
-            maxNumberOfPages: _waitedMaxNumberOfPages,
-          );
-        });
+      return _pagination(
+        apiCall: getWaitedNews,
+        onValueChange: (int value) {
+          waitedPageNumber = value;
+        },
+        scrollController: waitedScrollController,
+        pageNumber: waitedPageNumber,
+        maxNumberOfPages: _waitedMaxNumberOfPages,
+      );
+    });
 
     rejectedScrollController.addListener(() => _pagination(
           apiCall: getRejectedNews,
@@ -79,21 +91,15 @@ class MyNewsController extends GetxController {
   var _rejectedMaxNumberOfPages = 1;
 
   final _acceptedPageNumber = 1.obs;
-
   int get acceptedPageNumber => _acceptedPageNumber.value;
-
   set acceptedPageNumber(int value) => _acceptedPageNumber.value = value;
 
   final _waitedPageNumber = 1.obs;
-
   int get waitedPageNumber => _waitedPageNumber.value;
-
   set waitedPageNumber(int value) => _waitedPageNumber.value = value;
 
   final _rejectedPageNumber = 1.obs;
-
   int get rejectedPageNumber => _rejectedPageNumber.value;
-
   set rejectedPageNumber(int value) => _rejectedPageNumber.value = value;
 
   final _newsData = NewsDto().obs;
@@ -101,18 +107,18 @@ class MyNewsController extends GetxController {
   set newsData(NewsDto value) => _newsData.value = value;
 
   Rx<Resources<dynamic>> status = Resources<dynamic>.init().obs;
-  Rx<Resources<NewsResponse>> acceptedStatus = Resources<NewsResponse>.init().obs;
+  Rx<Resources<NewsResponse>> acceptedStatus =
+      Resources<NewsResponse>.init().obs;
   Rx<Resources<NewsResponse>> waitedStatus = Resources<NewsResponse>.init().obs;
-  Rx<Resources<NewsResponse>> rejectedStatus = Resources<NewsResponse>.init().obs;
+  Rx<Resources<NewsResponse>> rejectedStatus =
+      Resources<NewsResponse>.init().obs;
 
   RxList<NewsDto> acceptedNews = <NewsDto>[].obs;
   RxList<NewsDto> waitedNews = <NewsDto>[].obs;
   RxList<NewsDto> rejectedNews = <NewsDto>[].obs;
 
   final _query = ''.obs;
-
   String get query => _query.value;
-
   set query(String value) => _query.value = value;
 
   void getApprovedNews() async {
@@ -126,7 +132,7 @@ class MyNewsController extends GetxController {
     final result = await _getMyNewsUseCase(params: params);
     acceptedStatus.value = result;
 
-    if(result.data?.news != null){
+    if (result.data?.news != null) {
       acceptedNews.value = result.data!.news!;
     }
 
@@ -134,6 +140,7 @@ class MyNewsController extends GetxController {
   }
 
   void getWaitedNews() async {
+
     final params = NewsQuery(
       pageNumber: waitedPageNumber,
       type: NewsType.waited.index,
@@ -144,11 +151,17 @@ class MyNewsController extends GetxController {
     final result = await _getMyNewsUseCase(params: params);
     waitedStatus.value = result;
 
-    if(result.data?.news != null){
+    if (result.data?.news != null) {
       waitedNews.value = result.data!.news!;
     }
 
     _waitedMaxNumberOfPages = result.data?.numberOfPages ?? 1;
+
+    // isWaitedScrollable =
+    //     (waitedScrollController.position.maxScrollExtent > 0).not() &&
+    //         waitedPageNumber == _waitedMaxNumberOfPages;
+
+    // Logger.log(waitedScrollController.position.maxScrollExtent > 0);
   }
 
   void getRejectedNews() async {
@@ -162,11 +175,15 @@ class MyNewsController extends GetxController {
     final result = await _getMyNewsUseCase(params: params);
     rejectedStatus.value = result;
 
-    if(result.data?.news != null){
+    if (result.data?.news != null) {
       rejectedNews.value = result.data!.news!;
     }
 
     _rejectedMaxNumberOfPages = result.data?.numberOfPages ?? 1;
+
+    // isRejectedScrollable =
+    //     (rejectedScrollController.position.maxScrollExtent > 0).not() &&
+    //         rejectedPageNumber == _rejectedMaxNumberOfPages;
   }
 
   void searchNews() async {
@@ -203,7 +220,6 @@ class MyNewsController extends GetxController {
 
   void _floatingButtonState({required ScrollController scrollController}) {
     if (scrollController.position.isMinScroll) {
-      Logger.log(scrollController.position);
       isFloatingButtonExtended.value = true;
     } else {
       isFloatingButtonExtended.value = false;
@@ -230,6 +246,5 @@ class MyNewsController extends GetxController {
     } else {
       waitedNews.removeWhere((it) => it.id == id);
     }
-
   }
 }

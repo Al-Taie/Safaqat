@@ -1,8 +1,6 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
-import 'package:safaqat/safaqat/app/extensions/string_extension.dart';
 import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/edit_news_params.dart';
@@ -46,12 +44,12 @@ class EditNewsController extends GetxController {
     final body = EditNewsParams(
         newsId: news.id,
         body: EditNewsBody(
-          titleAr: titleAr.getOr(news.titleAr),
-          titleEn: titleEn.getOr(news.titleEn),
-          detailsAr: detailsAr.getOr(news.detailsAr),
-          detailsEn: detailsEn.getOr(news.detailsEn),
-          tagsAr: tagsAr.getOr(news.tagsAr),
-          tagsEn: tagsEn.getOr(news.tagsEn),
+          titleAr: titleAr,
+          titleEn: titleEn,
+          detailsAr: detailsAr,
+          detailsEn: detailsEn,
+          tagsAr: tagsAr,
+          tagsEn: tagsEn,
           showName: showName,
         ));
 
@@ -63,5 +61,16 @@ class EditNewsController extends GetxController {
       _myNewsController.waitedNews.remove(news);
       _myNewsController.waitedNews.insert(index, result.data!);
     }
+  }
+
+  void loadNews(NewsDto? news) {
+    if (news == null) return;
+
+    titleAr = news.titleAr ?? '';
+    titleEn = news.titleEn ?? '';
+    detailsAr = news.detailsAr ?? '';
+    detailsEn = news.detailsEn ?? '';
+    tagsAr.value = news.tagsAr ?? [];
+    tagsEn.value = news.tagsEn ?? [];
   }
 }

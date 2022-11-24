@@ -13,7 +13,7 @@ import 'package:safaqat/safaqat/presentation/ui/profile/profile_page.dart';
 class AuthorizedMainTabsPage extends StatelessWidget {
   AuthorizedMainTabsPage({Key? key}) : super(key: key);
 
-  final _selectedTabIndex = 1.obs;
+  final _selectedTabIndex = 0.obs;
   final List<TabbedPage> _pages = [
     TabbedPage(
       page: const HomePage(),

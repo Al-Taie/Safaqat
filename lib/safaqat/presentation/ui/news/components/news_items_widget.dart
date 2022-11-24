@@ -19,11 +19,13 @@ class NewsItemsWidget extends StatelessWidget {
     this.isLogged = false,
     this.onEdit,
     this.onDelete,
+    required this.onScrollUpPressed,
+    required this.scrollButtonVisibility,
   }) : super(key: key);
 
   final Status status;
-  final VoidCallback apiCall;
-  final bool isLogged;
+  final VoidCallback apiCall, onScrollUpPressed;
+  final bool isLogged, scrollButtonVisibility;
   final ScrollController scrollController;
   final List<NewsDto> data;
   final ValueChanged<NewsDto> onPressed;
@@ -35,36 +37,46 @@ class NewsItemsWidget extends StatelessWidget {
       status: status,
       onClickTryAgain: apiCall,
       child: Expanded(
-        child: ListView.builder(
-            controller: scrollController,
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.fromLTRB(
-              16,
-              8,
-              16,
-              16,
-            ),
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              var item = data[index];
-              return NewsCardWidget(
-                title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
-                name: item.ownerName ?? '-',
-                image: item.images?.firstOrNull ?? '',
-                date: Utils.formatDate(dateStr: item.date),
-                isLogged: isLogged,
-                onEdit: (){
-                  onEdit?.call(item);
-                },
-                onDelete: (){
-                  onDelete?.call(item);
-                },
-                onPressed: () {
-                  onPressed(item);
-                  NewsDetailsPage(news: item).navTo();
-                },
-              );
-            }),
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            ListView.builder(
+                controller: scrollController,
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.fromLTRB(
+                  16,
+                  8,
+                  16,
+                  16,
+                ),
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  var item = data[index];
+                  return NewsCardWidget(
+                    title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
+                    name: item.ownerName ?? '-',
+                    image: item.images?.firstOrNull ?? '',
+                    date: Utils.formatDate(dateStr: item.date),
+                    isLogged: isLogged,
+                    onEdit: () {
+                      onEdit?.call(item);
+                    },
+                    onDelete: () {
+                      onDelete?.call(item);
+                    },
+                    onPressed: () {
+                      onPressed(item);
+                      NewsDetailsPage(news: item).navTo();
+                    },
+                  );
+                }),
+            if (scrollButtonVisibility)
+              IconButton(
+                icon: const Icon(Icons.arrow_circle_up_rounded),
+                onPressed: onScrollUpPressed,
+              )
+          ],
+        ),
       ),
     );
   }

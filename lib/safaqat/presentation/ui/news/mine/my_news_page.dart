@@ -69,57 +69,68 @@ class MyNewsPage extends StatelessWidget {
               children: [
                 TabBarView(
                   children: [
-                    Obx(() => NewsItemsWidget(
-                          status: controller.acceptedStatus.value.status,
-                          apiCall: controller.getApprovedNews,
-                          scrollController: controller.acceptedScrollController,
-                          data: controller.acceptedNews.value,
-                          isLogged: true,
-                          onEdit: (value) {
-                            EditNewsPage(news: value).navTo();
-                          },
-                          onDelete: (value) {
-                            controller.deleteNews(
-                                type: NewsType.accepted, id: value.id);
-                          },
-                          onPressed: (value) {
-                            controller.newsData = value;
-                          },
-                        )),
-                    Obx(() => NewsItemsWidget(
-                          status: controller.waitedStatus.value.status,
-                          apiCall: controller.getWaitedNews,
-                          scrollController: controller.waitedScrollController,
-                          data: controller.waitedNews.value,
-                          isLogged: true,
-                          onEdit: (value) {
-                            EditNewsPage(news: value).navTo();
-                          },
-                          onDelete: (value) {
-                            controller.deleteNews(
-                                type: NewsType.waited, id: value.id);
-                          },
-                          onPressed: (value) {
-                            controller.newsData = value;
-                          },
-                        )),
-                    Obx(() => NewsItemsWidget(
-                          status: controller.rejectedStatus.value.status,
-                          apiCall: controller.getRejectedNews,
-                          scrollController: controller.rejectedScrollController,
-                          data: controller.rejectedNews.value,
-                          isLogged: true,
-                          onEdit: (value) {
-                            EditNewsPage(news: value).navTo();
-                          },
-                          onDelete: (value) {
-                            controller.deleteNews(
-                                type: NewsType.rejected, id: value.id);
-                          },
-                          onPressed: (value) {
-                            controller.newsData = value;
-                          },
-                        )),
+                    Obx(
+                      () => NewsItemsWidget(
+                        status: controller.acceptedStatus.value.status,
+                        apiCall: controller.getApprovedNews,
+                        scrollController: controller.acceptedScrollController,
+                        data: controller.acceptedNews.value,
+                        isLogged: true,
+                        onEdit: (value) {
+                          EditNewsPage(news: value).navTo();
+                        },
+                        onDelete: (value) {
+                          controller.deleteNews(
+                              type: NewsType.accepted, id: value.id);
+                        },
+                        onPressed: (value) {
+                          controller.newsData = value;
+                        },
+                        onScrollUpPressed: () {
+                          controller.acceptedPageNumber--;
+                        },
+                        scrollButtonVisibility: controller.isAcceptedScrollable,
+                      ),
+                    ),
+                    Obx(
+                      () => NewsItemsWidget(
+                        status: controller.waitedStatus.value.status,
+                        apiCall: controller.getWaitedNews,
+                        scrollController: controller.waitedScrollController,
+                        data: controller.waitedNews.value,
+                        isLogged: true,
+                        onEdit: (value) {
+                          EditNewsPage(news: value).navTo();
+                        },
+                        onDelete: (value) {
+                          controller.deleteNews(
+                              type: NewsType.waited, id: value.id);
+                        },
+                        onPressed: (value) {
+                          controller.newsData = value;
+                        },
+                        onScrollUpPressed: () {
+                          controller.waitedPageNumber--;
+                        },
+                        scrollButtonVisibility: controller.isWaitedScrollable,
+                      ),
+                    ),
+                    Obx(
+                      () => NewsItemsWidget(
+                        status: controller.rejectedStatus.value.status,
+                        apiCall: controller.getRejectedNews,
+                        scrollController: controller.rejectedScrollController,
+                        data: controller.rejectedNews.value,
+                        isLogged: true,
+                        onPressed: (value) {
+                          controller.newsData = value;
+                        },
+                        onScrollUpPressed: () {
+                          controller.rejectedPageNumber--;
+                        },
+                        scrollButtonVisibility: controller.isRejectedScrollable,
+                      ),
+                    ),
                   ],
                 ),
                 LoadingView(resource: controller.status.value)
