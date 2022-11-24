@@ -9,8 +9,9 @@ import 'package:safaqat/safaqat/presentation/custom_views/custom_image_file.dart
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/add/add_news_controller.dart';
 
-class PublishNewsWidget extends StatelessWidget {
-  const PublishNewsWidget({Key? key}) : super(key: key);
+class EditImagesWidget extends StatelessWidget {
+  const EditImagesWidget({Key? key, required this.images}) : super(key: key);
+  final List<String> images;
 
   @override
   Widget build(BuildContext context) {

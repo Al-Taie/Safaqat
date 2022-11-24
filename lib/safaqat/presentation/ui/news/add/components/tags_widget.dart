@@ -17,54 +17,53 @@ class TagsWidget extends StatelessWidget {
 
   List<Widget> _builder() {
     return tags
-            .map(
-              (e) => Padding(
-                padding: EdgeInsets.only(
-                  left: rtl ? 0 : 8.0,
-                  right: rtl ? 8.0 : 0,
-                ),
-                child: InputChip(
-                  label: Text(e),
-                  elevation: 1,
-                  pressElevation: 1,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                  ),
-                  onDeleted: () {
-                    tags.remove(e);
-                  },
+        .map(
+          (e) => Padding(
+            padding: EdgeInsets.only(
+              left: rtl ? 0 : 8.0,
+              right: rtl ? 8.0 : 0,
+            ),
+            child: InputChip(
+              label: Text(e),
+              elevation: 1,
+              pressElevation: 1,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5),
                 ),
               ),
-            )
-            .toList();
+              onDeleted: () {
+                tags.remove(e);
+              },
+            ),
+          ),
+        )
+        .toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Column(
-        children: [
-          if (tags.length < 10)
-            TextFiledForm(
-              controller: _textEditingController,
-              hintText: hint,
-              textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
-              textAlign: rtl ? TextAlign.right : TextAlign.left,
-              onFieldSubmitted: (value) {
-                tags.add(value);
-                _textEditingController.clear();
-              },
-            ),
-          const SizedBox(
-            height: 8,
+    return Column(
+      children: [
+        if (tags.length < 10)
+          TextFiledForm(
+            controller: _textEditingController,
+            hintText: hint,
+            textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
+            textAlign: rtl ? TextAlign.right : TextAlign.left,
+            onFieldSubmitted: (value) {
+              tags.add(value);
+              _textEditingController.clear();
+            },
           ),
-          Align(
-              alignment: rtl ? Alignment.topRight : Alignment.topLeft,
-              child: Wrap(children: _builder())),
-        ],
-      ),
+        const SizedBox(
+          height: 8,
+        ),
+        Align(
+            alignment: rtl ? Alignment.topRight : Alignment.topLeft,
+            child: Wrap(children: _builder())),
+      ],
     );
+    
   }
 }

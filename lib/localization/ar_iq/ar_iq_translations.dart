@@ -87,6 +87,7 @@ final Map<String, String> arIQ = {
   readKey: 'مقروء',
   unreadKey: 'غير مقروء',
   notificationsKey: 'الإشعارات',
+  editNewsKey: 'تعديل الخبر',
   senderKey: 'المرسل',
   dateKey: 'التاريخ',
   statusKey: 'الحالة',

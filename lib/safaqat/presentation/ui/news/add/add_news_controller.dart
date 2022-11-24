@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 import 'package:safaqat/safaqat/data/models/news/publish/publish_news_body.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecase/news/add_news_usecase.dart';
+import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_controller.dart';
 import 'package:tuple/tuple.dart';
 
 class AddNewsController extends GetxController {
   final _addNewsUseCase = Get.put(AddNewsUseCase());
+  final MyNewsController _myNewsController = Get.find();
 
   final Rx<Resources> status = Resources.init().obs;
   List<File> images = <File>[];
@@ -49,5 +51,9 @@ class AddNewsController extends GetxController {
 
     final result = await _addNewsUseCase(params: Tuple2(body, images));
     status.value = result;
+
+    if (result.status == Status.success) {
+      _myNewsController.waitedNews.add(result.data!);
+    }
   }
 }

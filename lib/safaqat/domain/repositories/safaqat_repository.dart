@@ -1,4 +1,3 @@
-
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
@@ -10,7 +9,6 @@ import 'package:safaqat/safaqat/data/models/notifications/notification_response.
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'dart:io';
 
-
 abstract class SafaqatRepository {
   Future<Resources<CustomerResponse>> getCustomers();
 
@@ -20,10 +18,8 @@ abstract class SafaqatRepository {
 
   Future<Resources<List<NewsDto>>> searchNews({required String query});
 
-  Future<Resources<NewsResponse>> getNews({
-    required int pageSize,
-    required int pageNumber
-});
+  Future<Resources<NewsResponse>> getNews(
+      {required int pageSize, required int pageNumber});
 
   Future<Resources<NewsResponse>> getMyNews({
     required int pageSize,
@@ -31,13 +27,20 @@ abstract class SafaqatRepository {
     required int type,
   });
 
-  Future<Resources> addNews({required PublishNewsBody body, required List<File> images});
-
-  Future<Resources> editNews({required String newsId, required EditNewsBody body});
-
-  Future<Resources<NotificationsResponse>> getNotification({
-    required String customerId,
-    required int pageSize,
-    required int pageNumber
+  Future<Resources<NewsDto>> addNews({
+    required PublishNewsBody body,
+    required List<File> images,
   });
+
+  Future<Resources<NewsDto>> editNews({
+    String? newsId,
+    required EditNewsBody body,
+  });
+
+  Future<Resources> deleteNews({String? newsId});
+
+  Future<Resources<NotificationsResponse>> getNotification(
+      {required String customerId,
+      required int pageSize,
+      required int pageNumber});
 }

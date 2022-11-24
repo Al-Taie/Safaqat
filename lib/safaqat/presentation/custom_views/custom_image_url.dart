@@ -1,18 +1,14 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 
-class CustomImage extends StatelessWidget {
-  const CustomImage({
-    Key? key,
-    required this.imageFile, required this.removeCallback
-  }) : super(key: key);
+class CustomImageUrl extends StatelessWidget {
+  const CustomImageUrl(
+      {Key? key, required this.imageUrl, required this.removeCallback})
+      : super(key: key);
 
-
-  final ImageFile imageFile;
-  final Function(ImageFile file) removeCallback;
+  final String imageUrl;
+  final Function(String url) removeCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +16,13 @@ class CustomImage extends StatelessWidget {
       clipBehavior: Clip.antiAliasWithSaveLayer,
       children: [
         Positioned.fill(
-          child: !imageFile.hasPath
-              ? Image.memory(
-            imageFile.bytes!,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              return Center(child: Text(AppStrings.noPreview));
-            },
-          )
-              : Image.file(
-            File(imageFile.path!),
-            fit: BoxFit.cover,
-          ),
+          child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Center(child: Text(AppStrings.noPreview));
+                  },
+                ),
         ),
         Positioned(
           right: 0,
@@ -51,7 +42,7 @@ class CustomImage extends StatelessWidget {
                   size: 20,
                 )),
             onTap: () {
-              removeCallback(imageFile);
+              removeCallback(imageUrl);
             },
           ),
         ),
@@ -59,4 +50,3 @@ class CustomImage extends StatelessWidget {
     );
   }
 }
-

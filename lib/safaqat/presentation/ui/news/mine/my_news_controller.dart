@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
 import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
@@ -8,15 +10,19 @@ import 'package:safaqat/safaqat/data/models/news/news_query.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/domain/entities/news_type.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
+import 'package:safaqat/safaqat/domain/usecase/news/delete_news_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecase/news/get_my_news_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecase/news/search_news_usecase.dart';
 
 class MyNewsController extends GetxController {
   final GetMyNewsUseCase _getMyNewsUseCase = Get.put(GetMyNewsUseCase());
   final SearchNewsUseCase _searchNewsUseCase = Get.put(SearchNewsUseCase());
+  final DeleteNewsUseCase _deleteNewsUseCase = Get.put(DeleteNewsUseCase());
+
   final acceptedScrollController = ScrollController();
   final waitedScrollController = ScrollController();
   final rejectedScrollController = ScrollController();
+  
 
   @override
   void onInit() {
@@ -32,15 +38,17 @@ class MyNewsController extends GetxController {
           maxNumberOfPages: _acceptedMaxNumberOfPages,
         ));
 
-    waitedScrollController.addListener(() => _pagination(
-          apiCall: getWaitedNews,
-          onValueChange: (int value) {
-            waitedPageNumber = value;
-          },
-          scrollController: waitedScrollController,
-          pageNumber: waitedPageNumber,
-          maxNumberOfPages: _waitedMaxNumberOfPages,
-        ));
+    waitedScrollController.addListener(() {
+          return _pagination(
+            apiCall: getWaitedNews,
+            onValueChange: (int value) {
+              waitedPageNumber = value;
+            },
+            scrollController: waitedScrollController,
+            pageNumber: waitedPageNumber,
+            maxNumberOfPages: _waitedMaxNumberOfPages,
+          );
+        });
 
     rejectedScrollController.addListener(() => _pagination(
           apiCall: getRejectedNews,
@@ -92,6 +100,7 @@ class MyNewsController extends GetxController {
   NewsDto get newsData => _newsData.value;
   set newsData(NewsDto value) => _newsData.value = value;
 
+  Rx<Resources<dynamic>> status = Resources<dynamic>.init().obs;
   Rx<Resources<NewsResponse>> acceptedStatus = Resources<NewsResponse>.init().obs;
   Rx<Resources<NewsResponse>> waitedStatus = Resources<NewsResponse>.init().obs;
   Rx<Resources<NewsResponse>> rejectedStatus = Resources<NewsResponse>.init().obs;
@@ -199,5 +208,28 @@ class MyNewsController extends GetxController {
     } else {
       isFloatingButtonExtended.value = false;
     }
+  }
+
+  void deleteNews({required NewsType type, String? id}) async {
+    Get.back();
+    status.value = Resources.loading();
+    final result = await _deleteNewsUseCase(params: id);
+    status.value = result;
+
+    if (result.status != Status.success) {
+      AppStrings.deletedFailed.toToast();
+      return;
+    }
+
+    AppStrings.deletedSuccessfully.toToast();
+
+    if (type == NewsType.accepted) {
+      acceptedNews.removeWhere((it) => it.id == id);
+    } else if (type == NewsType.rejected) {
+      rejectedNews.removeWhere((it) => it.id == id);
+    } else {
+      waitedNews.removeWhere((it) => it.id == id);
+    }
+
   }
 }

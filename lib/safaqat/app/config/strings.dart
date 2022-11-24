@@ -77,6 +77,7 @@ const noPreviewKey = 'noPreview';
 const searchKey = 'search';
 const addKey = 'add';
 const addNewNewsKey = 'addNewNews';
+const editNewsKey = 'editNews';
 const newsDetailsKey = 'newsDetails';
 const incomingKey = 'incoming';
 const outgoingKey = 'outgoing';
@@ -182,6 +183,7 @@ class AppStrings {
   static final noPreview = noPreviewKey.tr;
   static final search = searchKey.tr;
   static final addNewNews = addNewNewsKey.tr;
+  static final editNews = editNewsKey.tr;
   static final add = addKey.tr;
   static final newsDetails = newsDetailsKey.tr;
   static final incoming = incomingKey.tr;

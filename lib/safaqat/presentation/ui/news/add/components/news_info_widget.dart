@@ -17,9 +17,12 @@ class NewsInfoWidget extends StatelessWidget {
     required this.onTitleChange,
     required this.onContentChange,
     required this.onTagsChange,
+    this.titleInitialValue,
+    this.contentInitialValue,
   }) : super(key: key);
 
   final String title, newsTitle, content, tagsHint;
+  final String? titleInitialValue, contentInitialValue;
   final bool rtl;
   final List<String> tags;
   final ValueChanged<String> onTitleChange, onContentChange;
@@ -35,6 +38,7 @@ class NewsInfoWidget extends StatelessWidget {
       children: [
         TextFiledForm(
           hintText: newsTitle,
+          initialValue: titleInitialValue,
           textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
           textAlign: rtl ? TextAlign.right : TextAlign.left,
           onTextChanged: onTitleChange,
@@ -46,6 +50,7 @@ class NewsInfoWidget extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 8.0),
           child: TextFiledForm(
             hintText: AppStrings.content,
+            initialValue: contentInitialValue,
             textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
             textAlign: rtl ? TextAlign.right : TextAlign.left,
             onTextChanged: onContentChange,

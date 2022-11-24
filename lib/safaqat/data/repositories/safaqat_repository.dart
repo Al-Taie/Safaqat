@@ -49,7 +49,7 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
       _apiServices.getMyNews(pageSize, pageNumber, type).call();
 
   @override
-  Future<Resources> addNews(
+  Future<Resources<NewsDto>> addNews(
           {required PublishNewsBody body, required List<File> images}) =>
       _apiServices
           .publishNews(
@@ -64,11 +64,15 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
           .call();
 
   @override
-  Future<Resources> editNews({
-    required String newsId,
+  Future<Resources<NewsDto>> editNews({
+    String? newsId,
     required EditNewsBody body,
   }) =>
       _apiServices.editNews(newsId, body).call();
+
+  @override
+  Future<Resources> deleteNews({String? newsId,}) =>
+      _apiServices.deleteNews(newsId).call();
 
   @override
   Future<Resources<NotificationsResponse>> getNotification({

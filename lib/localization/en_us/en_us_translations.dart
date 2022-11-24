@@ -77,6 +77,7 @@ final Map<String, String> enUS = {
   noPreviewKey: 'No Preview',
   searchKey: 'Search',
   addNewNewsKey: 'Add new news',
+  editNewsKey: 'Edit news',
   addKey: 'Add',
   newsDetailsKey: 'News details',
   incomingKey: 'Incoming',

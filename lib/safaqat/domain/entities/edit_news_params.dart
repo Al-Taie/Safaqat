@@ -6,6 +6,6 @@ class EditNewsParams {
     required this.body,
   });
 
-  final String newsId;
+  final String? newsId;
   final EditNewsBody body;
 }

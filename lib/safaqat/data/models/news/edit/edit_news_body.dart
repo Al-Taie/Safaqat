@@ -4,8 +4,7 @@ part 'edit_news_body.g.dart';
 
 @JsonSerializable(ignoreUnannotated: false)
 class EditNewsBody {
-  @JsonKey(name: 'username')
-  String? username;
+
   @JsonKey(name: 'newsTitleA')
   String? titleAr;
   @JsonKey(name: 'newsTitleE')
@@ -22,7 +21,6 @@ class EditNewsBody {
   List<String>? tagsEn;
 
   EditNewsBody({
-    this.username,
     this.titleAr,
     this.titleEn,
     this.detailsAr,

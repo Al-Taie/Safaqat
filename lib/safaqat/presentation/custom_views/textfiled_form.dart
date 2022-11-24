@@ -9,7 +9,7 @@ class TextFiledForm extends StatelessWidget {
   final Color? prefixIconColor;
   final double radius;
   final bool readOnly;
-  final String? hintText;
+  final String? hintText, initialValue;
   final ValueChanged<String>? onTextChanged;
   final EdgeInsetsGeometry? contentPadding;
   final TextInputType? keyboardType;
@@ -21,7 +21,7 @@ class TextFiledForm extends StatelessWidget {
   final FocusNode? focusNode;
   final ValueChanged<String>? onFieldSubmitted;
   final String? Function(String? value)? validator;
-
+  
   const TextFiledForm({
     Key? key,
     this.maxLength,
@@ -41,12 +41,14 @@ class TextFiledForm extends StatelessWidget {
     this.focusNode,
     this.onFieldSubmitted,
     this.validator,
+    this.initialValue,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      initialValue: initialValue,
       validator: validator,
       onChanged: (value) {
         validator?.call(value) ?? '';

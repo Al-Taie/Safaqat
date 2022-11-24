@@ -4,10 +4,13 @@ import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
+import 'package:safaqat/safaqat/domain/entities/news_type.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_floating_button.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/add/add_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/news_items_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/top_news_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/news/edit/edit_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_controller.dart';
 
 class MyNewsPage extends StatelessWidget {
@@ -16,7 +19,6 @@ class MyNewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(MyNewsController());
-    // Logger.log(Get.find<SharedPreferences>().getString(PrefsKeys.username));
 
     return GestureDetector(
       onTap: () {
@@ -63,56 +65,64 @@ class MyNewsPage extends StatelessWidget {
               ),
               onBack: Get.back,
             ),
-            body: TabBarView(
+            body: Stack(
               children: [
-                Obx(() => NewsItemsWidget(
-                      status: controller.acceptedStatus.value.status,
-                      apiCall: controller.getApprovedNews,
-                      scrollController: controller.acceptedScrollController,
-                      data: controller.acceptedNews,
-                      isLogged: true,
-                      onEdit: (value) {
-                        // TODO: ON EDIT
-                      },
-                      onDelete: (value) {
-                        // TODO: ON DELETE
-                      },
-                      onPressed: (value) {
-                        controller.newsData = value;
-                      },
-                    )),
-                Obx(() => NewsItemsWidget(
-                      status: controller.waitedStatus.value.status,
-                      apiCall: controller.getWaitedNews,
-                      scrollController: controller.waitedScrollController,
-                      data: controller.waitedNews,
-                      isLogged: true,
-                      onEdit: (value) {
-                        // TODO: ON EDIT
-                      },
-                      onDelete: (value) {
-                        // TODO: ON DELETE
-                      },
-                      onPressed: (value) {
-                        controller.newsData = value;
-                      },
-                    )),
-                Obx(() => NewsItemsWidget(
-                      status: controller.rejectedStatus.value.status,
-                      apiCall: controller.getRejectedNews,
-                      scrollController: controller.rejectedScrollController,
-                      data: controller.rejectedNews,
-                      isLogged: true,
-                      onEdit: (value) {
-                        // TODO: ON EDIT
-                      },
-                      onDelete: (value) {
-                        // TODO: ON DELETE
-                      },
-                      onPressed: (value) {
-                        controller.newsData = value;
-                      },
-                    )),
+                TabBarView(
+                  children: [
+                    Obx(() => NewsItemsWidget(
+                          status: controller.acceptedStatus.value.status,
+                          apiCall: controller.getApprovedNews,
+                          scrollController: controller.acceptedScrollController,
+                          data: controller.acceptedNews.value,
+                          isLogged: true,
+                          onEdit: (value) {
+                            EditNewsPage(news: value).navTo();
+                          },
+                          onDelete: (value) {
+                            controller.deleteNews(
+                                type: NewsType.accepted, id: value.id);
+                          },
+                          onPressed: (value) {
+                            controller.newsData = value;
+                          },
+                        )),
+                    Obx(() => NewsItemsWidget(
+                          status: controller.waitedStatus.value.status,
+                          apiCall: controller.getWaitedNews,
+                          scrollController: controller.waitedScrollController,
+                          data: controller.waitedNews.value,
+                          isLogged: true,
+                          onEdit: (value) {
+                            EditNewsPage(news: value).navTo();
+                          },
+                          onDelete: (value) {
+                            controller.deleteNews(
+                                type: NewsType.waited, id: value.id);
+                          },
+                          onPressed: (value) {
+                            controller.newsData = value;
+                          },
+                        )),
+                    Obx(() => NewsItemsWidget(
+                          status: controller.rejectedStatus.value.status,
+                          apiCall: controller.getRejectedNews,
+                          scrollController: controller.rejectedScrollController,
+                          data: controller.rejectedNews.value,
+                          isLogged: true,
+                          onEdit: (value) {
+                            EditNewsPage(news: value).navTo();
+                          },
+                          onDelete: (value) {
+                            controller.deleteNews(
+                                type: NewsType.rejected, id: value.id);
+                          },
+                          onPressed: (value) {
+                            controller.newsData = value;
+                          },
+                        )),
+                  ],
+                ),
+                LoadingView(resource: controller.status.value)
               ],
             ),
           ),
