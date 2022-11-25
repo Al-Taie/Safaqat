@@ -5,6 +5,7 @@ import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/domain/entities/news_type.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_floating_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/add/add_news_page.dart';
@@ -40,10 +41,9 @@ class MyNewsPage extends StatelessWidget {
                 },
               ),
             ),
-            appBar: TopNewsWidget(
+            appBar: AppBarWidget(
               width: Get.width,
-              height: Get.height / 3.5,
-              rate: 0.75,
+              onBackPressed: Get.back,
               title: AppStrings.manageNews,
               bottom: TabBar(
                 labelColor: AppColors.primaryColor,
@@ -73,7 +73,6 @@ class MyNewsPage extends StatelessWidget {
                   }
                 },
               ),
-              onBack: Get.back,
               onSearch: (String query) => controller.searchNews(type, query),
             ),
             body: Stack(

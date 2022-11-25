@@ -4,6 +4,7 @@ import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/notification/components/notification_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/notification/notification_controller.dart';
@@ -18,18 +19,9 @@ class NotificationPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.background,
-        appBar: AppBar(
-          title: Text(
-            AppStrings.notifications,
-            style: AppTextStyle.title.copyWith(fontSize: 18),
-          ),
-          centerTitle: true,
-          backgroundColor: AppColors.background,
-          elevation: 0,
-          // leading: SvgIconButton(
-          //   icon: AppDrawable.icBack,
-          //   onPressed: Get.back,
-          // ),
+        appBar: AppBarWidget(
+          width: Get.width,
+          title: AppStrings.notifications,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),

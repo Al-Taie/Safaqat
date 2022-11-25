@@ -4,11 +4,11 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/app_drawer.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/news_card_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/news/components/top_news_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/details/news_details_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/public/news_controller.dart';
@@ -30,16 +30,17 @@ class NewsPage extends StatelessWidget {
         child: Scaffold(
           drawer: isLogged
               ? AppDrawer(
-                  name: 'Ahmed Mones Ahmed',
-                  imageUrl:
-                      'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wyTK?ver=a46a',
-                  onManageNews: const MyNewsPage().navTo,
-                  onProfile: () {},
-                  onLogout: controller.logout,
-                )
+            name: 'Ahmed Mones Ahmed',
+            imageUrl:
+            'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wyTK?ver=a46a',
+            onManageNews: const MyNewsPage().navTo,
+            onProfile: () {},
+            onLogout: controller.logout,
+          )
               : null,
-          appBar: TopNewsWidget(
+          appBar: AppBarWidget(
             width: Get.width,
+            isSearchEnabled: true,
             title: AppStrings.news,
             onSearch: (String query) => controller.searchNews(query),
           ),
@@ -76,8 +77,8 @@ class NewsPage extends StatelessWidget {
                 );
               }),
               Obx(() => LoadingView(
-                    resource: controller.status.value,
-                  )),
+                resource: controller.status.value,
+              )),
             ],
           ),
         ),

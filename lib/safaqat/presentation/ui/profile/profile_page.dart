@@ -5,6 +5,7 @@ import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/profile/profile_controller.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -17,18 +18,9 @@ class ProfilePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.background,
-        appBar: AppBar(
-          title: Text(
-            AppStrings.profile,
-            style: AppTextStyle.title.copyWith(fontSize: 18),
-          ),
-          centerTitle: true,
-          backgroundColor: AppColors.background,
-          elevation: 0,
-          // leading: SvgIconButton(
-          //   icon: AppDrawable.icBack,
-          //   onPressed: Get.back,
-          // ),
+        appBar: AppBarWidget(
+          width: Get.width,
+          title: AppStrings.profile,
         ),
         body: Center(
           child: SvgPicture.asset(AppDrawable.develop),

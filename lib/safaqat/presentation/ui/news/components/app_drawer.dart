@@ -52,7 +52,7 @@ class AppDrawer extends StatelessWidget {
         children: [
           DrawerHeader(
             decoration: BoxDecoration(
-              color: AppColors.ternary.withOpacity(.3),
+              color: AppColors.primaryColor.withOpacity(.75),
               borderRadius: BorderRadius.only(
                 topLeft: Utils.isRTL ? const Radius.circular(8) : Radius.zero,
                 topRight: Utils.isRTL ? Radius.zero : const Radius.circular(8),
@@ -67,21 +67,14 @@ class AppDrawer extends StatelessWidget {
                       child: Text(
                         name,
                         style: const TextStyle(
-                          color: AppColors.primaryColor,
+                          color: AppColors.background,
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft:
-                          Utils.isRTL ? const Radius.circular(32) : Radius.zero,
-                      topRight:
-                          Utils.isRTL ? Radius.zero : const Radius.circular(32),
-                      bottomRight: const Radius.circular(32),
-                      bottomLeft: const Radius.circular(32),
-                    ),
+                    borderRadius:  BorderRadius.circular(16),
                     child: Image.network(
                       imageUrl,
                       height: 80,
