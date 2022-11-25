@@ -40,12 +40,8 @@ class NewsPage extends StatelessWidget {
               : null,
           appBar: TopNewsWidget(
             width: Get.width,
-            height: Get.height / 3.4,
-            rate: 0.75,
-            title: AppStrings.showLatestNews,
-            onSearch: (String value) {
-              // TODO: SEARCH
-            },
+            title: AppStrings.news,
+            onSearch: (String query) => controller.searchNews(query),
           ),
           body: Stack(
             children: [
@@ -62,9 +58,9 @@ class NewsPage extends StatelessWidget {
                         16,
                         16,
                       ),
-                      itemCount: controller.news.length,
+                      itemCount: controller.filteredNews.length,
                       itemBuilder: (context, index) {
-                        var item = controller.news[index];
+                        var item = controller.filteredNews[index];
                         return NewsCardWidget(
                           title: (Utils.isRTL ? item.titleAr : item.titleEn) ??
                               '-',

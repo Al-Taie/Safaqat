@@ -142,7 +142,6 @@ class TopNewsWidget extends StatelessWidget implements PreferredSizeWidget {
                       child: SearchWidget(
                         hintText: AppStrings.search,
                         onTextChanged: onSearch,
-                        onPressed: () {},
                       ),
                     ),
                   ),

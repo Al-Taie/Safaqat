@@ -2,20 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/news/news_query.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecase/auth/logout/delete_user_info_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecase/news/get_news_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/news/search_news_usecase.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
 
 class NewsController extends GetxController {
   final DeleteUserInfoUseCase _logoutUseCase = Get.put(DeleteUserInfoUseCase());
   final GetNewsUseCase _getNewsUseCase = Get.put(GetNewsUseCase());
-  final SearchNewsUseCase _searchNewsUseCase = Get.put(SearchNewsUseCase());
   final scrollController = ScrollController();
 
   @override
@@ -42,6 +39,7 @@ class NewsController extends GetxController {
   Rx<Resources<NewsResponse>> status = Resources<NewsResponse>.init().obs;
 
   RxList<NewsDto> news = <NewsDto>[].obs;
+  RxList<NewsDto> filteredNews = <NewsDto>[].obs;
 
   final _query = ''.obs;
 
@@ -56,28 +54,21 @@ class NewsController extends GetxController {
 
     final result = await _getNewsUseCase(params: body);
     status.value = result;
-      
-      if (result.data?.news != null) {
+
+    if (result.data?.news != null) {
       news.value = result.data!.news!;
+      filteredNews.value = news.value;
     }
     _maxNumberOfPages = result.data?.numberOfPages ?? 1;
   }
 
-  void searchNews() async {
-    status.value = Resources.loading();
+  void searchNews(String query) {
+    List<NewsDto> newFilteredData = news.value;
 
-    final result = await _searchNewsUseCase(params: query);
-    final data = NewsResponse(numberOfPages: 1, news: result.data);
+    newFilteredData =
+        newFilteredData.where((e) => e.toString().contains(query)).toList();
 
-    if (result.status == Status.success) {
-      status.value = Resources.success(data, result.statusCode);
-    } else if (result.status == Status.error) {
-      status.value = Resources.error(result.error, result.statusCode);
-    }
-
-    if (result.data != null) {
-      news.value = result.data!;
-    }
+    filteredNews.value = newFilteredData;
   }
 
   void _pagination() {
@@ -95,7 +86,6 @@ class NewsController extends GetxController {
 
   void _floatingButtonState() {
     if (scrollController.position.isMinScroll) {
-      Logger.log(scrollController.position);
       isFloatingButtonExtended.value = true;
     } else {
       isFloatingButtonExtended.value = false;
@@ -104,6 +94,6 @@ class NewsController extends GetxController {
 
   void logout() {
     _logoutUseCase();
-    Get.offAll(()=>const LoginPage());
+    Get.offAll(() => const LoginPage());
   }
 }
