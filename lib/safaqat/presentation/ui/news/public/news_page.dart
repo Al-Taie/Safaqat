@@ -30,9 +30,9 @@ class NewsPage extends StatelessWidget {
         child: Scaffold(
           drawer: isLogged
               ? AppDrawer(
-            name: 'Ahmed Mones Ahmed',
+            name: 'Full Name',
             imageUrl:
-            'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wyTK?ver=a46a',
+            'https://st2.depositphotos.com/1006318/5909/v/600/depositphotos_59095205-stock-illustration-businessman-profile-icon.jpg',
             onManageNews: const MyNewsPage().navTo,
             onProfile: () {},
             onLogout: controller.logout,

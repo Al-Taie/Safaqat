@@ -49,6 +49,7 @@ class NewsInfoWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: TextFiledForm(
+            maxLines: 10,
             hintText: AppStrings.content,
             initialValue: contentInitialValue,
             textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,

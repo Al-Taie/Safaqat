@@ -21,7 +21,8 @@ class TextFiledForm extends StatelessWidget {
   final FocusNode? focusNode;
   final ValueChanged<String>? onFieldSubmitted;
   final String? Function(String? value)? validator;
-  
+  final int? maxLines;
+
   const TextFiledForm({
     Key? key,
     this.maxLength,
@@ -42,11 +43,13 @@ class TextFiledForm extends StatelessWidget {
     this.onFieldSubmitted,
     this.validator,
     this.initialValue,
+    this.maxLines = 1,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines,
       controller: controller,
       initialValue: initialValue,
       validator: validator,
