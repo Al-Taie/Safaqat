@@ -2,10 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
-import 'package:safaqat/safaqat/app/extensions/boolean_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_query.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
@@ -13,11 +11,10 @@ import 'package:safaqat/safaqat/domain/entities/news_type.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecase/news/delete_news_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecase/news/get_my_news_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/news/search_news_usecase.dart';
+
 
 class MyNewsController extends GetxController {
   final GetMyNewsUseCase _getMyNewsUseCase = Get.put(GetMyNewsUseCase());
-  final SearchNewsUseCase _searchNewsUseCase = Get.put(SearchNewsUseCase());
   final DeleteNewsUseCase _deleteNewsUseCase = Get.put(DeleteNewsUseCase());
 
   final acceptedScrollController = ScrollController();
@@ -114,12 +111,11 @@ class MyNewsController extends GetxController {
       Resources<NewsResponse>.init().obs;
 
   RxList<NewsDto> acceptedNews = <NewsDto>[].obs;
+  RxList<NewsDto> filteredAcceptedNews = <NewsDto>[].obs;
   RxList<NewsDto> waitedNews = <NewsDto>[].obs;
+  RxList<NewsDto> filteredWaitedNews = <NewsDto>[].obs;
   RxList<NewsDto> rejectedNews = <NewsDto>[].obs;
-
-  final _query = ''.obs;
-  String get query => _query.value;
-  set query(String value) => _query.value = value;
+  RxList<NewsDto> filteredRejectedNews = <NewsDto>[].obs;
 
   void getApprovedNews() async {
     final params = NewsQuery(
@@ -134,13 +130,13 @@ class MyNewsController extends GetxController {
 
     if (result.data?.news != null) {
       acceptedNews.value = result.data!.news!;
+      filteredAcceptedNews.value = acceptedNews.value;
     }
 
     _acceptedMaxNumberOfPages = result.data?.numberOfPages ?? 1;
   }
 
   void getWaitedNews() async {
-
     final params = NewsQuery(
       pageNumber: waitedPageNumber,
       type: NewsType.waited.index,
@@ -153,15 +149,10 @@ class MyNewsController extends GetxController {
 
     if (result.data?.news != null) {
       waitedNews.value = result.data!.news!;
+      filteredWaitedNews.value = waitedNews.value;
     }
 
     _waitedMaxNumberOfPages = result.data?.numberOfPages ?? 1;
-
-    // isWaitedScrollable =
-    //     (waitedScrollController.position.maxScrollExtent > 0).not() &&
-    //         waitedPageNumber == _waitedMaxNumberOfPages;
-
-    // Logger.log(waitedScrollController.position.maxScrollExtent > 0);
   }
 
   void getRejectedNews() async {
@@ -177,25 +168,32 @@ class MyNewsController extends GetxController {
 
     if (result.data?.news != null) {
       rejectedNews.value = result.data!.news!;
+      filteredRejectedNews.value = rejectedNews.value;
     }
 
     _rejectedMaxNumberOfPages = result.data?.numberOfPages ?? 1;
-
-    // isRejectedScrollable =
-    //     (rejectedScrollController.position.maxScrollExtent > 0).not() &&
-    //         rejectedPageNumber == _rejectedMaxNumberOfPages;
   }
 
-  void searchNews() async {
-    acceptedStatus.value = Resources.loading();
+  void searchNews(NewsType type, String query) {
+    var newFilteredData = <NewsDto>[];
 
-    final result = await _searchNewsUseCase(params: query);
-    final data = NewsResponse(numberOfPages: 1, news: result.data);
+    if (type == NewsType.accepted) {
+      newFilteredData = acceptedNews;
+    } else if (type == NewsType.rejected) {
+      newFilteredData = rejectedNews;
+    } else {
+      newFilteredData = waitedNews;
+    }
 
-    if (result.status == Status.success) {
-      acceptedStatus.value = Resources.success(data, result.statusCode);
-    } else if (result.status == Status.error) {
-      acceptedStatus.value = Resources.error(result.error, result.statusCode);
+    newFilteredData =
+        newFilteredData.where((e) => e.toString().contains(query)).toList();
+
+    if (type == NewsType.accepted) {
+      filteredAcceptedNews.value = newFilteredData;
+    } else if (type == NewsType.rejected) {
+      filteredRejectedNews.value = newFilteredData;
+    } else {
+      filteredWaitedNews.value = newFilteredData;
     }
   }
 

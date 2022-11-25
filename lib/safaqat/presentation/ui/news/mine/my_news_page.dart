@@ -19,6 +19,7 @@ class MyNewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(MyNewsController());
+    NewsType type = NewsType.accepted;
 
     return GestureDetector(
       onTap: () {
@@ -62,8 +63,18 @@ class MyNewsPage extends StatelessWidget {
                     child: Text(AppStrings.rejected),
                   ),
                 ],
+                onTap: (index) {
+                  if (index == NewsType.accepted.index - 1) {
+                    type = NewsType.accepted;
+                  } else if (index == NewsType.waited.index + 1) {
+                    type = NewsType.waited;
+                  } else {
+                    type = NewsType.rejected;
+                  }
+                },
               ),
               onBack: Get.back,
+              onSearch: (String query) => controller.searchNews(type, query),
             ),
             body: Stack(
               children: [
@@ -74,7 +85,7 @@ class MyNewsPage extends StatelessWidget {
                         status: controller.acceptedStatus.value.status,
                         apiCall: controller.getApprovedNews,
                         scrollController: controller.acceptedScrollController,
-                        data: controller.acceptedNews.value,
+                        data: controller.filteredAcceptedNews.value,
                         isLogged: true,
                         onEdit: (value) {
                           EditNewsPage(news: value).navTo();
@@ -97,7 +108,7 @@ class MyNewsPage extends StatelessWidget {
                         status: controller.waitedStatus.value.status,
                         apiCall: controller.getWaitedNews,
                         scrollController: controller.waitedScrollController,
-                        data: controller.waitedNews.value,
+                        data: controller.filteredWaitedNews.value,
                         isLogged: true,
                         onEdit: (value) {
                           EditNewsPage(news: value).navTo();
@@ -120,7 +131,7 @@ class MyNewsPage extends StatelessWidget {
                         status: controller.rejectedStatus.value.status,
                         apiCall: controller.getRejectedNews,
                         scrollController: controller.rejectedScrollController,
-                        data: controller.rejectedNews.value,
+                        data: controller.filteredRejectedNews.value,
                         isLogged: true,
                         onPressed: (value) {
                           controller.newsData = value;

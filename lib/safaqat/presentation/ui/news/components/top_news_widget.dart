@@ -13,6 +13,7 @@ class TopNewsWidget extends StatelessWidget implements PreferredSizeWidget {
       required this.title,
       required this.width,
       required this.height,
+      required this.onSearch,
       this.toolbarHeight,
       this.bottom,
       this.onBack,
@@ -22,8 +23,8 @@ class TopNewsWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final double width, height, rate;
   final VoidCallback? onBack;
+  final ValueChanged<String> onSearch;
   final HomeController controller = Get.find();
-  final _textController = TextEditingController();
   final double? toolbarHeight;
   final PreferredSizeWidget? bottom;
   @override
@@ -45,14 +46,14 @@ class TopNewsWidget extends StatelessWidget implements PreferredSizeWidget {
       );
     }
 
-  if (onBack!= null){
-    leading = IconButton(
-      icon: const Icon(Icons.arrow_back_ios_new_rounded),
-      iconSize: 24,
-      color: AppColors.ternary,
-      onPressed: onBack,
-    );
-  }
+    if (onBack != null) {
+      leading = IconButton(
+        icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        iconSize: 24,
+        color: AppColors.ternary,
+        onPressed: onBack,
+      );
+    }
 
     return SizedBox(
       width: width,
@@ -139,20 +140,10 @@ class TopNewsWidget extends StatelessWidget implements PreferredSizeWidget {
                       width: Get.width / 1.2,
                       height: 50,
                       child: SearchWidget(
-                          controller: _textController,
-                          hintText: AppStrings.search,
-                          onTextChanged: (value) {
-                            if (value.isEmpty) {
-                              controller.getNews();
-                            }
-                          },
-                          onPressed: () {
-                            controller.query = _textController.text;
-
-                            if (_textController.text.isNotEmpty) {
-                              controller.searchNews();
-                            }
-                          }),
+                        hintText: AppStrings.search,
+                        onTextChanged: onSearch,
+                        onPressed: () {},
+                      ),
                     ),
                   ),
                 ),

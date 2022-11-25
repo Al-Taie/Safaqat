@@ -53,6 +53,6 @@ class NewsDto {
 
   @override
   String toString() {
-    return 'NewsDto(id=$id)';
+    return 'NewsDto(id=$id, titleAr=$titleAr, titleEn=$titleEn, detailsAr=$detailsAr, detailsEn=$detailsEn, tagsAr=$tagsAr, tagsEn=$tagsEn)';
   }
 }

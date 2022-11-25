@@ -43,6 +43,9 @@ class NewsPage extends StatelessWidget {
             height: Get.height / 3.4,
             rate: 0.75,
             title: AppStrings.showLatestNews,
+            onSearch: (String value) {
+              // TODO: SEARCH
+            },
           ),
           body: Stack(
             children: [
