@@ -6,20 +6,20 @@
     </item>
 
     <item
-            android:width="100dp"
-            android:height="100dp"
-            android:drawable="@drawable/top_right_splash_logo"
-            android:end="40dp"
-            android:gravity="top|right"
-            android:top="64dp" />
+        android:width="100dp"
+        android:height="100dp"
+        android:drawable="@drawable/top_right_splash_logo"
+        android:end="40dp"
+        android:gravity="top|right"
+        android:top="64dp" />
 
     <item
-            android:width="164dp"
-            android:height="56dp"
-            android:bottom="28dp"
-            android:drawable="@drawable/bottom_left_splash_logo"
-            android:gravity="bottom|left"
-            android:start="16dp" />
+        android:width="164dp"
+        android:height="56dp"
+        android:bottom="28dp"
+        android:drawable="@drawable/bottom_left_splash_logo"
+        android:gravity="bottom|left"
+        android:start="16dp" />
 
     <item android:drawable="@drawable/ic_center_splash_layer" />
 

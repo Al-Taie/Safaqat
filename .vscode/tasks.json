@@ -17,6 +17,19 @@
 			"group": "build",
 			"label": "flutter: build_runner",
 			"detail": ""
+		},
+		{
+			"type": "flutter",
+			"command": "flutter",
+			"args": [
+				"build",
+				"apk",
+				"--release"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"label": "flutter: release build apk",
+			"detail": ""
 		}
 	]
 }

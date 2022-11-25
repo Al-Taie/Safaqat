@@ -24,6 +24,7 @@ void main() async {
   final isLoggedIn = preferences.containsKey(PrefsKeys.token);
 
   Logger.init(kReleaseMode ? LogMode.live : LogMode.debug);
+  await Future.delayed(const Duration(seconds: 3));
 
   runApp(
     MainApp(
