@@ -171,15 +171,9 @@ class RegisterController extends GetxController {
   void register() async {
     status.value = Resources.loading();
     final RegisterBody body = RegisterBody(
-      firstNameAr: firstNameAr,
-      secondNameAr: secondNameAr,
-      thirdNameAr: lastNameAr,
-      firstMotherNameAr: '',
-      secondMotherNameAr: '',
-      thirdMotherNameAr: '',
-      firstNameEn: firstNameEn,
-      secondNameEn: secondNameEn,
-      thirdNameEn: lastNameEn,
+      fullNameAr: '$firstNameAr $secondNameAr $lastNameAr',
+      fullMotherNameAr: '',
+      fullNameEn: '$firstNameEn $secondNameEn $lastNameEn',
       genderCode: 1,
       email1: email,
       email2: anotherEmail,
@@ -200,6 +194,7 @@ class RegisterController extends GetxController {
       photo: photo,
       comment: 'comment',
       filled: 1,
+      interfaceLanguage: 0,
     );
 
     final result = await _registerUsecase(params: body);

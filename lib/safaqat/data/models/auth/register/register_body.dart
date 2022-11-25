@@ -4,24 +4,14 @@ part 'register_body.g.dart';
 
 @JsonSerializable(ignoreUnannotated: false)
 class RegisterBody {
-  @JsonKey(name: 'cust1nameA')
-  String? firstNameAr;
-  @JsonKey(name: 'cust2nameA')
-  String? secondNameAr;
-  @JsonKey(name: 'cust3nameA')
-  String? thirdNameAr;
-  @JsonKey(name: 'custM1nameA')
-  String? firstMotherNameAr;
-  @JsonKey(name: 'custM2nameA')
-  String? secondMotherNameAr;
-  @JsonKey(name: 'custM3nameA')
-  String? thirdMotherNameAr;
-  @JsonKey(name: 'cust1nameE')
-  String? firstNameEn;
-  @JsonKey(name: 'cust2nameE')
-  String? secondNameEn;
-  @JsonKey(name: 'cust3nameE')
-  String? thirdNameEn;
+  @JsonKey(name: 'custFullnameA')
+  String? fullNameAr;
+  @JsonKey(name: 'custFullnameE')
+  String? fullNameEn;
+  @JsonKey(name: 'custMnameA')
+  String? fullMotherNameAr;
+  @JsonKey(name: 'custMnameE')
+  String? fullMotherNameEn;
   @JsonKey(name: 'genderCode')
   int? genderCode;
   @JsonKey(name: 'email1')
@@ -62,17 +52,10 @@ class RegisterBody {
   String? comment;
   @JsonKey(name: 'filled')
   int? filled;
+  @JsonKey(name: 'interfaceLanguage')
+  int? interfaceLanguage;
 
   RegisterBody({
-    this.firstNameAr,
-    this.secondNameAr,
-    this.thirdNameAr,
-    this.firstMotherNameAr,
-    this.secondMotherNameAr,
-    this.thirdMotherNameAr,
-    this.firstNameEn,
-    this.secondNameEn,
-    this.thirdNameEn,
     this.genderCode,
     this.email1,
     this.email2,
@@ -93,6 +76,11 @@ class RegisterBody {
     this.photo,
     this.comment,
     this.filled,
+    this.fullNameAr,
+    this.fullNameEn,
+    this.fullMotherNameAr,
+    this.fullMotherNameEn,
+    this.interfaceLanguage,
   });
 
   factory RegisterBody.fromJson(Map<String, dynamic> json) =>
