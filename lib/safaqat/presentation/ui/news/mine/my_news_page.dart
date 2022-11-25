@@ -76,6 +76,7 @@ class MyNewsPage extends StatelessWidget {
               onSearch: (String query) => controller.searchNews(type, query),
             ),
             body: Stack(
+              fit: StackFit.expand,
               children: [
                 TabBarView(
                   children: [

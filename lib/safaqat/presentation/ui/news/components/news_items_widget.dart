@@ -36,48 +36,36 @@ class NewsItemsWidget extends StatelessWidget {
     return StatusWidget(
       status: status,
       onClickTryAgain: apiCall,
-      child: Expanded(
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            ListView.builder(
-                controller: scrollController,
-                physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.fromLTRB(
-                  16,
-                  8,
-                  16,
-                  16,
-                ),
-                itemCount: data.length,
-                itemBuilder: (context, index) {
-                  var item = data[index];
-                  return NewsCardWidget(
-                    title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
-                    name: item.ownerName ?? '-',
-                    image: item.images?.firstOrNull ?? '',
-                    date: Utils.formatDate(dateStr: item.date),
-                    isLogged: isLogged,
-                    onEdit: () {
-                      onEdit?.call(item);
-                    },
-                    onDelete: () {
-                      onDelete?.call(item);
-                    },
-                    onPressed: () {
-                      onPressed(item);
-                      NewsDetailsPage(news: item).navTo();
-                    },
-                  );
-                }),
-            if (scrollButtonVisibility)
-              IconButton(
-                icon: const Icon(Icons.arrow_circle_up_rounded),
-                onPressed: onScrollUpPressed,
-              )
-          ],
-        ),
-      ),
+      child: ListView.builder(
+          controller: scrollController,
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.fromLTRB(
+            16,
+            8,
+            16,
+            16,
+          ),
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            var item = data[index];
+            return NewsCardWidget(
+              title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
+              name: item.ownerName ?? '-',
+              image: item.images?.firstOrNull ?? '',
+              date: Utils.formatDate(dateStr: item.date),
+              isLogged: isLogged,
+              onEdit: () {
+                onEdit?.call(item);
+              },
+              onDelete: () {
+                onDelete?.call(item);
+              },
+              onPressed: () {
+                onPressed(item);
+                NewsDetailsPage(news: item).navTo();
+              },
+            );
+          }),
     );
   }
 }

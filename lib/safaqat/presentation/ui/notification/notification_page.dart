@@ -103,33 +103,35 @@ class NotificationPage extends StatelessWidget {
                 () {
                   var notifications =
                       controller.notifications.value.data?.notifications ?? [];
-                  return StatusWidget(
-                    status: controller.notifications.value.status,
-                    onClickTryAgain: controller.getNotificationsIncome,
-                    child: Expanded(
-                      child: ListView.builder(
-                          controller: controller.incomeScrollController,
-                          physics: const BouncingScrollPhysics(),
-                          padding: const EdgeInsets.fromLTRB(
-                            0,
-                            0,
-                            0,
-                            16,
-                          ),
-                          itemCount: notifications.length,
-                          itemBuilder: (context, index) {
-                            var item = notifications[index];
-                            return NotificationWidget(
-                              name: item.customerName ?? '-',
-                              read: item.isRead,
-                              description: item.description ?? '-',
-                              incoming: item.isIncoming,
-                              date: Utils.formatDate(
-                                dateStr: item.date,
-                                format: Utils.dateTimeFormat,
-                              ),
-                            );
-                          }),
+                  return Flexible(
+                    child: StatusWidget(
+                      status: controller.notifications.value.status,
+                      onClickTryAgain: controller.getNotificationsIncome,
+                      child: Expanded(
+                        child: ListView.builder(
+                            controller: controller.incomeScrollController,
+                            physics: const BouncingScrollPhysics(),
+                            padding: const EdgeInsets.fromLTRB(
+                              0,
+                              0,
+                              0,
+                              16,
+                            ),
+                            itemCount: notifications.length,
+                            itemBuilder: (context, index) {
+                              var item = notifications[index];
+                              return NotificationWidget(
+                                name: item.customerName ?? '-',
+                                read: item.isRead,
+                                description: item.description ?? '-',
+                                incoming: item.isIncoming,
+                                date: Utils.formatDate(
+                                  dateStr: item.date,
+                                  format: Utils.dateTimeFormat,
+                                ),
+                              );
+                            }),
+                      ),
                     ),
                   );
                 },

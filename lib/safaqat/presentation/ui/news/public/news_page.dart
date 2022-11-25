@@ -47,34 +47,30 @@ class NewsPage extends StatelessWidget {
           body: Stack(
             children: [
               Obx(() {
-                return StatusWidget(
-                  status: controller.status.value.status,
-                  onClickTryAgain: controller.getNews,
-                  child: ListView.builder(
-                      controller: controller.scrollController,
-                      physics: const BouncingScrollPhysics(),
-                      padding: const EdgeInsets.fromLTRB(
-                        16,
-                        8,
-                        16,
-                        16,
-                      ),
-                      itemCount: controller.filteredNews.length,
-                      itemBuilder: (context, index) {
-                        var item = controller.filteredNews[index];
-                        return NewsCardWidget(
-                          title: (Utils.isRTL ? item.titleAr : item.titleEn) ??
-                              '-',
-                          name: item.ownerName ?? '-',
-                          image: item.images?.firstOrNull ?? '',
-                          date: Utils.formatDate(dateStr: item.date),
-                          onPressed: () {
-                            controller.newsData = item;
-                            NewsDetailsPage(news: controller.newsData).navTo();
-                          },
-                        );
-                      }),
-                );
+                return ListView.builder(
+                    controller: controller.scrollController,
+                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.fromLTRB(
+                      16,
+                      8,
+                      16,
+                      16,
+                    ),
+                    itemCount: controller.filteredNews.length,
+                    itemBuilder: (context, index) {
+                      var item = controller.filteredNews[index];
+                      return NewsCardWidget(
+                        title: (Utils.isRTL ? item.titleAr : item.titleEn) ??
+                            '-',
+                        name: item.ownerName ?? '-',
+                        image: item.images?.firstOrNull ?? '',
+                        date: Utils.formatDate(dateStr: item.date),
+                        onPressed: () {
+                          controller.newsData = item;
+                          NewsDetailsPage(news: controller.newsData).navTo();
+                        },
+                      );
+                    });
               }),
               Obx(() => LoadingView(
                 resource: controller.status.value,
