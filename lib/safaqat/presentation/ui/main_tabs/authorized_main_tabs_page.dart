@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/presentation/ui/events/public/events_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/home_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/components/bottom_nav_bar.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/tabbed_page.dart';
@@ -14,37 +15,43 @@ class AuthorizedMainTabsPage extends StatelessWidget {
   AuthorizedMainTabsPage({Key? key}) : super(key: key);
 
   final _selectedTabIndex = 0.obs;
-  final List<TabbedPage> _pages = [
-    TabbedPage(
-      page: const HomePage(),
-      label: AppStrings.home,
-      iconAssets: AppDrawable.icHome,
-    ),
-    TabbedPage(
-      page: const NewsPage(isLogged: true),
-      label: AppStrings.news,
-      iconAssets: AppDrawable.icNews,
-    ),
-    TabbedPage(
-      page: const NotificationPage(),
-      label: AppStrings.notifications,
-      iconAssets: AppDrawable.icNotifications,
-    ),
-    TabbedPage(
-      page: const ProfilePage(),
-      label: AppStrings.profile,
-      iconAssets: AppDrawable.icTabPerson,
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
+    final List<TabbedPage> pages = [
+      TabbedPage(
+        page: const HomePage(),
+        label: AppStrings.home,
+        icon: AppDrawable.icHome,
+      ),
+      TabbedPage(
+        page: const NewsPage(isLogged: true),
+        label: AppStrings.news,
+        icon: AppDrawable.icNews,
+      ),
+            TabbedPage(
+        page: const EventsPage(isLogged: true),
+        label: AppStrings.events,
+        icon: Icons.event,
+      ),
+      TabbedPage(
+        page: const NotificationPage(),
+        label: AppStrings.notifications,
+        icon: AppDrawable.icNotifications,
+      ),
+      TabbedPage(
+        page: const ProfilePage(),
+        label: AppStrings.profile,
+        icon: AppDrawable.icTabPerson,
+      ),
+    ];
+
     return Obx(
       () => Scaffold(
         backgroundColor: AppColors.background,
-        body: _pages[_selectedTabIndex.value].page,
+        body: pages[_selectedTabIndex.value].page,
         bottomNavigationBar: BottomNavBar(
-          pages: _pages,
+          pages: pages,
           selectedTabIndex: _selectedTabIndex.value,
           onTapChanged: (index) {
             _selectedTabIndex.value = index;

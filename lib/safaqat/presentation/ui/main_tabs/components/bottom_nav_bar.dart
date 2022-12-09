@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
+import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
+import 'package:safaqat/safaqat/presentation/ui/main_tabs/tabbed_page.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
@@ -10,25 +11,14 @@ class BottomNavBar extends StatelessWidget {
     required this.onTapChanged,
   }) : super(key: key);
 
-  final List pages;
+  final List<TabbedPage> pages;
   final int selectedTabIndex;
   final ValueChanged<int> onTapChanged;
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      items: pages
-          .map(
-            (e) => BottomNavigationBarItem(
-              icon: SvgPicture.asset(e.iconAssets),
-              label: e.label,
-              activeIcon: SvgPicture.asset(
-                e.iconAssets,
-                color: AppColors.primaryColor,
-              ),
-            ),
-          )
-          .toList(),
+      items: pages.toBottomNavigationBarItems(),
       type: BottomNavigationBarType.shifting,
       selectedItemColor: AppColors.primaryColor,
       unselectedItemColor: AppColors.shadePrimary,

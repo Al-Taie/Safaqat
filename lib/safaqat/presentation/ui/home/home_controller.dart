@@ -6,8 +6,8 @@ import 'package:safaqat/safaqat/data/models/news/news_query.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
-import 'package:safaqat/safaqat/domain/usecase/news/get_news_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/news/search_news_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/news/get_news_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/news/search_news_usecase.dart';
 
 class HomeController extends GetxController {
   final GetNewsUseCase _getNewsUseCase = Get.put(GetNewsUseCase());

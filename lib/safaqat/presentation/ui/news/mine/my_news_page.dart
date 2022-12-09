@@ -4,13 +4,12 @@ import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
-import 'package:safaqat/safaqat/domain/entities/news_type.dart';
+import 'package:safaqat/safaqat/domain/entities/news/news_type.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_floating_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/add/add_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/news_items_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/news/components/top_news_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/edit/edit_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_controller.dart';
 

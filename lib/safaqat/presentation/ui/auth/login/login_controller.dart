@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:safaqat/safaqat/data/models/auth/login/login_body.dart';
 import 'package:safaqat/safaqat/data/models/auth/login/login_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
-import 'package:safaqat/safaqat/domain/usecase/auth/login/login_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/auth/login/save_use_info_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/auth/login/login_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/auth/login/save_use_info_usecase.dart';
 
 class LoginController extends GetxController {
   final LoginUseCase _loginUseCase = Get.find();

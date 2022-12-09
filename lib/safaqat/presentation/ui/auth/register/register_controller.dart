@@ -10,9 +10,9 @@ import 'package:safaqat/safaqat/data/models/auth/register/register_body.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
-import 'package:safaqat/safaqat/domain/usecase/auth/register/get_cities_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/auth/register/get_countires_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/auth/register/register_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/auth/register/get_cities_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/auth/register/get_countires_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/auth/register/register_usecase.dart';
 
 class RegisterController extends GetxController {
   @override

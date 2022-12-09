@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
+import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/animated_text_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/search_filed.dart';
 
@@ -53,7 +54,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
     if (onBackPressed != null) {
       leading = IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        icon: SvgPicture.asset(AppDrawable.icBack),
         iconSize: 24,
         color: AppColors.shadeSecondary,
         onPressed: onBackPressed,
@@ -74,7 +75,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: AnimatedTextWidget(
-                      title.capitalizeFirst ?? "",
+                      title.capitalizeFirst ?? '',
                       isAnimated: isAnimated,
                     ),
                   ),
@@ -82,7 +83,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                 if (isSearchEnabled)
                   Obx(
                     () => Align(
-                      alignment: Alignment.topRight,
+                      alignment: Utils.isRTL ? Alignment.topLeft : Alignment.topRight,
                       child: Card(
                         margin: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(

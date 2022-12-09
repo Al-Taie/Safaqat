@@ -12,6 +12,7 @@ class AppDrawer extends StatelessWidget {
     required this.imageUrl,
     this.onProfile,
     this.onManageNews,
+    this.onManageEvents,
     this.onSettings,
     this.onSupport,
     this.onTerms,
@@ -21,18 +22,20 @@ class AppDrawer extends StatelessWidget {
   final String name, imageUrl;
   final VoidCallback? onProfile,
       onManageNews,
+      onManageEvents,
       onSettings,
       onSupport,
       onTerms,
       onLogout;
 
   Widget item({text, icon, onClick}) {
+    var iconWidget = icon is String ? SvgPicture.asset(icon) : Icon(icon);
     return ListTile(
       title: Text(
         text,
         style: const TextStyle(fontSize: 15),
       ),
-      leading: SvgPicture.asset(icon),
+      leading: iconWidget,
       onTap: onClick,
     );
   }
@@ -106,6 +109,11 @@ class AppDrawer extends StatelessWidget {
             text: AppStrings.manageNews,
             icon: AppDrawable.icNews,
             onClick: onManageNews,
+          ),
+          item(
+            text: AppStrings.manageEvents,
+            icon: Icons.event,
+            onClick: onManageEvents,
           ),
           item(
             text: AppStrings.settings,

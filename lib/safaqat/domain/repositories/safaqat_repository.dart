@@ -1,6 +1,10 @@
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
+import 'package:safaqat/safaqat/data/models/events/edit_event_body.dart';
+import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
+import 'package:safaqat/safaqat/data/models/events/events_response.dart';
+import 'package:safaqat/safaqat/data/models/events/publish_event_body.dart';
 import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
@@ -43,4 +47,25 @@ abstract class SafaqatRepository {
       {required String customerId,
       required int pageSize,
       required int pageNumber});
+
+  Future<Resources<EventsResponse>> getEvents(
+      {required int pageSize, required int pageNumber});
+
+  Future<Resources<EventsResponse>> getMyEvents({
+    required int pageSize,
+    required int pageNumber,
+    required int type,
+  });
+
+  Future<Resources<EventDto>> addEvent({
+    required PublishEventBody body,
+    required List<File> images,
+  });
+
+  Future<Resources<EventDto>> editEvent({
+    String? eventId,
+    required EditEventBody body,
+  });
+
+  Future<Resources> deleteEvent({String? eventId});
 }

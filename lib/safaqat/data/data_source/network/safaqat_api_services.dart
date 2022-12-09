@@ -11,6 +11,9 @@ import 'package:safaqat/safaqat/data/models/base_response.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
+import 'package:safaqat/safaqat/data/models/events/edit_event_body.dart';
+import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
+import 'package:safaqat/safaqat/data/models/events/events_response.dart';
 import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
@@ -96,5 +99,42 @@ abstract class SafaqatApiServices {
     @Query('customerId') String customerId,
     @Query('pageSize') int pageSize,
     @Query('pageNumber') int pageNumber,
+  );
+
+  @GET('Events/List')
+  Future<HttpResponse<BaseResponse<EventsResponse>>> getEvents(
+      @Query('pageSize') int pageSize, @Query('pageNumber') int pageNumber,
+      {@Header('No-Authentication') bool noAuth = true});
+
+  @GET('Events/List')
+  Future<HttpResponse<BaseResponse<EventsResponse>>> getMyEvents(
+    @Query('pageSize') int pageSize,
+    @Query('pageNumber') int pageNumber,
+    @Query('type') int type,
+  );
+
+  @POST('Events/Publish')
+  @MultiPart()
+  Future<HttpResponse<BaseResponse<EventDto>>> publishEvent({
+    @Part(name: 'Username') String? username,
+    @Part(name: 'EventTitleA') String? titleAr,
+    @Part(name: 'EventTitleE') String? titleEn,
+    @Part(name: 'EventDetailsA') String? detailsAr,
+    @Part(name: 'EventDetailsE') String? detailsEn,
+    @Part(name: 'ShowName') bool? showName,
+    @Part(name: 'TagsA') List<String>? tagsAr,
+    @Part(name: 'TagsE') List<String>? tagsEn,
+    @Part(name: 'Images') List<File>? images,
+  });
+
+  @PUT('Events/Edit')
+  Future<HttpResponse<BaseResponse<EventDto>>> editEvent(
+    @Query('events_id') String? eventsId,
+    @Body() EditEventBody body,
+  );
+
+  @DELETE('Events/Delete')
+  Future<HttpResponse<BaseResponse<dynamic>>> deleteEvent(
+    @Query('events_id') String? eventsId,
   );
 }

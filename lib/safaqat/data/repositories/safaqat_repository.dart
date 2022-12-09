@@ -6,6 +6,10 @@ import 'package:safaqat/safaqat/data/data_source/network/safaqat_api_services.da
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
+import 'package:safaqat/safaqat/data/models/events/edit_event_body.dart';
+import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
+import 'package:safaqat/safaqat/data/models/events/events_response.dart';
+import 'package:safaqat/safaqat/data/models/events/publish_event_body.dart';
 import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
@@ -84,4 +88,44 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
         .getNotification(customerId, pageSize, pageNumber)
         .call();
   }
+
+    @override
+  Future<Resources<EventsResponse>> getEvents(
+      {required int pageSize, required int pageNumber}) {
+    return _apiServices.getEvents(pageSize, pageNumber).call();
+  }
+
+  @override
+  Future<Resources<EventsResponse>> getMyEvents({
+    required int pageSize,
+    required int pageNumber,
+    required int type,
+  }) =>
+      _apiServices.getMyEvents(pageSize, pageNumber, type).call();
+
+  @override
+  Future<Resources<EventDto>> addEvent(
+          {required PublishEventBody body, required List<File> images}) =>
+      _apiServices
+          .publishEvent(
+              titleAr: body.titleAr,
+              titleEn: body.titleEn,
+              detailsAr: body.detailsAr,
+              detailsEn: body.detailsEn,
+              showName: body.showName,
+              tagsAr: body.tagsAr,
+              tagsEn: body.tagsEn,
+              images: images)
+          .call();
+
+  @override
+  Future<Resources<EventDto>> editEvent({
+    String? eventId,
+    required EditEventBody body,
+  }) =>
+      _apiServices.editEvent(eventId, body).call();
+
+  @override
+  Future<Resources> deleteEvent({String? eventId}) =>
+      _apiServices.deleteEvent(eventId).call();
 }

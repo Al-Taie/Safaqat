@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
-import 'package:safaqat/safaqat/domain/entities/edit_news_params.dart';
+import 'package:safaqat/safaqat/domain/entities/news/edit_news_params.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
-import 'package:safaqat/safaqat/domain/usecase/news/edit_news_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/news/edit_news_usecase.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_controller.dart';
 
 class EditNewsController extends GetxController {

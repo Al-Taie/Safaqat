@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/data/models/news/publish/publish_news_body.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
-import 'package:safaqat/safaqat/domain/usecase/news/add_news_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/news/add_news_usecase.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_controller.dart';
 import 'package:tuple/tuple.dart';
 

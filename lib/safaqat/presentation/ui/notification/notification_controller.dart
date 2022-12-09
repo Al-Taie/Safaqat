@@ -6,7 +6,7 @@ import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_body.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
-import 'package:safaqat/safaqat/domain/usecase/notification/get_notification_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/notification/get_notification_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationController extends GetxController {

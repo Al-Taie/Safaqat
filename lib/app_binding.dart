@@ -7,11 +7,11 @@ import 'package:safaqat/safaqat/data/repositories/authentication_repository.dart
 import 'package:safaqat/safaqat/data/repositories/safaqat_repository.dart';
 import 'package:safaqat/safaqat/domain/repositories/authentication_repository.dart';
 import 'package:safaqat/safaqat/domain/repositories/safaqat_repository.dart';
-import 'package:safaqat/safaqat/domain/usecase/auth/login/login_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/auth/login/save_use_info_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/auth/register/get_cities_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/auth/register/get_countires_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/auth/register/register_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/auth/login/login_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/auth/login/save_use_info_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/auth/register/get_cities_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/auth/register/get_countires_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/auth/register/register_usecase.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/confirm/confirm_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forget_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_controller.dart';

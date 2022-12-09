@@ -7,10 +7,10 @@ import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_query.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
-import 'package:safaqat/safaqat/domain/entities/news_type.dart';
+import 'package:safaqat/safaqat/domain/entities/news/news_type.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
-import 'package:safaqat/safaqat/domain/usecase/news/delete_news_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecase/news/get_my_news_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/news/delete_news_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/news/get_my_news_usecase.dart';
 
 
 class MyNewsController extends GetxController {
