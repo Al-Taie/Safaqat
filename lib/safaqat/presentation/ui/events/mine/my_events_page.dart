@@ -13,7 +13,6 @@ import 'package:safaqat/safaqat/presentation/ui/events/components/event_items_wi
 import 'package:safaqat/safaqat/presentation/ui/events/edit/edit_event_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/mine/my_events_controller.dart';
 
-
 class MyEventsPage extends StatelessWidget {
   const MyEventsPage({Key? key}) : super(key: key);
 
@@ -27,7 +26,7 @@ class MyEventsPage extends StatelessWidget {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: DefaultTabController(
-        length: 3,
+        length: 6,
         child: SafeArea(
           child: Scaffold(
             floatingActionButton: Obx(
@@ -46,21 +45,34 @@ class MyEventsPage extends StatelessWidget {
               onBackPressed: Get.back,
               title: AppStrings.manageEvents,
               bottom: TabBar(
+                isScrollable: true,
                 labelColor: AppColors.primaryColor,
                 indicatorColor: AppColors.primaryColor,
                 unselectedLabelColor: AppColors.shadePrimary,
                 tabs: [
                   Padding(
                     padding: const EdgeInsets.all(11.7),
-                    child: Text(AppStrings.posted),
+                    child: Text(AppStrings.general),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(11.7),
-                    child: Text(AppStrings.waited),
+                    child: Text(AppStrings.conference),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(11.7),
-                    child: Text(AppStrings.rejected),
+                    child: Text(AppStrings.trainingCourse),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(11.7),
+                    child: Text(AppStrings.exhibition),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(11.7),
+                    child: Text(AppStrings.seminar),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(11.7),
+                    child: Text(AppStrings.forum),
                   ),
                 ],
                 onTap: (index) {
@@ -68,11 +80,11 @@ class MyEventsPage extends StatelessWidget {
                     type = EventCategory.general;
                   } else if (index == EventCategory.conference.index) {
                     type = EventCategory.conference;
-                  }  else if (index == EventCategory.trainingCourse.index) {
+                  } else if (index == EventCategory.trainingCourse.index) {
                     type = EventCategory.trainingCourse;
-                  }  else if (index == EventCategory.exhibition.index) {
+                  } else if (index == EventCategory.exhibition.index) {
                     type = EventCategory.exhibition;
-                  }  else if (index == EventCategory.seminar.index) {
+                  } else if (index == EventCategory.seminar.index) {
                     type = EventCategory.seminar;
                   } else {
                     type = EventCategory.forum;
@@ -107,6 +119,125 @@ class MyEventsPage extends StatelessWidget {
                           controller.generalPageNumber--;
                         },
                         scrollButtonVisibility: controller.isGeneralScrollable,
+                      ),
+                    ),
+                    Obx(
+                      () => EventItemsWidget(
+                        status: controller.conferenceStatus.value.status,
+                        apiCall: controller.getConferenceEvents,
+                        scrollController: controller.conferenceScrollController,
+                        data: controller.filteredConferenceEvents.value,
+                        isLogged: true,
+                        onEdit: (value) {
+                          EditEventPage(event: value).navTo();
+                        },
+                        onDelete: (value) {
+                          controller.deleteEvents(
+                              type: EventCategory.conference, id: value.id);
+                        },
+                        onPressed: (value) {
+                          controller.eventData = value;
+                        },
+                        onScrollUpPressed: () {
+                          controller.conferencePageNumber--;
+                        },
+                        scrollButtonVisibility:
+                            controller.isConferenceScrollable,
+                      ),
+                    ),
+                    Obx(
+                      () => EventItemsWidget(
+                        status: controller.trainingCourseStatus.value.status,
+                        apiCall: controller.getTrainingCourseEvents,
+                        scrollController:
+                            controller.trainingCourseScrollController,
+                        data: controller.filteredTrainingCourseEvents.value,
+                        isLogged: true,
+                        onEdit: (value) {
+                          EditEventPage(event: value).navTo();
+                        },
+                        onDelete: (value) {
+                          controller.deleteEvents(
+                              type: EventCategory.trainingCourse, id: value.id);
+                        },
+                        onPressed: (value) {
+                          controller.eventData = value;
+                        },
+                        onScrollUpPressed: () {
+                          controller.trainingCoursePageNumber--;
+                        },
+                        scrollButtonVisibility:
+                            controller.isTrainingCourseScrollable,
+                      ),
+                    ),
+                    Obx(
+                      () => EventItemsWidget(
+                        status: controller.exhibitionStatus.value.status,
+                        apiCall: controller.getExhibitionEvents,
+                        scrollController: controller.exhibitionScrollController,
+                        data: controller.filteredExhibitionEvents.value,
+                        isLogged: true,
+                        onEdit: (value) {
+                          EditEventPage(event: value).navTo();
+                        },
+                        onDelete: (value) {
+                          controller.deleteEvents(
+                              type: EventCategory.exhibition, id: value.id);
+                        },
+                        onPressed: (value) {
+                          controller.eventData = value;
+                        },
+                        onScrollUpPressed: () {
+                          controller.exhibitionPageNumber--;
+                        },
+                        scrollButtonVisibility:
+                            controller.isExhibitionScrollable,
+                      ),
+                    ),
+                    Obx(
+                      () => EventItemsWidget(
+                        status: controller.seminarStatus.value.status,
+                        apiCall: controller.getSeminarEvents,
+                        scrollController: controller.seminarScrollController,
+                        data: controller.filteredSeminarEvents.value,
+                        isLogged: true,
+                        onEdit: (value) {
+                          EditEventPage(event: value).navTo();
+                        },
+                        onDelete: (value) {
+                          controller.deleteEvents(
+                              type: EventCategory.seminar, id: value.id);
+                        },
+                        onPressed: (value) {
+                          controller.eventData = value;
+                        },
+                        onScrollUpPressed: () {
+                          controller.seminarPageNumber--;
+                        },
+                        scrollButtonVisibility: controller.isSeminarScrollable,
+                      ),
+                    ),
+                    Obx(
+                      () => EventItemsWidget(
+                        status: controller.forumStatus.value.status,
+                        apiCall: controller.getForumEvents,
+                        scrollController: controller.forumScrollController,
+                        data: controller.filteredForumEvents.value,
+                        isLogged: true,
+                        onEdit: (value) {
+                          EditEventPage(event: value).navTo();
+                        },
+                        onDelete: (value) {
+                          controller.deleteEvents(
+                              type: EventCategory.forum, id: value.id);
+                        },
+                        onPressed: (value) {
+                          controller.eventData = value;
+                        },
+                        onScrollUpPressed: () {
+                          controller.forumPageNumber--;
+                        },
+                        scrollButtonVisibility: controller.isForumScrollable,
                       ),
                     ),
                   ],

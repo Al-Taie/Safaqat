@@ -110,6 +110,16 @@ const usernameOrPhoneKey = 'usernameOrPhone';
 const waitedKey = 'waited';
 const welcomeToSafaqatKey = 'welcomeToSafaqat';
 const yesKey = 'yes';
+const generalKey = 'general';
+const conferenceKey = 'conference';
+const trainingCourseKey = 'trainingCourse';
+const exhibitionKey = 'exhibition';
+const seminarKey = 'seminar';
+const forumKey = 'forum';
+const onsiteKey = 'onsite';
+const onlineKey = 'online';
+const bothKey = 'both';
+const unspecifiedKey = 'unspecified';
 
 class AppStrings {
   static final accountCreationAndTermsPolicy = accountCreationAndTermsPolicyKey.tr;
@@ -222,4 +232,14 @@ class AppStrings {
   static final waited = waitedKey.tr;
   static final welcomeToSafaqat = welcomeToSafaqatKey.tr;
   static final yes = yesKey.tr;
+  static final general = generalKey.tr;
+  static final conference= conferenceKey.tr;
+  static final trainingCourse = trainingCourseKey.tr;
+  static final seminar = seminarKey.tr;
+  static final forum = forumKey.tr;
+  static final online = onlineKey.tr;
+  static final onsite = onsiteKey.tr;
+  static final both = bothKey.tr;
+  static final unspecified = unspecifiedKey.tr;
+  static final exhibition = exhibitionKey.tr;
 }
