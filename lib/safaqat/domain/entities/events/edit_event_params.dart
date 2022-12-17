@@ -1,5 +1,6 @@
-import 'package:safaqat/safaqat/data/models/events/edit_event_body.dart';
 
+
+import 'package:safaqat/safaqat/data/models/events/event_body.dart';
 
 class EditEventParams {
   EditEventParams({
@@ -8,5 +9,5 @@ class EditEventParams {
   });
 
   final String? eventId;
-  final EditEventBody body;
+  final EventBody body;
 }

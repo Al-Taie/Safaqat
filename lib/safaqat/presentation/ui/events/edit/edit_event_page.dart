@@ -13,7 +13,6 @@ import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/add/components/event_info_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/edit/edit_event_controller.dart';
 
-
 class EditEventPage extends StatelessWidget {
   const EditEventPage({
     Key? key,
@@ -40,6 +39,9 @@ class EditEventPage extends StatelessWidget {
           break;
       }
     });
+
+    final RxBool arabicExpanded = false.obs;
+    final RxBool englishExpanded = false.obs;
 
     return SafeArea(
       child: Scaffold(
@@ -71,46 +73,60 @@ class EditEventPage extends StatelessWidget {
                       0,
                     ),
                     children: [
-                      EventInfoWidget(
-                        title: AppStrings.arabic,
-                        eventTitle: AppStrings.title,
-                        content: AppStrings.content,
-                        tagsHint: AppStrings.tags,
-                        tags: controller.tagsAr,
-                        titleInitialValue: controller.titleAr,
-                        contentInitialValue: controller.detailsAr,
-                        rtl: true,
-                        onTitleChange: (String value) {
-                          controller.titleAr = value;
-                        },
-                        onContentChange: (String value) {
-                          controller.detailsAr = value;
-                        },
-                        onTagsChange: (List<String> value) {
-                          controller.tagsAr.value = value;
-                        },
-                      ),
+                      Obx(() {
+                        return EventInfoWidget(
+                          title: AppStrings.arabic,
+                          eventTitle: AppStrings.title,
+                          content: AppStrings.content,
+                          tagsHint: AppStrings.tags,
+                          tags: controller.tagsAr,
+                          titleInitialValue: controller.titleAr,
+                          contentInitialValue: controller.detailsAr,
+                          rtl: true,
+                          onTitleChange: (String value) {
+                            controller.titleAr = value;
+                          },
+                          onContentChange: (String value) {
+                            controller.detailsAr = value;
+                          },
+                          onTagsChange: (List<String> value) {
+                            controller.tagsAr.value = value;
+                          },
+                          expanded: arabicExpanded.value,
+                          onExpansionChanged: (bool value) {
+                            englishExpanded.value = false;
+                            arabicExpanded.value = value;
+                          },
+                        );
+                      }),
                       const SizedBox(
                         height: 16,
                       ),
-                      EventInfoWidget(
-                        title: AppStrings.english,
-                        eventTitle: AppStrings.title,
-                        content: AppStrings.content,
-                        tagsHint: AppStrings.tags,
-                        titleInitialValue: controller.titleEn,
-                        contentInitialValue: controller.detailsEn,
-                        tags: controller.tagsEn,
-                        onTitleChange: (String value) {
-                          controller.titleEn = value;
-                        },
-                        onContentChange: (String value) {
-                          controller.detailsEn = value;
-                        },
-                        onTagsChange: (List<String> value) {
-                          controller.tagsEn.value = value;
-                        },
-                      ),
+                      Obx(() {
+                        return EventInfoWidget(
+                          title: AppStrings.english,
+                          eventTitle: AppStrings.title,
+                          content: AppStrings.content,
+                          tagsHint: AppStrings.tags,
+                          titleInitialValue: controller.titleEn,
+                          contentInitialValue: controller.detailsEn,
+                          tags: controller.tagsEn,
+                          onTitleChange: (String value) {
+                            controller.titleEn = value;
+                          },
+                          onContentChange: (String value) {
+                            controller.detailsEn = value;
+                          },
+                          onTagsChange: (List<String> value) {
+                            controller.tagsEn.value = value;
+                          },
+                          expanded: englishExpanded.value,
+                          onExpansionChanged: (bool value) {
+                            arabicExpanded.value = false;
+                            englishExpanded.value = value;
+                          },
+                        );
+                      }),
                       const SizedBox(
                         height: 16,
                       ),

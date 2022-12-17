@@ -50,7 +50,7 @@ class EventDetailsPage extends StatelessWidget {
                 children: [
                   TextIcon(
                     icon: AppDrawable.icDate,
-                    text: Utils.formatDate(dateStr: event.date),
+                    text: Utils.formatDate(dateStr: event.startDate),
                   ),
                   const SizedBox(width: 4),
                   TextIcon(
@@ -60,10 +60,10 @@ class EventDetailsPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.network(event.images?.firstOrNull ?? ''),
-              ),
+              // ClipRRect(
+              //   borderRadius: BorderRadius.circular(8),
+              //   child: Image.network(event.images?.firstOrNull ?? ''),
+              // ),
               const SizedBox(height: 16),
               SizedBox(
                 width: Get.width,

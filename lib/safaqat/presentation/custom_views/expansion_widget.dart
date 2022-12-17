@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
+import 'package:safaqat/safaqat/app/extensions/boolean_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 
 class ExpansionWidget extends StatelessWidget {
@@ -9,7 +9,7 @@ class ExpansionWidget extends StatelessWidget {
   final List<Widget> children;
   final Widget? customHeader;
   final String title;
-  final bool isCustomHeader;
+  final bool isCustomHeader, expanded;
   final Color? headerColor;
   final bool initiallyExpanded;
   final EdgeInsetsGeometry contentPadding;
@@ -19,8 +19,9 @@ class ExpansionWidget extends StatelessWidget {
   final IconData? icon;
   final String iconSvg;
 
-  ExpansionWidget({
+  const ExpansionWidget({
     Key? key,
+    this.expanded = false,
     this.onExpansionChanged,
     this.children = const <Widget>[],
     this.title = '',
@@ -36,89 +37,65 @@ class ExpansionWidget extends StatelessWidget {
     this.isCustomHeader = false,
   }) : super(key: key);
 
-  final RxBool _isExpanded = false.obs;
-
-  void _setExpansion(bool shouldBeExpanded) {
-    if (shouldBeExpanded != _isExpanded.value) {
-      _isExpanded.value = shouldBeExpanded;
-
-      if (onExpansionChanged != null) {
-        onExpansionChanged!(_isExpanded.value);
-      }
-    }
-  }
-
-  void toggleExpansion() {
-    _setExpansion(!_isExpanded.value);
-  }
-
   @override
   Widget build(BuildContext context) {
-    _isExpanded.value = initiallyExpanded;
-
-    return Obx(
-      () => Column(
-        children: [
-          InkWell(
-            customBorder: RoundedRectangleBorder(borderRadius: borderRadius),
-            onTap: toggleExpansion,
-            child: Stack(
-              children: [
-                SizedBox(
-                  height: 42,
-                  child: ListTile(
-                    tileColor: headerColor,
-                    isThreeLine: true,
-                    subtitle: const Text(''),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    contentPadding: headerContentPadding,
-                    title: isCustomHeader
-                        ? customHeader
-                        : titleWidget(
-                            text: title,
-                            icon: icon,
-                            iconSvg: iconSvg,
-                            color: foregroundColor,
-                          ),
-                  ),
+    return Column(
+      children: [
+        InkWell(
+          customBorder: RoundedRectangleBorder(borderRadius: borderRadius),
+          onTap: () => onExpansionChanged?.call(expanded.not()),
+          child: Stack(
+            children: [
+              SizedBox(
+                height: 42,
+                child: ListTile(
+                  tileColor: headerColor,
+                  isThreeLine: true,
+                  subtitle: const Text(''),
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  contentPadding: headerContentPadding,
+                  title: isCustomHeader
+                      ? customHeader
+                      : titleWidget(
+                          text: title,
+                          icon: icon,
+                          iconSvg: iconSvg,
+                          color: foregroundColor,
+                        ),
                 ),
-                Align(
-                  alignment: Utils.isRTL
-                      ? Alignment.centerLeft
-                      : Alignment.centerRight,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, top: 12, right: 16),
-                    child: SvgPicture.asset(
-                      _isExpanded.value
-                          ? AppDrawable.icTopArrow
-                          : AppDrawable.icDownArrow,
-                      width: 20,
-                      height: 20,
-                      color: foregroundColor,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-                color: const Color(0xFFFBFBFB), borderRadius: borderRadius),
-            child: ClipRect(
-              child: Align(
-                heightFactor: _isExpanded.value ? 1 : 0,
+              ),
+              Align(
+                alignment:
+                    Utils.isRTL ? Alignment.centerLeft : Alignment.centerRight,
                 child: Padding(
-                  padding: contentPadding,
-                  child: Column(
-                      mainAxisSize: MainAxisSize.min, children: children),
+                  padding: const EdgeInsets.only(left: 16, top: 12, right: 16),
+                  child: SvgPicture.asset(
+                    expanded ? AppDrawable.icTopArrow : AppDrawable.icDownArrow,
+                    width: 20,
+                    height: 20,
+                    color: foregroundColor,
+                  ),
                 ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+              color: const Color(0xFFFBFBFB), borderRadius: borderRadius),
+          child: ClipRect(
+            child: Align(
+              heightFactor: expanded ? 1 : 0,
+              child: Padding(
+                padding: contentPadding,
+                child:
+                    Column(mainAxisSize: MainAxisSize.min, children: children),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

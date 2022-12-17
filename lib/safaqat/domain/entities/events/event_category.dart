@@ -1,6 +1,5 @@
 
-
-enum EventCategory {
+enum EventType {
   general,
   conference,
   trainingCourse,
@@ -8,4 +7,3 @@ enum EventCategory {
   seminar,
   forum;
 }
-

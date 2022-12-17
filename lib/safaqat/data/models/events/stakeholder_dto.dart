@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'stake_dto.g.dart';
+part 'stakeholder_dto.g.dart';
 
 @JsonSerializable(ignoreUnannotated: false)
 class Stakeholder {

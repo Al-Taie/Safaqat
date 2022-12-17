@@ -17,6 +17,8 @@ import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forget_controller.da
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/register_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/events/map/location_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/events/mine/my_events_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/home_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -44,6 +46,8 @@ class AppBindings implements Bindings {
     Get.put(ForgetController());
     Get.put(ConfirmController());
     Get.put(HomeController());
+    Get.put(MyEventsController());
+    Get.put(LocationController());
   }
 
   SafaqatApiServices _provideSafaqatApiServices(Dio dio) {

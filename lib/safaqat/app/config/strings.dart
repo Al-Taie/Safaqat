@@ -58,6 +58,7 @@ const nameArabicKey = 'nameArabic';
 const nameEnglishKey = 'nameEnglish';
 const nationalityKey = 'nationality';
 const newsDetailsKey = 'newsDetails';
+const detailsKey = 'details';
 const newsKey = 'news';
 const noInternetConnectionKey = 'noInternetConnection';
 const noKey = 'no';
@@ -120,6 +121,12 @@ const onsiteKey = 'onsite';
 const onlineKey = 'online';
 const bothKey = 'both';
 const unspecifiedKey = 'unspecified';
+const websiteKey = 'website';
+const startAtKey = 'startAt';
+const endAtKey = 'endAt';
+const eventLocationKey = 'eventLocation';
+const eventTypeKey = 'eventType';
+const eventAttendKey = 'eventAttend';
 
 class AppStrings {
   static final accountCreationAndTermsPolicy = accountCreationAndTermsPolicyKey.tr;
@@ -181,6 +188,7 @@ class AppStrings {
   static final nationality = nationalityKey.tr;
   static final news = newsKey.tr;
   static final newsDetails = newsDetailsKey.tr;
+  static final details = detailsKey.tr;
   static final no = noKey.tr;
   static final noInternetConnection = noInternetConnectionKey.tr;
   static final noPreview = noPreviewKey.tr;
@@ -242,4 +250,10 @@ class AppStrings {
   static final both = bothKey.tr;
   static final unspecified = unspecifiedKey.tr;
   static final exhibition = exhibitionKey.tr;
+  static final website = websiteKey.tr;
+  static final startAt = startAtKey.tr;
+  static final endAt = endAtKey.tr;
+  static final eventLocation = eventLocationKey.tr;
+  static final evenType = eventTypeKey.tr;
+  static final eventAttend = eventAttendKey.tr;
 }

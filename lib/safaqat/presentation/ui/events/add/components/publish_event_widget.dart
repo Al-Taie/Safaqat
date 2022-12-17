@@ -9,19 +9,27 @@ import 'package:safaqat/safaqat/presentation/custom_views/custom_image_file.dart
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/add/add_event_controller.dart';
 
-
 class PublishEventWidget extends StatelessWidget {
-  const PublishEventWidget({Key? key}) : super(key: key);
+  const PublishEventWidget({
+    Key? key,
+    required this.expanded,
+    required this.onExpansionChanged,
+  }) : super(key: key);
+
+  final bool expanded;
+  final ValueChanged<bool> onExpansionChanged;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(AddEventController());
+    final AddEventController controller = Get.find();
     final imageController = MultiImagePickerController(
       maxImages: 10,
       allowedImageTypes: ['png', 'jpg', 'jpeg'],
     );
 
     return ExpansionWidget(
+      expanded: expanded,
+      onExpansionChanged: onExpansionChanged,
       headerColor: AppColors.primaryColor,
       foregroundColor: Colors.white,
       contentPadding: const EdgeInsets.all(10),

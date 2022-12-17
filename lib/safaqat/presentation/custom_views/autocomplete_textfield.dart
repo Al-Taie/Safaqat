@@ -66,7 +66,10 @@ class AutocompleteTextField<T extends Object> extends StatelessWidget {
         });
       },
       optionsViewBuilder: _defaultOptionsViewBuilder,
-      onSelected: onSelected,
+      onSelected: (option) {
+        FocusScope.of(context).unfocus();
+        onSelected?.call(option);
+      },
     );
   }
 }

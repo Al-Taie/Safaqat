@@ -1,9 +1,7 @@
 
-
-enum EventType {
+enum EventAttend {
   onsite,
   online,
   both,
   unspecified;
 }
-

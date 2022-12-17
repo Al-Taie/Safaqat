@@ -7,7 +7,8 @@ final Map<String, String> enUS = {
   addNewNewsKey: 'Add new news',
   addNewEventKey: 'Add new event',
   addressKey: 'Address',
-  agreeTermsAndPolicyKey: 'I agree to the terms and conditions for registering and using the deals platform.',
+  agreeTermsAndPolicyKey:
+      'I agree to the terms and conditions for registering and using the deals platform.',
   anotherEmailKey: 'Another email',
   anotherPhoneKey: 'Another phone',
   arabicKey: 'Arabic',
@@ -20,7 +21,8 @@ final Map<String, String> enUS = {
   contentKey: 'Content',
   countryKey: 'Country',
   dateKey: 'Date',
-  deleteDescriptionKey: 'The news will be deleted. Are you sure you want to delete it?',
+  deleteDescriptionKey:
+      'The news will be deleted. Are you sure you want to delete it?',
   deleteKey: 'Delete',
   deleteNewsKey: 'Delete News',
   deleteEventKey: 'Delete Event',
@@ -41,7 +43,8 @@ final Map<String, String> enUS = {
   haveAccountKey: 'Have an account',
   homeKey: 'Home',
   incomingKey: 'Incoming',
-  internetConnectionMessageKey: 'Your internet connection is currently not available please check or try again.',
+  internetConnectionMessageKey:
+      'Your internet connection is currently not available please check or try again.',
   jobPositionKey: 'Job position',
   lastNameEnglishKey: 'Last Name',
   loginFailedKey: 'Login Failed',
@@ -55,6 +58,7 @@ final Map<String, String> enUS = {
   nameEnglishKey: 'English Name',
   nationalityKey: 'Nationality',
   newsDetailsKey: 'News details',
+  detailsKey: 'Details',
   eventDetailsKey: 'Event details',
   newsKey: 'News',
   noInternetConnectionKey: 'No internet connection',
@@ -64,7 +68,8 @@ final Map<String, String> enUS = {
   notificationsKey: 'Notifications',
   organizationKey: 'Organization',
   outgoingKey: 'Outgoing',
-  passwordHintKey: 'Must be at least 8 characters including upper, lower case letters and or a symbol ( e.g ythhYT8!)',
+  passwordHintKey:
+      'Must be at least 8 characters including upper, lower case letters and or a symbol ( e.g ythhYT8!)',
   passwordKey: 'Password',
   passwordNotMatchedKey: 'Password not matched!',
   personalAccountKey: 'Personal account',
@@ -118,4 +123,11 @@ final Map<String, String> enUS = {
   forumKey: 'Forum',
   conferenceKey: 'Conference',
   generalKey: 'General',
+  startAtKey: 'Start at',
+  endAtKey: 'End at',
+  websiteKey: 'Website',
+  eventLocationKey: 'Event Location',
+  eventTypeKey: 'Event Type',
+  eventAttendKey: 'Event Attend',
+  
 };

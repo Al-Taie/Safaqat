@@ -61,6 +61,7 @@ final Map<String, String> arIQ = {
   nameEnglishKey: 'الاسم بالانجليزية',
   nationalityKey: 'الجنسية',
   newsDetailsKey: 'تفاصيل الخبر',
+  detailsKey: 'التفاصيل',
   newsKey: 'الأخبار',
   noInternetConnectionKey: 'لا يوجد اتصال بالانترنت',
   noKey: 'نعم',
@@ -124,4 +125,11 @@ final Map<String, String> arIQ = {
   forumKey: 'ملتقى',
   conferenceKey: 'مؤتمر',
   generalKey: 'عام',
+    startAtKey: 'يبدأ في',
+  endAtKey: 'ينتهي في',
+  websiteKey: 'الموقع الإلكتروني',
+eventLocationKey: 'مكان الحدث',
+  eventTypeKey: 'نوع الحدث',
+  eventAttendKey: 'حضور الحدث',
+
 };

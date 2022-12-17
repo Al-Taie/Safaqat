@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:safaqat/safaqat/data/models/events/edit_event_body.dart';
+import 'package:safaqat/safaqat/data/models/events/event_body.dart';
 import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/events/edit_event_params.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
@@ -44,7 +44,7 @@ class EditEventController extends GetxController {
     status.value = Resources.loading();
     final body = EditEventParams(
         eventId: event.id,
-        body: EditEventBody(
+        body: EventBody(
           titleAr: titleAr,
           titleEn: titleEn,
           detailsAr: detailsAr,

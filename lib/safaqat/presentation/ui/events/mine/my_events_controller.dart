@@ -129,11 +129,11 @@ class MyEventsController extends GetxController {
     exhibitionScrollController.addListener(() =>
         _floatingButtonState(scrollController: exhibitionScrollController));
 
-    seminarScrollController.addListener(() =>
-        _floatingButtonState(scrollController: seminarScrollController));
+    seminarScrollController.addListener(
+        () => _floatingButtonState(scrollController: seminarScrollController));
 
-    forumScrollController.addListener(() =>
-        _floatingButtonState(scrollController: forumScrollController));
+    forumScrollController.addListener(
+        () => _floatingButtonState(scrollController: forumScrollController));
 
     getGeneralEvents();
     getConferenceEvents();
@@ -215,7 +215,7 @@ class MyEventsController extends GetxController {
   void getGeneralEvents() async {
     final params = EventQuery(
       pageNumber: generalPageNumber,
-      type: EventCategory.general.index,
+      type: EventType.general.index,
     );
 
     generalStatus.value = Resources.loading();
@@ -234,7 +234,7 @@ class MyEventsController extends GetxController {
   void getConferenceEvents() async {
     final params = EventQuery(
       pageNumber: conferencePageNumber,
-      type: EventCategory.conference.index,
+      type: EventType.conference.index,
     );
 
     conferenceStatus.value = Resources.loading();
@@ -253,7 +253,7 @@ class MyEventsController extends GetxController {
   void getTrainingCourseEvents() async {
     final params = EventQuery(
       pageNumber: trainingCoursePageNumber,
-      type: EventCategory.trainingCourse.index,
+      type: EventType.trainingCourse.index,
     );
 
     trainingCourseStatus.value = Resources.loading();
@@ -272,7 +272,7 @@ class MyEventsController extends GetxController {
   void getExhibitionEvents() async {
     final params = EventQuery(
       pageNumber: exhibitionPageNumber,
-      type: EventCategory.exhibition.index,
+      type: EventType.exhibition.index,
     );
 
     exhibitionStatus.value = Resources.loading();
@@ -291,7 +291,7 @@ class MyEventsController extends GetxController {
   void getSeminarEvents() async {
     final params = EventQuery(
       pageNumber: seminarPageNumber,
-      type: EventCategory.seminar.index,
+      type: EventType.seminar.index,
     );
 
     seminarStatus.value = Resources.loading();
@@ -310,7 +310,7 @@ class MyEventsController extends GetxController {
   void getForumEvents() async {
     final params = EventQuery(
       pageNumber: forumPageNumber,
-      type: EventCategory.forum.index,
+      type: EventType.forum.index,
     );
 
     forumStatus.value = Resources.loading();
@@ -326,12 +326,12 @@ class MyEventsController extends GetxController {
     _forumMaxNumberOfPages = result.data?.numberOfPages ?? 1;
   }
 
-  void searchEvents(EventCategory type, String query) {
+  void searchEvents(EventType type, String query) {
     var newFilteredData = <EventDto>[];
 
-    if (type == EventCategory.general) {
+    if (type == EventType.general) {
       newFilteredData = generalEvents;
-    } else if (type == EventCategory.conference) {
+    } else if (type == EventType.conference) {
       newFilteredData = conferenceEvents;
     } else {
       newFilteredData = trainingCourseEvents;
@@ -340,9 +340,9 @@ class MyEventsController extends GetxController {
     newFilteredData =
         newFilteredData.where((e) => e.toString().contains(query)).toList();
 
-    if (type == EventCategory.general) {
+    if (type == EventType.general) {
       filteredGeneralEvents.value = newFilteredData;
-    } else if (type == EventCategory.conference) {
+    } else if (type == EventType.conference) {
       filteredConferenceEvents.value = newFilteredData;
     } else {
       filteredTrainingCourseEvents.value = newFilteredData;
@@ -376,7 +376,7 @@ class MyEventsController extends GetxController {
     }
   }
 
-  void deleteEvents({required EventCategory type, String? id}) async {
+  void deleteEvents({required EventType type, String? id}) async {
     Get.back();
     status.value = Resources.loading();
     final result = await _deleteEventUseCase(params: id);
@@ -389,15 +389,15 @@ class MyEventsController extends GetxController {
 
     AppStrings.deletedSuccessfully.toToast();
 
-    if (type == EventCategory.general) {
+    if (type == EventType.general) {
       generalEvents.removeWhere((it) => it.id == id);
-    } else if (type == EventCategory.conference) {
+    } else if (type == EventType.conference) {
       conferenceEvents.removeWhere((it) => it.id == id);
-    } else if (type == EventCategory.trainingCourse) {
+    } else if (type == EventType.trainingCourse) {
       trainingCourseEvents.removeWhere((it) => it.id == id);
-    } else if (type == EventCategory.exhibition) {
+    } else if (type == EventType.exhibition) {
       exhibitionEvents.removeWhere((it) => it.id == id);
-    } else if (type == EventCategory.seminar) {
+    } else if (type == EventType.seminar) {
       seminarEvents.removeWhere((it) => it.id == id);
     } else {
       forumEvents.removeWhere((it) => it.id == id);

@@ -15,7 +15,6 @@ class EventCardWidget extends StatelessWidget {
     Key? key,
     required this.title,
     required this.name,
-    required this.image,
     required this.date,
     this.isLogged = false,
     this.onPressed,
@@ -23,7 +22,7 @@ class EventCardWidget extends StatelessWidget {
     this.onEdit,
   }) : super(key: key);
 
-  final String title, name, date, image;
+  final String title, name, date;
   final bool isLogged;
   final VoidCallback? onPressed, onEdit, onDelete;
 
@@ -53,7 +52,7 @@ class EventCardWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  CardImage(image: image),
+                  // CardImage(image: image),
                   const SizedBox(width: 8),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

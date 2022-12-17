@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -11,9 +12,10 @@ import 'package:safaqat/safaqat/data/models/base_response.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
-import 'package:safaqat/safaqat/data/models/events/edit_event_body.dart';
+import 'package:safaqat/safaqat/data/models/events/event_body.dart';
 import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/events_response.dart';
+import 'package:safaqat/safaqat/data/models/events/stakeholder_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
@@ -113,10 +115,9 @@ abstract class SafaqatApiServices {
     @Query('type') int type,
   );
 
-  @POST('Events/Publish')
+  @POST('Events/Create')
   @MultiPart()
   Future<HttpResponse<BaseResponse<EventDto>>> publishEvent({
-    @Part(name: 'Username') String? username,
     @Part(name: 'EventTitleA') String? titleAr,
     @Part(name: 'EventTitleE') String? titleEn,
     @Part(name: 'EventDetailsA') String? detailsAr,
@@ -124,17 +125,32 @@ abstract class SafaqatApiServices {
     @Part(name: 'ShowName') bool? showName,
     @Part(name: 'TagsA') List<String>? tagsAr,
     @Part(name: 'TagsE') List<String>? tagsEn,
-    @Part(name: 'Images') List<File>? images,
+    @Part(name: 'EventType') int? type,
+    @Part(name: 'EAttendanceType') int? attendanceType,
+    @Part(name: 'CountryNo') int? countryNo,
+    @Part(name: 'CityCode') int? cityCode,
+    @Part(name: 'Coordinates') String? coordinates,
+    @Part(name: 'StartDate') String? startDate,
+    @Part(name: 'EndDate') String? endDate,
+    @Part(name: 'Telephone') String? telephone,
+    @Part(name: 'Email') String? email,
+    @Part(name: 'WebSite') String? webSite,
+    @Part(name: 'Stakeholders') List<Stakeholder>? stakeholders,
   });
+
+  // @POST('Events/Create')
+  // Future<HttpResponse<BaseResponse<EventDto>>> publishEvent({
+  //   @Body() required EventBody body
+  // });
 
   @PUT('Events/Edit')
   Future<HttpResponse<BaseResponse<EventDto>>> editEvent(
-    @Query('events_id') String? eventsId,
-    @Body() EditEventBody body,
+    @Query('eventId') String? eventId,
+    @Body() EventBody body,
   );
 
   @DELETE('Events/Delete')
   Future<HttpResponse<BaseResponse<dynamic>>> deleteEvent(
-    @Query('events_id') String? eventsId,
+    @Query('eventId') String? eventsId,
   );
 }

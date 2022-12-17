@@ -51,8 +51,7 @@ class EventItemsWidget extends StatelessWidget {
             return EventCardWidget(
               title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
               name: item.ownerName ?? '-',
-              image: item.images?.firstOrNull ?? '',
-              date: Utils.formatDate(dateStr: item.date),
+              date: Utils.formatDate(dateStr: item.startDate),
               isLogged: isLogged,
               onEdit: () {
                 onEdit?.call(item);

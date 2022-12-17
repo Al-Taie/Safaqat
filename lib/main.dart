@@ -6,9 +6,9 @@ import 'package:safaqat/app_binding.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/preferences_keys.dart';
 import 'package:safaqat/safaqat/app/utils/logger.dart';
-import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/main_tabs/authorized_main_tabs_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/events/add/add_event_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'localization/app_translation.dart';
 
 void main() async {
@@ -50,7 +50,7 @@ class MainApp extends StatelessWidget {
     final isArabicLanguage = Get.deviceLocale?.languageCode == 'ar';
 
     return GetMaterialApp(
-      home: isLoggedIn ? AuthorizedMainTabsPage() : const LoginPage(),
+      home: const AddEventPage(),
       initialBinding: AppBindings(preferences),
       translations: AppTranslation(),
       locale: Get.deviceLocale,

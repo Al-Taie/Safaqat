@@ -7,7 +7,10 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
+import 'package:safaqat/safaqat/domain/entities/events/event_category.dart';
+import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/autocomplete_textfield.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/dropdown_field.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/textfiled_form.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/add/components/small_map_widget.dart';
@@ -38,6 +41,14 @@ class EventDetailsWidget extends StatelessWidget {
     required this.onPressed,
     required this.onExpansionChanged,
     required this.expanded,
+    required this.eventTypeFormKey,
+    required this.eventAttendFormKey,
+    required this.onAttendChange,
+    required this.onTypeChange,
+    required this.typeExpaned,
+    required this.attendExpaned,
+    required this.onAttendExpansionChange,
+    required this.onTypeExpansionChange,
   }) : super(key: key);
 
   final String title, website, email, startAt, endAt, phone;
@@ -47,14 +58,19 @@ class EventDetailsWidget extends StatelessWidget {
       onPhoneChange,
       onStartChange,
       onEndChange;
-  final bool expanded;
-  final ValueChanged<bool> onExpansionChanged;
+  final bool expanded, typeExpaned, attendExpaned;
+  final ValueChanged<bool> onExpansionChanged,
+      onAttendExpansionChange,
+      onTypeExpansionChange;
   final ValueChanged<CountryDto> onCountryChange;
   final ValueChanged<CityDto> onCityChange;
+  final ValueChanged<int> onAttendChange, onTypeChange;
   final List<CountryDto> countries;
   final List<CityDto> cities;
   final ValueChanged<LatLng> onPressed;
   final LocationController locationController;
+  final GlobalKey<FormState> eventTypeFormKey;
+  final GlobalKey<FormState> eventAttendFormKey;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +82,52 @@ class EventDetailsWidget extends StatelessWidget {
       expanded: expanded,
       onExpansionChanged: onExpansionChanged,
       children: [
+        DropdownField(
+          hint: AppStrings.evenType,
+          formKey: eventTypeFormKey,
+          expanded: typeExpaned,
+          onExpansionChanged: onTypeExpansionChange,
+          onSelected: (EventType value) => onTypeChange(value.index),
+          items: EventType.values,
+          selector: (EventType type) {
+            switch (type) {
+              case EventType.general:
+                return AppStrings.general;
+              case EventType.conference:
+                return AppStrings.conference;
+              case EventType.exhibition:
+                return AppStrings.exhibition;
+              case EventType.trainingCourse:
+                return AppStrings.trainingCourse;
+              case EventType.seminar:
+                return AppStrings.seminar;
+              case EventType.forum:
+                return AppStrings.forum;
+            }
+          },
+        ),
+        const SizedBox(height: 8),
+        DropdownField(
+          hint: AppStrings.eventAttend,
+          formKey: eventAttendFormKey,
+          expanded: attendExpaned,
+          onExpansionChanged: onAttendExpansionChange,
+          onSelected: (EventAttend value) => onAttendChange(value.index),
+          items: EventAttend.values,
+          selector: (EventAttend attend) {
+            switch (attend) {
+              case EventAttend.online:
+                return AppStrings.online;
+              case EventAttend.onsite:
+                return AppStrings.onsite;
+              case EventAttend.both:
+                return AppStrings.both;
+              case EventAttend.unspecified:
+                return AppStrings.unspecified;
+            }
+          },
+        ),
+        const SizedBox(height: 8),
         AutocompleteTextField<CountryDto>(
           hintText: AppStrings.country,
           suggestions: countries,

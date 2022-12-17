@@ -19,7 +19,7 @@ class MyEventsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(MyEventsController());
-    EventCategory type = EventCategory.general;
+    EventType type = EventType.general;
 
     return GestureDetector(
       onTap: () {
@@ -76,18 +76,18 @@ class MyEventsPage extends StatelessWidget {
                   ),
                 ],
                 onTap: (index) {
-                  if (index == EventCategory.general.index) {
-                    type = EventCategory.general;
-                  } else if (index == EventCategory.conference.index) {
-                    type = EventCategory.conference;
-                  } else if (index == EventCategory.trainingCourse.index) {
-                    type = EventCategory.trainingCourse;
-                  } else if (index == EventCategory.exhibition.index) {
-                    type = EventCategory.exhibition;
-                  } else if (index == EventCategory.seminar.index) {
-                    type = EventCategory.seminar;
+                  if (index == EventType.general.index) {
+                    type = EventType.general;
+                  } else if (index == EventType.conference.index) {
+                    type = EventType.conference;
+                  } else if (index == EventType.trainingCourse.index) {
+                    type = EventType.trainingCourse;
+                  } else if (index == EventType.exhibition.index) {
+                    type = EventType.exhibition;
+                  } else if (index == EventType.seminar.index) {
+                    type = EventType.seminar;
                   } else {
-                    type = EventCategory.forum;
+                    type = EventType.forum;
                   }
                 },
               ),
@@ -110,7 +110,7 @@ class MyEventsPage extends StatelessWidget {
                         },
                         onDelete: (value) {
                           controller.deleteEvents(
-                              type: EventCategory.general, id: value.id);
+                              type: EventType.general, id: value.id);
                         },
                         onPressed: (value) {
                           controller.eventData = value;
@@ -133,7 +133,7 @@ class MyEventsPage extends StatelessWidget {
                         },
                         onDelete: (value) {
                           controller.deleteEvents(
-                              type: EventCategory.conference, id: value.id);
+                              type: EventType.conference, id: value.id);
                         },
                         onPressed: (value) {
                           controller.eventData = value;
@@ -158,7 +158,7 @@ class MyEventsPage extends StatelessWidget {
                         },
                         onDelete: (value) {
                           controller.deleteEvents(
-                              type: EventCategory.trainingCourse, id: value.id);
+                              type: EventType.trainingCourse, id: value.id);
                         },
                         onPressed: (value) {
                           controller.eventData = value;
@@ -182,7 +182,7 @@ class MyEventsPage extends StatelessWidget {
                         },
                         onDelete: (value) {
                           controller.deleteEvents(
-                              type: EventCategory.exhibition, id: value.id);
+                              type: EventType.exhibition, id: value.id);
                         },
                         onPressed: (value) {
                           controller.eventData = value;
@@ -206,7 +206,7 @@ class MyEventsPage extends StatelessWidget {
                         },
                         onDelete: (value) {
                           controller.deleteEvents(
-                              type: EventCategory.seminar, id: value.id);
+                              type: EventType.seminar, id: value.id);
                         },
                         onPressed: (value) {
                           controller.eventData = value;
@@ -229,7 +229,7 @@ class MyEventsPage extends StatelessWidget {
                         },
                         onDelete: (value) {
                           controller.deleteEvents(
-                              type: EventCategory.forum, id: value.id);
+                              type: EventType.forum, id: value.id);
                         },
                         onPressed: (value) {
                           controller.eventData = value;

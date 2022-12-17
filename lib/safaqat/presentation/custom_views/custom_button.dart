@@ -3,12 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 
-
 class CustomButton extends StatelessWidget {
   String text;
   final double height, width, radius, fontSize;
   final VoidCallback? onPressed;
-  final bool isEnabled;
+  final bool enabled;
   final Widget? iconWidget;
   final Color color;
   final Color textColor;
@@ -21,7 +20,7 @@ class CustomButton extends StatelessWidget {
     this.onPressed,
     this.radius = 8.0,
     this.fontSize = 14.0,
-    this.isEnabled = true,
+    this.enabled = true,
     this.color = AppColors.primaryColor,
     this.textColor = Colors.white,
     this.iconWidget,
@@ -32,8 +31,8 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
-        disabledForegroundColor: isEnabled ? null : color.withOpacity(0.38),
-        disabledBackgroundColor: isEnabled ? null : color.withOpacity(0.12),
+        disabledForegroundColor: enabled ? null : color.withOpacity(0.38),
+        disabledBackgroundColor: enabled ? null : color.withOpacity(0.12),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             radius,
@@ -44,7 +43,7 @@ class CustomButton extends StatelessWidget {
           height,
         ),
       ),
-      onPressed: isEnabled ? onPressed : null,
+      onPressed: enabled ? onPressed : null,
       child: Row(
         mainAxisAlignment: (iconWidget != null)
             ? MainAxisAlignment.start

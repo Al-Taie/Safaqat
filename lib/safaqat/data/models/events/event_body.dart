@@ -1,49 +1,49 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:safaqat/safaqat/data/models/events/stakeholder_dto.dart';
 
-part 'publish_event_body.g.dart';
+part 'event_body.g.dart';
 
 @JsonSerializable(ignoreUnannotated: false)
-class PublishEventBody {
-  @JsonKey(name: 'eventTitleA')
+class EventBody {
+  @JsonKey(name: 'EventTitleA')
   String? titleAr;
-  @JsonKey(name: 'eventTitleE')
+  @JsonKey(name: 'EventTitleE')
   String? titleEn;
-  @JsonKey(name: 'eventDetailsA')
+  @JsonKey(name: 'EventDetailsA')
   String? detailsAr;
-  @JsonKey(name: 'eventDetailsE')
+  @JsonKey(name: 'EventDetailsE')
   String? detailsEn;
-  @JsonKey(name: 'eventType')
+  @JsonKey(name: 'EventType')
   int? type;
-  @JsonKey(name: 'eAttendanceType')
+  @JsonKey(name: 'EAttendanceType')
   int? attendanceType;
-  @JsonKey(name: 'countryNo')
+  @JsonKey(name: 'CountryNo')
   int? countryNo;
-  @JsonKey(name: 'cityCode')
+  @JsonKey(name: 'CityCode')
   int? cityCode;
-  @JsonKey(name: 'coordinates')
+  @JsonKey(name: 'Coordinates')
   String? coordinates;
-  @JsonKey(name: 'startDate')
+  @JsonKey(name: 'StartDate')
   String? startDate;
-  @JsonKey(name: 'endDate')
+  @JsonKey(name: 'EndDate')
   String? endDate;
-  @JsonKey(name: 'telephone')
+  @JsonKey(name: 'Telephone')
   String? telephone;
-  @JsonKey(name: 'email')
+  @JsonKey(name: 'Email')
   String? email;
-  @JsonKey(name: 'webSite')
+  @JsonKey(name: 'WebSite')
   String? webSite;
-  @JsonKey(name: 'showName')
+  @JsonKey(name: 'ShowName')
   bool? showName;
-  @JsonKey(name: 'tagsA')
+  @JsonKey(name: 'TagsA')
   List<String>? tagsAr;
-  @JsonKey(name: 'tagsE')
+  @JsonKey(name: 'TagsE')
   List<String>? tagsEn;
-  @JsonKey(name: 'stakeholders')
+  @JsonKey(name: 'Stakeholders')
   List<Stakeholder>? stakeholders;
 
 
-  PublishEventBody({
+  EventBody({
     this.titleAr,
     this.titleEn,
     this.detailsAr,
@@ -64,9 +64,9 @@ class PublishEventBody {
     this.stakeholders,
   });
 
-  factory PublishEventBody.fromJson(Map<String, dynamic> json) =>
-      _$PublishEventBodyFromJson(json);
+  factory EventBody.fromJson(Map<String, dynamic> json) =>
+      _$EventBodyFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PublishEventBodyToJson(this);
+  Map<String, dynamic> toJson() => _$EventBodyToJson(this);
 
 }

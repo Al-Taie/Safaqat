@@ -1,73 +1,94 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:safaqat/safaqat/app/config/colors.dart';
+import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
+import 'package:safaqat/safaqat/presentation/ui/events/map/location_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/events/map/search_location_field.dart';
 
 class EventMap extends StatelessWidget {
-  EventMap({Key? key}) : super(key: key);
-  static const _initialCameraPosition = CameraPosition(
-    target: LatLng(33.312805, 44.361488),
-    zoom: 10,
-  );
-
-  late GoogleMapController _googleMapController;
-  final Rx<Marker?> _origin = Rx(null);
+  const EventMap({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
-          appBar: AppBar(
-            centerTitle: false,
-            title: const Text('Google Maps'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  if (_origin.value != null) {
-                    _googleMapController.animateCamera(
-                      CameraUpdate.newCameraPosition(
-                        CameraPosition(
-                          target: _origin.value!.position,
-                          zoom: 14.5,
-                          tilt: 50.0,
-                        ),
-                      ),
-                    );
-                  }
-                },
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.blue,
-                  textStyle: const TextStyle(fontWeight: FontWeight.w600),
-                ),
-                child: const Text('DEST'),
-              )
-            ],
-          ),
-          body: GoogleMap(
-            myLocationButtonEnabled: false,
-            zoomControlsEnabled: false,
-            initialCameraPosition: _initialCameraPosition,
-            onMapCreated: (controller) => _googleMapController = controller,
-            markers: {
-              if (_origin.value != null) _origin.value!,
-            },
-            onLongPress: _addMarker,
-          ),
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: Theme.of(context).primaryColor,
-            foregroundColor: Colors.black,
-            onPressed: () => _googleMapController.animateCamera(
-              CameraUpdate.newCameraPosition(_initialCameraPosition),
+    final LocationController controller = Get.find();
+    
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: false,
+        backgroundColor: AppColors.primaryColor,
+        title: const Text('Google Maps'),
+      ),
+      body: Stack(
+        children: [
+          Obx(
+            () => GoogleMap(
+              myLocationButtonEnabled: true,
+              zoomControlsEnabled: true,
+              initialCameraPosition: CameraPosition(
+                target: controller.geoLocation.toLatLng(),
+                zoom: 17,
+              ),
+              onMapCreated: (value) => controller.mapController = value,
+              markers: {
+                if (controller.targetMarker != null) controller.targetMarker!,
+              },
+              onLongPress: controller.addMarker,
             ),
-            child: const Icon(Icons.center_focus_strong),
           ),
-        ));
-  }
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                height: 50,
+                width: 128,
+                child: Obx(() {
+                  return CustomButton(
+                    text: 'Select',
+                    enabled: controller.targetMarker != null,
+                    onPressed: Get.back,
+                    height: 50,
+                    width: 128,
+                  );
+                }),
+              ),
+            ),
+          )
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.primaryColor,
+        foregroundColor: Colors.white,
+        onPressed: () => Get.dialog(
+          LocationSearchField(
+            controller: controller,
+            onPlaceSelected: (place) async {
+              controller.targetPlace = place;
 
-  void _addMarker(LatLng pos) async {
-    _origin.value = Marker(
-      markerId: const MarkerId('origin'),
-      infoWindow: const InfoWindow(title: 'Origin'),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-      position: pos,
+              var location = place.geometry?.location;
+
+              if (location != null) {
+                var target = LatLng(
+                  location.lat,
+                  location.lng,
+                );
+                controller.addMarker(target, title: place.name);
+                await controller.mapController.animateCamera(
+                  CameraUpdate.newCameraPosition(
+                    CameraPosition(
+                      target: target,
+                      zoom: 17,
+                    ),
+                  ),
+                );
+              }
+            },
+          ),
+        ),
+        child: const Icon(Icons.search),
+      ),
     );
   }
 }
