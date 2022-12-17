@@ -129,5 +129,7 @@ final Map<String, String> enUS = {
   eventLocationKey: 'Event Location',
   eventTypeKey: 'Event Type',
   eventAttendKey: 'Event Attend',
+  selectPlaceKey: 'Select Place',
+  selectKey: 'Select',
   
 };

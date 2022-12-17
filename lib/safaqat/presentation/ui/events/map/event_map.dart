@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
+import 'package:safaqat/safaqat/app/config/drawable.dart';
+import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/map/location_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/map/search_location_field.dart';
 
@@ -15,11 +19,20 @@ class EventMap extends StatelessWidget {
     final LocationController controller = Get.find();
     
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        backgroundColor: AppColors.primaryColor,
-        title: const Text('Google Maps'),
-      ),
+      backgroundColor: AppColors.background,
+        appBar: AppBar(
+          title: Text(
+            AppStrings.selectPlace,
+            style: AppTextStyle.title.copyWith(fontSize: 18),
+          ),
+          centerTitle: true,
+          backgroundColor: AppColors.background,
+          elevation: 0,
+          leading: SvgIconButton(
+            icon: AppDrawable.icBack,
+            onPressed: Get.back,
+          ),
+        ),
       body: Stack(
         children: [
           Obx(
@@ -46,7 +59,7 @@ class EventMap extends StatelessWidget {
                 width: 128,
                 child: Obx(() {
                   return CustomButton(
-                    text: 'Select',
+                    text: AppStrings.select,
                     enabled: controller.targetMarker != null,
                     onPressed: Get.back,
                     height: 50,

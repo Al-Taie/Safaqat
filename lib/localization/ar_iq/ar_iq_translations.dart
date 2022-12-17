@@ -131,5 +131,7 @@ final Map<String, String> arIQ = {
 eventLocationKey: 'مكان الحدث',
   eventTypeKey: 'نوع الحدث',
   eventAttendKey: 'حضور الحدث',
+  selectPlaceKey: 'تحديد المكان',
+  selectKey: 'اختيار',
 
 };

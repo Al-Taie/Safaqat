@@ -127,6 +127,8 @@ const endAtKey = 'endAt';
 const eventLocationKey = 'eventLocation';
 const eventTypeKey = 'eventType';
 const eventAttendKey = 'eventAttend';
+const selectPlaceKey = 'selectPlace';
+const selectKey = 'select';
 
 class AppStrings {
   static final accountCreationAndTermsPolicy = accountCreationAndTermsPolicyKey.tr;
@@ -256,4 +258,6 @@ class AppStrings {
   static final eventLocation = eventLocationKey.tr;
   static final evenType = eventTypeKey.tr;
   static final eventAttend = eventAttendKey.tr;
+  static final selectPlace = selectPlaceKey.tr;
+  static final select = selectKey.tr;
 }
