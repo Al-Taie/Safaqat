@@ -31,6 +31,13 @@ class AddEventController extends GetxController {
   final GlobalKey<FormState> eventTypeFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> eventAttendFormKey = GlobalKey<FormState>();
 
+  final RxBool detailsExpanded = false.obs;
+  final RxBool arabicExpanded = false.obs;
+  final RxBool englishExpanded = false.obs;
+  final RxBool imagesExpanded = false.obs;
+  final RxBool typeExpaned = false.obs;
+  final RxBool attendExpaned = false.obs;
+
   final Rx<Resources> status = Resources.init().obs;
   List<File> images = <File>[];
 
@@ -98,7 +105,7 @@ class AddEventController extends GetxController {
   final _attend = 0.obs;
   int get attend => _attend.value;
   set attend(int value) => _attend.value = value;
-  
+
   final Rx<PlacesSearchResult?> _targetPlace = Rx(null);
   PlacesSearchResult? get targetPlace => _targetPlace.value;
   set targetPlace(PlacesSearchResult? value) => _targetPlace.value = value;

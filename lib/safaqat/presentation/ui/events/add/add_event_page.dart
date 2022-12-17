@@ -14,7 +14,7 @@ import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/add/add_event_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/add/components/event_details_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/add/components/event_info_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/events/add/components/publish_event_widget.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/local_images_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/map/event_map.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/map/location_controller.dart';
 
@@ -25,22 +25,16 @@ class AddEventPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(AddEventController());
     final LocationController locationController = Get.find();
-    final RxBool detailsExpanded = false.obs;
-    final RxBool arabicExpanded = false.obs;
-    final RxBool englishExpanded = false.obs;
-    final RxBool imagesExpanded = false.obs;
-    final RxBool typeExpaned = false.obs;
-    final RxBool attendExpaned = false.obs;
 
     controller.status.listen((result) {
       switch (result.status) {
         case Status.success:
-            Get.back();
-            AppStrings.publishSuccess.toToast();
-          
+          Get.back();
+          AppStrings.publishSuccess.toToast();
+
           break;
         case Status.error:
-            AppStrings.publishFailed.toToast();
+          AppStrings.publishFailed.toToast();
           break;
         default:
           break;
@@ -94,12 +88,12 @@ class AddEventPage extends StatelessWidget {
                           onTagsChange: (List<String> value) {
                             controller.tagsAr.value = value;
                           },
-                          expanded: arabicExpanded.value,
+                          expanded: controller.arabicExpanded.value,
                           onExpansionChanged: (bool value) {
-                            englishExpanded.value = false;
-                            imagesExpanded.value = false;
-                            detailsExpanded.value = false;
-                            arabicExpanded.value = value;
+                            controller.englishExpanded.value = false;
+                            controller.imagesExpanded.value = false;
+                            controller.detailsExpanded.value = false;
+                            controller.arabicExpanded.value = value;
                           },
                         );
                       }),
@@ -122,12 +116,12 @@ class AddEventPage extends StatelessWidget {
                           onTagsChange: (List<String> value) {
                             controller.tagsEn.value = value;
                           },
-                          expanded: englishExpanded.value,
+                          expanded: controller.englishExpanded.value,
                           onExpansionChanged: (bool value) {
-                            arabicExpanded.value = false;
-                            imagesExpanded.value = false;
-                            detailsExpanded.value = false;
-                            englishExpanded.value = value;
+                            controller.arabicExpanded.value = false;
+                            controller.imagesExpanded.value = false;
+                            controller.detailsExpanded.value = false;
+                            controller.englishExpanded.value = value;
                           },
                         );
                       }),
@@ -163,32 +157,35 @@ class AddEventPage extends StatelessWidget {
                           onPressed: (LatLng value) {
                             const EventMap().navTo();
                           },
-                          expanded: detailsExpanded.value,
-                          typeExpaned: typeExpaned.value,
-                          attendExpaned: attendExpaned.value,
+                          expanded: controller.detailsExpanded.value,
+                          typeExpaned: controller.typeExpaned.value,
+                          attendExpaned: controller.attendExpaned.value,
                           onExpansionChanged: (bool value) {
-                            arabicExpanded.value = false;
-                            englishExpanded.value = false;
-                            imagesExpanded.value = false;
-                            detailsExpanded.value = value;
+                            controller.arabicExpanded.value = false;
+                            controller.englishExpanded.value = false;
+                            controller.imagesExpanded.value = false;
+                            controller.detailsExpanded.value = value;
                           },
                           onTypeExpansionChange: (bool value) =>
-                              typeExpaned.value = value,
+                              controller.typeExpaned.value = value,
                           onAttendExpansionChange: (bool value) =>
-                              attendExpaned.value = value,
+                              controller.attendExpaned.value = value,
                           onTypeChange: (value) => controller.type = value,
                           onAttendChange: (value) => controller.attend = value,
                         );
                       }),
                       const SizedBox(height: 16),
                       Obx(() {
-                        return PublishEventWidget(
-                          expanded: imagesExpanded.value,
+                        return LocalImagesWidget(
+                          expanded: controller.imagesExpanded.value,
+                          onImagesChange: (value) {
+                            controller.images = value;
+                          },
                           onExpansionChanged: (bool value) {
-                            arabicExpanded.value = false;
-                            englishExpanded.value = false;
-                            detailsExpanded.value = false;
-                            imagesExpanded.value = value;
+                            controller.arabicExpanded.value = false;
+                            controller.englishExpanded.value = false;
+                            controller.detailsExpanded.value = false;
+                            controller.imagesExpanded.value = value;
                           },
                         );
                       }),

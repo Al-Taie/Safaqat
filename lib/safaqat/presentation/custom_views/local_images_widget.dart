@@ -1,30 +1,33 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_image_file.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/events/add/add_event_controller.dart';
 
-class PublishEventWidget extends StatelessWidget {
-  const PublishEventWidget({
+class LocalImagesWidget extends StatelessWidget {
+  const LocalImagesWidget({
     Key? key,
+    this.maxImages = 10,
+    this.allowedImageTypes = const ['png', 'jpg', 'jpeg'],
     required this.expanded,
     required this.onExpansionChanged,
+    required this.onImagesChange,
   }) : super(key: key);
 
   final bool expanded;
+  final int maxImages;
+  final List<String> allowedImageTypes;
+  final ValueChanged<List<File>> onImagesChange;
   final ValueChanged<bool> onExpansionChanged;
 
   @override
   Widget build(BuildContext context) {
-    final AddEventController controller = Get.find();
     final imageController = MultiImagePickerController(
-      maxImages: 10,
-      allowedImageTypes: ['png', 'jpg', 'jpeg'],
+      maxImages: maxImages,
+      allowedImageTypes: allowedImageTypes,
     );
 
     return ExpansionWidget(
@@ -48,6 +51,33 @@ class PublishEventWidget extends StatelessWidget {
             return CustomImageFile(
               imageFile: image,
               removeCallback: removeCallback,
+            );
+          },
+          initialContainerBuilder: (context, pickerCallback) {
+            return Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                color: Colors.blueGrey.withOpacity(0.05),
+              ),
+              height: 160,
+              width: double.infinity,
+              child: SizedBox(
+                width: double.infinity,
+                height: double.infinity,
+                child: TextButton(
+                  child: Text(
+                    AppStrings.add,
+                    style: const TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                    ),
+                  ),
+                  onPressed: () {
+                    pickerCallback();
+                  },
+                ),
+              ),
             );
           },
           addMoreBuilder: (context, pickerCallback) {
@@ -76,8 +106,8 @@ class PublishEventWidget extends StatelessWidget {
             );
           },
           onChange: (values) {
-            controller.images =
-                values.map((e) => File(e.path.toString())).toList();
+            var result = values.map((e) => File(e.path.toString()));
+            onImagesChange(result.toList());
           },
         ),
       ],
