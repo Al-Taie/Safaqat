@@ -130,6 +130,10 @@ const eventAttendKey = 'eventAttend';
 const selectPlaceKey = 'selectPlace';
 const selectKey = 'select';
 const showPublisherNameKey = 'showPublisherName';
+const partnerKey = 'partner';
+const sponsorKey = 'sponsor';
+const organizerKey = 'organizer';
+
 
 class AppStrings {
   static final accountCreationAndTermsPolicy = accountCreationAndTermsPolicyKey.tr;
@@ -262,4 +266,8 @@ class AppStrings {
   static final selectPlace = selectPlaceKey.tr;
   static final select = selectKey.tr;
   static final showPublisherName = showPublisherNameKey.tr;
+  static final partner= partnerKey.tr;
+  static final sponsor = sponsorKey.tr;
+  static final organizer = organizerKey.tr;
+
 }

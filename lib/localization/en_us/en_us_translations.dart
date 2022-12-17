@@ -132,5 +132,7 @@ final Map<String, String> enUS = {
   selectPlaceKey: 'Select Place',
   selectKey: 'Select',
   showPublisherNameKey: 'Show publisher name',
-  
+  partnerKey: 'Partner',
+  sponsorKey: 'Sponsor',
+  organizerKey: 'Organizer',
 };
