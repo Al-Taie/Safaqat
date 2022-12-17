@@ -13,74 +13,72 @@ class DisconnectedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SvgPicture.asset(AppDrawable.icNoWifi),
-          const SizedBox(
-            height: 24,
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SvgPicture.asset(AppDrawable.icNoWifi),
+        const SizedBox(
+          height: 24,
+        ),
+        Text(
+          AppStrings.noInternetConnection,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 18,
+            color: AppColors.shadePrimary,
           ),
-          Text(
-            AppStrings.noInternetConnection,
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+          ),
+          child: Text(
+            AppStrings.internetConnectionMessage,
             style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 18,
-              color: AppColors.shadePrimary,
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: AppColors.shadeSecondary,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        const SizedBox(
+          height: 64,
+        ),
+        OutlinedButton(
+          onPressed: () {
+            onClickTryAgain.call();
+          },
+          style: OutlinedButton.styleFrom(
+            side: const BorderSide(
+              width: 1,
+              color: AppColors.primaryColor,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
             ),
           ),
-          const SizedBox(
-            height: 16,
-          ),
-          Padding(
+          child: Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: 16,
+              horizontal: 48,
+              vertical: 16,
             ),
             child: Text(
-              AppStrings.internetConnectionMessage,
+              AppStrings.tryAgain,
               style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: AppColors.shadeSecondary,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          const SizedBox(
-            height: 64,
-          ),
-          OutlinedButton(
-            onPressed: () {
-              onClickTryAgain.call();
-            },
-            style: OutlinedButton.styleFrom(
-              side: const BorderSide(
-                width: 1,
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
                 color: AppColors.primaryColor,
               ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 48,
-                vertical: 16,
-              ),
-              child: Text(
-                AppStrings.tryAgain,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18,
-                  color: AppColors.primaryColor,
-                ),
-              ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

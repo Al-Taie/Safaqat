@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 
 import '../../app/config/colors.dart';
 import '../../domain/entities/resources.dart';
@@ -20,15 +21,14 @@ class StatusWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     switch (status) {
       case Status.init:
         return Container();
       case Status.loading:
-        return const Expanded(
-          child: SpinKitFadingCircle(
-            color: AppColors.primaryColor,
-            size: 64,
-          ),
+        return const SpinKitFadingCircle(
+          color: AppColors.primaryColor,
+          size: 64,
         );
       case Status.success:
         return child;

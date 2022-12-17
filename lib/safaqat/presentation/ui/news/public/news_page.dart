@@ -7,6 +7,7 @@ import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/events/mine/my_events_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/app_drawer.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/news_card_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/details/news_details_page.dart';
@@ -30,13 +31,14 @@ class NewsPage extends StatelessWidget {
         child: Scaffold(
           drawer: isLogged
               ? AppDrawer(
-            name: 'Full Name',
-            imageUrl:
-            'https://st2.depositphotos.com/1006318/5909/v/600/depositphotos_59095205-stock-illustration-businessman-profile-icon.jpg',
-            onManageNews: const MyNewsPage().navTo,
-            onProfile: () {},
-            onLogout: controller.logout,
-          )
+                  name: 'Full Name',
+                  imageUrl:
+                      'https://st2.depositphotos.com/1006318/5909/v/600/depositphotos_59095205-stock-illustration-businessman-profile-icon.jpg',
+                  onManageNews: const MyNewsPage().navTo,
+                  onManageEvents: const MyEventsPage().navTo,
+                  onProfile: () {},
+                  onLogout: controller.logout,
+                )
               : null,
           appBar: AppBarWidget(
             width: Get.width,
@@ -44,39 +46,35 @@ class NewsPage extends StatelessWidget {
             title: AppStrings.news,
             onSearch: (String query) => controller.searchNews(query),
           ),
-          body: Stack(
-            children: [
-              Obx(() {
-                return ListView.builder(
-                    controller: controller.scrollController,
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.fromLTRB(
-                      16,
-                      8,
-                      16,
-                      16,
-                    ),
-                    itemCount: controller.filteredNews.length,
-                    itemBuilder: (context, index) {
-                      var item = controller.filteredNews[index];
-                      return NewsCardWidget(
-                        title: (Utils.isRTL ? item.titleAr : item.titleEn) ??
-                            '-',
-                        name: item.ownerName ?? '-',
-                        image: item.images?.firstOrNull ?? '',
-                        date: Utils.formatDate(dateStr: item.date),
-                        onPressed: () {
-                          controller.newsData = item;
-                          NewsDetailsPage(news: controller.newsData).navTo();
-                        },
-                      );
-                    });
-              }),
-              Obx(() => LoadingView(
-                resource: controller.status.value,
-              )),
-            ],
-          ),
+          body: Obx(() {
+            return StatusWidget(
+              status: controller.status.value.status,
+              onClickTryAgain: controller.getNews,
+              child: ListView.builder(
+                  controller: controller.scrollController,
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.fromLTRB(
+                    16,
+                    8,
+                    16,
+                    16,
+                  ),
+                  itemCount: controller.filteredNews.length,
+                  itemBuilder: (context, index) {
+                    var item = controller.filteredNews[index];
+                    return NewsCardWidget(
+                      title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
+                      name: item.ownerName ?? '-',
+                      image: item.images?.firstOrNull ?? '',
+                      date: Utils.formatDate(dateStr: item.date),
+                      onPressed: () {
+                        controller.newsData = item;
+                        NewsDetailsPage(news: controller.newsData).navTo();
+                      },
+                    );
+                  }),
+            );
+          }),
         ),
       ),
     );
