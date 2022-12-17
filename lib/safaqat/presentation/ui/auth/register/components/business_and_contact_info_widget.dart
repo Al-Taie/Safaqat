@@ -27,10 +27,7 @@ class BusinessAndContactInfoWidget extends StatelessWidget {
           hintText: AppStrings.country,
           suggestions: controller.countries,
           displayStringForOption: (country) => country.name,
-          onSelected: (value) {
-            controller.country = value;
-            controller.getCities();
-          },
+          onSelected: (value) => controller.country = value,
         ),
         const SizedBox(
           height: 8,

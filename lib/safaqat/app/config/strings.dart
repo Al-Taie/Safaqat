@@ -129,6 +129,7 @@ const eventTypeKey = 'eventType';
 const eventAttendKey = 'eventAttend';
 const selectPlaceKey = 'selectPlace';
 const selectKey = 'select';
+const showPublisherNameKey = 'showPublisherName';
 
 class AppStrings {
   static final accountCreationAndTermsPolicy = accountCreationAndTermsPolicyKey.tr;
@@ -260,4 +261,5 @@ class AppStrings {
   static final eventAttend = eventAttendKey.tr;
   static final selectPlace = selectPlaceKey.tr;
   static final select = selectKey.tr;
+  static final showPublisherName = showPublisherNameKey.tr;
 }

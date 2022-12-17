@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 
 class CheckBoxWidget extends StatelessWidget {
-  final bool? value;
+  final bool value;
   final String title;
-  final ValueChanged<bool?>? onChanged;
+  final ValueChanged<bool>? onChanged;
 
   const CheckBoxWidget({
     Key? key,
@@ -19,7 +19,11 @@ class CheckBoxWidget extends StatelessWidget {
       children: [
         Checkbox(
           value: value,
-          onChanged: onChanged,
+          onChanged: (value) {
+            onChanged?.call(value == true);
+          },
+          checkColor: AppColors.primaryColor,
+          activeColor: AppColors.ternary,
         ),
         Flexible(
           child: Text(

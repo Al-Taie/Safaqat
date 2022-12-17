@@ -133,5 +133,6 @@ eventLocationKey: 'مكان الحدث',
   eventAttendKey: 'حضور الحدث',
   selectPlaceKey: 'تحديد المكان',
   selectKey: 'اختيار',
+  showPublisherNameKey: 'اظهار اسم الناشر',
 
 };

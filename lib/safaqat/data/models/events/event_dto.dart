@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:safaqat/safaqat/data/models/events/event_coordinates.dart';
 import 'package:safaqat/safaqat/data/models/events/stakeholder_dto.dart';
 
 part 'event_dto.g.dart';
@@ -34,7 +35,7 @@ class EventDto {
   @JsonKey(name: 'cityCode')
   int? cityCode;
   @JsonKey(name: 'coordinates')
-  String? coordinates;
+  EventCoordinates? coordinates;
   @JsonKey(name: 'startDate')
   String? startDate;
   @JsonKey(name: 'endDate')

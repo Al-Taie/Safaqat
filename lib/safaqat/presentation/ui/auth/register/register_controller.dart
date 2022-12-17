@@ -3,30 +3,19 @@ import 'dart:typed_data';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
-import 'package:safaqat/safaqat/app/extensions/int_extension.dart';
 import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/auth/register/register_body.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
-import 'package:safaqat/safaqat/domain/usecases/auth/register/get_cities_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecases/auth/register/get_countires_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecases/auth/register/register_usecase.dart';
+import 'package:safaqat/safaqat/presentation/ui/app_controller.dart';
 
 class RegisterController extends GetxController {
-  @override
-  void onInit() {
-    super.onInit();
-    getCountries();
-  }
-
+  final AppController _appController = Get.find();
   final RegisterUseCase _registerUsecase = Get.find();
-  final GetCountriesUseCase _getCountriesUseCase = Get.find();
-  final GetCitiesUseCase _getCitiesUseCase = Get.find();
 
   final Rx<Resources> status = Resources.init().obs;
-  final RxList<CountryDto> countries = <CountryDto>[].obs;
-  final RxList<CityDto> cities = <CityDto>[].obs;
 
   final _firstNameAr = ''.obs;
   String get firstNameAr => _firstNameAr.value;
@@ -56,13 +45,19 @@ class RegisterController extends GetxController {
   CountryDto get nationality => _nationality.value;
   set nationality(CountryDto value) => _nationality.value = value;
 
-  final _country = CountryDto().obs;
-  CountryDto get country => _country.value;
-  set country(CountryDto value) => _country.value = value;
+  RxList<CountryDto> get countries => _appController.countries;
+  RxList<CityDto> get cities => _appController.cities;
 
-  final _city = CityDto().obs;
-  CityDto get city => _city.value;
-  set city(CityDto value) => _city.value = value;
+  CountryDto get country => _appController.country;
+  set country(CountryDto value) => _appController.country = value;
+
+  CityDto get city => _appController.city;
+  set city(CityDto value) => _appController.city = value;
+
+  final _startAt = ''.obs;
+  String get startAt => _startAt.value;
+  set startAt(String value) => _startAt.value = value;
+
   
   String get address => '${country.name} - ${city.name}';
 
@@ -172,27 +167,6 @@ class RegisterController extends GetxController {
     }
   }
 
-  void getCountries() async {
-    status.value = Resources.loading();
-
-    final result = await _getCountriesUseCase();
-    if (result.data != null) {
-      countries.value = result.data!;
-    }
-    status.value = result;
-  }
-
-  void getCities() async {
-    status.value = Resources.loading();
-
-    final result = await _getCitiesUseCase(
-      params: country.countryNo.toIntOrZero(),
-    );
-    if (result.data != null) {
-      cities.value = result.data!;
-    }
-    status.value = result;
-  }
 
   String? emailValidator(String? value) {
     if (value != null && value.isEmail) {

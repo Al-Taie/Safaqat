@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:safaqat/safaqat/app/config/base_end_points.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/auth/change_password/change_password_body.dart';
 import 'package:safaqat/safaqat/data/models/auth/login/login_body.dart';
 import 'package:safaqat/safaqat/data/models/auth/login/login_dto.dart';
@@ -13,6 +14,7 @@ import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
 import 'package:safaqat/safaqat/data/models/events/event_body.dart';
+import 'package:safaqat/safaqat/data/models/events/event_coordinates.dart';
 import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/events_response.dart';
 import 'package:safaqat/safaqat/data/models/events/stakeholder_dto.dart';
@@ -129,13 +131,14 @@ abstract class SafaqatApiServices {
     @Part(name: 'EAttendanceType') int? attendanceType,
     @Part(name: 'CountryNo') int? countryNo,
     @Part(name: 'CityCode') int? cityCode,
-    @Part(name: 'Coordinates') String? coordinates,
+    @Part(name: 'Coordinates.latitude') double? latitude,
+    @Part(name: 'Coordinates.longitude') double? longitude,
     @Part(name: 'StartDate') String? startDate,
     @Part(name: 'EndDate') String? endDate,
     @Part(name: 'Telephone') String? telephone,
     @Part(name: 'Email') String? email,
     @Part(name: 'WebSite') String? webSite,
-    @Part(name: 'Stakeholders') List<Stakeholder>? stakeholders,
+    @Part(name: 'Stakeholder') List<Stakeholder>? stakeholders,
   });
 
   // @POST('Events/Create')

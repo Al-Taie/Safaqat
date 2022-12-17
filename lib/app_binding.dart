@@ -9,9 +9,8 @@ import 'package:safaqat/safaqat/domain/repositories/authentication_repository.da
 import 'package:safaqat/safaqat/domain/repositories/safaqat_repository.dart';
 import 'package:safaqat/safaqat/domain/usecases/auth/login/login_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecases/auth/login/save_use_info_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecases/auth/register/get_cities_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecases/auth/register/get_countires_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecases/auth/register/register_usecase.dart';
+import 'package:safaqat/safaqat/presentation/ui/app_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/confirm/confirm_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forget_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_controller.dart';
@@ -36,11 +35,10 @@ class AppBindings implements Bindings {
     Get.put(_provideSafaqatRepository());
 
     Get.put(LoginUseCase());
-    Get.put(GetCountriesUseCase());
-    Get.put(GetCitiesUseCase());
     Get.put(RegisterUseCase());
     Get.put(SaveUserInfoUseCase());
 
+    Get.put(AppController());
     Get.put(LoginController());
     Get.put(RegisterController());
     Get.put(ForgetController());

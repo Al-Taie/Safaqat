@@ -64,7 +64,8 @@ class EventDetailsWidget extends StatelessWidget {
       onTypeExpansionChange;
   final ValueChanged<CountryDto> onCountryChange;
   final ValueChanged<CityDto> onCityChange;
-  final ValueChanged<int> onAttendChange, onTypeChange;
+  final ValueChanged<EventType> onTypeChange;
+  final ValueChanged<EventAttend> onAttendChange;
   final List<CountryDto> countries;
   final List<CityDto> cities;
   final ValueChanged<LatLng> onPressed;
@@ -87,7 +88,7 @@ class EventDetailsWidget extends StatelessWidget {
           formKey: eventTypeFormKey,
           expanded: typeExpaned,
           onExpansionChanged: onTypeExpansionChange,
-          onSelected: (EventType value) => onTypeChange(value.index),
+          onSelected: (EventType value) => onTypeChange(value),
           items: EventType.values,
           selector: (EventType type) {
             switch (type) {
@@ -112,7 +113,7 @@ class EventDetailsWidget extends StatelessWidget {
           formKey: eventAttendFormKey,
           expanded: attendExpaned,
           onExpansionChanged: onAttendExpansionChange,
-          onSelected: (EventAttend value) => onAttendChange(value.index),
+          onSelected: (EventAttend value) => onAttendChange(value),
           items: EventAttend.values,
           selector: (EventAttend attend) {
             switch (attend) {

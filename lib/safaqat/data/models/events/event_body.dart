@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:safaqat/safaqat/data/models/events/event_coordinates.dart';
 import 'package:safaqat/safaqat/data/models/events/stakeholder_dto.dart';
 
 part 'event_body.g.dart';
@@ -22,7 +23,7 @@ class EventBody {
   @JsonKey(name: 'CityCode')
   int? cityCode;
   @JsonKey(name: 'Coordinates')
-  String? coordinates;
+  EventCoordinates? coordinates;
   @JsonKey(name: 'StartDate')
   String? startDate;
   @JsonKey(name: 'EndDate')
@@ -39,7 +40,7 @@ class EventBody {
   List<String>? tagsAr;
   @JsonKey(name: 'TagsE')
   List<String>? tagsEn;
-  @JsonKey(name: 'Stakeholders')
+  @JsonKey(name: 'Stakeholder')
   List<Stakeholder>? stakeholders;
 
 

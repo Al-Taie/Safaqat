@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
+import 'package:safaqat/safaqat/app/config/types.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/tabbed_page.dart';
 
 extension ListExtension<T> on List<T>? {
@@ -21,6 +22,14 @@ extension ListExtension<T> on List<T>? {
 
   List<T>? getOr(List<T>? value) =>
       (this != null && this!.isNotEmpty) ? this : value;
+
+  T? find({required ResultCallback<T, bool> selector}) {
+    try {
+      return this?.firstWhere((T e) => selector(e));
+    } catch (e) {
+      return null;
+    }
+  }
 }
 
 extension TabbedPageExtension on List<TabbedPage> {

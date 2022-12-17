@@ -37,7 +37,6 @@ dependencies:
   flutter_typeahead: ^4.1.1
   flutter_google_places: ^0.3.0
   google_maps_webservice: ^0.0.20-nullsafety.5
-  flutter_geocoder: ^0.2.2-nullsafety
   dropdown_button2: ^1.9.2
 
 dev_dependencies:

@@ -8,6 +8,7 @@ import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/checkbox_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
@@ -16,7 +17,6 @@ import 'package:safaqat/safaqat/presentation/ui/events/add/components/event_deta
 import 'package:safaqat/safaqat/presentation/ui/events/add/components/event_info_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/local_images_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/map/event_map.dart';
-import 'package:safaqat/safaqat/presentation/ui/events/map/location_controller.dart';
 
 class AddEventPage extends StatelessWidget {
   const AddEventPage({Key? key}) : super(key: key);
@@ -24,7 +24,6 @@ class AddEventPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(AddEventController());
-    final LocationController locationController = Get.find();
 
     controller.status.listen((result) {
       switch (result.status) {
@@ -138,10 +137,10 @@ class AddEventPage extends StatelessWidget {
                           endAt: AppStrings.endAt,
                           cities: controller.cities.value,
                           countries: controller.countries.value,
-                          locationController: locationController,
+                          locationController: controller.locationController,
                           onCityChange: (city) {
                             controller.city = city;
-                            locationController.setCountryLocation(
+                            controller.locationController.setCountryLocation(
                               city: city.nameAr.toString(),
                               country: controller.country.nameAr.toString(),
                             );
@@ -189,6 +188,13 @@ class AddEventPage extends StatelessWidget {
                           },
                         );
                       }),
+                      Obx(
+                        () => CheckBoxWidget(
+                          value: controller.showName,
+                          onChanged: (state) => controller.showName = state,
+                          title: AppStrings.showPublisherName,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -196,10 +202,7 @@ class AddEventPage extends StatelessWidget {
                   color: AppColors.ternary,
                   textColor: AppColors.primaryColor,
                   text: AppStrings.post,
-                  onPressed: () {
-                    controller.targetPlace = locationController.targetPlace;
-                    controller.publish();
-                  },
+                  onPressed: controller.publish,
                 ),
               ],
             ),
