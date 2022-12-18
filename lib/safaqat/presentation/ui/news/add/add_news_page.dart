@@ -80,6 +80,8 @@ class AddNewsPage extends StatelessWidget {
                         onTagsChange: (List<String> value) {
                           controller.tagsAr.value = value;
                         },
+                        expanded: controller.arabicExpanded.value,
+                        onExpansionChanged: (value) => controller.arabicExpanded.value = value,
                       ),
                       const SizedBox(
                         height: 16,
@@ -99,6 +101,8 @@ class AddNewsPage extends StatelessWidget {
                         onTagsChange: (List<String> value) {
                           controller.tagsEn.value = value;
                         },
+                        expanded: controller.englishExpanded.value,
+                        onExpansionChanged: (value) => controller.englishExpanded.value = value,
                       ),
                       const SizedBox(
                         height: 16,

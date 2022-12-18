@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:dio/dio.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/types.dart';
+import 'package:safaqat/safaqat/domain/entities/events/stakeholder.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/tabbed_page.dart';
 
 extension ListExtension<T> on List<T>? {
@@ -30,6 +34,14 @@ extension ListExtension<T> on List<T>? {
       return null;
     }
   }
+
+  void forEachIndexed(void Function(int index, T element) action) {
+    if (this == null) return;
+
+    for (var index = 0; index < this!.length; index++) {
+      action(index, this![index]);
+    }
+  }
 }
 
 extension TabbedPageExtension on List<TabbedPage> {
@@ -52,4 +64,55 @@ extension TabbedPageExtension on List<TabbedPage> {
           activeIcon: activeIconWidgeticonWidget,
         );
       }).toList();
+}
+
+class StakeholderMultiPart {
+  StakeholderMultiPart({required this.fields, required this.files});
+
+  final List<MapEntry<String, String>> fields;
+  final List<MapEntry<String, MultipartFile>> files;
+}
+
+extension StakeHoldersExtension on List<Stakeholder?>? {
+  StakeholderMultiPart toMultiPart() {
+    var fields = <MapEntry<String, String>>[];
+    var files = <MapEntry<String, MultipartFile>>[];
+
+    if (this == null) return StakeholderMultiPart(fields: fields, files: files);
+
+    forEachIndexed((index, value) {
+      if (value == null) return;
+
+      fields.addAll([
+        MapEntry(
+          'StakeHolder[$index].stakeholderName',
+          value.stakeholderName,
+        ),
+        MapEntry(
+          'StakeHolder[$index].stakeholderOrder',
+          value.stakeholderName,
+        ),
+        MapEntry(
+          'StakeHolder[$index].stakeholderType',
+          value.stakeholderName,
+        ),
+        MapEntry(
+          'StakeHolder[$index].sponsorType',
+          value.stakeholderName,
+        ),
+      ]);
+
+      files.add(
+        MapEntry(
+          'StakeHolder[$index].stakeholderLogo',
+          MultipartFile.fromFileSync(
+            value.stakeholderLogo!.path,
+            filename:
+                value.stakeholderLogo!.path.split(Platform.pathSeparator).last,
+          ),
+        ),
+      );
+    });
+    return StakeholderMultiPart(fields: fields, files: files);
+  }
 }

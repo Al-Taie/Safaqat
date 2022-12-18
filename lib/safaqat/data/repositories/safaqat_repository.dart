@@ -74,7 +74,9 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
       _apiServices.editNews(newsId, body).call();
 
   @override
-  Future<Resources> deleteNews({String? newsId,}) =>
+  Future<Resources> deleteNews({
+    String? newsId,
+  }) =>
       _apiServices.deleteNews(newsId).call();
 
   @override
@@ -88,7 +90,7 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
         .call();
   }
 
-    @override
+  @override
   Future<Resources<EventsResponse>> getEvents(
       {required int pageSize, required int pageNumber}) {
     return _apiServices.getEvents(pageSize, pageNumber).call();
@@ -103,8 +105,7 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
       _apiServices.getMyEvents(pageSize, pageNumber, type).call();
 
   @override
-  Future<Resources<EventDto>> addEvent(
-          {required EventBody body}) =>
+  Future<Resources<EventDto>> addEvent({required EventBody body}) =>
       _apiServices
           .publishEvent(
               titleAr: body.titleAr,
@@ -125,9 +126,7 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
               attendanceType: body.attendanceType,
               cityCode: body.cityCode,
               countryNo: body.countryNo,
-              stakeholders: body.stakeholders
-              
-      )
+              stakeholders: body.stakeholders)
           .call();
 
   @override
@@ -135,7 +134,30 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
     String? eventId,
     required EventBody body,
   }) =>
-      _apiServices.editEvent(eventId, body).call();
+      _apiServices
+          .editEvent(
+            eventId: eventId,
+            titleAr: body.titleAr,
+            titleEn: body.titleEn,
+            detailsAr: body.detailsAr,
+            detailsEn: body.detailsEn,
+            showName: body.showName,
+            tagsAr: body.tagsAr,
+            tagsEn: body.tagsEn,
+            webSite: body.webSite,
+            email: body.email,
+            latitude: body.coordinates?.latitude,
+            longitude: body.coordinates?.longitude,
+            startDate: body.startDate,
+            endDate: body.endDate,
+            telephone: body.telephone,
+            type: body.type,
+            attendanceType: body.attendanceType,
+            cityCode: body.cityCode,
+            countryNo: body.countryNo,
+            stakeholders: body.stakeholders,
+          )
+          .call();
 
   @override
   Future<Resources> deleteEvent({String? eventId}) =>

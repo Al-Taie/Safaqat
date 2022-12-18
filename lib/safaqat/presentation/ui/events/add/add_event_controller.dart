@@ -2,15 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_webservice/places.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/event_body.dart';
-import 'package:safaqat/safaqat/data/models/events/stakeholder_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_category.dart';
+import 'package:safaqat/safaqat/domain/entities/events/event_stakeholder.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
+import 'package:safaqat/safaqat/domain/entities/events/stakeholder.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecases/events/add_event_usecase.dart';
 import 'package:safaqat/safaqat/presentation/ui/app_controller.dart';
@@ -96,6 +95,25 @@ class AddEventController extends GetxController {
   EventAttend get attend => _attend.value;
   set attend(EventAttend value) => _attend.value = value;
 
+  File stakeholderLogo = File('');
+
+  final _stakeholderType = EventStakeHolder.organizer.obs;
+  EventStakeHolder get stakeholderType => _stakeholderType.value;
+  set stakeholderType(EventStakeHolder value) => _stakeholderType.value = value;
+
+  final _stakeholderOrder = 0.obs;
+  int get stakeholderOrder => _stakeholderOrder.value;
+  set stakeholderOrder(int value) => _stakeholderOrder.value = value;
+
+  final _sponsorType = ''.obs;
+  String get sponsorType => _sponsorType.value;
+  set sponsorType(String value) => _sponsorType.value = value;
+
+    final _stakeholderName = ''.obs;
+  String get stakeholderName => _stakeholderName.value;
+  set stakeholderName(String value) => _stakeholderName.value = value;
+
+  
   void publish() async {
     status.value = Resources.loading();
 
@@ -118,12 +136,12 @@ class AddEventController extends GetxController {
       attendanceType: attend.index,
       stakeholders: [
         Stakeholder(
-            name: 'Holder1',
-            order: 1,
-            type: 1,
-            sponsorType: 'test',
-            logo:
-                'https://safaqat.s3.eu-central-1.amazonaws.com/Stakeholder/33176fb8f8a94b719bb00cd3bada8f57.png?X-Amz-Expires=120&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4B73UOFUMJIHZMLU/20221217/eu-central-1/s3/aws4_request&X-Amz-Date=20221217T142450Z&X-Amz-SignedHeaders=host&X-Amz-Signature=5be21be404789ec1f3766a31d5bbcf1d43f1475810591740eb85efe785d10ab1')
+          sponsorType: sponsorType,
+          stakeholderName: stakeholderName,
+          stakeholderLogo: stakeholderLogo,
+          stakeholderOrder: stakeholderOrder,
+          stakeholderType: stakeholderType.index,
+        )
       ],
       coordinates: locationController.targetPlace?.toCoordinates() ??
           locationController.targetMarker?.toCoordinates(),

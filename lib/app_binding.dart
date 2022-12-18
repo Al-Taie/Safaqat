@@ -34,10 +34,6 @@ class AppBindings implements Bindings {
     Get.put(_provideAuthenticationRepository());
     Get.put(_provideSafaqatRepository());
 
-    Get.put(LoginUseCase());
-    Get.put(RegisterUseCase());
-    Get.put(SaveUserInfoUseCase());
-
     Get.put(AppController());
     Get.put(LoginController());
     Get.put(RegisterController());

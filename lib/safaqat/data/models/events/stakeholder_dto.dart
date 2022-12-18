@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'stakeholder_dto.g.dart';
 
 @JsonSerializable(ignoreUnannotated: false)
-class Stakeholder {
+class StakeholderDto {
   @JsonKey(name: 'name')
   String? name;
   @JsonKey(name: 'order')
@@ -15,10 +15,11 @@ class Stakeholder {
   @JsonKey(name: 'logo')
   String? logo;
 
-  Stakeholder({this.name, this.order, this.type, this.sponsorType, this.logo});
+  StakeholderDto(
+      {this.name, this.order, this.type, this.sponsorType, this.logo});
 
-  factory Stakeholder.fromJson(Map<String, dynamic> json) => _$StakeholderFromJson(json);
+  factory StakeholderDto.fromJson(Map<String, dynamic> json) =>
+      _$StakeholderFromJson(json);
 
   Map<String, dynamic> toJson() => _$StakeholderToJson(this);
 }
-

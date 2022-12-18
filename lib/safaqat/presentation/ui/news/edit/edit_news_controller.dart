@@ -17,6 +17,10 @@ class EditNewsController extends GetxController {
 
   final RxList<String> tagsAr = <String>[].obs;
   final RxList<String> tagsEn = <String>[].obs;
+
+  final RxBool arabicExpanded = false.obs;
+  final RxBool englishExpanded = false.obs;
+
   var news = NewsDto();
 
   final _titleAr = ''.obs;

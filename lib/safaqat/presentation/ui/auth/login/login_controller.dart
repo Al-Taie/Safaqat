@@ -6,8 +6,8 @@ import 'package:safaqat/safaqat/domain/usecases/auth/login/login_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecases/auth/login/save_use_info_usecase.dart';
 
 class LoginController extends GetxController {
-  final LoginUseCase _loginUseCase = Get.find();
-  final SaveUserInfoUseCase _saveUserInfoUseCase = Get.find();
+  final LoginUseCase _loginUseCase = Get.put(LoginUseCase());
+  final SaveUserInfoUseCase _saveUserInfoUseCase = Get.put(SaveUserInfoUseCase());
 
   final _username = ''.obs;
   String get username => _username.value;
@@ -17,14 +17,10 @@ class LoginController extends GetxController {
   String get password => _password.value;
   set password(String value) => _password.value = value;
 
-  Rx<Resources<LoginDto>> auth =
-      Resources<LoginDto>.init().obs;
+  Rx<Resources<LoginDto>> auth = Resources<LoginDto>.init().obs;
 
   void login() async {
-    final body = LoginBody(
-      username: username,
-      password: password
-    );
+    final body = LoginBody(username: username, password: password);
 
     auth.value = Resources.loading();
 

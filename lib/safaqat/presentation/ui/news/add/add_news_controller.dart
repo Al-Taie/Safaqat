@@ -17,6 +17,9 @@ class AddNewsController extends GetxController {
   final RxList<String> tagsAr = <String>[].obs;
   final RxList<String> tagsEn = <String>[].obs;
 
+  final RxBool arabicExpanded = false.obs;
+  final RxBool englishExpanded = false.obs;
+
   final _titleAr = ''.obs;
   String get titleAr => _titleAr.value;
   set titleAr(String value) => _titleAr.value = value;

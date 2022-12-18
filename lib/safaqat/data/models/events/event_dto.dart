@@ -57,7 +57,7 @@ class EventDto {
   @JsonKey(name: 'statusDesc')
   String? statusDesc;
   @JsonKey(name: 'stakeholders')
-  List<Stakeholder>? stakeholders;
+  List<StakeholderDto>? stakeholders;
   @JsonKey(name: 'postDate')
   String? postDate;
 
@@ -95,5 +95,4 @@ class EventDto {
       _$EventDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$EventDtoToJson(this);
-
 }

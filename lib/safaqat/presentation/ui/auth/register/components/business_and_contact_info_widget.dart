@@ -15,102 +15,106 @@ class BusinessAndContactInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(RegisterController());
-    return ExpansionWidget(
-      headerColor: AppColors.primaryColor,
-      foregroundColor: Colors.white,
-      contentPadding: const EdgeInsets.all(10),
-      title: AppStrings.businessAndContactInfo,
-      iconSvg: AppDrawable.icContact,
-      children: [
-        AutocompleteTextField<CountryDto>(
-          hintText: AppStrings.country,
-          suggestions: controller.countries,
-          displayStringForOption: (country) => country.name,
-          onSelected: (value) => controller.country = value,
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        AutocompleteTextField<CityDto>(
-          hintText: AppStrings.city,
-          suggestions: controller.cities,
-          displayStringForOption: (city) => city.name,
-          onSelected: (value) {
-            controller.city = value;
-          },
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        Row(
+    final RegisterController controller = Get.find();
+
+    return Obx(() => ExpansionWidget(
+          headerColor: AppColors.primaryColor,
+          foregroundColor: Colors.white,
+          contentPadding: const EdgeInsets.all(10),
+          title: AppStrings.businessAndContactInfo,
+          iconSvg: AppDrawable.icContact,
+          expanded: controller.businessExpanded.value,
+          onExpansionChanged: (value) =>
+              controller.businessExpanded.value = value,
           children: [
-            Flexible(
-              flex: 1,
-              child: TextFiledForm(
-                hintText: AppStrings.phone,
-                keyboardType: TextInputType.phone,
-                onTextChanged: (value) {
-                  controller.phone = value;
-                },
-              ),
+            AutocompleteTextField<CountryDto>(
+              hintText: AppStrings.country,
+              suggestions: controller.countries,
+              displayStringForOption: (country) => country.name,
+              onSelected: (value) => controller.country = value,
             ),
             const SizedBox(
-              width: 8,
+              height: 8,
             ),
-            Flexible(
-              flex: 1,
-              child: TextFiledForm(
-                hintText: AppStrings.anotherPhone,
-                keyboardType: TextInputType.phone,
-                onTextChanged: (value) {
-                  controller.anotherPhone = value;
-                },
-              ),
+            AutocompleteTextField<CityDto>(
+              hintText: AppStrings.city,
+              suggestions: controller.cities,
+              displayStringForOption: (city) => city.name,
+              onSelected: (value) {
+                controller.city = value;
+              },
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Row(
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: TextFiledForm(
+                    hintText: AppStrings.phone,
+                    keyboardType: TextInputType.phone,
+                    onTextChanged: (value) {
+                      controller.phone = value;
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                Flexible(
+                  flex: 1,
+                  child: TextFiledForm(
+                    hintText: AppStrings.anotherPhone,
+                    keyboardType: TextInputType.phone,
+                    onTextChanged: (value) {
+                      controller.anotherPhone = value;
+                    },
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            TextFiledForm(
+              hintText: AppStrings.email,
+              keyboardType: TextInputType.emailAddress,
+              validator: controller.emailValidator,
+              onTextChanged: (value) {
+                controller.email = value;
+              },
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            TextFiledForm(
+              hintText: AppStrings.anotherEmail,
+              keyboardType: TextInputType.emailAddress,
+              validator: controller.emailValidator,
+              onTextChanged: (value) {
+                controller.anotherEmail = value;
+              },
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            TextFiledForm(
+              hintText: AppStrings.organization,
+              onTextChanged: (value) {
+                controller.organization = value;
+              },
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            TextFiledForm(
+              hintText: AppStrings.jobPosition,
+              onTextChanged: (value) {
+                controller.jobPosition = value;
+              },
             ),
           ],
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        TextFiledForm(
-          hintText: AppStrings.email,
-          keyboardType: TextInputType.emailAddress,
-          validator: controller.emailValidator,
-          onTextChanged: (value) {
-            controller.email = value;
-          },
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        TextFiledForm(
-          hintText: AppStrings.anotherEmail,
-          keyboardType: TextInputType.emailAddress,
-          validator: controller.emailValidator,
-          onTextChanged: (value) {
-            controller.anotherEmail = value;
-          },
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        TextFiledForm(
-          hintText: AppStrings.organization,
-          onTextChanged: (value) {
-            controller.organization = value;
-          },
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        TextFiledForm(
-          hintText: AppStrings.jobPosition,
-          onTextChanged: (value) {
-            controller.jobPosition = value;
-          },
-        ),
-      ],
-    );
+        ));
   }
 }

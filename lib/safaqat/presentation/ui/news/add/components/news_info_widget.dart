@@ -19,18 +19,23 @@ class NewsInfoWidget extends StatelessWidget {
     required this.onTagsChange,
     this.titleInitialValue,
     this.contentInitialValue,
+    required this.expanded,
+    required this.onExpansionChanged,
   }) : super(key: key);
 
   final String title, newsTitle, content, tagsHint;
   final String? titleInitialValue, contentInitialValue;
-  final bool rtl;
+  final bool rtl, expanded;
   final List<String> tags;
   final ValueChanged<String> onTitleChange, onContentChange;
   final Function(List<String> value) onTagsChange;
+  final ValueChanged<bool> onExpansionChanged;
 
   @override
   Widget build(BuildContext context) {
     return ExpansionWidget(
+      expanded: expanded,
+      onExpansionChanged: onExpansionChanged,
       headerColor: AppColors.primaryColor,
       foregroundColor: Colors.white,
       contentPadding: const EdgeInsets.all(10),

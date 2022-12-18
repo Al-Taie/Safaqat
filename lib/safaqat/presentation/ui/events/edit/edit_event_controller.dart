@@ -14,6 +14,7 @@ import 'package:safaqat/safaqat/data/models/events/stakeholder_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/events/edit_event_params.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_category.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
+import 'package:safaqat/safaqat/domain/entities/events/stakeholder.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecases/events/edit_event_usecase.dart';
 import 'package:safaqat/safaqat/presentation/ui/app_controller.dart';
@@ -162,7 +163,12 @@ class EditEventController extends GetxController {
     website = event.webSite ?? '';
     coordinates = event.coordinates ?? EventCoordinates();
     showName = event.showName ?? false;
-    stakeholders = event.stakeholders ?? [];
+    stakeholders = event.stakeholders?.map((e) => Stakeholder(
+      stakeholderName: e.name!, 
+      stakeholderOrder: e.order!, 
+      stakeholderType: e.type!, 
+      sponsorType: e.sponsorType!
+      )).toList() ?? [];
 
     EventType.values
         .find(selector: (e) => e.index == event.type)

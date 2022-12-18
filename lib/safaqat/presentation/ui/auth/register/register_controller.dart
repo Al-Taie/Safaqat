@@ -13,9 +13,13 @@ import 'package:safaqat/safaqat/presentation/ui/app_controller.dart';
 
 class RegisterController extends GetxController {
   final AppController _appController = Get.find();
-  final RegisterUseCase _registerUsecase = Get.find();
+  final RegisterUseCase _registerUsecase = Get.put(RegisterUseCase());
 
   final Rx<Resources> status = Resources.init().obs;
+
+  final RxBool personalExpanded = false.obs;
+  final RxBool accountCreationExpanded = false.obs;
+  final RxBool businessExpanded = false.obs;
 
   final _firstNameAr = ''.obs;
   String get firstNameAr => _firstNameAr.value;
@@ -58,7 +62,6 @@ class RegisterController extends GetxController {
   String get startAt => _startAt.value;
   set startAt(String value) => _startAt.value = value;
 
-  
   String get address => '${country.name} - ${city.name}';
 
   final _phone = ''.obs;
@@ -166,7 +169,6 @@ class RegisterController extends GetxController {
       photo = base64Encode(bytes);
     }
   }
-
 
   String? emailValidator(String? value) {
     if (value != null && value.isEmail) {
