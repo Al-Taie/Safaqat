@@ -7,7 +7,7 @@ import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
 import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/event_query.dart';
 import 'package:safaqat/safaqat/data/models/events/events_response.dart';
-import 'package:safaqat/safaqat/domain/entities/events/event_category.dart';
+import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecases/events/delete_event_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecases/events/get_my_events_usecase.dart';

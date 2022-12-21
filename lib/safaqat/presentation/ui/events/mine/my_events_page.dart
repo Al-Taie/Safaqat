@@ -4,7 +4,7 @@ import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
-import 'package:safaqat/safaqat/domain/entities/events/event_category.dart';
+import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_floating_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';

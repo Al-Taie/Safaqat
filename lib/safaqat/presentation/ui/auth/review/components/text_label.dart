@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TextLabel extends StatelessWidget {
-  final String label, text;
+  final dynamic text;
+  final String label;
   final double fontSize;
 
   const TextLabel({
@@ -23,10 +24,12 @@ class TextLabel extends StatelessWidget {
           style: style,
         ),
         const SizedBox(width: 16),
-        Text(
-          text,
-          style: style,
-        ),
+        text is Widget
+            ? text
+            : Text(
+                text ?? '',
+                style: style,
+              ),
       ],
     );
   }

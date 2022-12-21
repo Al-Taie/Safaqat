@@ -64,3 +64,30 @@ extension MarkerExtension on Marker? {
     return null;
   }
 }
+
+extension EventCoordinatesExtension on EventCoordinates {
+  LatLng toLatLng() {
+    return LatLng(
+      latitude!,
+      longitude!,
+    );
+  }
+
+  Marker toMarker() {
+    return Marker(
+      markerId: const MarkerId('target'),
+      infoWindow: const InfoWindow(title: 'Event Place'),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+      position: toLatLng(),
+    );
+  }
+
+  CameraUpdate toCameraUpdate() {
+    return CameraUpdate.newCameraPosition(
+      CameraPosition(
+        target: toLatLng(),
+        zoom: 11,
+      ),
+    );
+  }
+}

@@ -7,8 +7,8 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
-import 'package:safaqat/safaqat/domain/entities/events/event_category.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
+import 'package:safaqat/safaqat/domain/entities/events/event_attend.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/autocomplete_textfield.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/dropdown_field.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
@@ -90,22 +90,7 @@ class EventDetailsWidget extends StatelessWidget {
           onExpansionChanged: onTypeExpansionChange,
           onSelected: (EventType value) => onTypeChange(value),
           items: EventType.values,
-          selector: (EventType type) {
-            switch (type) {
-              case EventType.general:
-                return AppStrings.general;
-              case EventType.conference:
-                return AppStrings.conference;
-              case EventType.exhibition:
-                return AppStrings.exhibition;
-              case EventType.trainingCourse:
-                return AppStrings.trainingCourse;
-              case EventType.seminar:
-                return AppStrings.seminar;
-              case EventType.forum:
-                return AppStrings.forum;
-            }
-          },
+          selector: (EventType type) => type.toString(),
         ),
         const SizedBox(height: 8),
         DropdownField(
@@ -115,18 +100,7 @@ class EventDetailsWidget extends StatelessWidget {
           onExpansionChanged: onAttendExpansionChange,
           onSelected: (EventAttend value) => onAttendChange(value),
           items: EventAttend.values,
-          selector: (EventAttend attend) {
-            switch (attend) {
-              case EventAttend.online:
-                return AppStrings.online;
-              case EventAttend.onsite:
-                return AppStrings.onsite;
-              case EventAttend.both:
-                return AppStrings.both;
-              case EventAttend.unspecified:
-                return AppStrings.unspecified;
-            }
-          },
+          selector: (EventAttend attend) => attend.toString(),
         ),
         const SizedBox(height: 8),
         AutocompleteTextField<CountryDto>(
