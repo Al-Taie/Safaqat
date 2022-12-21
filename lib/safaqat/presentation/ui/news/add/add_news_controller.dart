@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 import 'package:safaqat/safaqat/data/models/news/publish/publish_news_body.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecases/news/add_news_usecase.dart';
@@ -19,7 +20,15 @@ class AddNewsController extends GetxController {
 
   final RxBool arabicExpanded = false.obs;
   final RxBool englishExpanded = false.obs;
+  final RxBool imagesExpanded = false.obs;
 
+static const int maxImages = 10;
+  static const List<String> allowedImageTypes = ['png', 'jpg', 'jpeg'];
+  final MultiImagePickerController imageController = MultiImagePickerController(
+          maxImages: maxImages,
+          allowedImageTypes: allowedImageTypes,
+        );
+        
   final _titleAr = ''.obs;
   String get titleAr => _titleAr.value;
   set titleAr(String value) => _titleAr.value = value;

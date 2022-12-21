@@ -184,6 +184,7 @@ class EditEventPage extends StatelessWidget {
                       const SizedBox(height: 16),
                       Obx(() {
                         return LocalImagesWidget(
+                          imageController: controller.imageController,
                           expanded: controller.imagesExpanded.value,
                           onImagesChange: (value) {
                             controller.images = value;

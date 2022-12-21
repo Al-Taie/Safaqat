@@ -8,6 +8,7 @@ import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/local_images_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/add/add_news_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/add/components/news_info_widget.dart';
@@ -64,50 +65,75 @@ class AddNewsPage extends StatelessWidget {
                       0,
                     ),
                     children: [
-                      NewsInfoWidget(
-                        title: AppStrings.arabic,
-                        newsTitle: AppStrings.title,
-                        content: AppStrings.content,
-                        tagsHint: AppStrings.tags,
-                        tags: controller.tagsAr,
-                        rtl: true,
-                        onTitleChange: (String value) {
-                          controller.titleAr = value;
-                        },
-                        onContentChange: (String value) {
-                          controller.detailsAr = value;
-                        },
-                        onTagsChange: (List<String> value) {
-                          controller.tagsAr.value = value;
-                        },
-                        expanded: controller.arabicExpanded.value,
-                        onExpansionChanged: (value) => controller.arabicExpanded.value = value,
-                      ),
+                      Obx(() {
+                        return NewsInfoWidget(
+                          title: AppStrings.arabic,
+                          newsTitle: AppStrings.title,
+                          content: AppStrings.content,
+                          tagsHint: AppStrings.tags,
+                          tags: controller.tagsAr,
+                          rtl: true,
+                          onTitleChange: (String value) {
+                            controller.titleAr = value;
+                          },
+                          onContentChange: (String value) {
+                            controller.detailsAr = value;
+                          },
+                          onTagsChange: (List<String> value) {
+                            controller.tagsAr.value = value;
+                          },
+                          expanded: controller.arabicExpanded.value,
+                          onExpansionChanged: (value) {
+                            controller.arabicExpanded.value = value;
+                            controller.imagesExpanded.value = false;
+                              controller.englishExpanded.value = false;
+                              },
+                        );
+                      }),
                       const SizedBox(
                         height: 16,
                       ),
-                      NewsInfoWidget(
-                        title: AppStrings.english,
-                        newsTitle: AppStrings.title,
-                        content: AppStrings.content,
-                        tagsHint: AppStrings.tags,
-                        tags: controller.tagsEn,
-                        onTitleChange: (String value) {
-                          controller.titleEn = value;
-                        },
-                        onContentChange: (String value) {
-                          controller.detailsEn = value;
-                        },
-                        onTagsChange: (List<String> value) {
-                          controller.tagsEn.value = value;
-                        },
-                        expanded: controller.englishExpanded.value,
-                        onExpansionChanged: (value) => controller.englishExpanded.value = value,
-                      ),
+                      Obx(() {
+                        return NewsInfoWidget(
+                          title: AppStrings.english,
+                          newsTitle: AppStrings.title,
+                          content: AppStrings.content,
+                          tagsHint: AppStrings.tags,
+                          tags: controller.tagsEn,
+                          onTitleChange: (String value) {
+                            controller.titleEn = value;
+                          },
+                          onContentChange: (String value) {
+                            controller.detailsEn = value;
+                          },
+                          onTagsChange: (List<String> value) {
+                            controller.tagsEn.value = value;
+                          },
+                          expanded: controller.englishExpanded.value,
+                          onExpansionChanged: (value) {
+                            controller.arabicExpanded.value = false;
+                            controller.imagesExpanded.value = false;
+                              controller.englishExpanded.value = value;
+                              },
+                        );
+                      }),
                       const SizedBox(
                         height: 16,
                       ),
-                      const PublishNewsWidget(),
+                      Obx(() {
+                        return LocalImagesWidget(
+                          imageController: controller.imageController,
+                          expanded: controller.imagesExpanded.value,
+                          onImagesChange: (value) {
+                            controller.images = value;
+                          },
+                          onExpansionChanged: (bool value) {
+                            controller.arabicExpanded.value = false;
+                            controller.englishExpanded.value = false;
+                            controller.imagesExpanded.value = value;
+                          },
+                        );
+                      }),
                     ],
                   ),
                 ),

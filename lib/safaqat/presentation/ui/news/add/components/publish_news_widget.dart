@@ -10,7 +10,14 @@ import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart'
 import 'package:safaqat/safaqat/presentation/ui/news/add/add_news_controller.dart';
 
 class PublishNewsWidget extends StatelessWidget {
-  const PublishNewsWidget({Key? key}) : super(key: key);
+  const PublishNewsWidget({
+    Key? key,
+    required this.onExpansionChanged,
+    required this.expanded,
+  }) : super(key: key);
+
+  final ValueChanged<bool> onExpansionChanged;
+  final bool expanded;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +31,8 @@ class PublishNewsWidget extends StatelessWidget {
       headerColor: AppColors.primaryColor,
       foregroundColor: Colors.white,
       contentPadding: const EdgeInsets.all(10),
+      expanded: expanded,
+      onExpansionChanged: onExpansionChanged,
       title: AppStrings.pictures,
       children: [
         MultiImagePickerView(

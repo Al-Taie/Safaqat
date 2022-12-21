@@ -10,26 +10,20 @@ import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart'
 class LocalImagesWidget extends StatelessWidget {
   const LocalImagesWidget({
     Key? key,
-    this.maxImages = 10,
-    this.allowedImageTypes = const ['png', 'jpg', 'jpeg'],
+    required this.imageController,
     required this.expanded,
     required this.onExpansionChanged,
     required this.onImagesChange,
   }) : super(key: key);
 
   final bool expanded;
-  final int maxImages;
-  final List<String> allowedImageTypes;
   final ValueChanged<List<File>> onImagesChange;
   final ValueChanged<bool> onExpansionChanged;
 
+  final MultiImagePickerController imageController;
+  
   @override
   Widget build(BuildContext context) {
-    final imageController = MultiImagePickerController(
-      maxImages: maxImages,
-      allowedImageTypes: allowedImageTypes,
-    );
-
     return ExpansionWidget(
       expanded: expanded,
       onExpansionChanged: onExpansionChanged,

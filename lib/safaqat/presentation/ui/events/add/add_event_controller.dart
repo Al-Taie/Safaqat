@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
@@ -32,6 +33,14 @@ class AddEventController extends GetxController {
   final RxBool typeExpaned = false.obs;
   final RxBool attendExpaned = false.obs;
 
+ 
+  static const int maxImages = 10;
+  static const List<String> allowedImageTypes = ['png', 'jpg', 'jpeg'];
+  final MultiImagePickerController imageController = MultiImagePickerController(
+          maxImages: maxImages,
+          allowedImageTypes: allowedImageTypes,
+        );
+        
   final Rx<Resources> status = Resources.init().obs;
   List<File> images = <File>[];
 
