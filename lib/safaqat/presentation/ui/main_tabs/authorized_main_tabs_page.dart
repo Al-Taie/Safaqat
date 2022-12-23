@@ -19,11 +19,11 @@ class AuthorizedMainTabsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<TabbedPage> pages = [
-      TabbedPage(
-        page: const HomePage(),
-        label: AppStrings.home,
-        icon: AppDrawable.icHome,
-      ),
+      // TabbedPage(
+      //   page: const HomePage(),
+      //   label: AppStrings.home,
+      //   icon: AppDrawable.icHome,
+      // ),
       TabbedPage(
         page: const NewsPage(isLogged: true),
         label: AppStrings.news,
@@ -39,11 +39,11 @@ class AuthorizedMainTabsPage extends StatelessWidget {
         label: AppStrings.notifications,
         icon: AppDrawable.icNotifications,
       ),
-      TabbedPage(
-        page: const ProfilePage(),
-        label: AppStrings.profile,
-        icon: AppDrawable.icTabPerson,
-      ),
+      // TabbedPage(
+      //   page: const ProfilePage(),
+      //   label: AppStrings.profile,
+      //   icon: AppDrawable.icTabPerson,
+      // ),
     ];
 
     return Obx(

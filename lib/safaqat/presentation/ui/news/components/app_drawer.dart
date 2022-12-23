@@ -100,11 +100,11 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
           ),
-          item(
-            text: AppStrings.profile,
-            icon: AppDrawable.icTabPerson,
-            onClick: onProfile,
-          ),
+          // item(
+          //   text: AppStrings.profile,
+          //   icon: AppDrawable.icTabPerson,
+          //   onClick: onProfile,
+          // ),
           item(
             text: AppStrings.manageNews,
             icon: AppDrawable.icNews,
@@ -115,21 +115,21 @@ class AppDrawer extends StatelessWidget {
             icon: Icons.event,
             onClick: onManageEvents,
           ),
-          item(
-            text: AppStrings.settings,
-            icon: AppDrawable.icSettings,
-            onClick: onSettings,
-          ),
-          item(
-            text: AppStrings.support,
-            icon: AppDrawable.icSupport,
-            onClick: onSupport,
-          ),
-          item(
-            text: AppStrings.termsAndPolicy,
-            icon: AppDrawable.icTerms,
-            onClick: onTerms,
-          ),
+          // item(
+          //   text: AppStrings.settings,
+          //   icon: AppDrawable.icSettings,
+          //   onClick: onSettings,
+          // ),
+          // item(
+          //   text: AppStrings.support,
+          //   icon: AppDrawable.icSupport,
+          //   onClick: onSupport,
+          // ),
+          // item(
+          //   text: AppStrings.termsAndPolicy,
+          //   icon: AppDrawable.icTerms,
+          //   onClick: onTerms,
+          // ),
           item(
             text: AppStrings.logout,
             icon: AppDrawable.icLogout,

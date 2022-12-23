@@ -17,11 +17,11 @@ class GuestMainTabsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<TabbedPage> pages = [
-      TabbedPage(
-        page: const HomePage(),
-        label: AppStrings.home,
-        icon: AppDrawable.icHome,
-      ),
+      // TabbedPage(
+      //   page: const HomePage(),
+      //   label: AppStrings.home,
+      //   icon: AppDrawable.icHome,
+      // ),
       TabbedPage(
         page: const NewsPage(),
         label: AppStrings.news,
