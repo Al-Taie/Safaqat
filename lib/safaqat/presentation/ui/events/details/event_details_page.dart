@@ -9,6 +9,7 @@ import 'package:safaqat/safaqat/app/extensions/int_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
+import 'package:safaqat/safaqat/data/models/events/stakeholder_dto.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/link_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_icon.dart';
@@ -109,6 +110,22 @@ class EventDetailsPage extends StatelessWidget {
                 width: Get.width,
                 color: AppColors.shadeQuaternary,
               ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: Get.width,
+                child: Text(
+                  AppStrings.stakeholders,
+                  style: AppTextStyle.title.copyWith(fontSize: 16),
+                ),
+              ),
+              const SizedBox(height: 8),
+              stakeholdersViewer(stakeholders: event.stakeholders),
+              const SizedBox(height: 16),
+              Container(
+                height: 1,
+                width: Get.width,
+                color: AppColors.shadeQuaternary,
+              ),
               const SizedBox(height: 8),
               SizedBox(
                 width: Get.width,
@@ -157,6 +174,7 @@ Widget eventInfo(EventDto event) {
             zoomGesturesEnabled: false,
             scrollGesturesEnabled: false,
             rotateGesturesEnabled: false,
+            myLocationEnabled: false,
             onMapCreated: (controller) =>
                 controller.animateCamera(event.coordinates!.toCameraUpdate()),
             initialCameraPosition: CameraPosition(
@@ -229,4 +247,96 @@ Widget eventInfo(EventDto event) {
       ),
     ],
   );
+}
+
+Widget stakeholdersViewer({required List<StakeholderDto>? stakeholders}) {
+  return Wrap(
+    spacing: 8,
+    runSpacing: 8,
+    children: stakeholders
+            ?.map((stakeholder) => stakeholderView(stakeholder))
+            .toList() ??
+        [],
+  );
+}
+
+Widget stakeholderView(StakeholderDto stakeholder) {
+  return GestureDetector(
+    onTap: () {
+      Get.dialog(StakeholderDialog(stakeholder: stakeholder));
+    },
+    child: SizedBox(
+      width: 100,
+      height: 100,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(50),
+        child: Image.network(
+          stakeholder.logo ?? '',
+          fit: BoxFit.cover,
+        ),
+      ),
+    ),
+  );
+}
+
+class StakeholderDialog extends StatelessWidget {
+  const StakeholderDialog({
+    super.key,
+    required this.stakeholder,
+  });
+  final StakeholderDto stakeholder;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding:  EdgeInsets.symmetric(horizontal: 16, vertical: Get.height/3),
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Material(
+        child: Container(
+            color: AppColors.background,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: SizedBox(
+                      width: 100,
+                      height: 100,
+                      child: Image.network(
+                        stakeholder.logo ?? '',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Container(
+                    height: 1,
+                    width: Get.width,
+                    color: AppColors.shadeQuaternary,
+                  ),
+                  const SizedBox(height: 16),
+                  TextLabel(
+                    label: '${AppStrings.stakeholderName}:',
+                    text: stakeholder.name,
+                  ),
+                  const SizedBox(height: 8),
+                  TextLabel(
+                    label: '${AppStrings.stakeholderType}:',
+                    text: stakeholder.type.toEventStakeHolderType().toString(),
+                  ),
+                  const SizedBox(height: 8),
+                  TextLabel(
+                    label: '${AppStrings.sponsorType}:',
+                    text: stakeholder.sponsorType,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

@@ -7,7 +7,6 @@ import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 
 
-
 class LocationController extends GetxController {
   final Rx<PlacesSearchResult?> _targetPlace = Rx(null);
   PlacesSearchResult? get targetPlace => _targetPlace.value;
@@ -80,8 +79,6 @@ class LocationController extends GetxController {
     ]);
 
     geoLocation = response.results.first;
-
-    Logger.log(geoLocation?.addressComponents.first);
 
     var update = CameraUpdate.newCameraPosition(
       CameraPosition(
