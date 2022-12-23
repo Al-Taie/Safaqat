@@ -91,7 +91,22 @@ class EventDetailsPage extends StatelessWidget {
               const SizedBox(height: 16),
               // ClipRRect(
               //   borderRadius: BorderRadius.circular(8),
-              //   child: Image.network(event.images?.firstOrNull ?? ''),
+              //   child: Image.network(
+              //     event.images?.firstOrNull ?? '',
+              //     loadingBuilder: (BuildContext context, Widget child,
+              //         ImageChunkEvent? loadingProgress) {
+              //       if (loadingProgress == null) return child;
+              //       return Center(
+              //         child: CircularProgressIndicator(
+              //           color: AppColors.primaryColor,
+              //           value: loadingProgress.expectedTotalBytes != null
+              //               ? loadingProgress.cumulativeBytesLoaded /
+              //                   loadingProgress.expectedTotalBytes!
+              //               : null,
+              //         ),
+              //       );
+              //     },
+              //   ),
               // ),
               const SizedBox(height: 16),
               SizedBox(
@@ -273,6 +288,19 @@ Widget stakeholderView(StakeholderDto stakeholder) {
         child: Image.network(
           stakeholder.logo ?? '',
           fit: BoxFit.cover,
+          loadingBuilder: (BuildContext context, Widget child,
+              ImageChunkEvent? loadingProgress) {
+            if (loadingProgress == null) return child;
+            return Center(
+              child: CircularProgressIndicator(
+                color: AppColors.primaryColor,
+                value: loadingProgress.expectedTotalBytes != null
+                    ? loadingProgress.cumulativeBytesLoaded /
+                        loadingProgress.expectedTotalBytes!
+                    : null,
+              ),
+            );
+          },
         ),
       ),
     ),
@@ -284,16 +312,17 @@ class StakeholderDialog extends StatelessWidget {
     super.key,
     required this.stakeholder,
   });
+
   final StakeholderDto stakeholder;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 16, vertical: Get.height/3),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: Get.height / 3),
       child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
-          child: Material(
-        child: Container(
+        borderRadius: BorderRadius.circular(16),
+        child: Material(
+          child: Container(
             color: AppColors.background,
             child: Padding(
               padding: const EdgeInsets.all(16),

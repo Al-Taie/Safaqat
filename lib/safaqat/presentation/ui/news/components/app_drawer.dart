@@ -28,12 +28,12 @@ class AppDrawer extends StatelessWidget {
       onTerms,
       onLogout;
 
-  Widget item({text, icon, onClick}) {
-    var iconWidget = icon is String ? SvgPicture.asset(icon) : Icon(icon);
+  Widget item({text, icon, onClick, Color color = AppColors.shadeSecondary}) {
+    var iconWidget = icon is String ? SvgPicture.asset(icon, color: color) : Icon(icon, color: color);
     return ListTile(
       title: Text(
         text,
-        style: const TextStyle(fontSize: 15),
+        style: const TextStyle(fontSize: 15, color: AppColors.shadePrimary),
       ),
       leading: iconWidget,
       onTap: onClick,
@@ -83,6 +83,19 @@ class AppDrawer extends StatelessWidget {
                       height: 80,
                       width: 80,
                       fit: BoxFit.cover,
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.ternary,
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
                     ),
                   ),
                   if (Utils.isRTL)

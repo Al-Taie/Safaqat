@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
-import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/components/event_card_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/details/event_details_page.dart';
@@ -44,35 +44,42 @@ class EventsPage extends StatelessWidget {
             title: AppStrings.events,
             onSearch: (String query) => controller.searchEvents(query),
           ),
-          body: Obx(() {
-            return StatusWidget(
-              status: controller.status.value.status,
-              onClickTryAgain: controller.getEvents,
-              child: ListView.builder(
-                  controller: controller.scrollController,
-                  physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.fromLTRB(
-                    16,
-                    8,
-                    16,
-                    16,
-                  ),
-                  itemCount: controller.filteredEvents.length,
-                  itemBuilder: (context, index) {
-                    var item = controller.filteredEvents[index];
-                    return EventCardWidget(
-                      title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
-                      name: item.ownerName ?? '-',
-                      // image: item.images?.firstOrNull ?? '',
-                      date: Utils.formatDate(dateStr: item.startDate),
-                      onPressed: () {
-                        controller.eventData = item;
-                        EventDetailsPage(event: controller.eventData).navTo();
-                      },
-                    );
-                  }),
-            );
-          }),
+          body: RefreshIndicator(
+            key: controller.refreshIndicatorKey,
+            onRefresh: () async {
+              controller.getEvents();
+            },
+            color: AppColors.primaryColor,
+            child: Obx(() {
+              return StatusWidget(
+                status: controller.status.value.status,
+                onClickTryAgain: controller.getEvents,
+                child: ListView.builder(
+                    controller: controller.scrollController,
+                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.fromLTRB(
+                      16,
+                      8,
+                      16,
+                      16,
+                    ),
+                    itemCount: controller.filteredEvents.length,
+                    itemBuilder: (context, index) {
+                      var item = controller.filteredEvents[index];
+                      return EventCardWidget(
+                        title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
+                        name: item.ownerName ?? '-',
+                        // image: item.images?.firstOrNull ?? '',
+                        date: Utils.formatDate(dateStr: item.startDate),
+                        onPressed: () {
+                          controller.eventData = item;
+                          EventDetailsPage(event: controller.eventData).navTo();
+                        },
+                      );
+                    }),
+              );
+            }),
+          ),
         ),
       ),
     );

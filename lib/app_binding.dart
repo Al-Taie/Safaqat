@@ -39,8 +39,6 @@ class AppBindings implements Bindings {
     Get.put(RegisterController());
     Get.put(ForgetController());
     Get.put(ConfirmController());
-    Get.put(HomeController());
-    Get.put(MyEventsController());
     Get.put(LocationController());
   }
 

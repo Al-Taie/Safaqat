@@ -15,6 +15,9 @@ class NewsController extends GetxController {
   final GetNewsUseCase _getNewsUseCase = Get.put(GetNewsUseCase());
   final scrollController = ScrollController();
 
+  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
+  GlobalKey<RefreshIndicatorState>();
+
   @override
   void onInit() {
     super.onInit();

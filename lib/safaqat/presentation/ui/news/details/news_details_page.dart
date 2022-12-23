@@ -62,7 +62,22 @@ class NewsDetailsPage extends StatelessWidget {
               const SizedBox(height: 16),
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.network(news.images?.firstOrNull ?? ''),
+                child: Image.network(
+                  news.images?.firstOrNull ?? '',
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.primaryColor,
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  },
+                ),
               ),
               const SizedBox(height: 16),
               SizedBox(

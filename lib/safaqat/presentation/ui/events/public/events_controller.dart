@@ -15,6 +15,9 @@ class EventsController extends GetxController {
   final GetEventsUseCase _getEventsUseCase = Get.put(GetEventsUseCase());
   final scrollController = ScrollController();
 
+  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
+  GlobalKey<RefreshIndicatorState>();
+
   @override
   void onInit() {
     super.onInit();
