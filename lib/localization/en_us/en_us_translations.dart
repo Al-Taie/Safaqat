@@ -135,4 +135,10 @@ final Map<String, String> enUS = {
   partnerKey: 'Partner',
   sponsorKey: 'Sponsor',
   organizerKey: 'Organizer',
+  stakeholderTypeKey: 'Stackholder type',
+  sponsorTypeKey: 'Sponsor type',
+  stakeholdersKey: 'Stakeholders',
+  stakeholderNameKey: 'Stakeholder name',
+  logoKey: 'Logo',
+
 };

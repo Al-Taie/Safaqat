@@ -49,9 +49,7 @@ class EventInfoWidget extends StatelessWidget {
           textAlign: rtl ? TextAlign.right : TextAlign.left,
           onTextChanged: onTitleChange,
         ),
-        const SizedBox(
-          height: 8,
-        ),
+        const SizedBox(height: 8),
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: TextFiledForm(

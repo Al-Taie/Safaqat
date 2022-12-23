@@ -137,4 +137,9 @@ final Map<String, String> arIQ = {
   partnerKey: 'شريك',
   sponsorKey: 'راعي',
   organizerKey: 'منظم',
+  stakeholderTypeKey: 'نوع المسؤول',
+  sponsorTypeKey: 'نوع الراعي',
+  stakeholdersKey: 'المسؤولون',
+  stakeholderNameKey: 'اسم المسؤول',
+  logoKey: 'الشعار',
 };

@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/event_body.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
-import 'package:safaqat/safaqat/domain/entities/events/event_stakeholder.dart';
+import 'package:safaqat/safaqat/domain/entities/events/event_stakeholder_type.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_attend.dart';
 import 'package:safaqat/safaqat/domain/entities/events/stakeholder.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
@@ -25,6 +26,8 @@ class AddEventController extends GetxController {
 
   final GlobalKey<FormState> eventTypeFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> eventAttendFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> eventstakeHolderTypeFormKey =
+      GlobalKey<FormState>();
 
   final RxBool detailsExpanded = false.obs;
   final RxBool arabicExpanded = false.obs;
@@ -32,20 +35,42 @@ class AddEventController extends GetxController {
   final RxBool imagesExpanded = false.obs;
   final RxBool typeExpaned = false.obs;
   final RxBool attendExpaned = false.obs;
+  final RxBool stakeHolderTypeExpanded = false.obs;
+  final RxBool stakeHolderExpanded = false.obs;
+  final RxBool stakeholderImageExpanded = false.obs;
+  final Rx<String?> initialStakeholderTypeValue = Rx(null);
+  final Rx<String?> initialNameValue = Rx(null);
 
- 
   static const int maxImages = 10;
   static const List<String> allowedImageTypes = ['png', 'jpg', 'jpeg'];
-  final MultiImagePickerController imageController = MultiImagePickerController(
-          maxImages: maxImages,
-          allowedImageTypes: allowedImageTypes,
-        );
-        
+  final imageController = MultiImagePickerController(
+    maxImages: maxImages,
+    allowedImageTypes: allowedImageTypes,
+  );
+
+  final Rx<Stakeholder?> _stakeholder = Rx(null);
+  Stakeholder? get stakeholder => _stakeholder.value;
+  set stakeholder(Stakeholder? value) => _stakeholder.value = value;
+
+  void resetSingleImageLoader() {
+    singleImageController.value = MultiImagePickerController(
+      maxImages: 1,
+      allowedImageTypes: allowedImageTypes,
+    );
+  }
+
+  Rx<MultiImagePickerController> singleImageController =
+      MultiImagePickerController(
+    maxImages: 1,
+    allowedImageTypes: allowedImageTypes,
+  ).obs;
+
   final Rx<Resources> status = Resources.init().obs;
   List<File> images = <File>[];
 
   final RxList<String> tagsAr = <String>[].obs;
   final RxList<String> tagsEn = <String>[].obs;
+  final RxList<Stakeholder> stakeholders = <Stakeholder>[].obs;
 
   RxList<CountryDto> get countries => _appController.countries;
   RxList<CityDto> get cities => _appController.cities;
@@ -106,9 +131,10 @@ class AddEventController extends GetxController {
 
   File stakeholderLogo = File('');
 
-  final _stakeholderType = EventStakeHolder.organizer.obs;
-  EventStakeHolder get stakeholderType => _stakeholderType.value;
-  set stakeholderType(EventStakeHolder value) => _stakeholderType.value = value;
+  final _stakeholderType = EventStakeHolderType.organizer.obs;
+  EventStakeHolderType get stakeholderType => _stakeholderType.value;
+  set stakeholderType(EventStakeHolderType value) =>
+      _stakeholderType.value = value;
 
   final _stakeholderOrder = 0.obs;
   int get stakeholderOrder => _stakeholderOrder.value;
@@ -118,11 +144,10 @@ class AddEventController extends GetxController {
   String get sponsorType => _sponsorType.value;
   set sponsorType(String value) => _sponsorType.value = value;
 
-    final _stakeholderName = ''.obs;
+  final _stakeholderName = ''.obs;
   String get stakeholderName => _stakeholderName.value;
   set stakeholderName(String value) => _stakeholderName.value = value;
 
-  
   void publish() async {
     status.value = Resources.loading();
 
@@ -149,7 +174,7 @@ class AddEventController extends GetxController {
           stakeholderName: stakeholderName,
           stakeholderLogo: stakeholderLogo,
           stakeholderOrder: stakeholderOrder,
-          stakeholderType: stakeholderType.index,
+          stakeholderType: stakeholderType,
         )
       ],
       coordinates: locationController.targetPlace?.toCoordinates() ??

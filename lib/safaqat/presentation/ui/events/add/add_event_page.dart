@@ -7,6 +7,9 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
+import 'package:safaqat/safaqat/domain/entities/events/event_stakeholder_type.dart';
+import 'package:safaqat/safaqat/domain/entities/events/stakeholder.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/checkbox_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
@@ -16,6 +19,7 @@ import 'package:safaqat/safaqat/presentation/ui/events/add/add_event_controller.
 import 'package:safaqat/safaqat/presentation/ui/events/add/components/event_details_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/add/components/event_info_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/local_images_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/events/add/components/event_stakeholders_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/map/event_map.dart';
 
 class AddEventPage extends StatelessWidget {
@@ -92,6 +96,7 @@ class AddEventPage extends StatelessWidget {
                             controller.englishExpanded.value = false;
                             controller.imagesExpanded.value = false;
                             controller.detailsExpanded.value = false;
+                            controller.stakeHolderExpanded.value = false;
                             controller.arabicExpanded.value = value;
                           },
                         );
@@ -120,6 +125,7 @@ class AddEventPage extends StatelessWidget {
                             controller.arabicExpanded.value = false;
                             controller.imagesExpanded.value = false;
                             controller.detailsExpanded.value = false;
+                            controller.stakeHolderExpanded.value = false;
                             controller.englishExpanded.value = value;
                           },
                         );
@@ -175,6 +181,49 @@ class AddEventPage extends StatelessWidget {
                       }),
                       const SizedBox(height: 16),
                       Obx(() {
+                        return EventStakeHoldersWidget(
+                          title: AppStrings.stakeholders,
+                          name: AppStrings.stakeholderName,
+                          sponsorType: AppStrings.sponsorType,
+                          stakeHolderTypeExpanded:
+                              controller.stakeHolderTypeExpanded.value,
+                          eventstakeHolderTypeFormKey:
+                              controller.eventstakeHolderTypeFormKey,
+                          expanded: controller.stakeHolderExpanded.value,
+                          onNameChange: (String value) =>
+                              controller.stakeholderName = value,
+                          onSponsorTypeChange: (String value) =>
+                              controller.sponsorType = value,
+                          onExpansionChanged: (bool value) {
+                            controller.arabicExpanded.value = false;
+                            controller.imagesExpanded.value = false;
+                            controller.detailsExpanded.value = false;
+                            controller.englishExpanded.value = false;
+                            controller.stakeHolderExpanded.value = value;
+                            controller.stakeHolderExpanded.value = value;
+                          },
+                          onStakeHolderTypeExpansionChanged: (bool value) =>
+                              controller.stakeHolderTypeExpanded.value = value,
+                          onStakeHolderTypeChange:
+                              (EventStakeHolderType value) =>
+                                  controller.stakeholderType = value,
+                          onStakeHolderImageExpansionChanged: (bool value) {},
+                          stakeholderImageExpanded:
+                              controller.stakeholderImageExpanded.value,
+                          stakeholders: controller.stakeholders.value,
+                          onStakeHoldersChanged: (value) {
+                            controller.stakeholders.value = value;
+                            controller.resetSingleImageLoader();
+                          },
+                          imageController:
+                              controller.singleImageController.value,
+                          stakeholder: controller.stakeholder,
+                          onStakeHolderChange: (Stakeholder? value) =>
+                              controller.stakeholder = value
+                        );
+                      }),
+                      const SizedBox(height: 16),
+                      Obx(() {
                         return LocalImagesWidget(
                           imageController: controller.imageController,
                           expanded: controller.imagesExpanded.value,
@@ -185,6 +234,7 @@ class AddEventPage extends StatelessWidget {
                             controller.arabicExpanded.value = false;
                             controller.englishExpanded.value = false;
                             controller.detailsExpanded.value = false;
+                            controller.stakeHolderExpanded.value = false;
                             controller.imagesExpanded.value = value;
                           },
                         );

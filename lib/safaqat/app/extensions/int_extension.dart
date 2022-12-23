@@ -1,4 +1,5 @@
 import 'package:safaqat/safaqat/domain/entities/events/event_attend.dart';
+import 'package:safaqat/safaqat/domain/entities/events/event_stakeholder_type.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
 
 extension IntExtension on int? {
@@ -32,6 +33,20 @@ extension IntExtension on int? {
         return EventAttend.both;
       case 3:
         return EventAttend.unspecified;
+    }
+    throw Exception('Not Valid');
+  }
+
+    EventStakeHolderType toEventStakeHolderType() {
+    switch (this) {
+      case 0:
+        return EventStakeHolderType.organizer;
+      case 1:
+        return EventStakeHolderType.organizer;
+      case 2:
+        return EventStakeHolderType.partner;
+      case 3:
+        return EventStakeHolderType.sponsor;
     }
     throw Exception('Not Valid');
   }

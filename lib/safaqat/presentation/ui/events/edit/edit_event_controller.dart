@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
+import 'package:safaqat/safaqat/app/extensions/int_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
@@ -174,8 +175,9 @@ static const int maxImages = 10;
     stakeholders = event.stakeholders?.map((e) => Stakeholder(
       stakeholderName: e.name!, 
       stakeholderOrder: e.order!, 
-      stakeholderType: e.type!, 
-      sponsorType: e.sponsorType!
+      stakeholderType: e.type!.toEventStakeHolderType(), 
+      sponsorType: e.sponsorType!,
+      stakeholderLogo: File('')
       )).toList() ?? [];
 
     EventType.values

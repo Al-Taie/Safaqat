@@ -133,6 +133,11 @@ const showPublisherNameKey = 'showPublisherName';
 const partnerKey = 'partner';
 const sponsorKey = 'sponsor';
 const organizerKey = 'organizer';
+const stakeholdersKey = 'stakeholders';
+const stakeholderNameKey = 'stakeholderName';
+const sponsorTypeKey = 'sponsorType';
+const stakeholderTypeKey = 'stakeholderType';
+const logoKey = 'logo';
 
 
 class AppStrings {
@@ -269,5 +274,10 @@ class AppStrings {
   static final partner= partnerKey.tr;
   static final sponsor = sponsorKey.tr;
   static final organizer = organizerKey.tr;
+  static final stakeholders = stakeholdersKey.tr;
+  static final stakeholderName = stakeholderNameKey.tr;
+  static final sponsorType = sponsorTypeKey.tr;
+  static final stakeholderType = stakeholderTypeKey.tr;
+  static final logo = logoKey.tr;
 
 }
