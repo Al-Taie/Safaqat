@@ -6,6 +6,7 @@ import 'package:retrofit/retrofit.dart';
 import 'package:safaqat/safaqat/app/config/base_end_points.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/auth/change_password/change_password_body.dart';
 import 'package:safaqat/safaqat/data/models/auth/login/login_body.dart';
 import 'package:safaqat/safaqat/data/models/auth/login/login_dto.dart';

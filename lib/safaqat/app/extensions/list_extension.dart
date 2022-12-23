@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:dio/dio.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/types.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/domain/entities/events/stakeholder.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/tabbed_page.dart';
 
@@ -90,15 +91,15 @@ extension StakeHoldersExtension on List<Stakeholder?>? {
         ),
         MapEntry(
           'StakeHolder[$index].stakeholderOrder',
-          value.stakeholderName,
+          value.stakeholderOrder.toString(),
         ),
         MapEntry(
           'StakeHolder[$index].stakeholderType',
-          value.stakeholderName,
+          value.stakeholderType.toString(),
         ),
         MapEntry(
           'StakeHolder[$index].sponsorType',
-          value.stakeholderName,
+          value.sponsorType,
         ),
       ]);
 
@@ -106,13 +107,14 @@ extension StakeHoldersExtension on List<Stakeholder?>? {
         MapEntry(
           'StakeHolder[$index].stakeholderLogo',
           MultipartFile.fromFileSync(
-            value.stakeholderLogo!.path,
+            value.stakeholderLogo.path,
             filename:
-                value.stakeholderLogo!.path.split(Platform.pathSeparator).last,
+                value.stakeholderLogo.path.split(Platform.pathSeparator).last,
           ),
         ),
       );
     });
+
     return StakeholderMultiPart(fields: fields, files: files);
   }
 }

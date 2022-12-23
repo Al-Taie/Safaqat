@@ -168,19 +168,11 @@ class AddEventController extends GetxController {
       webSite: website,
       type: type.index,
       attendanceType: attend.index,
-      stakeholders: [
-        Stakeholder(
-          sponsorType: sponsorType,
-          stakeholderName: stakeholderName,
-          stakeholderLogo: stakeholderLogo,
-          stakeholderOrder: stakeholderOrder,
-          stakeholderType: stakeholderType,
-        )
-      ],
+      stakeholders: stakeholders,
       coordinates: locationController.targetPlace?.toCoordinates() ??
           locationController.targetMarker?.toCoordinates(),
     );
-
+    Logger.log('SEND EVENT');
     final result = await _addEventUseCase(params: body);
     status.value = result;
 
