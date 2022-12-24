@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:safaqat/safaqat/data/models/events/event_coordinates.dart';
 import 'package:safaqat/safaqat/domain/entities/events/stakeholder.dart';
 
@@ -19,6 +21,7 @@ class EventBody {
   bool? showName;
   List<String>? tagsAr;
   List<String>? tagsEn;
+  List<File>? images;
   List<Stakeholder>? stakeholders;
 
   EventBody({
@@ -39,6 +42,7 @@ class EventBody {
     this.showName,
     this.tagsAr,
     this.tagsEn,
+    this.images,
     this.stakeholders,
   });
 }

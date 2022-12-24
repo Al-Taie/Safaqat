@@ -138,6 +138,7 @@ abstract class SafaqatApiServices {
     @Part(name: 'Telephone') String? telephone,
     @Part(name: 'Email') String? email,
     @Part(name: 'WebSite') String? webSite,
+    @Part(name: 'Images') List<File>? images,
     @Part(name: 'Stakeholder') List<Stakeholder>? stakeholders,
   });
 

@@ -126,6 +126,7 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
               attendanceType: body.attendanceType,
               cityCode: body.cityCode,
               countryNo: body.countryNo,
+              images: body.images,
               stakeholders: body.stakeholders)
           .call();
 

@@ -52,6 +52,8 @@ class EventDto {
   List<String>? tagsAr;
   @JsonKey(name: 'tagsE')
   List<String>? tagsEn;
+  @JsonKey(name: 'images')
+  List<String>? images;
   @JsonKey(name: 'postStatus')
   int? postStatus;
   @JsonKey(name: 'statusDesc')
@@ -85,6 +87,7 @@ class EventDto {
     this.showName,
     this.tagsAr,
     this.tagsEn,
+    this.images,
     this.postStatus,
     this.statusDesc,
     this.stakeholders,

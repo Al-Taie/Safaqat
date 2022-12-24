@@ -19,7 +19,7 @@ class StakeholderDto {
       {this.name, this.order, this.type, this.sponsorType, this.logo});
 
   factory StakeholderDto.fromJson(Map<String, dynamic> json) =>
-      _$StakeholderFromJson(json);
+      _$StakeholderDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$StakeholderToJson(this);
+  Map<String, dynamic> toJson() => _$StakeholderDtoToJson(this);
 }

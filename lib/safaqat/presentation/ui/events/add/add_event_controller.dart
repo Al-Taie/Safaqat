@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/event_body.dart';
@@ -168,16 +167,37 @@ class AddEventController extends GetxController {
       webSite: website,
       type: type.index,
       attendanceType: attend.index,
+      images: images,
       stakeholders: stakeholders,
       coordinates: locationController.targetPlace?.toCoordinates() ??
           locationController.targetMarker?.toCoordinates(),
     );
-    Logger.log('SEND EVENT');
+
     final result = await _addEventUseCase(params: body);
     status.value = result;
 
     if (result.status == Status.success) {
-      // _myEventsController.waitedEvents.add(result.data!);
+      switch (type) {
+        case EventType.general:
+          _myEventsController.generalEvents.add(result.data!);
+          break;
+        case EventType.conference:
+          _myEventsController.conferenceEvents.add(result.data!);
+          break;
+        case EventType.trainingCourse:
+          _myEventsController.trainingCourseEvents.add(result.data!);
+          break;
+        case EventType.exhibition:
+          _myEventsController.exhibitionEvents.add(result.data!);
+          break;
+        case EventType.seminar:
+          _myEventsController.seminarEvents.add(result.data!);
+          break;
+        case EventType.forum:
+          _myEventsController.forumEvents.add(result.data!);
+          break;
+          
+      }
     }
   }
 }
