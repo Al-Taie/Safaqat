@@ -25,8 +25,11 @@ class PersonalInfoWidget extends StatelessWidget {
           title: AppStrings.personalInfo,
           iconSvg: AppDrawable.icPerson,
           expanded: controller.personalExpanded.value,
-          onExpansionChanged: (value) =>
-              controller.personalExpanded.value = value,
+          onExpansionChanged: (value) {
+            controller.personalExpanded.value = value;
+            controller.accountCreationExpanded.value = false;
+            controller.businessExpanded.value = false;
+          },
           children: [
             Row(
               children: [

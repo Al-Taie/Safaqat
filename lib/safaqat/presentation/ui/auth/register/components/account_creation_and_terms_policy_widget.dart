@@ -22,8 +22,11 @@ class AccountCreationAndTermsPolicyWidget extends StatelessWidget {
           title: AppStrings.accountCreationAndTermsPolicy,
           iconSvg: AppDrawable.icCheekMark,
           expanded: controller.accountCreationExpanded.value,
-          onExpansionChanged: (value) =>
-              controller.accountCreationExpanded.value = value,
+          onExpansionChanged: (value) {
+            controller.accountCreationExpanded.value = value;
+            controller.personalExpanded.value = false;
+            controller.businessExpanded.value = false;
+          },
           children: [
             TextFiledForm(
               hintText: AppStrings.username,

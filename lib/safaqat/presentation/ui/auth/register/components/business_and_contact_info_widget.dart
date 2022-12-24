@@ -24,8 +24,11 @@ class BusinessAndContactInfoWidget extends StatelessWidget {
           title: AppStrings.businessAndContactInfo,
           iconSvg: AppDrawable.icContact,
           expanded: controller.businessExpanded.value,
-          onExpansionChanged: (value) =>
-              controller.businessExpanded.value = value,
+          onExpansionChanged: (value) {
+            controller.businessExpanded.value = value;
+            controller.personalExpanded.value = false;
+            controller.accountCreationExpanded.value = false;
+          },
           children: [
             AutocompleteTextField<CountryDto>(
               hintText: AppStrings.country,
