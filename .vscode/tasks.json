@@ -28,6 +28,20 @@
 			],
 			"group": "build",
 			"problemMatcher": [],
+			"label": "flutter: release run build apk",
+			"detail": ""
+		},
+		{
+			"type": "flutter",
+			"command": "flutter",
+			"args": [
+				"run",
+				"build",
+				"apk",
+				"--release"
+			],
+			"group": "build",
+			"problemMatcher": [],
 			"label": "flutter: release build apk",
 			"detail": ""
 		}

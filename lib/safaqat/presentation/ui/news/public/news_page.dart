@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
@@ -46,42 +45,37 @@ class NewsPage extends StatelessWidget {
             title: AppStrings.news,
             onSearch: (String query) => controller.searchNews(query),
           ),
-          body: RefreshIndicator(
-            key: controller.refreshIndicatorKey,
-              onRefresh: () async => controller.getNews(),
-              color: AppColors.primaryColor,
-              child: Obx(() {
-              return StatusWidget(
-                status: controller.status.value.status,
-                onClickTryAgain: controller.getNews,
-                child: ListView.builder(
-                    controller: controller.scrollController,
-                    physics: const BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics(),
-                    ),
-                    padding: const EdgeInsets.fromLTRB(
-                      16,
-                      8,
-                      16,
-                      16,
-                    ),
-                    itemCount: controller.filteredNews.length,
-                    itemBuilder: (context, index) {
-                      var item = controller.filteredNews[index];
-                      return NewsCardWidget(
-                        title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
-                        name: item.ownerName ?? '-',
-                        image: item.images?.firstOrNull ?? '',
-                        date: Utils.formatDate(dateStr: item.date),
-                        onPressed: () {
-                          controller.newsData = item;
-                          NewsDetailsPage(news: controller.newsData).navTo();
-                        },
-                      );
-                    }),
-              );
+          body: Obx(() {
+          return StatusWidget(
+            status: controller.status.value.status,
+            onClickTryAgain: controller.getNews,
+            child: ListView.builder(
+                controller: controller.scrollController,
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
+                padding: const EdgeInsets.fromLTRB(
+                  16,
+                  8,
+                  16,
+                  16,
+                ),
+                itemCount: controller.filteredNews.length,
+                itemBuilder: (context, index) {
+                  var item = controller.filteredNews[index];
+                  return NewsCardWidget(
+                    title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
+                    name: item.ownerName ?? '-',
+                    image: item.images?.firstOrNull ?? '',
+                    date: Utils.formatDate(dateStr: item.date),
+                    onPressed: () {
+                      controller.newsData = item;
+                      NewsDetailsPage(news: controller.newsData).navTo();
+                    },
+                  );
+                }),
+          );
             }),
-          ),
         ),
       ),
     );

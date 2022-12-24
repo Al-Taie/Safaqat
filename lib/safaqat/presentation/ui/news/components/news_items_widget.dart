@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
@@ -34,46 +33,41 @@ class NewsItemsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      key: key,
-      onRefresh: () async => apiCall(),
-      color: AppColors.primaryColor,
-      child: StatusWidget(
-        status: status,
-        onClickTryAgain: apiCall,
-        child: ListView.builder(
-            controller: scrollController,
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            padding: const EdgeInsets.fromLTRB(
-              16,
-              8,
-              16,
-              16,
-            ),
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              var item = data[index];
-              return NewsCardWidget(
-                title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
-                name: item.ownerName ?? '-',
-                image: item.images?.firstOrNull ?? '',
-                date: Utils.formatDate(dateStr: item.date),
-                isLogged: isLogged,
-                onEdit: () {
-                  onEdit?.call(item);
-                },
-                onDelete: () {
-                  onDelete?.call(item);
-                },
-                onPressed: () {
-                  onPressed(item);
-                  NewsDetailsPage(news: item).navTo();
-                },
-              );
-            }),
-      ),
+    return StatusWidget(
+      status: status,
+      onClickTryAgain: apiCall,
+      child: ListView.builder(
+          controller: scrollController,
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
+          padding: const EdgeInsets.fromLTRB(
+            16,
+            8,
+            16,
+            16,
+          ),
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            var item = data[index];
+            return NewsCardWidget(
+              title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
+              name: item.ownerName ?? '-',
+              image: item.images?.firstOrNull ?? '',
+              date: Utils.formatDate(dateStr: item.date),
+              isLogged: isLogged,
+              onEdit: () {
+                onEdit?.call(item);
+              },
+              onDelete: () {
+                onDelete?.call(item);
+              },
+              onPressed: () {
+                onPressed(item);
+                NewsDetailsPage(news: item).navTo();
+              },
+            );
+          }),
     );
   }
 }

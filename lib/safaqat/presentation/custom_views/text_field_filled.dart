@@ -46,7 +46,7 @@ class FilledTextField extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return SizedBox(
-      height: 42,
+      height: 52,
       child: TextField(
         maxLength: maxLength,
         controller: controller,

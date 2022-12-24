@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
+import 'package:safaqat/safaqat/app/config/colors.dart';
+import 'package:safaqat/safaqat/domain/entities/resources.dart';
 
-import '../../app/config/colors.dart';
-import '../../domain/entities/resources.dart';
 import 'disconnected_widget.dart';
 import 'empty_widget.dart';
 
@@ -21,7 +21,6 @@ class StatusWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     switch (status) {
       case Status.init:
         return Container();
@@ -31,13 +30,25 @@ class StatusWidget extends StatelessWidget {
           size: 64,
         );
       case Status.success:
-        return child;
+        return RefreshIndicator(
+          key: key,
+          onRefresh: () async => onClickTryAgain(),
+          color: AppColors.primaryColor,
+          child: child,
+        );
       case Status.error:
         return DisconnectedWidget(
           onClickTryAgain: onClickTryAgain,
         );
       case Status.empty:
-        return const EmptyWidget();
+        return RefreshIndicator(
+          key: key,
+          onRefresh: () async => onClickTryAgain(),
+          color: AppColors.primaryColor,
+          child: Stack(
+            children: [const EmptyWidget(), child],
+          ),
+        );
     }
   }
 }
