@@ -50,10 +50,8 @@ class LoginPage extends StatelessWidget {
               ),
               iconPrefixAsset: null,
               hint: AppStrings.usernameOrPhone,
-              onTextChanged: (
-                value,
-              ) {
-                controller.username = value;
+              onTextChanged: (value) {
+                controller.username = value.trim();
               },
             ),
             const SizedBox(
@@ -67,10 +65,8 @@ class LoginPage extends StatelessWidget {
               ),
               iconPrefixAsset: null,
               hint: AppStrings.password,
-              onTextChanged: (
-                value,
-              ) {
-                controller.password = value;
+              onTextChanged: (value) {
+                controller.password = value.trim();
               },
             ),
             const SizedBox(
@@ -109,8 +105,8 @@ class LoginPage extends StatelessWidget {
               color: Colors.white,
               textColor: AppColors.primaryColor,
               text: AppStrings.enterWithoutRegister,
-              onPressed: (){
-                Get.offAll(()=> GuestMainTabsPage());
+              onPressed: () {
+                Get.offAll(() => GuestMainTabsPage());
               },
             )
           ],

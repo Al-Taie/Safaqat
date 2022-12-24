@@ -7,7 +7,6 @@ import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/utils/show_menu.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/alert_dialog_widget.dart';
-import 'package:safaqat/safaqat/presentation/custom_views/card_icon.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_icon.dart';
 
 class EventCardWidget extends StatelessWidget {
@@ -86,7 +85,7 @@ class EventCardWidget extends StatelessWidget {
                     offset: details.globalPosition,
                     context: context,
                     menuItems: [
-                      MenuItems.edit,
+                      // MenuItems.edit,
                       MenuItems.delete,
                     ],
                     onEditPressed: onEdit,

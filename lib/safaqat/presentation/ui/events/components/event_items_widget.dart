@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
-import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
