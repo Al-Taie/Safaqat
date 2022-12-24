@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
@@ -111,31 +113,28 @@ class EventDetailsPage extends StatelessWidget {
                 itemCount: event.images?.length ?? 0,
                 itemBuilder:
                     (BuildContext context, int itemIndex, int pageViewIndex) {
-                      Widget child = ClipRRect(
-                                          borderRadius: BorderRadius.circular(8),
-                                          child: Image.network(
-                                            event.images?[itemIndex] ?? '',
-                                            fit: BoxFit.cover,
-                                            loadingBuilder: (BuildContext context, Widget child,
-                          ImageChunkEvent? loadingProgress) {
-                                              if (loadingProgress == null) return child;
-                                              return Center(
-                          child: CircularProgressIndicator(
+                  Widget child = ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: CachedNetworkImage(
+                      imageUrl: event.images?[itemIndex] ?? '',
+                      fit: BoxFit.cover,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => Center(
+                        child: CircularProgressIndicator(
                             color: AppColors.primaryColor,
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
-                                              );
-                                            },
-                                          ),
-                                        );
-                        
-                        return GestureDetector(
-                          onTap: () => Get.dialog(child),
-                          child: child);
-              }),
+                            value: downloadProgress.progress),
+                      ),
+                      errorWidget: (context, url, error) => const Icon(
+                        Icons.error,
+                        color: Colors.red,
+                      ),
+                    ),
+                  );
+
+                  return GestureDetector(
+                      onTap: () => Get.dialog(child), child: child);
+                },
+              ),
               const SizedBox(height: 16),
               SizedBox(
                 width: Get.width,

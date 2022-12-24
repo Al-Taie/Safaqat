@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:safaqat/safaqat/app/config/colors.dart';
 
 class CardImage extends StatelessWidget {
   final String image;
@@ -8,10 +10,10 @@ class CardImage extends StatelessWidget {
 
   const CardImage(
       {Key? key,
-        required this.image,
-        this.size = 60,
-        this.onPressed,
-        this.backgroundColor})
+      required this.image,
+      this.size = 60,
+      this.onPressed,
+      this.backgroundColor})
       : super(key: key);
 
   @override
@@ -28,10 +30,20 @@ class CardImage extends StatelessWidget {
           width: size,
           height: size,
           child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-            child: Image.network(
-              image,
+            borderRadius: BorderRadius.circular(8),
+            child: CachedNetworkImage(
+              imageUrl: image,
               fit: BoxFit.fill,
+              progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.primaryColor,
+                  value: downloadProgress.progress
+                ),
+              ),
+              errorWidget: (context, url, error) => const Icon(
+                Icons.error,
+                color: Colors.red,
+              ),
             ),
           ),
         ),

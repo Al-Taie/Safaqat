@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
+import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
@@ -65,7 +66,7 @@ class EventsPage extends StatelessWidget {
                       title:
                           (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
                       name: item.ownerName ?? '-',
-                      // image: item.images?.firstOrNull ?? '',
+                      image: item.images.firstOrNull ?? '',
                       date: Utils.formatDate(dateStr: item.startDate),
                       onPressed: () {
                         controller.eventData = item;

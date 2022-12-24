@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
+import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
@@ -52,6 +53,7 @@ class EventItemsWidget extends StatelessWidget {
             return EventCardWidget(
               title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
               name: item.ownerName ?? '-',
+              image: item.images.firstOrNull ?? '',
               date: Utils.formatDate(dateStr: item.startDate),
               isLogged: isLogged,
               onEdit: () {

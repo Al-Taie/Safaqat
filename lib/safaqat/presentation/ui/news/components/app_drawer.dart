@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
@@ -29,7 +30,9 @@ class AppDrawer extends StatelessWidget {
       onLogout;
 
   Widget item({text, icon, onClick, Color color = AppColors.shadeSecondary}) {
-    var iconWidget = icon is String ? SvgPicture.asset(icon, color: color) : Icon(icon, color: color);
+    var iconWidget = icon is String
+        ? SvgPicture.asset(icon, color: color)
+        : Icon(icon, color: color);
     return ListTile(
       title: Text(
         text,
@@ -65,50 +68,48 @@ class AppDrawer extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // if (!Utils.isRTL)
-                  //   Flexible(
-                  //     child: Text(
-                  //       name,
-                  //       style: const TextStyle(
-                  //         color: AppColors.background,
-                  //         fontSize: 17,
-                  //         fontWeight: FontWeight.bold,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ClipRRect(
-                  //   borderRadius:  BorderRadius.circular(16),
-                  //   child: Image.network(
-                  //     imageUrl,
-                  //     height: 80,
-                  //     width: 80,
-                  //     fit: BoxFit.cover,
-                  //     loadingBuilder: (BuildContext context, Widget child,
-                  //         ImageChunkEvent? loadingProgress) {
-                  //       if (loadingProgress == null) return child;
-                  //       return Center(
-                  //         child: CircularProgressIndicator(
-                  //           color: AppColors.ternary,
-                  //           value: loadingProgress.expectedTotalBytes != null
-                  //               ? loadingProgress.cumulativeBytesLoaded /
-                  //               loadingProgress.expectedTotalBytes!
-                  //               : null,
-                  //         ),
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
-                  // if (Utils.isRTL)
-                  //   Flexible(
-                  //     child: Text(
-                  //       name,
-                  //       style: const TextStyle(
-                  //         color: AppColors.primaryColor,
-                  //         fontSize: 17,
-                  //         fontWeight: FontWeight.bold,
-                  //       ),
-                  //     ),
-                  //   ),
+                  if (!Utils.isRTL)
+                    Flexible(
+                      child: Text(
+                        name,
+                        style: const TextStyle(
+                          color: AppColors.background,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: CachedNetworkImage(
+                      imageUrl: imageUrl,
+                      height: 80,
+                      width: 80,
+                      fit: BoxFit.cover,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => Center(
+                        child: CircularProgressIndicator(
+                          color: AppColors.primaryColor,
+                          value: downloadProgress.progress,
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => const Icon(
+                        Icons.error,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                  if (Utils.isRTL)
+                    Flexible(
+                      child: Text(
+                        name,
+                        style: const TextStyle(
+                          color: AppColors.primaryColor,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),

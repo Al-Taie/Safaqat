@@ -7,6 +7,7 @@ import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/utils/show_menu.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/alert_dialog_widget.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/card_icon.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_icon.dart';
 
 class EventCardWidget extends StatelessWidget {
@@ -14,6 +15,7 @@ class EventCardWidget extends StatelessWidget {
     Key? key,
     required this.title,
     required this.name,
+    required this.image,
     required this.date,
     this.isLogged = false,
     this.onPressed,
@@ -21,7 +23,7 @@ class EventCardWidget extends StatelessWidget {
     this.onEdit,
   }) : super(key: key);
 
-  final String title, name, date;
+  final String title, name, date, image;
   final bool isLogged;
   final VoidCallback? onPressed, onEdit, onDelete;
 
@@ -51,7 +53,7 @@ class EventCardWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  // CardImage(image: image),
+                  CardImage(image: image),
                   const SizedBox(width: 8),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
