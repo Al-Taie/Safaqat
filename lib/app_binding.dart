@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:dio_logging_interceptor/dio_logging_interceptor.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/preferences_keys.dart';
 import 'package:safaqat/safaqat/data/data_source/network/safaqat_api_services.dart';
@@ -8,9 +7,6 @@ import 'package:safaqat/safaqat/data/repositories/authentication_repository.dart
 import 'package:safaqat/safaqat/data/repositories/safaqat_repository.dart';
 import 'package:safaqat/safaqat/domain/repositories/authentication_repository.dart';
 import 'package:safaqat/safaqat/domain/repositories/safaqat_repository.dart';
-import 'package:safaqat/safaqat/domain/usecases/auth/login/login_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecases/auth/login/save_use_info_usecase.dart';
-import 'package:safaqat/safaqat/domain/usecases/auth/register/register_usecase.dart';
 import 'package:safaqat/safaqat/presentation/ui/app_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/confirm/confirm_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forget_controller.dart';
@@ -18,8 +14,6 @@ import 'package:safaqat/safaqat/presentation/ui/auth/login/login_controller.dart
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/register_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/map/location_controller.dart';
-import 'package:safaqat/safaqat/presentation/ui/events/mine/my_events_controller.dart';
-import 'package:safaqat/safaqat/presentation/ui/home/home_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppBindings implements Bindings {

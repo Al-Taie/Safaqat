@@ -12,7 +12,6 @@ import 'package:safaqat/safaqat/presentation/custom_views/local_images_widget.da
 import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/add/add_news_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/add/components/news_info_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/news/add/components/publish_news_widget.dart';
 
 class AddNewsPage extends StatelessWidget {
   const AddNewsPage({Key? key}) : super(key: key);

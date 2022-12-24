@@ -12,7 +12,6 @@ import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/event_body.dart';
 import 'package:safaqat/safaqat/data/models/events/event_coordinates.dart';
 import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
-import 'package:safaqat/safaqat/data/models/events/stakeholder_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/events/edit_event_params.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_attend.dart';

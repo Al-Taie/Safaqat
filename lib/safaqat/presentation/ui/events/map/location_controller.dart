@@ -3,7 +3,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 
 
