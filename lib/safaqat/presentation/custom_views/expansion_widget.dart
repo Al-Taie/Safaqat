@@ -70,21 +70,23 @@ class ExpansionWidget extends StatelessWidget {
                     Utils.isRTL ? Alignment.centerLeft : Alignment.centerRight,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 16, top: 12, right: 16),
-                  child: SvgPicture.asset(
-                    expanded ? AppDrawable.icTopArrow : AppDrawable.icDownArrow,
-                    width: 20,
-                    height: 20,
-                    color: foregroundColor,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 150),
+                    child: SvgPicture.asset(
+                      expanded ? AppDrawable.icTopArrow : AppDrawable.icDownArrow,
+                      width: 20,
+                      height: 20,
+                      color: foregroundColor,
+                    ),
                   ),
                 ),
               ),
             ],
           ),
         ),
-        Container(
-          decoration: BoxDecoration(
-              color: const Color(0xFFFBFBFB), borderRadius: borderRadius),
-          child: ClipRect(
+        ClipRect(
+          child: AnimatedSize(
+            duration: const Duration(milliseconds: 150),
             child: Align(
               heightFactor: expanded ? 1 : 0,
               child: Padding(
