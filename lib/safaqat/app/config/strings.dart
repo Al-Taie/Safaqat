@@ -138,6 +138,9 @@ const stakeholderNameKey = 'stakeholderName';
 const sponsorTypeKey = 'sponsorType';
 const stakeholderTypeKey = 'stakeholderType';
 const logoKey = 'logo';
+const maleKey = 'male';
+const femaleKey = 'female';
+const genderKey = 'gender';
 
 
 class AppStrings {
@@ -279,5 +282,8 @@ class AppStrings {
   static final sponsorType = sponsorTypeKey.tr;
   static final stakeholderType = stakeholderTypeKey.tr;
   static final logo = logoKey.tr;
+  static final male = maleKey.tr;
+  static final female = femaleKey.tr;
+  static final gender = genderKey.tr;
 
 }

@@ -140,5 +140,7 @@ final Map<String, String> enUS = {
   stakeholdersKey: 'Stakeholders',
   stakeholderNameKey: 'Stakeholder name',
   logoKey: 'Logo',
-
+  maleKey: 'Male',
+  femaleKey: 'Female',
+    genderKey: 'Gender',
 };

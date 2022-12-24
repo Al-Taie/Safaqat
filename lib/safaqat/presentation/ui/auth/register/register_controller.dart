@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
@@ -7,6 +8,7 @@ import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/auth/register/register_body.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
+import 'package:safaqat/safaqat/domain/entities/gender_type.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecases/auth/register/register_usecase.dart';
 import 'package:safaqat/safaqat/presentation/ui/app_controller.dart';
@@ -17,9 +19,16 @@ class RegisterController extends GetxController {
 
   final Rx<Resources> status = Resources.init().obs;
 
+  final genderFormKey = GlobalKey<FormState>();
+
   final RxBool personalExpanded = false.obs;
   final RxBool accountCreationExpanded = false.obs;
   final RxBool businessExpanded = false.obs;
+  final RxBool genderExpaned = false.obs;
+
+  final _genderType = GenderType.male.obs;
+  GenderType get genderType => _genderType.value;
+  set genderType(GenderType value) => _genderType.value = value;
 
   final _firstNameAr = ''.obs;
   String get firstNameAr => _firstNameAr.value;
@@ -128,7 +137,7 @@ class RegisterController extends GetxController {
       fullNameAr: '$firstNameAr $secondNameAr $lastNameAr',
       fullMotherNameAr: '',
       fullNameEn: '$firstNameEn $secondNameEn $lastNameEn',
-      genderCode: 1,
+      genderCode: genderType.index,
       email1: email,
       email2: anotherEmail,
       telNo1: phone,

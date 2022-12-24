@@ -142,4 +142,7 @@ final Map<String, String> arIQ = {
   stakeholdersKey: 'المسؤولون',
   stakeholderNameKey: 'اسم المسؤول',
   logoKey: 'الشعار',
+  maleKey: 'ذكر',
+  femaleKey: 'أنثى',
+  genderKey: 'الجنس',
 };

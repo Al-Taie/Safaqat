@@ -6,7 +6,9 @@ import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
+import 'package:safaqat/safaqat/domain/entities/gender_type.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/autocomplete_textfield.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/dropdown_field.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/textfiled_form.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/register_controller.dart';
@@ -117,6 +119,17 @@ class PersonalInfoWidget extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
+            DropdownField(
+              formKey: controller.genderFormKey,
+              hint: AppStrings.gender,
+              expanded: controller.genderExpaned.value,
+              onExpansionChanged: (value) =>
+                  controller.genderExpaned.value = value,
+              onSelected: (GenderType value) => controller.genderType = value,
+              items: GenderType.items,
+              selector: (GenderType type) => type.toString(),
+            ),
+            const SizedBox(height: 8),
             DateTimePicker(
               firstDate: DateTime(1930),
               lastDate: DateTime.now(),
