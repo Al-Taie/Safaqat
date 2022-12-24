@@ -70,50 +70,60 @@ class EditNewsPage extends StatelessWidget {
                       0,
                     ),
                     children: [
-                      NewsInfoWidget(
-                        title: AppStrings.arabic,
-                        newsTitle: AppStrings.title,
-                        content: AppStrings.content,
-                        tagsHint: AppStrings.tags,
-                        tags: controller.tagsAr,
-                        titleInitialValue: controller.titleAr,
-                        contentInitialValue: controller.detailsAr,
-                        rtl: true,
-                        onTitleChange: (String value) {
-                          controller.titleAr = value;
-                        },
-                        onContentChange: (String value) {
-                          controller.detailsAr = value;
-                        },
-                        onTagsChange: (List<String> value) {
-                          controller.tagsAr.value = value;
-                        },
-                      expanded: controller.arabicExpanded.value,
-                        onExpansionChanged: (value) => controller.arabicExpanded.value = value,
-                      ),
+                      Obx(() {
+                        return NewsInfoWidget(
+                          title: AppStrings.arabic,
+                          newsTitle: AppStrings.title,
+                          content: AppStrings.content,
+                          tagsHint: AppStrings.tags,
+                          tags: controller.tagsAr,
+                          titleInitialValue: controller.titleAr,
+                          contentInitialValue: controller.detailsAr,
+                          rtl: true,
+                          onTitleChange: (String value) {
+                            controller.titleAr = value;
+                          },
+                          onContentChange: (String value) {
+                            controller.detailsAr = value;
+                          },
+                          onTagsChange: (List<String> value) {
+                            controller.tagsAr.value = value;
+                          },
+                          expanded: controller.arabicExpanded.value,
+                          onExpansionChanged: (value) {
+                            controller.arabicExpanded.value = value;
+                            controller.englishExpanded.value = false;
+                          },
+                        );
+                      }),
                       const SizedBox(
                         height: 16,
                       ),
-                      NewsInfoWidget(
-                        title: AppStrings.english,
-                        newsTitle: AppStrings.title,
-                        content: AppStrings.content,
-                        tagsHint: AppStrings.tags,
-                        titleInitialValue: controller.titleEn,
-                        contentInitialValue: controller.detailsEn,
-                        tags: controller.tagsEn,
-                        onTitleChange: (String value) {
-                          controller.titleEn = value;
-                        },
-                        onContentChange: (String value) {
-                          controller.detailsEn = value;
-                        },
-                        onTagsChange: (List<String> value) {
-                          controller.tagsEn.value = value;
-                        },
-                      expanded: controller.englishExpanded.value,
-                        onExpansionChanged: (value) => controller.englishExpanded.value = value,
-                      ),
+                      Obx(() {
+                        return NewsInfoWidget(
+                          title: AppStrings.english,
+                          newsTitle: AppStrings.title,
+                          content: AppStrings.content,
+                          tagsHint: AppStrings.tags,
+                          titleInitialValue: controller.titleEn,
+                          contentInitialValue: controller.detailsEn,
+                          tags: controller.tagsEn,
+                          onTitleChange: (String value) {
+                            controller.titleEn = value;
+                          },
+                          onContentChange: (String value) {
+                            controller.detailsEn = value;
+                          },
+                          onTagsChange: (List<String> value) {
+                            controller.tagsEn.value = value;
+                          },
+                          expanded: controller.englishExpanded.value,
+                          onExpansionChanged: (value) {
+                            controller.englishExpanded.value = value;
+                             controller.arabicExpanded.value = false;
+                          },
+                        );
+                      }),
                       const SizedBox(
                         height: 16,
                       ),
