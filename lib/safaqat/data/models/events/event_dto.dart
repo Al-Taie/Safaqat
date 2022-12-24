@@ -98,4 +98,9 @@ class EventDto {
       _$EventDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$EventDtoToJson(this);
+
+  @override
+  String toString() {
+    return '$titleAr,$titleEn,$detailsAr,$detailsEn,$telephone,$webSite,$email,$countryNameAr,$cityNameEn,$cityNameAr,$cityNameEn'.toLowerCase();
+  }
 }

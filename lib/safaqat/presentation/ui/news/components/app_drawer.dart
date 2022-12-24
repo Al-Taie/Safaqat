@@ -65,50 +65,50 @@ class AppDrawer extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if (!Utils.isRTL)
-                    Flexible(
-                      child: Text(
-                        name,
-                        style: const TextStyle(
-                          color: AppColors.background,
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ClipRRect(
-                    borderRadius:  BorderRadius.circular(16),
-                    child: Image.network(
-                      imageUrl,
-                      height: 80,
-                      width: 80,
-                      fit: BoxFit.cover,
-                      loadingBuilder: (BuildContext context, Widget child,
-                          ImageChunkEvent? loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return Center(
-                          child: CircularProgressIndicator(
-                            color: AppColors.ternary,
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  if (Utils.isRTL)
-                    Flexible(
-                      child: Text(
-                        name,
-                        style: const TextStyle(
-                          color: AppColors.primaryColor,
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                  // if (!Utils.isRTL)
+                  //   Flexible(
+                  //     child: Text(
+                  //       name,
+                  //       style: const TextStyle(
+                  //         color: AppColors.background,
+                  //         fontSize: 17,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ClipRRect(
+                  //   borderRadius:  BorderRadius.circular(16),
+                  //   child: Image.network(
+                  //     imageUrl,
+                  //     height: 80,
+                  //     width: 80,
+                  //     fit: BoxFit.cover,
+                  //     loadingBuilder: (BuildContext context, Widget child,
+                  //         ImageChunkEvent? loadingProgress) {
+                  //       if (loadingProgress == null) return child;
+                  //       return Center(
+                  //         child: CircularProgressIndicator(
+                  //           color: AppColors.ternary,
+                  //           value: loadingProgress.expectedTotalBytes != null
+                  //               ? loadingProgress.cumulativeBytesLoaded /
+                  //               loadingProgress.expectedTotalBytes!
+                  //               : null,
+                  //         ),
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
+                  // if (Utils.isRTL)
+                  //   Flexible(
+                  //     child: Text(
+                  //       name,
+                  //       style: const TextStyle(
+                  //         color: AppColors.primaryColor,
+                  //         fontSize: 17,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //   ),
                 ],
               ),
             ),
