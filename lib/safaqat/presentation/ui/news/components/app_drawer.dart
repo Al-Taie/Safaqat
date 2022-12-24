@@ -89,6 +89,7 @@ class AppDrawer extends StatelessWidget {
                       progressIndicatorBuilder:
                           (context, url, downloadProgress) => Center(
                         child: CircularProgressIndicator(
+                          strokeWidth: 3,
                           color: AppColors.primaryColor,
                           value: downloadProgress.progress,
                         ),

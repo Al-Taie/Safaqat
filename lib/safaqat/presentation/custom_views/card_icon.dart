@@ -33,11 +33,16 @@ class CardImage extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             child: CachedNetworkImage(
               imageUrl: image,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
               progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.primaryColor,
-                  value: downloadProgress.progress
+                child: SizedBox(
+                  width: 28,
+                  height: 28,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 3,
+                    color: AppColors.primaryColor,
+                    value: downloadProgress.progress
+                  ),
                 ),
               ),
               errorWidget: (context, url, error) => const Icon(
