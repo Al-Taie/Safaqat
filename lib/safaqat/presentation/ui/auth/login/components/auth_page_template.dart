@@ -41,6 +41,7 @@ class AuthPageTemplate extends StatelessWidget {
                   height: 100,
                   width: 100,
                 ),
+                const SizedBox(height:16),
                 Text(
                   title ?? AppStrings.welcomeToSafaqat,
                   style: const TextStyle(

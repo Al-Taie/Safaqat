@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
@@ -24,7 +25,7 @@ class ReviewPage extends StatelessWidget {
 
       switch (result.status) {
         case Status.success:
-          Get.offAll(const LoginPage());
+          const LoginPage().navToReplacement();
           AppStrings.registerSuccess.toToast();
           break;
         case Status.error:

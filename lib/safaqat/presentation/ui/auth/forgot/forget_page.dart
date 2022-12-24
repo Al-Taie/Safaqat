@@ -13,7 +13,7 @@ import 'package:safaqat/safaqat/presentation/ui/auth/forgot/forget_controller.da
 import 'package:safaqat/safaqat/presentation/ui/auth/login/components/auth_page_template.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/register/register_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/home/home_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/main_tabs/guest_main_tabs_page.dart';
 
 class ForgetPage extends StatelessWidget {
   const ForgetPage({Key? key}) : super(key: key);
@@ -30,28 +30,22 @@ class ForgetPage extends StatelessWidget {
           ),
           iconPrefixAsset: null,
           hint: AppStrings.usernameOrPhone,
-          onTextChanged: (
-            value,
-          ) {},
+          onTextChanged: (value) {},
         ),
-        const SizedBox(
-          height: 16,
-        ),
+        const SizedBox(height: 16),
         CustomButton(
           color: AppColors.ternary,
           textColor: AppColors.primaryColor,
           text: AppStrings.sendResetCode,
           onPressed: const ConfirmPage().navTo,
         ),
-        const SizedBox(
-          height: 8,
-        ),
+        const SizedBox(height: 8),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ClickableText(
               text: AppStrings.haveAccount,
-              onPressed: const LoginPage().navTo,
+              onPressed: const LoginPage().navToReplacement,
             ),
             ClickableText(
               text: AppStrings.dontHaveAccount,
@@ -70,8 +64,8 @@ class ForgetPage extends StatelessWidget {
           color: Colors.white,
           textColor: AppColors.primaryColor,
           text: AppStrings.enterWithoutRegister,
-          onPressed: const HomePage().navTo,
-        )
+          onPressed: GuestMainTabsPage().navToReplacement,
+    ),
       ],
     );
   }

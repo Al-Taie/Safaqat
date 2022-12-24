@@ -13,18 +13,18 @@ import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.MapsInitializer.Renderer
 import com.google.android.gms.maps.OnMapsSdkInitializedCallback
 
-
-class MainActivity: FlutterActivity(), OnMapsSdkInitializedCallback{
+//, OnMapsSdkInitializedCallback
+class MainActivity: FlutterActivity(){
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState);
-        MapsInitializer.initialize(applicationContext, Renderer.LATEST, this)
+//        MapsInitializer.initialize(applicationContext, Renderer.LATEST, this)
     }
 
-    override fun onMapsSdkInitialized(renderer: MapsInitializer.Renderer) {
-        when (renderer) {
-            Renderer.LATEST -> Log.d("NewRendererLog", "The latest version of the renderer is used.")
-            Renderer.LEGACY -> Log.d("NewRendererLog","The legacy version of the renderer is used.")
-        }
-    }
+//    override fun onMapsSdkInitialized(renderer: MapsInitializer.Renderer) {
+//        when (renderer) {
+//            Renderer.LATEST -> Log.d("NewRendererLog", "The latest version of the renderer is used.")
+//            Renderer.LEGACY -> Log.d("NewRendererLog","The legacy version of the renderer is used.")
+//        }
+//    }
 }
 

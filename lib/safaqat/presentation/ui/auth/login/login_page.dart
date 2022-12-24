@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
     controller.auth.listen((result) {
       switch (result.status) {
         case Status.success:
-          Get.offAll(AuthorizedMainTabsPage());
+          AuthorizedMainTabsPage().navToReplacement();
           break;
         case Status.error:
           AppStrings.loginFailed.toToast();
@@ -55,7 +55,7 @@ class LoginPage extends StatelessWidget {
               },
             ),
             const SizedBox(
-              height: 16,
+              height: 16
             ),
             FilledTextField(
               isIconSuffix: false,
@@ -70,7 +70,7 @@ class LoginPage extends StatelessWidget {
               },
             ),
             const SizedBox(
-              height: 16,
+              height: 16
             ),
             CustomButton(
               color: AppColors.ternary,
@@ -79,7 +79,7 @@ class LoginPage extends StatelessWidget {
               onPressed: () => controller.login(),
             ),
             const SizedBox(
-              height: 8,
+              height: 8
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,9 +105,7 @@ class LoginPage extends StatelessWidget {
               color: Colors.white,
               textColor: AppColors.primaryColor,
               text: AppStrings.enterWithoutRegister,
-              onPressed: () {
-                Get.offAll(() => GuestMainTabsPage());
-              },
+              onPressed: GuestMainTabsPage().navToReplacement,
             )
           ],
         ),
