@@ -22,6 +22,7 @@ class TextFiledForm extends StatelessWidget {
   final ValueChanged<String>? onFieldSubmitted;
   final String? Function(String? value)? validator;
   final int? maxLines;
+  final VoidCallback? onEditingComplete;
 
   const TextFiledForm({
     Key? key,
@@ -44,6 +45,7 @@ class TextFiledForm extends StatelessWidget {
     this.validator,
     this.initialValue,
     this.maxLines = 1,
+    this.onEditingComplete,
   }) : super(key: key);
 
   @override
@@ -63,6 +65,7 @@ class TextFiledForm extends StatelessWidget {
       textAlign: textAlign,
       focusNode: focusNode,
       textDirection: textDirection,
+      onEditingComplete: onEditingComplete,
       onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
         label: Text(hintText ?? ''),
@@ -71,9 +74,9 @@ class TextFiledForm extends StatelessWidget {
         filled: true,
         prefixIcon: prefixIcon,
         prefixIconColor: prefixIconColor,
-          focusedBorder: UnderlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.primaryColor),
-              borderRadius: BorderRadius.circular(radius)),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: const BorderSide(color: AppColors.primaryColor),
+            borderRadius: BorderRadius.circular(radius)),
         enabledBorder: UnderlineInputBorder(
             borderSide: const BorderSide(color: AppColors.primaryColor),
             borderRadius: BorderRadius.circular(radius)),

@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +5,6 @@ import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_stakeholder_type.dart';
 import 'package:safaqat/safaqat/domain/entities/events/stakeholder.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
@@ -26,8 +24,6 @@ class EventStakeHoldersWidget extends StatelessWidget {
     required this.sponsorType,
     required this.name,
     required this.stakeHolderTypeExpanded,
-    required this.onNameChange,
-    required this.onSponsorTypeChange,
     required this.onStakeHolderTypeExpansionChanged,
     required this.onStakeHolderTypeChange,
     required this.eventstakeHolderTypeFormKey,
@@ -46,7 +42,6 @@ class EventStakeHoldersWidget extends StatelessWidget {
   final ValueChanged<List<Stakeholder>> onStakeHoldersChanged;
   final String title, sponsorType, name;
   final bool expanded, stakeHolderTypeExpanded, stakeholderImageExpanded;
-  final ValueChanged<String> onNameChange, onSponsorTypeChange;
   final ValueChanged<bool> onExpansionChanged,
       onStakeHolderTypeExpansionChanged,
       onStakeHolderImageExpansionChanged;
@@ -61,6 +56,14 @@ class EventStakeHoldersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final nameController = TextEditingController();
     final sponsorTypeController = TextEditingController();
+
+    nameInitialValue?.let((it) {
+      if (nameController.text.isEmpty) nameController.text = it;
+    });
+
+    sponsorTypeInitialValue?.let((it) {
+      if (sponsorTypeController.text.isEmpty) sponsorTypeController.text = it;
+    });
 
     return ExpansionWidget(
       headerColor: AppColors.primaryColor,
@@ -95,16 +98,8 @@ class EventStakeHoldersWidget extends StatelessWidget {
           formKey: eventstakeHolderTypeFormKey,
           onExpansionChanged: onStakeHolderTypeExpansionChanged,
           onSelected: (EventStakeHolderType type) {
-            if (stakeholder == null) {
-              onStakeHolderChange(Stakeholder(
-                stakeholderName: '',
-                stakeholderOrder: 0,
-                stakeholderType: type,
-                sponsorType: '',
-                stakeholderLogo: File(''),
-              ));
-            }
             stakeholder?.stakeholderType = type;
+             onStakeHolderChange(stakeholder);
           },
           items: EventStakeHolderType.items,
           selector: (EventStakeHolderType type) => type.toString(),
@@ -112,40 +107,22 @@ class EventStakeHoldersWidget extends StatelessWidget {
         const SizedBox(height: 8),
         TextFiledForm(
           hintText: name,
-          initialValue: nameInitialValue,
           textDirection: TextDirection.ltr,
           textAlign: TextAlign.left,
           controller: nameController,
+          onEditingComplete: () => onStakeHolderChange(stakeholder),
           onTextChanged: (value) {
-            if (stakeholder == null) {
-              onStakeHolderChange(Stakeholder(
-                stakeholderName: value,
-                stakeholderOrder: 0,
-                stakeholderType: EventStakeHolderType.organizer,
-                sponsorType: '',
-                stakeholderLogo: File(''),
-              ));
-            }
             stakeholder?.stakeholderName = value;
           },
         ),
         const SizedBox(height: 8),
         TextFiledForm(
           hintText: sponsorType,
-          initialValue: sponsorTypeInitialValue,
           textDirection: TextDirection.ltr,
           textAlign: TextAlign.left,
           controller: sponsorTypeController,
+          onEditingComplete: () => onStakeHolderChange(stakeholder),
           onTextChanged: (value) {
-            if (stakeholder == null) {
-              onStakeHolderChange(Stakeholder(
-                stakeholderName: '',
-                stakeholderOrder: 0,
-                stakeholderType: EventStakeHolderType.organizer,
-                sponsorType: value,
-                stakeholderLogo: File(''),
-              ));
-            }
             stakeholder?.sponsorType = value;
           },
         ),

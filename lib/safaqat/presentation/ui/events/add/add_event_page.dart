@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -7,7 +9,6 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_stakeholder_type.dart';
 import 'package:safaqat/safaqat/domain/entities/events/stakeholder.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
@@ -181,19 +182,26 @@ class AddEventPage extends StatelessWidget {
                       }),
                       const SizedBox(height: 16),
                       Obx(() {
+                        controller.stakeholder ??= Stakeholder(
+                            stakeholderName: '',
+                            stakeholderOrder: 0,
+                            stakeholderType: EventStakeHolderType.organizer,
+                            sponsorType: '',
+                            stakeholderLogo: File(''),
+                          );
                         return EventStakeHoldersWidget(
                           title: AppStrings.stakeholders,
                           name: AppStrings.stakeholderName,
+                          nameInitialValue:
+                              controller.stakeholder?.stakeholderName,
+                          sponsorTypeInitialValue:
+                              controller.stakeholder?.sponsorType,
                           sponsorType: AppStrings.sponsorType,
                           stakeHolderTypeExpanded:
                               controller.stakeHolderTypeExpanded.value,
                           eventstakeHolderTypeFormKey:
                               controller.eventstakeHolderTypeFormKey,
                           expanded: controller.stakeHolderExpanded.value,
-                          onNameChange: (String value) =>
-                              controller.stakeholderName = value,
-                          onSponsorTypeChange: (String value) =>
-                              controller.sponsorType = value,
                           onExpansionChanged: (bool value) {
                             controller.arabicExpanded.value = false;
                             controller.imagesExpanded.value = false;
@@ -202,11 +210,13 @@ class AddEventPage extends StatelessWidget {
                             controller.stakeHolderExpanded.value = value;
                             controller.stakeHolderExpanded.value = value;
                           },
-                          onStakeHolderTypeExpansionChanged: (bool value) =>
-                              controller.stakeHolderTypeExpanded.value = value,
+                          onStakeHolderTypeExpansionChanged: (bool value) {
+                            controller.stakeHolderTypeExpanded.value = value;
+                          },
                           onStakeHolderTypeChange:
-                              (EventStakeHolderType value) =>
-                                  controller.stakeholderType = value,
+                              (EventStakeHolderType value) {
+                            controller.stakeholder?.stakeholderType = value;
+                          },
                           onStakeHolderImageExpansionChanged: (bool value) {},
                           stakeholderImageExpanded:
                               controller.stakeholderImageExpanded.value,
@@ -218,8 +228,9 @@ class AddEventPage extends StatelessWidget {
                           imageController:
                               controller.singleImageController.value,
                           stakeholder: controller.stakeholder,
-                          onStakeHolderChange: (Stakeholder? value) =>
-                              controller.stakeholder = value
+                          onStakeHolderChange: (Stakeholder? value) {
+                            controller.stakeholder = value;
+                          },
                         );
                       }),
                       const SizedBox(height: 16),
