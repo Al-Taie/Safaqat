@@ -10,5 +10,5 @@ class EventQuery {
 
   int type;
 
-  EventQuery({this.pageSize = 10, required this.pageNumber, this.type = 0});
+  EventQuery({this.pageSize = 1000, required this.pageNumber, this.type = 0});
 }

@@ -46,9 +46,7 @@ class EventsPage extends StatelessWidget {
           ),
           body: RefreshIndicator(
             key: controller.refreshIndicatorKey,
-            onRefresh: () async {
-              controller.getEvents();
-            },
+            onRefresh: () async => controller.getEvents(),
             color: AppColors.primaryColor,
             child: Obx(() {
               return StatusWidget(
@@ -56,7 +54,9 @@ class EventsPage extends StatelessWidget {
                 onClickTryAgain: controller.getEvents,
                 child: ListView.builder(
                     controller: controller.scrollController,
-                    physics: const BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics(),
+                    ),
                     padding: const EdgeInsets.fromLTRB(
                       16,
                       8,
@@ -67,7 +67,8 @@ class EventsPage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       var item = controller.filteredEvents[index];
                       return EventCardWidget(
-                        title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
+                        title:
+                            (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
                         name: item.ownerName ?? '-',
                         // image: item.images?.firstOrNull ?? '',
                         date: Utils.formatDate(dateStr: item.startDate),

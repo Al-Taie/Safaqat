@@ -11,7 +11,7 @@ class NewsQuery {
 
   int type;
 
-  NewsQuery({this.pageSize = 10, required this.pageNumber, this.type = 0});
+  NewsQuery({this.pageSize = 1000, required this.pageNumber, this.type = 0});
 
   factory NewsQuery.fromJson(Map<String, dynamic> json) =>
       _$NewsQueryFromJson(json);

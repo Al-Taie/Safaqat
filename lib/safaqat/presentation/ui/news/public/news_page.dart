@@ -6,7 +6,6 @@ import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
-import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/mine/my_events_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/app_drawer.dart';
@@ -49,9 +48,7 @@ class NewsPage extends StatelessWidget {
           ),
           body: RefreshIndicator(
             key: controller.refreshIndicatorKey,
-              onRefresh: () async {
-                controller.getNews();
-              },
+              onRefresh: () async => controller.getNews(),
               color: AppColors.primaryColor,
               child: Obx(() {
               return StatusWidget(
@@ -59,7 +56,9 @@ class NewsPage extends StatelessWidget {
                 onClickTryAgain: controller.getNews,
                 child: ListView.builder(
                     controller: controller.scrollController,
-                    physics: const BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics(),
+                    ),
                     padding: const EdgeInsets.fromLTRB(
                       16,
                       8,
