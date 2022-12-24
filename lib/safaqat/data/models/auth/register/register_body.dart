@@ -39,9 +39,9 @@ class RegisterBody {
   @JsonKey(name: 'jobTitle')
   String? jobTitle;
   @JsonKey(name: 'experiencesA')
-  String? experiencesA;
+  String? experiencesAr;
   @JsonKey(name: 'experiencesB')
-  String? experiencesB;
+  String? experiencesEn;
   @JsonKey(name: 'userAcct')
   String? userAcct;
   @JsonKey(name: 'userPassword')
@@ -69,8 +69,8 @@ class RegisterBody {
     this.countryNo,
     this.institution,
     this.jobTitle,
-    this.experiencesA,
-    this.experiencesB,
+    this.experiencesAr,
+    this.experiencesEn,
     this.userAcct,
     this.userPassword,
     this.photo,
