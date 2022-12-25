@@ -6,19 +6,19 @@ import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
+import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
+import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/checkbox_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
-import 'package:safaqat/safaqat/presentation/custom_views/local_images_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/add/components/event_details_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/add/components/event_info_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/edit/edit_event_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/map/event_map.dart';
-import 'package:safaqat/safaqat/presentation/ui/events/map/location_controller.dart';
 
 class EditEventPage extends StatelessWidget {
   const EditEventPage({
@@ -30,7 +30,6 @@ class EditEventPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(EditEventController());
-    final LocationController locationController = Get.find();
     controller.event = event;
     controller.loadEvents(event);
 
@@ -53,7 +52,7 @@ class EditEventPage extends StatelessWidget {
         backgroundColor: AppColors.background,
         appBar: AppBar(
           title: Text(
-            AppStrings.addNewEvent,
+            AppStrings.editEvent,
             style: AppTextStyle.title.copyWith(fontSize: 18),
           ),
           centerTitle: true,
@@ -86,21 +85,23 @@ class EditEventPage extends StatelessWidget {
                           tagsHint: AppStrings.tags,
                           tags: controller.tagsAr,
                           rtl: true,
-                          onTitleChange: (String value) {
-                            controller.titleAr = value;
+                          titleInitialValue: controller.titleAr,
+                          contentInitialValue: controller.detailsAr,
+                          onTitleChange: (String it) {
+                            controller.titleAr = it;
                           },
-                          onContentChange: (String value) {
-                            controller.detailsAr = value;
+                          onContentChange: (String it) {
+                            controller.detailsAr = it;
                           },
-                          onTagsChange: (List<String> value) {
-                            controller.tagsAr.value = value;
+                          onTagsChange: (List<String> it) {
+                            controller.tagsAr.value = it;
                           },
                           expanded: controller.arabicExpanded.value,
-                          onExpansionChanged: (bool value) {
+                          onExpansionChanged: (bool it) {
                             controller.englishExpanded.value = false;
                             controller.imagesExpanded.value = false;
                             controller.detailsExpanded.value = false;
-                            controller.arabicExpanded.value = value;
+                            controller.arabicExpanded.value = it;
                           },
                         );
                       }),
@@ -114,21 +115,23 @@ class EditEventPage extends StatelessWidget {
                           content: AppStrings.content,
                           tagsHint: AppStrings.tags,
                           tags: controller.tagsEn,
-                          onTitleChange: (String value) {
-                            controller.titleEn = value;
+                          titleInitialValue: controller.titleEn,
+                          contentInitialValue: controller.detailsEn,
+                          onTitleChange: (String it) {
+                            controller.titleEn = it;
                           },
-                          onContentChange: (String value) {
-                            controller.detailsEn = value;
+                          onContentChange: (String it) {
+                            controller.detailsEn = it;
                           },
-                          onTagsChange: (List<String> value) {
-                            controller.tagsEn.value = value;
+                          onTagsChange: (List<String> it) {
+                            controller.tagsEn.value = it;
                           },
                           expanded: controller.englishExpanded.value,
-                          onExpansionChanged: (bool value) {
+                          onExpansionChanged: (bool it) {
                             controller.arabicExpanded.value = false;
                             controller.imagesExpanded.value = false;
                             controller.detailsExpanded.value = false;
-                            controller.englishExpanded.value = value;
+                            controller.englishExpanded.value = it;
                           },
                         );
                       }),
@@ -145,58 +148,68 @@ class EditEventPage extends StatelessWidget {
                           endAt: AppStrings.endAt,
                           cities: controller.cities.value,
                           countries: controller.countries.value,
-                          locationController: locationController,
+                          locationController: controller.locationController,
+                          phoneInitialValue: controller.phone,
+                          emailInitialValue: controller.email,
+                          websiteInitialValue: controller.website,
+                          startAtInitialValue: controller.startAt,
+                          endAtInitialValue: controller.endAt,
+                          cityInitialValue: controller.event.city?.name,
+                          countryInitialValue: controller.event.country?.name,
+                          cameraPosition:
+                              controller.event.coordinates?.toCameraPosition(),
                           onCityChange: (city) {
                             controller.city = city;
-                            locationController.setCountryLocation(
-                              city: city.nameAr.toString(),
-                              country: controller.country.nameAr.toString(),
+                            controller.locationController.setCountryLocation(
+                              city: city.name,
+                              country: controller.country.name,
                             );
                           },
-                          onCountryChange: (value) =>
-                              controller.country = value,
-                          onEmailChange: (value) => controller.email = value,
-                          onPhoneChange: (value) => controller.phone = value,
-                          onWebsiteChange: (value) =>
-                              controller.website = value,
-                          onStartChange: (value) => controller.startAt = value,
-                          onEndChange: (value) => controller.endAt = value,
-                          onPressed: (LatLng value) {
-                            const EventMap().navTo();
+                          onCountryChange: (it) => controller.country = it,
+                          onEmailChange: (it) => controller.email = it,
+                          onPhoneChange: (it) => controller.phone = it,
+                          onWebsiteChange: (it) => controller.website = it,
+                          onStartChange: (it) => controller.startAt = it,
+                          onEndChange: (it) => controller.endAt = it,
+                          onPressed: (LatLng it) {
+                            EventMap(
+                              cameraPosition: controller.event.coordinates
+                                  ?.toCameraPosition(),
+                            ).navTo();
                           },
                           expanded: controller.detailsExpanded.value,
                           typeExpaned: controller.typeExpaned.value,
                           attendExpaned: controller.attendExpaned.value,
-                          onExpansionChanged: (bool value) {
+                          onExpansionChanged: (bool it) {
                             controller.arabicExpanded.value = false;
                             controller.englishExpanded.value = false;
                             controller.imagesExpanded.value = false;
-                            controller.detailsExpanded.value = value;
+                            controller.detailsExpanded.value = it;
                           },
-                          onTypeExpansionChange: (bool value) =>
-                              controller.typeExpaned.value = value,
-                          onAttendExpansionChange: (bool value) =>
-                              controller.attendExpaned.value = value,
-                          onTypeChange: (value) => controller.type = value,
-                          onAttendChange: (value) => controller.attend = value,
+                          onTypeExpansionChange: (bool it) =>
+                              controller.typeExpaned.value = it,
+                          onAttendExpansionChange: (bool it) =>
+                              controller.attendExpaned.value = it,
+                          onTypeChange: (it) => controller.type = it,
+                          onAttendChange: (it) => controller.attend = it,
                         );
                       }),
                       const SizedBox(height: 16),
-                      Obx(() {
-                        return LocalImagesWidget(
-                          imageController: controller.imageController,
-                          expanded: controller.imagesExpanded.value,
-                          onImagesChange: (value) {
-                            controller.images = value;
-                          },
-                          onExpansionChanged: (bool value) {
-                            controller.arabicExpanded.value = false;
-                            controller.englishExpanded.value = false;
-                            controller.detailsExpanded.value = false;
-                            controller.imagesExpanded.value = value;
-                          },
-                        );
-                      }),
+                      // Obx(() {
+                      //   return LocalImagesWidget(
+                      //     imageController: controller.imageController,
+                      //     expanded: controller.imagesExpanded.value,
+                      //     onImagesChange: (it) {
+                      //       controller.images = it
+                      //     },
+                      //     onExpansionChanged: (bool it) {
+                      //       controller.arabicExpanded.value = false;
+                      //       controller.englishExpanded.value = false;
+                      //       controller.detailsExpanded.value = false;
+                      //       controller.imagesExpanded.value = it
+                      //     },
+                      //   );
+                      // }),
                       Obx(
                         () => CheckBoxWidget(
                           value: controller.showName,
@@ -212,7 +225,8 @@ class EditEventPage extends StatelessWidget {
                   textColor: AppColors.primaryColor,
                   text: AppStrings.post,
                   onPressed: () {
-                    controller.targetPlace = locationController.targetPlace;
+                    controller.targetPlace =
+                        controller.locationController.targetPlace;
                     controller.edit();
                   },
                 ),

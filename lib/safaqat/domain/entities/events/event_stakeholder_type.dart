@@ -7,8 +7,6 @@ enum EventStakeHolderType {
   partner,
   sponsor;
 
-  
-  
   static List<EventStakeHolderType> get items => values.skip(1).toList(); 
 
   @override

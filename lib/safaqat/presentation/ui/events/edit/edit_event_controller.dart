@@ -19,11 +19,13 @@ import 'package:safaqat/safaqat/domain/entities/events/stakeholder.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecases/events/edit_event_usecase.dart';
 import 'package:safaqat/safaqat/presentation/ui/app_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/events/map/location_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/mine/my_events_controller.dart';
 
 class EditEventController extends GetxController {
   final _editEventUseCase = Get.put(EditEventUseCase());
   final AppController _appController = Get.find();
+  final LocationController locationController = Get.find();
   final MyEventsController _myEventsController = Get.find();
 
   var event = EventDto();
@@ -38,12 +40,12 @@ class EditEventController extends GetxController {
   final RxBool typeExpaned = false.obs;
   final RxBool attendExpaned = false.obs;
 
-static const int maxImages = 10;
+  static const int maxImages = 10;
   static const List<String> allowedImageTypes = ['png', 'jpg', 'jpeg'];
   final MultiImagePickerController imageController = MultiImagePickerController(
-          maxImages: maxImages,
-          allowedImageTypes: allowedImageTypes,
-        );
+    maxImages: maxImages,
+    allowedImageTypes: allowedImageTypes,
+  );
 
   final Rx<Resources> status = Resources.init().obs;
   List<File> images = <File>[];
@@ -142,7 +144,7 @@ static const int maxImages = 10;
           type: type.index,
           attendanceType: attend.index,
           coordinates: coordinates,
-          stakeholders: stakeholders,
+          // stakeholders: stakeholders,
         ));
 
     final result = await _editEventUseCase(params: body);
@@ -171,28 +173,26 @@ static const int maxImages = 10;
     website = event.webSite ?? '';
     coordinates = event.coordinates ?? EventCoordinates();
     showName = event.showName ?? false;
-    stakeholders = event.stakeholders?.map((e) => Stakeholder(
-      stakeholderName: e.name!, 
-      stakeholderOrder: e.order!, 
-      stakeholderType: e.type!.toEventStakeHolderType(), 
-      sponsorType: e.sponsorType!,
-      stakeholderLogo: File('')
-      )).toList() ?? [];
+    country = event.country ?? CountryDto();
+    city = event.city ?? CityDto();
+    // stakeholders = event.stakeholders
+    //         ?.map((e) => Stakeholder(
+    //             stakeholderName: e.name!,
+    //             stakeholderOrder: e.order!,
+    //             stakeholderType: e.type!.toEventStakeHolderType(),
+    //             sponsorType: e.sponsorType!,
+    //             stakeholderLogo: File('')))
+    //         .toList() ??
+    //     [];
 
-    EventType.values
+    EventType.items
         .find(selector: (e) => e.index == event.type)
         ?.let((value) => type = value);
 
-    EventAttend.values
+    EventAttend.items
         .find(selector: (e) => e.index == event.attendanceType)
         ?.let((value) => attend = value);
 
-    cities
-        .find(selector: (e) => e.cityNo == event.cityCode)
-        ?.let((value) => city = value);
-
-    countries
-        .find(selector: (e) => e.countryNo == event.countryNo)
-        ?.let((value) => country = value);
+    locationController.targetMarker = event.coordinates?.toMarker();
   }
 }

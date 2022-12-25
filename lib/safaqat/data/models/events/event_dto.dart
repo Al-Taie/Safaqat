@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
+import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/event_coordinates.dart';
 import 'package:safaqat/safaqat/data/models/events/stakeholder_dto.dart';
 
@@ -22,18 +24,10 @@ class EventDto {
   int? type;
   @JsonKey(name: 'eAttendanceType')
   int? attendanceType;
-  @JsonKey(name: 'countryNo')
-  int? countryNo;
-  @JsonKey(name: 'countryNameA')
-  String? countryNameAr;
-  @JsonKey(name: 'countryNameE')
-  String? countryNameEn;
-  @JsonKey(name: 'cityNameA')
-  String? cityNameAr;
-  @JsonKey(name: 'cityNameE')
-  String? cityNameEn;
-  @JsonKey(name: 'cityCode')
-  int? cityCode;
+  @JsonKey(name: 'country')
+  CountryDto? country;
+  @JsonKey(name: 'city')
+  CityDto? city;
   @JsonKey(name: 'coordinates')
   EventCoordinates? coordinates;
   @JsonKey(name: 'startDate')
@@ -72,12 +66,8 @@ class EventDto {
     this.detailsEn,
     this.type,
     this.attendanceType,
-    this.countryNo,
-    this.countryNameAr,
-    this.countryNameEn,
-    this.cityNameAr,
-    this.cityNameEn,
-    this.cityCode,
+    this.country,
+    this.city,
     this.coordinates,
     this.startDate,
     this.endDate,
@@ -101,6 +91,6 @@ class EventDto {
 
   @override
   String toString() {
-    return '$titleAr,$titleEn,$detailsAr,$detailsEn,$telephone,$webSite,$email,$countryNameAr,$cityNameEn,$cityNameAr,$cityNameEn'.toLowerCase();
+    return '$titleAr,$titleEn,$detailsAr,$detailsEn,$telephone,$webSite,$email,$country,$city'.toLowerCase();
   }
 }

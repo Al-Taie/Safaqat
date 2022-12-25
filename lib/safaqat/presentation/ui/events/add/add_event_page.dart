@@ -148,8 +148,8 @@ class AddEventPage extends StatelessWidget {
                           onCityChange: (city) {
                             controller.city = city;
                             controller.locationController.setCountryLocation(
-                              city: city.nameAr.toString(),
-                              country: controller.country.nameAr.toString(),
+                              city: city.name,
+                              country: controller.country.name,
                             );
                           },
                           onCountryChange: (value) =>

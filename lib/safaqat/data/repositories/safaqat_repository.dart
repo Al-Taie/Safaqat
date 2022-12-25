@@ -126,8 +126,9 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
               attendanceType: body.attendanceType,
               cityCode: body.cityCode,
               countryNo: body.countryNo,
-              images: body.images,
-              stakeholders: body.stakeholders)
+              // images: body.images,
+              // stakeholders: body.stakeholders
+              )
           .call();
 
   @override
@@ -156,7 +157,6 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
             attendanceType: body.attendanceType,
             cityCode: body.cityCode,
             countryNo: body.countryNo,
-            stakeholders: body.stakeholders,
           )
           .call();
 

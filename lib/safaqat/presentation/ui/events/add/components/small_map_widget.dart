@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -16,10 +15,12 @@ class SmallMapWidget extends StatelessWidget {
     required this.width,
     required this.height,
     required this.onPressed,
+    this.cameraPosition,
   });
   final LocationController controller;
   final double width, height;
   final ValueChanged<LatLng> onPressed;
+  final CameraPosition? cameraPosition;
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +49,11 @@ class SmallMapWidget extends StatelessWidget {
               scrollGesturesEnabled: false,
               rotateGesturesEnabled: false,
               onMapCreated: (value) => controller.smallMapController = value,
-              initialCameraPosition: CameraPosition(
-                target: controller.geoLocation.toLatLng(),
-                zoom: 5,
-              ),
+              initialCameraPosition: cameraPosition ??
+                  CameraPosition(
+                    target: controller.geoLocation.toLatLng(),
+                    zoom: 5,
+                  ),
               markers: {
                 if (controller.targetMarker != null) controller.targetMarker!,
               },

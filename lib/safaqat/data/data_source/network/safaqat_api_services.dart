@@ -169,7 +169,7 @@ abstract class SafaqatApiServices {
     @Part(name: 'Telephone') String? telephone,
     @Part(name: 'Email') String? email,
     @Part(name: 'WebSite') String? webSite,
-    @Part(name: 'Stakeholder') List<Stakeholder>? stakeholders,
+    // @Part(name: 'Stakeholder') List<Stakeholder>? stakeholders,
   });
 
   @DELETE('Events/Delete')

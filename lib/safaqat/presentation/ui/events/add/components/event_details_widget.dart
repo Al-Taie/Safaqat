@@ -10,6 +10,7 @@ import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_attend.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/autocomplete_textfield.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/custom_autocomplete_field.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/dropdown_field.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/textfiled_form.dart';
@@ -49,6 +50,11 @@ class EventDetailsWidget extends StatelessWidget {
     required this.attendExpaned,
     required this.onAttendExpansionChange,
     required this.onTypeExpansionChange,
+    this.startAtInitialValue,
+    this.endAtInitialValue,
+    this.cityInitialValue,
+    this.countryInitialValue,
+    this.cameraPosition,
   }) : super(key: key);
 
   final String title, website, email, startAt, endAt, phone;
@@ -72,6 +78,11 @@ class EventDetailsWidget extends StatelessWidget {
   final LocationController locationController;
   final GlobalKey<FormState> eventTypeFormKey;
   final GlobalKey<FormState> eventAttendFormKey;
+  final String? startAtInitialValue,
+      endAtInitialValue,
+      cityInitialValue,
+      countryInitialValue;
+  final CameraPosition? cameraPosition;
 
   @override
   Widget build(BuildContext context) {
@@ -103,17 +114,17 @@ class EventDetailsWidget extends StatelessWidget {
           selector: (EventAttend attend) => attend.toString(),
         ),
         const SizedBox(height: 8),
-        AutocompleteTextField<CountryDto>(
+        CustomAutoCompleteField<CountryDto>(
           hintText: AppStrings.country,
-          suggestions: countries,
-          displayStringForOption: (country) => country.name,
+          controller: TextEditingController(text: countryInitialValue),
+          suggestions: countries.map((e) => Suggestion(name: e.name, data: e)),
           onSelected: onCountryChange,
         ),
         const SizedBox(height: 8),
-        AutocompleteTextField<CityDto>(
+        CustomAutoCompleteField<CityDto>(
           hintText: AppStrings.city,
-          suggestions: cities,
-          displayStringForOption: (city) => city.name,
+          controller: TextEditingController(text: cityInitialValue),
+          suggestions: cities.map((e) => Suggestion(name: e.name, data: e)),
           onSelected: onCityChange,
         ),
         const SizedBox(height: 8),
@@ -122,6 +133,7 @@ class EventDetailsWidget extends StatelessWidget {
           width: Get.width,
           controller: locationController,
           onPressed: onPressed,
+          cameraPosition: cameraPosition,
         ),
         const SizedBox(height: 8),
         DateTimePicker(
@@ -129,6 +141,7 @@ class EventDetailsWidget extends StatelessWidget {
           lastDate: DateTime(DateTime.now().year + 5),
           initialDate: DateTime.now(),
           dateMask: 'y-MM-dd',
+          initialValue: startAtInitialValue,
           decoration: InputDecoration(
             label: Text(startAt),
             labelStyle: AppTextStyle.hint,
@@ -150,6 +163,7 @@ class EventDetailsWidget extends StatelessWidget {
           lastDate: DateTime(DateTime.now().year + 5),
           initialDate: DateTime.now(),
           dateMask: 'y-MM-dd',
+          initialValue: endAtInitialValue,
           decoration: InputDecoration(
             label: Text(endAt),
             labelStyle: AppTextStyle.hint,

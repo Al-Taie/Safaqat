@@ -12,37 +12,43 @@ import 'package:safaqat/safaqat/presentation/ui/events/map/location_controller.d
 import 'package:safaqat/safaqat/presentation/ui/events/map/search_location_field.dart';
 
 class EventMap extends StatelessWidget {
-  const EventMap({Key? key}) : super(key: key);
+  const EventMap({
+    Key? key,
+    this.cameraPosition,
+  }) : super(key: key);
+
+  final CameraPosition? cameraPosition;
 
   @override
   Widget build(BuildContext context) {
     final LocationController controller = Get.find();
-    
+
     return Scaffold(
       backgroundColor: AppColors.background,
-        appBar: AppBar(
-          title: Text(
-            AppStrings.selectPlace,
-            style: AppTextStyle.title.copyWith(fontSize: 18),
-          ),
-          centerTitle: true,
-          backgroundColor: AppColors.background,
-          elevation: 0,
-          leading: SvgIconButton(
-            icon: AppDrawable.icBack,
-            onPressed: Get.back,
-          ),
+      appBar: AppBar(
+        title: Text(
+          AppStrings.selectPlace,
+          style: AppTextStyle.title.copyWith(fontSize: 18),
         ),
+        centerTitle: true,
+        backgroundColor: AppColors.background,
+        elevation: 0,
+        leading: SvgIconButton(
+          icon: AppDrawable.icBack,
+          onPressed: Get.back,
+        ),
+      ),
       body: Stack(
         children: [
           Obx(
             () => GoogleMap(
               myLocationButtonEnabled: true,
               zoomControlsEnabled: true,
-              initialCameraPosition: CameraPosition(
-                target: controller.geoLocation.toLatLng(),
-                zoom: 17,
-              ),
+              initialCameraPosition: cameraPosition ??
+                  CameraPosition(
+                    target: controller.geoLocation.toLatLng(),
+                    zoom: 17,
+                  ),
               onMapCreated: (value) => controller.mapController = value,
               markers: {
                 if (controller.targetMarker != null) controller.targetMarker!,

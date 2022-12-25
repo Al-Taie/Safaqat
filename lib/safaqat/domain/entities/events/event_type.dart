@@ -8,6 +8,8 @@ enum EventType {
   seminar,
   forum;
 
+  static List<EventType> get items => values;
+
   @override
   String toString() {
     switch (this) {

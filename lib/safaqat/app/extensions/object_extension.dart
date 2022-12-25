@@ -82,12 +82,11 @@ extension EventCoordinatesExtension on EventCoordinates {
     );
   }
 
-  CameraUpdate toCameraUpdate() {
-    return CameraUpdate.newCameraPosition(
-      CameraPosition(
+  CameraPosition toCameraPosition() => CameraPosition(
         target: toLatLng(),
         zoom: 11,
-      ),
-    );
-  }
+      );
+
+  CameraUpdate toCameraUpdate() =>
+      CameraUpdate.newCameraPosition(toCameraPosition());
 }

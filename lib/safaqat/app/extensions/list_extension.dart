@@ -35,11 +35,47 @@ extension ListExtension<T> on List<T>? {
     }
   }
 
+  List<T> search({required ResultCallback<T, bool> selector}) {
+    try {
+      return this?.where((T e) => selector(e)).toList() ?? [];
+    } catch (e) {
+      return [];
+    }
+  }
+
   void forEachIndexed(void Function(int index, T element) action) {
     if (this == null) return;
 
     for (var index = 0; index < this!.length; index++) {
       action(index, this![index]);
+    }
+  }
+}
+
+extension IterableExtension<T> on Iterable<T>? {
+  T? get firstOrNull {
+    if (this != null && this?.isNotEmpty == true) {
+      return this?.first;
+    }
+    return null;
+  }
+
+  Iterable<T>? getOr(List<T>? value) =>
+      (this != null && this!.isNotEmpty) ? this : value;
+
+  T? find({required ResultCallback<T, bool> selector}) {
+    try {
+      return this?.firstWhere((T e) => selector(e));
+    } catch (e) {
+      return null;
+    }
+  }
+
+  List<T> search({required ResultCallback<T, bool> selector}) {
+    try {
+      return this?.where((T e) => selector(e)).toList() ?? [];
+    } catch (e) {
+      return [];
     }
   }
 }

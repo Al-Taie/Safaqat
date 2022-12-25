@@ -87,7 +87,7 @@ class EventCardWidget extends StatelessWidget {
                     offset: details.globalPosition,
                     context: context,
                     menuItems: [
-                      // MenuItems.edit,
+                      MenuItems.edit,
                       MenuItems.delete,
                     ],
                     onEditPressed: onEdit,
