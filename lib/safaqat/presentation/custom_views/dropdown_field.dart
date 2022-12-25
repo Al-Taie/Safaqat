@@ -27,7 +27,8 @@ class DropdownField<T> extends StatelessWidget {
   final Icon? prefixIcon;
   final Color? prefixIconColor;
   final double radius;
-  final String? hint, initialValue;
+  final String? hint;
+  final T? initialValue;
   final List<T> items;
   final ResultCallback<T, String> selector;
   final bool expanded;
@@ -38,6 +39,7 @@ class DropdownField<T> extends StatelessWidget {
     return Form(
       key: formKey,
       child: DropdownButtonFormField2<T>(
+        value: initialValue,
         onMenuStateChange: onExpansionChanged,
         decoration: InputDecoration(
           label: Text(hint ?? ''),
@@ -77,7 +79,7 @@ class DropdownField<T> extends StatelessWidget {
             .toList(),
         validator: (value) {
           if (value == null) {
-            return 'Please select gender.';
+            return 'Please select a choice.';
           }
         },
         onChanged: (value) {

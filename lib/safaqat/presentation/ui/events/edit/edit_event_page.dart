@@ -151,6 +151,8 @@ class EditEventPage extends StatelessWidget {
                           locationController: controller.locationController,
                           phoneInitialValue: controller.phone,
                           emailInitialValue: controller.email,
+                          eventTypeInitialVlaue: controller.type,
+                          eventAttendInitialVlaue: controller.attend,
                           websiteInitialValue: controller.website,
                           startAtInitialValue: controller.startAt,
                           endAtInitialValue: controller.endAt,

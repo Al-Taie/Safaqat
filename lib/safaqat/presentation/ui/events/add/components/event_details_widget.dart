@@ -9,7 +9,6 @@ import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_attend.dart';
-import 'package:safaqat/safaqat/presentation/custom_views/autocomplete_textfield.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_autocomplete_field.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/dropdown_field.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
@@ -55,6 +54,8 @@ class EventDetailsWidget extends StatelessWidget {
     this.cityInitialValue,
     this.countryInitialValue,
     this.cameraPosition,
+    this.eventTypeInitialVlaue,
+    this.eventAttendInitialVlaue,
   }) : super(key: key);
 
   final String title, website, email, startAt, endAt, phone;
@@ -83,6 +84,8 @@ class EventDetailsWidget extends StatelessWidget {
       cityInitialValue,
       countryInitialValue;
   final CameraPosition? cameraPosition;
+  final EventType? eventTypeInitialVlaue;
+  final EventAttend? eventAttendInitialVlaue;
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +98,7 @@ class EventDetailsWidget extends StatelessWidget {
       onExpansionChanged: onExpansionChanged,
       children: [
         DropdownField(
+          initialValue: eventTypeInitialVlaue,
           hint: AppStrings.evenType,
           formKey: eventTypeFormKey,
           expanded: typeExpaned,
@@ -105,6 +109,7 @@ class EventDetailsWidget extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         DropdownField(
+          initialValue: eventAttendInitialVlaue,
           hint: AppStrings.eventAttend,
           formKey: eventAttendFormKey,
           expanded: attendExpaned,
