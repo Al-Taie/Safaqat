@@ -15,7 +15,8 @@ class CustomAutoCompleteField<T> extends StatelessWidget {
     required this.controller,
     this.radius = 10.0,
     this.onTextChanged,
-    this.contentPadding = const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+    this.contentPadding =
+        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
     this.keyboardType = TextInputType.text,
     this.inputFormatters,
     this.prefixIcon,
@@ -53,9 +54,7 @@ class CustomAutoCompleteField<T> extends StatelessWidget {
         controller: controller,
         textInputAction: TextInputAction.search,
         onSubmitted: (query) async {
-          suggestions
-              .find(selector: (it) => it.name == query)
-              ?.let((value) {
+          suggestions.find(selector: (it) => it.name == query)?.let((value) {
             onSelected(value.data);
             Get.back();
           });
@@ -73,12 +72,10 @@ class CustomAutoCompleteField<T> extends StatelessWidget {
           prefixIcon: prefixIcon,
           prefixIconColor: prefixIconColor,
           focusedBorder: UnderlineInputBorder(
-              borderSide:
-                  const BorderSide(color: AppColors.primaryColor),
+              borderSide: const BorderSide(color: AppColors.primaryColor),
               borderRadius: BorderRadius.circular(radius)),
           enabledBorder: UnderlineInputBorder(
-              borderSide:
-                  const BorderSide(color: AppColors.primaryColor),
+              borderSide: const BorderSide(color: AppColors.primaryColor),
               borderRadius: BorderRadius.circular(radius)),
         ),
       ),
@@ -91,22 +88,15 @@ class CustomAutoCompleteField<T> extends StatelessWidget {
           padding: contentPadding,
           child: Row(
             children: [
-              const Icon(Icons.location_on,
-                  color: AppColors.primaryColor),
+              const Icon(Icons.location_on, color: AppColors.primaryColor),
               const SizedBox(width: 5),
               Expanded(
                 child: Text(
                   suggestion.name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context)
-                      .textTheme
-                      .displayMedium
-                      ?.copyWith(
-                        color: Theme.of(context)
-                            .textTheme
-                            .bodyLarge
-                            ?.color,
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
                         fontSize: 16,
                       ),
                 ),

@@ -154,8 +154,8 @@ class EditEventPage extends StatelessWidget {
                           websiteInitialValue: controller.website,
                           startAtInitialValue: controller.startAt,
                           endAtInitialValue: controller.endAt,
-                          cityInitialValue: controller.event.city?.name,
-                          countryInitialValue: controller.event.country?.name,
+                          cityInitialValue: controller.city.name,
+                          countryInitialValue: controller.country.name,
                           cameraPosition:
                               controller.event.coordinates?.toCameraPosition(),
                           onCityChange: (city) {
@@ -173,8 +173,12 @@ class EditEventPage extends StatelessWidget {
                           onEndChange: (it) => controller.endAt = it,
                           onPressed: (LatLng it) {
                             EventMap(
-                              cameraPosition: controller.event.coordinates
-                                  ?.toCameraPosition(),
+                              cameraPosition:
+                                  controller.locationController.geoLocation !=
+                                          null
+                                      ? null
+                                      : controller.event.coordinates
+                                          ?.toCameraPosition(),
                             ).navTo();
                           },
                           expanded: controller.detailsExpanded.value,
