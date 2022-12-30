@@ -5,7 +5,8 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/public/events_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/public/news_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/post/public/posts_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/posts/public/posts_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/public/projects_page.dart';
 
 class CollectionPage extends StatelessWidget {
   const CollectionPage({Key? key, this.logged = true}) : super(key: key);
@@ -57,7 +58,7 @@ class CollectionPage extends StatelessWidget {
                 NewsPage(logged: logged),
                 EventsPage(logged: logged),
                 PostsPage(logged: logged), // PostsPage(isLogged: logged),
-                PostsPage(logged: logged), // PostsPage(isLogged: logged),
+                ProjectsPage(logged: logged), // PostsPage(isLogged: logged),
               ],
             ),
           ),

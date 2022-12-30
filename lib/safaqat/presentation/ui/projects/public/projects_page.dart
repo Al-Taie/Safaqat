@@ -1,29 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:safaqat/safaqat/app/config/colors.dart';
-import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/events/components/event_card_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/events/details/event_details_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/mine/my_events_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/events/public/events_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/app_drawer.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_page.dart';
-import 'package:safaqat/safaqat/presentation/ui/post/components/post_card_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/post/public/posts_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/components/project_card_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/public/projects_controller.dart';
 
-class PostsPage extends StatelessWidget {
-  const PostsPage({Key? key, this.logged = false}) : super(key: key);
+class ProjectsPage extends StatelessWidget {
+  const ProjectsPage({Key? key, this.logged = false}) : super(key: key);
 
   final bool logged;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(PostsController());
+    final controller = Get.put(ProjectsController());
 
     return GestureDetector(
       onTap: () {
@@ -45,12 +40,12 @@ class PostsPage extends StatelessWidget {
             width: Get.width,
             isSearchEnabled: true,
             // title: AppStrings.posts,
-            onSearch: (String query) => controller.searchPosts(query),
+            onSearch: (String query) => controller.searchProjects(query),
           ),
           body: Obx(() {
             return StatusWidget(
               status: controller.status.value.status,
-              onClickTryAgain: controller.getPosts,
+              onClickTryAgain: controller.getProjects,
               child: ListView.builder(
                   controller: controller.scrollController,
                   physics: const BouncingScrollPhysics(
@@ -62,19 +57,19 @@ class PostsPage extends StatelessWidget {
                     16,
                     16,
                   ),
-                  itemCount: controller.filteredPosts.length,
+                  itemCount: controller.filteredProjects.length,
                   itemBuilder: (context, index) {
-                    var item = controller.filteredPosts[index];
-                    return PostCardWidget(
-                      title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
+                    var item = controller.filteredProjects[index];
+                    return ProjectCardWidget(
+                      title: item.name,
                       name: item.ownerName ?? '-',
                       image: item.images.firstOrNull ?? '',
-                      date: Utils.formatDate(dateStr: item.expiryDate),
-                      type: item.typeName,
+                      date: Utils.formatDate(dateStr: item.startDate),
+                      category: item.category?.name ?? '',
                       cityName: item.city?.name ?? '-',
                       onPressed: () {
-                        controller.postData = item;
-                        // PostDetailsPage(event: controller.postData).navTo();
+                        controller.projectData = item;
+                        // ProjectDetailsPage(event: controller.postData).navTo();
                       },
                     );
                   }),
