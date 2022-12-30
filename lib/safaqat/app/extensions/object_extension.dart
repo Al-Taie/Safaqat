@@ -2,7 +2,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:safaqat/safaqat/app/config/types.dart';
-import 'package:safaqat/safaqat/data/models/events/event_coordinates.dart';
+import 'package:safaqat/safaqat/data/models/events/coordinates_dto.dart';
 
 extension ObjectExtension on Object? {
   double? toDoubleOrNull() {

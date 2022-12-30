@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:safaqat/safaqat/data/models/events/event_coordinates.dart';
+import 'package:safaqat/safaqat/data/models/events/coordinates_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/events/stakeholder.dart';
 
 class EventBody {

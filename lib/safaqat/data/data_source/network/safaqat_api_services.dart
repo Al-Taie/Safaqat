@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -21,6 +22,11 @@ import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
+import 'package:safaqat/safaqat/data/models/posts/posts_response.dart';
+import 'package:safaqat/safaqat/data/models/projects/project_dto.dart';
+import 'package:safaqat/safaqat/data/models/projects/projects_response.dart';
 import 'package:safaqat/safaqat/domain/entities/events/stakeholder.dart';
 
 part 'safaqat_api_services.g.dart';
@@ -176,4 +182,133 @@ abstract class SafaqatApiServices {
   Future<HttpResponse<BaseResponse<dynamic>>> deleteEvent(
     @Query('eventId') String? eventsId,
   );
+
+  @GET('Post/category')
+  Future<HttpResponse<BaseResponse<PostCategoryDto>>> getPostCategories();
+
+  @GET('Post/List')
+  Future<HttpResponse<BaseResponse<PostsResponse>>> getPosts(
+      @Query('pageSize') int pageSize, @Query('pageNumber') int pageNumber,
+      {@Header('No-Authentication') bool noAuth = true});
+
+  @GET('Post/List')
+  Future<HttpResponse<BaseResponse<PostsResponse>>> getMyPosts(
+      @Query('pageSize') int pageSize,
+      @Query('pageNumber') int pageNumber,
+      @Query('type') int type,
+      );
+
+  @POST('Post/Create')
+  @MultiPart()
+  Future<HttpResponse<BaseResponse<PostDto>>> publishPost({
+    @Part(name: 'PostTitleA') String? titleAr,
+    @Part(name: 'PostTitleE') String? titleEn,
+    @Part(name: 'DescriptionA') String? descriptionAr,
+    @Part(name: 'DescriptionE') String? descriptionNameEn,
+    @Part(name: 'InstituteNameA') String? instituteNameAr,
+    @Part(name: 'InstituteNameE') String? instituteNameEn,
+    @Part(name: 'PostType') int? type,
+    @Part(name: 'CategoryCode') int? categoryCode,
+    @Part(name: 'City') int? cityCode,
+    @Part(name: 'Coordinates.latitude') double? latitude,
+    @Part(name: 'Coordinates.longitude') double? longitude,
+    @Part(name: 'CostCode') int? costCode,
+    @Part(name: 'ExpiryDate') String? expiryDate,
+    @Part(name: 'ShowTel') bool? showPhone,
+    @Part(name: 'ShowEmail') bool? showEmail,
+    @Part(name: 'Images') List<File>? images,
+  });
+
+  @MultiPart()
+  @PUT('Post/Edit')
+  Future<HttpResponse<BaseResponse<PostDto>>> editPost({
+    @Query('postId') String? postId,
+    @Part(name: 'PostTitleA') String? titleAr,
+    @Part(name: 'PostTitleE') String? titleEn,
+    @Part(name: 'DescriptionA') String? descriptionAr,
+    @Part(name: 'DescriptionE') String? descriptionNameEn,
+    @Part(name: 'InstituteNameA') String? instituteNameAr,
+    @Part(name: 'InstituteNameE') String? instituteNameEn,
+    @Part(name: 'PostType') int? type,
+    @Part(name: 'CategoryCode') int? categoryCode,
+    @Part(name: 'City') int? cityCode,
+    @Part(name: 'Coordinates.latitude') double? latitude,
+    @Part(name: 'Coordinates.longitude') double? longitude,
+    @Part(name: 'CostCode') int? costCode,
+    @Part(name: 'ExpiryDate') String? expiryDate,
+    @Part(name: 'ShowTel') bool? showPhone,
+    @Part(name: 'ShowEmail') bool? showEmail,
+    @Part(name: 'Images') List<File>? images,
+  });
+
+  @DELETE('Post/Delete')
+  Future<HttpResponse<BaseResponse<dynamic>>> deletePost(
+      @Query('postId') String? postId,
+      );
+
+  @GET('Project/List')
+  Future<HttpResponse<BaseResponse<ProjectsResponse>>> getProjects(
+      @Query('pageSize') int pageSize, @Query('pageNumber') int pageNumber,
+      {@Header('No-Authentication') bool noAuth = true});
+
+  @GET('Project/List')
+  Future<HttpResponse<BaseResponse<ProjectsResponse>>> getMyProjects(
+      @Query('pageSize') int pageSize,
+      @Query('pageNumber') int pageNumber,
+      @Query('type') int type,
+      );
+
+  @POST('Project/Create')
+  @MultiPart()
+  Future<HttpResponse<BaseResponse<ProjectDto>>> publishProject({
+    @Part(name: 'ProjNameA') String? nameAr,
+    @Part(name: 'ProjNameE') String? nameEn,
+    @Part(name: 'DescriptionA') String? descriptionAr,
+    @Part(name: 'DescriptionE') String? descriptionNameEn,
+    @Part(name: 'InstituteNameA') String? instituteNameAr,
+    @Part(name: 'InstituteNameE') String? instituteNameEn,
+    @Part(name: 'ProjConvener') int? convener,
+    @Part(name: 'ProjSector') int? sector,
+    @Part(name: 'Category') int? category,
+    @Part(name: 'CityCode') int? cityCode,
+    @Part(name: 'Coordinates.latitude') double? latitude,
+    @Part(name: 'Coordinates.longitude') double? longitude,
+    @Part(name: 'Cost') Float? cost,
+    @Part(name: 'StartDate') String? startDate,
+    @Part(name: 'EndDate') String? endDate,
+    @Part(name: 'ActualEndDate') String? actualEndDate,
+    @Part(name: 'ShowTel') bool? showPhone,
+    @Part(name: 'ShowEmail') bool? showEmail,
+    @Part(name: 'Images') List<File>? images,
+  });
+
+  @MultiPart()
+  @PUT('Project/Edit')
+  Future<HttpResponse<BaseResponse<ProjectDto>>> editProject({
+    @Query('projectId') String? projectId,
+    @Part(name: 'ProjNameA') String? nameAr,
+    @Part(name: 'ProjNameE') String? nameEn,
+    @Part(name: 'DescriptionA') String? descriptionAr,
+    @Part(name: 'DescriptionE') String? descriptionNameEn,
+    @Part(name: 'InstituteNameA') String? instituteNameAr,
+    @Part(name: 'InstituteNameE') String? instituteNameEn,
+    @Part(name: 'ProjConvener') int? convener,
+    @Part(name: 'ProjSector') int? sector,
+    @Part(name: 'Category') int? category,
+    @Part(name: 'CityCode') int? cityCode,
+    @Part(name: 'Coordinates.latitude') double? latitude,
+    @Part(name: 'Coordinates.longitude') double? longitude,
+    @Part(name: 'Cost') Float? cost,
+    @Part(name: 'StartDate') String? startDate,
+    @Part(name: 'EndDate') String? endDate,
+    @Part(name: 'ActualEndDate') String? actualEndDate,
+    @Part(name: 'ShowTel') bool? showPhone,
+    @Part(name: 'ShowEmail') bool? showEmail,
+    @Part(name: 'Images') List<File>? images,
+  });
+
+  @DELETE('Project/Delete')
+  Future<HttpResponse<BaseResponse<dynamic>>> deleteProject(
+      @Query('projectId') String? projectId,
+      );
 }

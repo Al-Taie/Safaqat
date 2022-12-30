@@ -10,7 +10,7 @@ import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/event_body.dart';
-import 'package:safaqat/safaqat/data/models/events/event_coordinates.dart';
+import 'package:safaqat/safaqat/data/models/events/coordinates_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/events/edit_event_params.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
@@ -151,9 +151,38 @@ class EditEventController extends GetxController {
     status.value = result;
 
     if (result.status == Status.success) {
-      //   var index = _myEventsController.waitedEvents.indexOf(event);
-      //   _myEventsController.waitedEvents.remove(event);
-      //   _myEventsController.waitedEvents.insert(index, result.data!);
+      switch (type) {
+        case EventType.general:
+          var index = _myEventsController.generalEvents.indexOf(event);
+          _myEventsController.generalEvents.remove(event);
+          _myEventsController.generalEvents.insert(index, result.data!);
+          break;
+        case EventType.conference:
+          var index = _myEventsController.conferenceEvents.indexOf(event);
+          _myEventsController.conferenceEvents.remove(event);
+          _myEventsController.conferenceEvents.insert(index, result.data!);
+          break;
+        case EventType.trainingCourse:
+          var index = _myEventsController.trainingCourseEvents.indexOf(event);
+          _myEventsController.trainingCourseEvents.remove(event);
+          _myEventsController.trainingCourseEvents.insert(index, result.data!);
+          break;
+        case EventType.exhibition:
+          var index = _myEventsController.exhibitionEvents.indexOf(event);
+          _myEventsController.exhibitionEvents.remove(event);
+          _myEventsController.exhibitionEvents.insert(index, result.data!);
+          break;
+        case EventType.seminar:
+          var index = _myEventsController.seminarEvents.indexOf(event);
+          _myEventsController.seminarEvents.remove(event);
+          _myEventsController.seminarEvents.insert(index, result.data!);
+          break;
+        case EventType.forum:
+          var index = _myEventsController.forumEvents.indexOf(event);
+          _myEventsController.forumEvents.remove(event);
+          _myEventsController.forumEvents.insert(index, result.data!);
+          break;
+      }
     }
   }
 
