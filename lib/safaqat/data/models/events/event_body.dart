@@ -12,7 +12,7 @@ class EventBody {
   int? attendanceType;
   int? countryNo;
   int? cityCode;
-  EventCoordinates? coordinates;
+  CoordinatesDto? coordinates;
   String? startDate;
   String? endDate;
   String? telephone;

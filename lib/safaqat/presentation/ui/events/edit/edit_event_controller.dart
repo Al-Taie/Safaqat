@@ -110,9 +110,9 @@ class EditEventController extends GetxController {
   EventAttend get attend => _attend.value;
   set attend(EventAttend value) => _attend.value = value;
 
-  final _coordinates = EventCoordinates().obs;
-  EventCoordinates get coordinates => _coordinates.value;
-  set coordinates(EventCoordinates value) => _coordinates.value = value;
+  final _coordinates = CoordinatesDto().obs;
+  CoordinatesDto get coordinates => _coordinates.value;
+  set coordinates(CoordinatesDto value) => _coordinates.value = value;
 
   final _stakeholders = <Stakeholder>[].obs;
   List<Stakeholder> get stakeholders => _stakeholders.value;
@@ -200,7 +200,7 @@ class EditEventController extends GetxController {
     startAt = event.startDate ?? '';
     endAt = event.endDate ?? '';
     website = event.webSite ?? '';
-    coordinates = event.coordinates ?? EventCoordinates();
+    coordinates = event.coordinates ?? CoordinatesDto();
     showName = event.showName ?? false;
     country = event.country ?? CountryDto();
     city = event.city ?? CityDto();

@@ -9,6 +9,12 @@ import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/data/models/news/publish/publish_news_body.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_body.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
+import 'package:safaqat/safaqat/data/models/posts/posts_response.dart';
+import 'package:safaqat/safaqat/data/models/projects/project_body.dart';
+import 'package:safaqat/safaqat/data/models/projects/project_dto.dart';
+import 'package:safaqat/safaqat/data/models/projects/projects_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'dart:io';
 
@@ -64,4 +70,40 @@ abstract class SafaqatRepository {
   });
 
   Future<Resources> deleteEvent({String? eventId});
+
+  Future<Resources<PostsResponse>> getPosts(
+      {required int pageSize, required int pageNumber});
+
+  Future<Resources<PostsResponse>> getMyPosts({
+    required int pageSize,
+    required int pageNumber,
+    required int type,
+  });
+
+  Future<Resources<PostDto>> addPost({required PostBody body});
+
+  Future<Resources<PostDto>> editPost({
+    String? postId,
+    required PostBody body,
+  });
+
+  Future<Resources> deletePost({String? postId});
+
+  Future<Resources<ProjectsResponse>> getProjects(
+      {required int pageSize, required int pageNumber});
+
+  Future<Resources<ProjectsResponse>> getMyProjects({
+    required int pageSize,
+    required int pageNumber,
+    required int type,
+  });
+
+  Future<Resources<ProjectDto>> addProject({required ProjectBody body});
+
+  Future<Resources<ProjectDto>> editProject({
+    String? projectId,
+    required ProjectBody body,
+  });
+
+  Future<Resources> deleteProject({String? projectId});
 }
