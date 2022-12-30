@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
@@ -12,15 +13,17 @@ import 'package:safaqat/safaqat/presentation/ui/events/mine/my_events_page.dart'
 import 'package:safaqat/safaqat/presentation/ui/events/public/events_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/app_drawer.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/post/components/post_card_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/post/public/posts_controller.dart';
 
 class PostsPage extends StatelessWidget {
-  const PostsPage({Key? key, this.isLogged = false}) : super(key: key);
+  const PostsPage({Key? key, this.logged = false}) : super(key: key);
 
-  final bool isLogged;
+  final bool logged;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(EventsController());
+    final controller = Get.put(PostsController());
 
     return GestureDetector(
       onTap: () {
@@ -28,7 +31,7 @@ class PostsPage extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
-          drawer: isLogged
+          drawer: logged
               ? AppDrawer(
                   name: 'Full Name',
                   imageUrl:
@@ -41,13 +44,13 @@ class PostsPage extends StatelessWidget {
           appBar: AppBarWidget(
             width: Get.width,
             isSearchEnabled: true,
-            title: AppStrings.events,
-            onSearch: (String query) => controller.searchEvents(query),
+            // title: AppStrings.posts,
+            onSearch: (String query) => controller.searchPosts(query),
           ),
           body: Obx(() {
             return StatusWidget(
               status: controller.status.value.status,
-              onClickTryAgain: controller.getEvents,
+              onClickTryAgain: controller.getPosts,
               child: ListView.builder(
                   controller: controller.scrollController,
                   physics: const BouncingScrollPhysics(
@@ -59,18 +62,19 @@ class PostsPage extends StatelessWidget {
                     16,
                     16,
                   ),
-                  itemCount: controller.filteredEvents.length,
+                  itemCount: controller.filteredPosts.length,
                   itemBuilder: (context, index) {
-                    var item = controller.filteredEvents[index];
-                    return EventCardWidget(
-                      title:
-                          (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
+                    var item = controller.filteredPosts[index];
+                    return PostCardWidget(
+                      title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
                       name: item.ownerName ?? '-',
                       image: item.images.firstOrNull ?? '',
-                      date: Utils.formatDate(dateStr: item.startDate),
+                      date: Utils.formatDate(dateStr: item.expiryDate),
+                      type: item.typeName,
+                      cityName: item.city?.name ?? '-',
                       onPressed: () {
-                        controller.eventData = item;
-                        EventDetailsPage(event: controller.eventData).navTo();
+                        controller.postData = item;
+                        // PostDetailsPage(event: controller.postData).navTo();
                       },
                     );
                   }),

@@ -25,6 +25,8 @@ final Map<String, String> arIQ = {
   deleteKey: 'حذف',
   deleteNewsKey: 'حذف الخبر',
   deleteEventKey: 'حذف المناسبة',
+  deletePostKey: 'حذف المنشور',
+  deleteProjectKey: 'حذف المشروع',
   deletedFailedKey: 'فشل الحذف!',
   deletedSuccessfullyKey: 'تم الحذف بنجاح',
   dontHaveAccountKey: 'لا تمتلك حساباً؟ سجل الان',
@@ -145,4 +147,9 @@ final Map<String, String> arIQ = {
   maleKey: 'ذكر',
   femaleKey: 'أنثى',
   genderKey: 'الجنس',
+  manageProjectsKey: 'إدارة المشاريع',
+  managePostsKey: 'إدارة المنشورات',
+  projectsKey: 'المشاريع',
+  postsKey: 'المنشورات',
+  businessKey: 'أعمال'
 };

@@ -10,7 +10,7 @@ import 'package:safaqat/safaqat/presentation/custom_views/search_filed.dart';
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   AppBarWidget({
     super.key,
-    required this.title,
+    this.title,
     required this.width,
     this.height = 50,
     this.isSearchEnabled = false,
@@ -21,7 +21,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     this.bottom,
   }) : preferredSize = Size(height, width);
 
-  final String title;
+  final String? title;
   final bool isSearchEnabled;
   final EdgeInsetsGeometry padding;
   final VoidCallback? onBackPressed;
@@ -66,24 +66,26 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-              height: height,
+            height: height,
             child: Stack(
               children: [
                 if (leading != null) leading,
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: AnimatedTextWidget(
-                      title.capitalizeFirst ?? '',
-                      isAnimated: isAnimated,
+                if (title != null)
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: AnimatedTextWidget(
+                        title?.capitalizeFirst ?? '',
+                        isAnimated: isAnimated,
+                      ),
                     ),
                   ),
-                ),
                 if (isSearchEnabled)
                   Obx(
                     () => Align(
-                      alignment: Utils.isRTL ? Alignment.topLeft : Alignment.topRight,
+                      alignment:
+                          Utils.isRTL ? Alignment.topLeft : Alignment.topRight,
                       child: Card(
                         margin: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -116,7 +118,8 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                                     color: AppColors.shadeSecondary,
                                   ),
                                   onPressed: () {
-                                    isAnimated.value = isAnimated.value ? false : true;
+                                    isAnimated.value =
+                                        isAnimated.value ? false : true;
                                     searchFocusNode.requestFocus();
                                   },
                                 ),

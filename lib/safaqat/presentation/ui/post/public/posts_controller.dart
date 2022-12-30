@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
+import 'package:safaqat/safaqat/data/models/posts/posts_response.dart';
+import 'package:safaqat/safaqat/domain/entities/posts/post_query.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecases/auth/logout/delete_user_info_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/posts/get_posts_usecase.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
 
 class PostsController extends GetxController {

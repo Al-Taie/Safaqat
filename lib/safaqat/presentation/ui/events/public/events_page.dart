@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
+import 'package:safaqat/safaqat/app/extensions/int_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
@@ -14,9 +15,9 @@ import 'package:safaqat/safaqat/presentation/ui/news/components/app_drawer.dart'
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_page.dart';
 
 class EventsPage extends StatelessWidget {
-  const EventsPage({Key? key, this.isLogged = false}) : super(key: key);
+  const EventsPage({Key? key, this.logged = false}) : super(key: key);
 
-  final bool isLogged;
+  final bool logged;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,8 @@ class EventsPage extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
-          drawer: isLogged
+          backgroundColor: AppColors.background,
+          drawer: logged
               ? AppDrawer(
                   name: 'Full Name',
                   imageUrl:
@@ -41,7 +43,7 @@ class EventsPage extends StatelessWidget {
           appBar: AppBarWidget(
             width: Get.width,
             isSearchEnabled: true,
-            title: AppStrings.events,
+            // title: AppStrings.events,
             onSearch: (String query) => controller.searchEvents(query),
           ),
           body: Obx(() {
@@ -63,8 +65,7 @@ class EventsPage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     var item = controller.filteredEvents[index];
                     return EventCardWidget(
-                      title:
-                          (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
+                      title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
                       name: item.ownerName ?? '-',
                       image: item.images.firstOrNull ?? '',
                       date: Utils.formatDate(dateStr: item.startDate),
@@ -72,6 +73,8 @@ class EventsPage extends StatelessWidget {
                         controller.eventData = item;
                         EventDetailsPage(event: controller.eventData).navTo();
                       },
+                      type: item.type.toEventType(),
+                      attendType: item.attendanceType.toEventAttend(),
                     );
                   }),
             );

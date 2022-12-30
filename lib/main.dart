@@ -7,6 +7,7 @@ import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/preferences_keys.dart';
 import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/login/login_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/collection_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/authorized_main_tabs_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -42,9 +42,9 @@ extension GeocodingResultExtension on GeocodingResult? {
 }
 
 extension PlacesSearchResultExtension on PlacesSearchResult? {
-  EventCoordinates? toCoordinates() {
+  CoordinatesDto? toCoordinates() {
     if (this?.geometry?.location != null) {
-      EventCoordinates(
+      CoordinatesDto(
         latitude: this?.geometry?.location.lat,
         longitude: this?.geometry?.location.lng,
       );
@@ -54,9 +54,9 @@ extension PlacesSearchResultExtension on PlacesSearchResult? {
 }
 
 extension MarkerExtension on Marker? {
-  EventCoordinates? toCoordinates() {
+  CoordinatesDto? toCoordinates() {
     if (this?.position != null) {
-      return EventCoordinates(
+      return CoordinatesDto(
         latitude: this?.position.latitude,
         longitude: this?.position.longitude,
       );
@@ -65,7 +65,7 @@ extension MarkerExtension on Marker? {
   }
 }
 
-extension EventCoordinatesExtension on EventCoordinates {
+extension EventCoordinatesExtension on CoordinatesDto {
   LatLng toLatLng() {
     return LatLng(
       latitude!,

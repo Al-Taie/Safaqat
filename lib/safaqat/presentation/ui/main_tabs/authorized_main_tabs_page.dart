@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/presentation/ui/collection_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/public/events_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/components/bottom_nav_bar.dart';
 import 'package:safaqat/safaqat/presentation/ui/main_tabs/tabbed_page.dart';
@@ -22,15 +23,20 @@ class AuthorizedMainTabsPage extends StatelessWidget {
       //   label: AppStrings.home,
       //   icon: AppDrawable.icHome,
       // ),
+      // TabbedPage(
+      //   page: const NewsPage(isLogged: true),
+      //   label: AppStrings.news,
+      //   icon: AppDrawable.icNews,
+      // ),
+      //       TabbedPage(
+      //   page: const EventsPage(isLogged: true),
+      //   label: AppStrings.events,
+      //   icon: Icons.event,
+      // ),
       TabbedPage(
-        page: const NewsPage(isLogged: true),
-        label: AppStrings.news,
-        icon: AppDrawable.icNews,
-      ),
-            TabbedPage(
-        page: const EventsPage(isLogged: true),
-        label: AppStrings.events,
-        icon: Icons.event,
+        page: const CollectionPage(logged: true),
+        label: AppStrings.business,
+        icon: Icons.work,
       ),
       TabbedPage(
         page: const NotificationPage(),

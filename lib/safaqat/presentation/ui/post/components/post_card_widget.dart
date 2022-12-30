@@ -6,30 +6,26 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/utils/show_menu.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
-import 'package:safaqat/safaqat/domain/entities/events/event_attend.dart';
-import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/alert_dialog_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/card_icon.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_icon.dart';
 
-class EventCardWidget extends StatelessWidget {
-  const EventCardWidget({
+class PostCardWidget extends StatelessWidget {
+  const PostCardWidget({
     Key? key,
     required this.title,
     required this.name,
-    required this.type,
-    required this.attendType,
     required this.image,
     required this.date,
+    required this.cityName,
+    required this.type,
     this.isLogged = false,
     this.onPressed,
     this.onDelete,
     this.onEdit,
   }) : super(key: key);
 
-  final String title, name, date, image;
-  final EventType type;
-  final EventAttend attendType;
+  final String title, name, date, image, cityName, type;
   final bool isLogged;
   final VoidCallback? onPressed, onEdit, onDelete;
 
@@ -82,12 +78,12 @@ class EventCardWidget extends StatelessWidget {
                           const SizedBox(width: 8),
                           TextIcon(
                             icon: Icons.event_available,
-                            text: type.toString(),
+                            text: type,
                           ),
                           const SizedBox(width: 8),
                           TextIcon(
                             icon: Icons.location_pin,
-                            text: attendType.toString(),
+                            text: cityName,
                           ),
                         ],
                       ),
@@ -117,7 +113,7 @@ class EventCardWidget extends StatelessWidget {
                         builder: (context) => AlertDialogWidget(
                           onAccept: onDelete,
                           onCancel: Get.back,
-                          title: AppStrings.deleteEvent,
+                          title: AppStrings.deletePost,
                           description: AppStrings.deleteDescription,
                         ),
                       );

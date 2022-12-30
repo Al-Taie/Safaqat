@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/coordinates_dto.dart';
 
@@ -93,6 +94,8 @@ class PostDto {
     this.postDate,
     this.images,
   });
+
+  String get typeName => (Utils.isRTL ? typeNameAr : typeNameEn) ?? '-';
 
   factory PostDto.fromJson(Map<String, dynamic> json) =>
       _$PostDtoFromJson(json);

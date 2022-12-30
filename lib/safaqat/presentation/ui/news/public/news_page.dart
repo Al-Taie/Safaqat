@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
@@ -14,9 +15,9 @@ import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/public/news_controller.dart';
 
 class NewsPage extends StatelessWidget {
-  const NewsPage({Key? key, this.isLogged = false}) : super(key: key);
+  const NewsPage({Key? key, this.logged = false}) : super(key: key);
 
-  final bool isLogged;
+  final bool logged;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,8 @@ class NewsPage extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
-          drawer: isLogged
+          backgroundColor: AppColors.background,
+          drawer: logged
               ? AppDrawer(
                   name: 'Full Name',
                   imageUrl:
@@ -42,7 +44,7 @@ class NewsPage extends StatelessWidget {
           appBar: AppBarWidget(
             width: Get.width,
             isSearchEnabled: true,
-            title: AppStrings.news,
+            // title: AppStrings.news,
             onSearch: (String query) => controller.searchNews(query),
           ),
           body: Obx(() {
