@@ -151,5 +151,10 @@ final Map<String, String> arIQ = {
   managePostsKey: 'إدارة المنشورات',
   projectsKey: 'المشاريع',
   postsKey: 'المنشورات',
-  businessKey: 'أعمال'
+  businessKey: 'أعمال',
+  valueKey: 'القيمة',
+  instituteKey: 'المؤسسة',
+  descriptionKey: 'الوصف',
+  categoryKey: 'الفئة',
+  expiryDateKey: 'تاريخ النفاذية',
 };

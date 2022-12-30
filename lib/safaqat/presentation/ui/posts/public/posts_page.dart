@@ -9,6 +9,7 @@ import 'package:safaqat/safaqat/presentation/ui/events/mine/my_events_page.dart'
 import 'package:safaqat/safaqat/presentation/ui/news/components/app_drawer.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/components/post_card_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/posts/details/post_details_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/public/posts_controller.dart';
 
 class PostsPage extends StatelessWidget {
@@ -69,7 +70,7 @@ class PostsPage extends StatelessWidget {
                       cityName: item.city?.name ?? '-',
                       onPressed: () {
                         controller.postData = item;
-                        // PostDetailsPage(event: controller.postData).navTo();
+                        PostDetailsPage(post: controller.postData).navTo();
                       },
                     );
                   }),

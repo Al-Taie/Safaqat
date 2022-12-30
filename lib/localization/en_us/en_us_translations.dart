@@ -150,4 +150,9 @@ final Map<String, String> enUS = {
   projectsKey: 'Projects',
   postsKey: 'Posts',
   businessKey: 'Business',
+  valueKey: 'Value',
+  instituteKey: 'Institute',
+  descriptionKey: 'Description',
+  categoryKey: 'Category',
+  expiryDateKey: 'Expiry date',
 };

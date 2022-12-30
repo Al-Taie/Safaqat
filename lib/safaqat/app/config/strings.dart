@@ -148,6 +148,11 @@ const waitedKey = 'waited';
 const websiteKey = 'website';
 const welcomeToSafaqatKey = 'welcomeToSafaqat';
 const yesKey = 'yes';
+const instituteKey = 'institute';
+const descriptionKey = 'description';
+const valueKey = 'value';
+const categoryKey = 'category';
+const expiryDateKey = 'expiryDate';
 
 
 class AppStrings {
@@ -299,5 +304,10 @@ class AppStrings {
   static final website = websiteKey.tr;
   static final welcomeToSafaqat = welcomeToSafaqatKey.tr;
   static final yes = yesKey.tr;
+  static final institute = instituteKey.tr;
+  static final description = descriptionKey.tr;
+  static final value = valueKey.tr;
+  static final category = categoryKey.tr;
+  static final expiryDate = expiryDateKey.tr;
 
 }

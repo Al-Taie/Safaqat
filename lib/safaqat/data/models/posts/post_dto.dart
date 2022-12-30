@@ -12,7 +12,7 @@ class PostDto {
   @JsonKey(name: 'ownerName')
   String? ownerName;
   @JsonKey(name: 'ownerTel')
-  String? ownerTel;
+  String? ownerPhone;
   @JsonKey(name: 'ownerEmail')
   String? ownerEmail;
   @JsonKey(name: 'postTitleA')
@@ -20,9 +20,9 @@ class PostDto {
   @JsonKey(name: 'postTitleE')
   String? titleEn;
   @JsonKey(name: 'instituteNameA')
-  String? instituteNameA;
+  String? instituteNameAr;
   @JsonKey(name: 'instituteNameE')
-  String? instituteNameE;
+  String? instituteNameEn;
   @JsonKey(name: 'postType')
   bool? type;
   @JsonKey(name: 'typeNameA')
@@ -40,13 +40,13 @@ class PostDto {
   @JsonKey(name: 'costCode')
   bool? costCode;
   @JsonKey(name: 'costValueE')
-  String? costValueE;
+  String? costValueEn;
   @JsonKey(name: 'costValueA')
-  String? costValueA;
+  String? costValueAr;
   @JsonKey(name: 'descriptionA')
-  String? descriptionA;
+  String? descriptionAr;
   @JsonKey(name: 'descriptionE')
-  String? descriptionE;
+  String? descriptionEn;
   @JsonKey(name: 'postStatus')
   int? postStatus;
   @JsonKey(name: 'statusDesc')
@@ -56,7 +56,7 @@ class PostDto {
   @JsonKey(name: 'expiryDate')
   String? expiryDate;
   @JsonKey(name: 'showTel')
-  bool? showTel;
+  bool? showPhone;
   @JsonKey(name: 'showEmail')
   bool? showEmail;
   @JsonKey(name: 'postDate')
@@ -67,12 +67,12 @@ class PostDto {
   PostDto({
     this.id,
     this.ownerName,
-    this.ownerTel,
+    this.ownerPhone,
     this.ownerEmail,
     this.titleAr,
     this.titleEn,
-    this.instituteNameA,
-    this.instituteNameE,
+    this.instituteNameAr,
+    this.instituteNameEn,
     this.type,
     this.typeNameAr,
     this.typeNameEn,
@@ -81,21 +81,25 @@ class PostDto {
     this.categoryNameEn,
     this.city,
     this.costCode,
-    this.costValueE,
-    this.costValueA,
-    this.descriptionA,
-    this.descriptionE,
+    this.costValueEn,
+    this.costValueAr,
+    this.descriptionAr,
+    this.descriptionEn,
     this.postStatus,
     this.statusDesc,
     this.coordinates,
     this.expiryDate,
-    this.showTel,
+    this.showPhone,
     this.showEmail,
     this.postDate,
     this.images,
   });
 
   String get typeName => (Utils.isRTL ? typeNameAr : typeNameEn) ?? '-';
+  String get categoryName => (Utils.isRTL ? categoryNameAr : categoryNameEn) ?? '-';
+  String get description => (Utils.isRTL ? descriptionAr : descriptionEn) ?? '-';
+  String get costValue => (Utils.isRTL ? costValueAr : costValueEn) ?? '-';
+  String get instituteName => (Utils.isRTL ? instituteNameAr : instituteNameEn) ?? '-';
 
   factory PostDto.fromJson(Map<String, dynamic> json) =>
       _$PostDtoFromJson(json);
