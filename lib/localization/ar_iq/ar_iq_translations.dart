@@ -157,4 +157,11 @@ final Map<String, String> arIQ = {
   descriptionKey: 'الوصف',
   categoryKey: 'الفئة',
   expiryDateKey: 'تاريخ النفاذية',
+  governmentalKey: 'حكومي',
+  privateKey: 'خاص',
+  mixedKey: 'مختلط',
+  foreignKey: 'أجنبي',
+  servicesKey: 'خدمات',
+  industrialKey: 'صناعي',
+  agriculturalKey: 'زراعي',
 };

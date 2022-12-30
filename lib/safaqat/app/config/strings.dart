@@ -153,10 +153,17 @@ const descriptionKey = 'description';
 const valueKey = 'value';
 const categoryKey = 'category';
 const expiryDateKey = 'expiryDate';
-
+const foreignKey = 'foreign';
+const mixedKey = 'mixed';
+const privateKey = 'private';
+const governmentalKey = 'governmental';
+const servicesKey = 'services';
+const industrialKey = 'industrial';
+const agriculturalKey = 'agricultural';
 
 class AppStrings {
-  static final accountCreationAndTermsPolicy = accountCreationAndTermsPolicyKey.tr;
+  static final accountCreationAndTermsPolicy =
+      accountCreationAndTermsPolicyKey.tr;
   static final accountWillBeActivatedSoon = accountWillBeActivatedSoonKey.tr;
   static final add = addKey.tr;
   static final addNewEvent = addNewEventKey.tr;
@@ -172,7 +179,7 @@ class AppStrings {
   static final businessAndContactInfo = businessAndContactInfoKey.tr;
   static final cancelAndReturnToLogin = cancelAndReturnToLoginKey.tr;
   static final city = cityKey.tr;
-  static final conference= conferenceKey.tr;
+  static final conference = conferenceKey.tr;
   static final confirmCode = confirmCodeKey.tr;
   static final confirmPassword = confirmPasswordKey.tr;
   static final content = contentKey.tr;
@@ -244,7 +251,7 @@ class AppStrings {
   static final organization = organizationKey.tr;
   static final organizer = organizerKey.tr;
   static final outgoing = outgoingKey.tr;
-  static final partner= partnerKey.tr;
+  static final partner = partnerKey.tr;
   static final password = passwordKey.tr;
   static final passwordHint = passwordHintKey.tr;
   static final passwordNotMatched = passwordNotMatchedKey.tr;
@@ -309,5 +316,11 @@ class AppStrings {
   static final value = valueKey.tr;
   static final category = categoryKey.tr;
   static final expiryDate = expiryDateKey.tr;
-
+  static final foreign = foreignKey.tr;
+  static final mixed = mixedKey.tr;
+  static final private = privateKey.tr;
+  static final governmental = governmentalKey.tr;
+  static final services = servicesKey.tr;
+  static final industrial = industrialKey.tr;
+  static final agricultural = agriculturalKey.tr;
 }

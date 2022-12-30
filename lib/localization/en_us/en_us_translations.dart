@@ -155,4 +155,11 @@ final Map<String, String> enUS = {
   descriptionKey: 'Description',
   categoryKey: 'Category',
   expiryDateKey: 'Expiry date',
+  governmentalKey: 'Governmental',
+  privateKey: 'Private',
+  mixedKey: 'Mixed',
+  foreignKey: 'Foreign',
+  servicesKey: 'Services',
+  industrialKey: 'Industrial',
+  agriculturalKey: 'Agricultural',
 };

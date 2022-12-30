@@ -36,7 +36,7 @@ class AuthorizedMainTabsPage extends StatelessWidget {
       TabbedPage(
         page: const CollectionPage(logged: true),
         label: AppStrings.business,
-        icon: Icons.work,
+        icon: Icons.work_outline,
       ),
       TabbedPage(
         page: const NotificationPage(),
