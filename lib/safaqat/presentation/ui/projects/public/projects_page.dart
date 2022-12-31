@@ -8,6 +8,7 @@ import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/mine/my_events_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/app_drawer.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/posts/mine/my_posts_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/components/project_card_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/public/projects_controller.dart';
 
@@ -33,6 +34,7 @@ class ProjectsPage extends StatelessWidget {
                       'https://st2.depositphotos.com/1006318/5909/v/600/depositphotos_59095205-stock-illustration-businessman-profile-icon.jpg',
                   onManageNews: const MyNewsPage().navTo,
                   onManageEvents: const MyEventsPage().navTo,
+                  onManagePosts: const MyPostsPage().navTo,
                   onLogout: controller.logout,
                 )
               : null,

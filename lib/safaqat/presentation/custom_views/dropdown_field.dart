@@ -44,6 +44,7 @@ class DropdownField<T> extends StatelessWidget {
         decoration: InputDecoration(
           label: Text(hint ?? ''),
           labelStyle: AppTextStyle.hint,
+          isDense: true,
           fillColor: const Color(0xFFF4F4F4),
           filled: true,
           prefixIcon: prefixIcon,

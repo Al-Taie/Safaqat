@@ -160,6 +160,10 @@ const governmentalKey = 'governmental';
 const servicesKey = 'services';
 const industrialKey = 'industrial';
 const agriculturalKey = 'agricultural';
+const opportunityKey = 'opportunity';
+const requestKey = 'request';
+const addNewPostKey = 'addNewPost';
+const typeKey = 'type';
 
 class AppStrings {
   static final accountCreationAndTermsPolicy =
@@ -323,4 +327,8 @@ class AppStrings {
   static final services = servicesKey.tr;
   static final industrial = industrialKey.tr;
   static final agricultural = agriculturalKey.tr;
+  static final opportunity = opportunityKey.tr;
+  static final request = requestKey.tr;
+  static final addNewPost = addNewPostKey.tr;
+  static final type = typeKey.tr;
 }

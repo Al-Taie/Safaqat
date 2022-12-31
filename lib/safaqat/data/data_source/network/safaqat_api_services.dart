@@ -184,7 +184,7 @@ abstract class SafaqatApiServices {
   );
 
   @GET('Post/category')
-  Future<HttpResponse<BaseResponse<PostCategoryDto>>> getPostCategories();
+  Future<HttpResponse<BaseResponse<List<PostCategoryDto>>>> getPostCategories();
 
   @GET('Post/List')
   Future<HttpResponse<BaseResponse<PostsResponse>>> getPosts(

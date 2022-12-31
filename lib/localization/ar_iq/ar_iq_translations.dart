@@ -164,4 +164,8 @@ final Map<String, String> arIQ = {
   servicesKey: 'خدمات',
   industrialKey: 'صناعي',
   agriculturalKey: 'زراعي',
+  opportunityKey: 'فرصة',
+  requestKey: 'طلب',
+  typeKey: 'النوع',
+  addNewPostKey: 'إضافة منشور جديد',
 };

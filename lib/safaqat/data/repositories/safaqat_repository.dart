@@ -15,6 +15,7 @@ import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/data/models/news/publish/publish_news_body.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_body.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/posts_response.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_body.dart';
@@ -314,4 +315,8 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
     required int pageNumber,
   }) =>
       _apiServices.getProjects(pageSize, pageNumber).call();
+
+  @override
+  Future<Resources<List<PostCategoryDto>>> getPostCategories() =>
+      _apiServices.getPostCategories().call();
 }

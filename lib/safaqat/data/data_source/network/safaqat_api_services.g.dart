@@ -932,14 +932,14 @@ class _SafaqatApiServices implements SafaqatApiServices {
   }
 
   @override
-  Future<HttpResponse<BaseResponse<PostCategoryDto>>>
+  Future<HttpResponse<BaseResponse<List<PostCategoryDto>>>>
       getPostCategories() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<BaseResponse<PostCategoryDto>>>(Options(
+        _setStreamType<HttpResponse<BaseResponse<List<PostCategoryDto>>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -951,9 +951,12 @@ class _SafaqatApiServices implements SafaqatApiServices {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = BaseResponse<PostCategoryDto>.fromJson(
+    final value = BaseResponse<List<PostCategoryDto>>.fromJson(
       _result.data!,
-      (json) => PostCategoryDto.fromJson(json as Map<String, dynamic>),
+          (json) => (json as List<dynamic>)
+          .map<PostCategoryDto>(
+              (i) => PostCategoryDto.fromJson(i as Map<String, dynamic>))
+          .toList(),
     );
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;

@@ -31,7 +31,7 @@ class SmallMapWidget extends StatelessWidget {
           children: [
             if (Utils.isRTL)
               const Icon(Icons.location_pin, color: AppColors.primaryColor),
-            Text(AppStrings.eventLocation),
+            Text(AppStrings.selectPlace),
             if (Utils.isRTL.not())
               const Icon(Icons.location_pin, color: AppColors.primaryColor),
           ],

@@ -10,6 +10,7 @@ import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/data/models/news/publish/publish_news_body.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_body.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/posts_response.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_body.dart';
@@ -106,4 +107,6 @@ abstract class SafaqatRepository {
   });
 
   Future<Resources> deleteProject({String? projectId});
+
+  Future<Resources<List<PostCategoryDto>>> getPostCategories();
 }
