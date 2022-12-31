@@ -91,6 +91,13 @@ class ProjectDto {
     this.postDate,
   });
 
+  @override
+  String toString(){
+    return '$nameAr,$nameEn,$instituteNameAr,$instituteNameEn,'
+        '$ownerName,$email,$phone,$city,$descriptionAr,$descriptionEn,'
+        '$sector,$category,$convener';
+  }
+
   factory ProjectDto.fromJson(Map<String, dynamic> json) =>
       _$ProjectDtoFromJson(json);
 

@@ -101,6 +101,13 @@ class PostDto {
   String get costValue => (Utils.isRTL ? costValueAr : costValueEn) ?? '-';
   String get instituteName => (Utils.isRTL ? instituteNameAr : instituteNameEn) ?? '-';
 
+  @override
+  String toString(){
+    return '$typeNameAr,$typeNameEn,$categoryName,$categoryNameEn,'
+        '$descriptionAr,$descriptionEn,$instituteNameAr,$instituteNameEn,'
+        '$titleAr,$titleEn,$ownerName,$ownerEmail,$ownerPhone,$city';
+  }
+
   factory PostDto.fromJson(Map<String, dynamic> json) =>
       _$PostDtoFromJson(json);
 

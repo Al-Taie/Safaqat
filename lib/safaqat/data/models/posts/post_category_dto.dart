@@ -16,6 +16,11 @@ class PostCategoryDto {
 
   PostCategoryDto({this.code, this.nameAr, this.nameEn});
 
+  @override
+  String toString(){
+    return '$nameAr,$nameEn';
+  }
+
    factory PostCategoryDto.fromJson(Map<String, dynamic> json) => _$PostCategoryDtoFromJson(json);
 
    Map<String, dynamic> toJson() => _$PostCategoryDtoToJson(this);
