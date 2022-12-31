@@ -166,4 +166,9 @@ final Map<String, String> enUS = {
   requestKey: 'Request',
   typeKey: 'Type',
   addNewPostKey: 'Add new post',
+  addNewProjectKey: 'Add new project',
+  showEmailKey: 'Show email',
+  showPhoneKey: 'Show phone',
+  editPostKey: 'Edit post',
+  editProjectKey: 'Edit project',
 };

@@ -9,7 +9,7 @@ import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/posts/post_type.dart';
-import 'package:safaqat/safaqat/presentation/custom_views/custom_autocomplete_field.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/autocomplete_textfield.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/dropdown_field.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/add/components/small_map_widget.dart';
@@ -63,10 +63,7 @@ class PostDetailsWidget extends StatelessWidget {
   final LocationController locationController;
   final GlobalKey<FormState> postTypeFormKey;
   final GlobalKey<FormState> postCategoryFormKey;
-  final String? 
-      expiryDateInitialValue,
-      cityInitialValue,
-      countryInitialValue;
+  final String? expiryDateInitialValue, cityInitialValue, countryInitialValue;
   final CameraPosition? cameraPosition;
   final PostType? postTypeInitialValue;
   final PostCategoryDto? postCategoryInitialValue;
@@ -103,18 +100,20 @@ class PostDetailsWidget extends StatelessWidget {
           selector: (PostCategoryDto category) => category.name,
         ),
         const SizedBox(height: 8),
-        CustomAutoCompleteField<CountryDto>(
+        AutocompleteTextField<CountryDto>(
           hintText: AppStrings.country,
-          controller: TextEditingController(text: countryInitialValue),
-          suggestions: countries.map((e) => Suggestion(name: e.name, data: e)),
+          initialValue: countryInitialValue,
+          suggestions: countries,
           onSelected: onCountryChange,
+          displayStringForOption: (item) => item.name,
         ),
         const SizedBox(height: 8),
-        CustomAutoCompleteField<CityDto>(
+        AutocompleteTextField<CityDto>(
           hintText: AppStrings.city,
-          controller: TextEditingController(text: cityInitialValue),
-          suggestions: cities.map((e) => Suggestion(name: e.name, data: e)),
+          initialValue: cityInitialValue,
+          suggestions: cities,
           onSelected: onCityChange,
+          displayStringForOption: (item) => item.name,
         ),
         const SizedBox(height: 8),
         SmallMapWidget(

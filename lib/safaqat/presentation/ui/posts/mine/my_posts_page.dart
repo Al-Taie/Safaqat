@@ -30,7 +30,7 @@ class MyPostsPage extends StatelessWidget {
           child: Scaffold(
             floatingActionButton: Obx(
               () => CustomFloatingButton(
-                title: AppStrings.add,
+                title: AppStrings.addNewPost,
                 icon: AppDrawable.icAdd,
                 isExtended: controller.isFloatingButtonExtended.value,
                 onClick: () {

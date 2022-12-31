@@ -12,6 +12,7 @@ class AutocompleteTextField<T extends Object> extends StatelessWidget {
     this.hintText,
     this.onTextChanged,
     this.onSelected,
+    this.initialValue,
   });
 
   final String? hintText;
@@ -19,6 +20,7 @@ class AutocompleteTextField<T extends Object> extends StatelessWidget {
   final AutocompleteOnSelected<T>? onSelected;
   final ValueChanged<String>? onTextChanged;
   final AutocompleteOptionToString<T> displayStringForOption;
+  final String? initialValue;
   final double optionsMaxHeight;
   final double? maxOptionsWidth;
 
@@ -53,6 +55,8 @@ class AutocompleteTextField<T extends Object> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Autocomplete<T>(
+      initialValue:
+          initialValue != null ? TextEditingValue(text: initialValue!) : null,
       displayStringForOption: displayStringForOption,
       fieldViewBuilder: _defaultFieldViewBuilder,
       optionsBuilder: (TextEditingValue textEditingValue) {

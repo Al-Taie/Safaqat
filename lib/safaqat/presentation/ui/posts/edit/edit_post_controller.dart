@@ -3,23 +3,28 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
+import 'package:safaqat/safaqat/app/extensions/boolean_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_body.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
+import 'package:safaqat/safaqat/domain/entities/posts/edit_post_params.dart';
 import 'package:safaqat/safaqat/domain/entities/posts/post_type.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
-import 'package:safaqat/safaqat/domain/usecases/posts/add_post_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/posts/edit_post_usecase.dart';
 import 'package:safaqat/safaqat/presentation/ui/app_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/map/location_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/mine/my_posts_controller.dart';
 
-class AddPostController extends GetxController {
-  final _addPostUseCase = Get.put(AddPostUseCase());
+class EditPostController extends GetxController {
+  final _editPostUseCase = Get.put(EditPostUseCase());
   final AppController _appController = Get.find();
   final LocationController locationController = Get.find();
   final MyPostsController _myPostsController = Get.find();
+
+  PostDto post = PostDto();
 
   final RxBool detailsExpanded = false.obs;
   final RxBool arabicExpanded = false.obs;
@@ -121,31 +126,33 @@ class AddPostController extends GetxController {
 
   set instituteEn(String value) => _instituteEn.value = value;
 
-  void publish() async {
+  void edit() async {
     status.value = Resources.loading();
 
-    final PostBody body = PostBody(
-      titleAr: titleAr,
-      titleEn: titleEn,
-      descriptionAr: detailsAr,
-      descriptionEn: detailsEn,
-      instituteNameAr: instituteAr,
-      instituteNameEn: instituteEn,
-      // FIXME: REMOVE COMPARISON
-      costCode: type.index == 1,
-      categoryCode: category.code,
-      expiryDate: expiryDate,
-      showEmail: showEmail,
-      showPhone: showPhone,
-      // FIXME: REMOVE COMPARISON
-      type: type.index == 1,
-      city: city,
-      images: images,
-      coordinates: locationController.targetPlace?.toCoordinates() ??
-          locationController.targetMarker?.toCoordinates(),
+    final params = EditPostParams(
+      postId: post.id,
+      body: PostBody(
+        titleAr: titleAr,
+        titleEn: titleEn,
+        descriptionAr: detailsAr,
+        descriptionEn: detailsEn,
+        instituteNameAr: instituteAr,
+        instituteNameEn: instituteEn,
+        // FIXME: REMOVE COMPARISON
+        costCode: type.index == 1,
+        categoryCode: category.code,
+        expiryDate: expiryDate,
+        showEmail: showEmail,
+        showPhone: showPhone,
+        // FIXME: REMOVE COMPARISON
+        type: type.index == 1,
+        city: city,
+        coordinates: locationController.targetPlace?.toCoordinates() ??
+            locationController.targetMarker?.toCoordinates(),
+      ),
     );
 
-    final result = await _addPostUseCase(params: body);
+    final result = await _editPostUseCase(params: params);
     status.value = result;
 
     if (result.status == Status.success) {
@@ -160,5 +167,23 @@ class AddPostController extends GetxController {
           break;
       }
     }
+  }
+
+  void loadPost(PostDto? post){
+    if (post == null) return;
+
+    titleAr = post.titleAr ?? '';
+    titleEn = post.titleEn ?? '';
+    detailsAr = post.descriptionAr ?? '';
+    detailsEn = post.descriptionEn ?? '';
+    expiryDate = post.expiryDate ?? '';
+    // FIXME: COORDINATES
+    // coordinates = post.coordinates ?? CoordinatesDto();
+    showPhone = post.showPhone.isTrue;
+    showEmail = post.showEmail.isTrue;
+    // country = post.country ?? CountryDto();
+    city = post.city ?? CityDto();
+    instituteAr = post.instituteNameAr ?? '';
+    instituteEn = post.instituteNameEn ?? '';
   }
 }

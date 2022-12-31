@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:safaqat/safaqat/app/extensions/boolean_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/network_resource_wrapper.dart';
 import 'package:safaqat/safaqat/data/data_source/network/safaqat_api_services.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
@@ -182,12 +183,14 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
         instituteNameEn: body.instituteNameEn,
         latitude: body.coordinates?.latitude,
         longitude: body.coordinates?.longitude,
-        costCode: body.costCode as int,
+        // FIXME: REMOVE THIS CONDITION
+        costCode: body.costCode.isTrue ? 1 : 2,
         categoryCode: body.categoryCode,
         expiryDate: body.expiryDate,
         showEmail: body.showEmail,
         showPhone: body.showPhone,
-        type: body.type as int,
+        // FIXME: REMOVE THIS CONDITION
+        type: body.type.isTrue ? 1 : 2,
         cityCode: body.city?.cityNo,
         images: body.images,
       )

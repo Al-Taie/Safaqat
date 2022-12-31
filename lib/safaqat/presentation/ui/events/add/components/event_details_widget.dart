@@ -7,8 +7,9 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
-import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
 import 'package:safaqat/safaqat/domain/entities/events/event_attend.dart';
+import 'package:safaqat/safaqat/domain/entities/events/event_type.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/autocomplete_textfield.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_autocomplete_field.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/dropdown_field.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
@@ -119,18 +120,20 @@ class EventDetailsWidget extends StatelessWidget {
           selector: (EventAttend attend) => attend.toString(),
         ),
         const SizedBox(height: 8),
-        CustomAutoCompleteField<CountryDto>(
+        AutocompleteTextField<CountryDto>(
           hintText: AppStrings.country,
-          controller: TextEditingController(text: countryInitialValue),
-          suggestions: countries.map((e) => Suggestion(name: e.name, data: e)),
+          initialValue: countryInitialValue,
+          suggestions: countries,
           onSelected: onCountryChange,
+          displayStringForOption: (item) => item.name,
         ),
         const SizedBox(height: 8),
-        CustomAutoCompleteField<CityDto>(
+        AutocompleteTextField<CityDto>(
           hintText: AppStrings.city,
-          controller: TextEditingController(text: cityInitialValue),
-          suggestions: cities.map((e) => Suggestion(name: e.name, data: e)),
+          initialValue: cityInitialValue,
+          suggestions: cities,
           onSelected: onCityChange,
+          displayStringForOption: (item) => item.name,
         ),
         const SizedBox(height: 8),
         SmallMapWidget(

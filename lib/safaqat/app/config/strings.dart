@@ -163,7 +163,12 @@ const agriculturalKey = 'agricultural';
 const opportunityKey = 'opportunity';
 const requestKey = 'request';
 const addNewPostKey = 'addNewPost';
+const addNewProjectKey = 'addNewProject';
 const typeKey = 'type';
+const editPostKey = 'editPost';
+const editProjectKey = 'editProject';
+const showPhoneKey = 'showPhone';
+const showEmailKey = 'showEmail';
 
 class AppStrings {
   static final accountCreationAndTermsPolicy =
@@ -330,5 +335,10 @@ class AppStrings {
   static final opportunity = opportunityKey.tr;
   static final request = requestKey.tr;
   static final addNewPost = addNewPostKey.tr;
+  static final addNewProject = addNewProjectKey.tr;
   static final type = typeKey.tr;
+  static final editPost = editPostKey.tr;
+  static final editProject = editProjectKey.tr;
+  static final showPhone = showPhoneKey.tr;
+  static final showEmail = showEmailKey.tr;
 }
