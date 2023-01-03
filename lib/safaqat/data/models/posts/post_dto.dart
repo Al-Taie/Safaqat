@@ -1,7 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
+import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/coordinates_dto.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_cost_dto.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_type_dto.dart';
 
 part 'post_dto.g.dart';
 
@@ -24,25 +28,15 @@ class PostDto {
   @JsonKey(name: 'instituteNameE')
   String? instituteNameEn;
   @JsonKey(name: 'postType')
-  bool? type;
-  @JsonKey(name: 'typeNameA')
-  String? typeNameAr;
-  @JsonKey(name: 'typeNameE')
-  String? typeNameEn;
-  @JsonKey(name: 'categoryCode')
-  int? categoryCode;
-  @JsonKey(name: 'categoryNameA')
-  String? categoryNameAr;
-  @JsonKey(name: 'categoryNameE')
-  String? categoryNameEn;
+  PostTypeDto? type;
+  @JsonKey(name: 'category')
+  PostCategoryDto? category;
   @JsonKey(name: 'city')
   CityDto? city;
-  @JsonKey(name: 'costCode')
-  bool? costCode;
-  @JsonKey(name: 'costValueE')
-  String? costValueEn;
-  @JsonKey(name: 'costValueA')
-  String? costValueAr;
+  @JsonKey(name: 'country')
+  CountryDto? country;
+  @JsonKey(name: 'cost')
+  PostCostDto? cost;
   @JsonKey(name: 'descriptionA')
   String? descriptionAr;
   @JsonKey(name: 'descriptionE')
@@ -74,15 +68,9 @@ class PostDto {
     this.instituteNameAr,
     this.instituteNameEn,
     this.type,
-    this.typeNameAr,
-    this.typeNameEn,
-    this.categoryCode,
-    this.categoryNameAr,
-    this.categoryNameEn,
+    this.category,
     this.city,
-    this.costCode,
-    this.costValueEn,
-    this.costValueAr,
+    this.cost,
     this.descriptionAr,
     this.descriptionEn,
     this.postStatus,
@@ -95,15 +83,12 @@ class PostDto {
     this.images,
   });
 
-  String get typeName => (Utils.isRTL ? typeNameAr : typeNameEn) ?? '-';
-  String get categoryName => (Utils.isRTL ? categoryNameAr : categoryNameEn) ?? '-';
   String get description => (Utils.isRTL ? descriptionAr : descriptionEn) ?? '-';
-  String get costValue => (Utils.isRTL ? costValueAr : costValueEn) ?? '-';
   String get instituteName => (Utils.isRTL ? instituteNameAr : instituteNameEn) ?? '-';
 
   @override
   String toString(){
-    return '$typeNameAr,$typeNameEn,$categoryName,$categoryNameEn,'
+    return '$type,$category,'
         '$descriptionAr,$descriptionEn,$instituteNameAr,$instituteNameEn,'
         '$titleAr,$titleEn,$ownerName,$ownerEmail,$ownerPhone,$city';
   }
