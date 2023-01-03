@@ -10,6 +10,7 @@ import 'package:safaqat/safaqat/presentation/custom_views/custom_floating_button
 import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/add/add_post_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/components/post_items_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/posts/edit/edit_post_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/mine/my_posts_controller.dart';
 
 class MyPostsPage extends StatelessWidget {
@@ -82,8 +83,7 @@ class MyPostsPage extends StatelessWidget {
                         data: controller.filteredOpportunityPosts.value,
                         isLogged: true,
                         onEdit: (value) {
-                          // TODO: IMPLEMENT ME
-                          // EditPostPage(post: value).navTo();
+                          EditPostPage(post: value).navTo();
                         },
                         onDelete: (value) {
                           controller.deletePosts(
@@ -107,8 +107,7 @@ class MyPostsPage extends StatelessWidget {
                         data: controller.filteredRequestPosts.value,
                         isLogged: true,
                         onEdit: (value) {
-                          // TODO: IMPLEMENT ME
-                          // EditPostPage(post: value).navTo();
+                          EditPostPage(post: value).navTo();
                         },
                         onDelete: (value) {
                           controller.deletePosts(

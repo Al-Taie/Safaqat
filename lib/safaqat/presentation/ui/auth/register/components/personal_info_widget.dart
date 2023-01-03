@@ -127,7 +127,7 @@ class PersonalInfoWidget extends StatelessWidget {
                   controller.genderExpaned.value = value,
               onSelected: (GenderType value) => controller.genderType = value,
               items: GenderType.items,
-              selector: (GenderType type) => type.toString(),
+              displayStringForOption: (GenderType type) => type.toString(),
             ),
             const SizedBox(height: 8),
             DateTimePicker(

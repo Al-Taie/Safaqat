@@ -68,7 +68,7 @@ class PostsPage extends StatelessWidget {
                       name: item.ownerName ?? '-',
                       image: item.images.firstOrNull ?? '',
                       date: Utils.formatDate(dateStr: item.expiryDate),
-                      type: item.typeName,
+                      type: item.type?.name ?? '-',
                       cityName: item.city?.name ?? '-',
                       onPressed: () {
                         controller.postData = item;

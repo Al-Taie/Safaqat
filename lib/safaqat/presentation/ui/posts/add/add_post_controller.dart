@@ -131,14 +131,12 @@ class AddPostController extends GetxController {
       descriptionEn: detailsEn,
       instituteNameAr: instituteAr,
       instituteNameEn: instituteEn,
-      // FIXME: REMOVE COMPARISON
-      costCode: type.index == 1,
+      costCode: type.index,
       categoryCode: category.code,
       expiryDate: expiryDate,
       showEmail: showEmail,
       showPhone: showPhone,
-      // FIXME: REMOVE COMPARISON
-      type: type.index == 1,
+      type: type.index,
       city: city,
       images: images,
       coordinates: locationController.targetPlace?.toCoordinates() ??

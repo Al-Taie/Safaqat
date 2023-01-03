@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 import 'package:safaqat/safaqat/app/extensions/boolean_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_body.dart';
@@ -138,14 +139,12 @@ class EditPostController extends GetxController {
         descriptionEn: detailsEn,
         instituteNameAr: instituteAr,
         instituteNameEn: instituteEn,
-        // FIXME: REMOVE COMPARISON
-        costCode: type.index == 1,
+        costCode: type.index,
         categoryCode: category.code,
         expiryDate: expiryDate,
         showEmail: showEmail,
         showPhone: showPhone,
-        // FIXME: REMOVE COMPARISON
-        type: type.index == 1,
+        type: type.index,
         city: city,
         coordinates: locationController.targetPlace?.toCoordinates() ??
             locationController.targetMarker?.toCoordinates(),
@@ -169,7 +168,7 @@ class EditPostController extends GetxController {
     }
   }
 
-  void loadPost(PostDto? post){
+  void loadPost(PostDto? post) {
     if (post == null) return;
 
     titleAr = post.titleAr ?? '';
@@ -181,9 +180,11 @@ class EditPostController extends GetxController {
     // coordinates = post.coordinates ?? CoordinatesDto();
     showPhone = post.showPhone.isTrue;
     showEmail = post.showEmail.isTrue;
-    // country = post.country ?? CountryDto();
+    country = post.country ?? CountryDto();
     city = post.city ?? CityDto();
     instituteAr = post.instituteNameAr ?? '';
     instituteEn = post.instituteNameEn ?? '';
+    post.type?.let((it) => it.toDomainOrNull().let((value) => type = value));
+    post.category?.let((it) => category = it);
   }
 }

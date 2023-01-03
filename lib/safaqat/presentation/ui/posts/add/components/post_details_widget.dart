@@ -78,26 +78,26 @@ class PostDetailsWidget extends StatelessWidget {
       expanded: expanded,
       onExpansionChanged: onExpansionChanged,
       children: [
-        DropdownField(
+        DropdownField<PostType>(
           initialValue: postTypeInitialValue,
           hint: AppStrings.type,
           formKey: postTypeFormKey,
           expanded: typeExpanded,
           onExpansionChanged: onTypeExpansionChange,
-          onSelected: (PostType value) => onTypeChange(value),
+          onSelected: (value) => onTypeChange(value),
           items: PostType.items,
-          selector: (PostType type) => type.toString(),
+          displayStringForOption: (item) => item.name,
         ),
         const SizedBox(height: 8),
-        DropdownField(
+        DropdownField<PostCategoryDto>(
           initialValue: postCategoryInitialValue,
           hint: AppStrings.category,
           formKey: postCategoryFormKey,
           expanded: categoryExpanded,
           onExpansionChanged: onCategoryExpansionChange,
-          onSelected: (PostCategoryDto value) => onCategoryChange(value),
+          onSelected: (value) => onCategoryChange(value),
           items: categories,
-          selector: (PostCategoryDto category) => category.name,
+          displayStringForOption: (item) => item.name,
         ),
         const SizedBox(height: 8),
         AutocompleteTextField<CountryDto>(
@@ -125,7 +125,7 @@ class PostDetailsWidget extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         DateTimePicker(
-          firstDate: DateTime.now(),
+          firstDate: DateTime(DateTime.now().year - 1),
           lastDate: DateTime(DateTime.now().year + 5),
           initialDate: DateTime.now(),
           dateMask: 'y-MM-dd',

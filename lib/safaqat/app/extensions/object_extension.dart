@@ -3,6 +3,8 @@ import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:safaqat/safaqat/app/config/types.dart';
 import 'package:safaqat/safaqat/data/models/events/coordinates_dto.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_type_dto.dart';
+import 'package:safaqat/safaqat/domain/entities/posts/post_type.dart';
 
 extension ObjectExtension on Object? {
   double? toDoubleOrNull() {
@@ -38,6 +40,7 @@ extension GeocodingResultExtension on GeocodingResult? {
   }
 
   String? get region => this?.addressComponents.first.shortName;
+
   Location? get location => this?.geometry.location;
 }
 
@@ -89,4 +92,12 @@ extension EventCoordinatesExtension on CoordinatesDto {
 
   CameraUpdate toCameraUpdate() =>
       CameraUpdate.newCameraPosition(toCameraPosition());
+}
+
+extension PostTypeDtoExtension on PostTypeDto? {
+  PostType? toDomainOrNull() => this?.type == PostType.opportunity.index
+      ? PostType.opportunity
+      : this?.type == PostType.request.index
+          ? PostType.request
+          : null;
 }

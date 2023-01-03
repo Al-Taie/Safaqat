@@ -106,7 +106,7 @@ class EventDetailsWidget extends StatelessWidget {
           onExpansionChanged: onTypeExpansionChange,
           onSelected: (EventType value) => onTypeChange(value),
           items: EventType.values,
-          selector: (EventType type) => type.toString(),
+          displayStringForOption: (EventType type) => type.toString(),
         ),
         const SizedBox(height: 8),
         DropdownField(
@@ -117,7 +117,7 @@ class EventDetailsWidget extends StatelessWidget {
           onExpansionChanged: onAttendExpansionChange,
           onSelected: (EventAttend value) => onAttendChange(value),
           items: EventAttend.values,
-          selector: (EventAttend attend) => attend.toString(),
+          displayStringForOption: (EventAttend attend) => attend.toString(),
         ),
         const SizedBox(height: 8),
         AutocompleteTextField<CountryDto>(

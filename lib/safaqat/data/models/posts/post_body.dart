@@ -29,11 +29,11 @@ class PostBody {
   String? titleEn;
   String? instituteNameAr;
   String? instituteNameEn;
-  bool? type;
+  int? type;
   int? categoryCode;
   String? expiryDate;
   CityDto? city;
-  bool? costCode;
+  int? costCode;
   String? descriptionAr;
   String? descriptionEn;
   CoordinatesDto? coordinates;

@@ -102,7 +102,7 @@ class EventStakeHoldersWidget extends StatelessWidget {
              onStakeHolderChange(stakeholder);
           },
           items: EventStakeHolderType.items,
-          selector: (EventStakeHolderType type) => type.toString(),
+          displayStringForOption: (EventStakeHolderType type) => type.toString(),
         ),
         const SizedBox(height: 8),
         TextFiledForm(

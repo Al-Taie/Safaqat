@@ -939,21 +939,22 @@ class _SafaqatApiServices implements SafaqatApiServices {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<BaseResponse<List<PostCategoryDto>>>>(Options(
+        _setStreamType<HttpResponse<BaseResponse<List<PostCategoryDto>>>>(
+            Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'Post/category',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(
+                  _dio.options,
+                  'Post/category',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = BaseResponse<List<PostCategoryDto>>.fromJson(
       _result.data!,
-          (json) => (json as List<dynamic>)
+      (json) => (json as List<dynamic>)
           .map<PostCategoryDto>(
               (i) => PostCategoryDto.fromJson(i as Map<String, dynamic>))
           .toList(),

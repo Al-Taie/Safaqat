@@ -73,7 +73,7 @@ class PostDetailsPage extends StatelessWidget {
                     children: [
                       TextIcon(
                         icon: Icons.event_available,
-                        text: post.typeName,
+                        text: post.type?.name ?? '-',
                       ),
                       const SizedBox(height: 4),
                       TextIcon(
@@ -215,12 +215,12 @@ Widget postInfo(PostDto post) {
       const SizedBox(height: 8),
       TextLabel(
         label: '${AppStrings.category}:',
-        text: post.categoryName,
+        text: post.category?.name,
       ),
       const SizedBox(height: 8),
       TextLabel(
         label: '${AppStrings.value}:',
-        text: post.costValue,
+        text: post.cost?.value,
       ),
       const SizedBox(height: 8),
 

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/config/types.dart';
-
+import 'package:safaqat/safaqat/app/utils/logger.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
 
 class DropdownField<T> extends StatelessWidget {
   const DropdownField({
@@ -16,8 +17,8 @@ class DropdownField<T> extends StatelessWidget {
     this.hint,
     this.initialValue,
     required this.items,
-    required this.selector,
-    required this.onExpansionChanged, 
+    required this.displayStringForOption,
+    required this.onExpansionChanged,
     required this.expanded,
   });
 
@@ -30,12 +31,26 @@ class DropdownField<T> extends StatelessWidget {
   final String? hint;
   final T? initialValue;
   final List<T> items;
-  final ResultCallback<T, String> selector;
+  final ResultCallback<T, String> displayStringForOption;
   final bool expanded;
   final ValueChanged<bool> onExpansionChanged;
 
   @override
   Widget build(BuildContext context) {
+    var menuItems = items
+        .map(
+          (item) => DropdownMenuItem<T>(
+            value: item,
+            child: Text(
+              displayStringForOption(item),
+              style: const TextStyle(
+                fontSize: 14,
+              ),
+            ),
+          ),
+        )
+        .toList();
+
     return Form(
       key: formKey,
       child: DropdownButtonFormField2<T>(
@@ -67,21 +82,12 @@ class DropdownField<T> extends StatelessWidget {
         dropdownDecoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
         ),
-        items: items
-            .map((item) => DropdownMenuItem<T>(
-                  value: item,
-                  child: Text(
-                    selector(item),
-                    style: const TextStyle(
-                      fontSize: 14,
-                    ),
-                  ),
-                ))
-            .toList(),
+        items: menuItems,
         validator: (value) {
           if (value == null) {
             return 'Please select a choice.';
           }
+          return null;
         },
         onChanged: (value) {
           if (formKey.currentState!.validate()) {

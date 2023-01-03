@@ -81,6 +81,9 @@ class EditPostPage extends StatelessWidget {
                           postTitle: AppStrings.title,
                           content: AppStrings.content,
                           institute: AppStrings.institute,
+                          titleInitialValue: controller.titleAr,
+                          contentInitialValue: controller.detailsAr,
+                          instituteInitialValue: controller.instituteAr,
                           rtl: true,
                           onTitleChange: (String value) {
                             controller.titleAr = value;
@@ -109,6 +112,9 @@ class EditPostPage extends StatelessWidget {
                           postTitle: AppStrings.title,
                           content: AppStrings.content,
                           institute: AppStrings.institute,
+                          titleInitialValue: controller.titleEn,
+                          contentInitialValue: controller.detailsEn,
+                          instituteInitialValue: controller.instituteEn,
                           onTitleChange: (String value) {
                             controller.titleEn = value;
                           },
@@ -135,6 +141,11 @@ class EditPostPage extends StatelessWidget {
                           cities: controller.cities.value,
                           countries: controller.countries.value,
                           categories: controller.categories.value,
+                          cityInitialValue: controller.city.name,
+                          countryInitialValue: controller.country.name,
+                          expiryDateInitialValue: controller.expiryDate,
+                          postTypeInitialValue: controller.type,
+                          postCategoryInitialValue: controller.category,
                           locationController: controller.locationController,
                           onCityChange: (city) {
                             controller.city = city;
