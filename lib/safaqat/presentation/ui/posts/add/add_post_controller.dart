@@ -150,9 +150,11 @@ class AddPostController extends GetxController {
       switch (type) {
         case PostType.opportunity:
           _myPostsController.opportunityPosts.add(result.data!);
+          _myPostsController.opportunityPosts.refresh();
           break;
         case PostType.request:
           _myPostsController.requestPosts.add(result.data!);
+          _myPostsController.requestPosts.refresh();
           break;
         default:
           break;

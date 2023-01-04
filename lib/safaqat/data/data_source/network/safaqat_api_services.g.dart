@@ -1198,7 +1198,8 @@ class _SafaqatApiServices implements SafaqatApiServices {
     images,
   }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'postId': postId};
+    Logger.log(postId);
+    final queryParameters = <String, dynamic>{r'PostId': postId};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = FormData();

@@ -89,12 +89,9 @@ class MyPostsController extends GetxController {
 
   set postData(PostDto value) => _postData.value = value;
 
-  Rx<Resources<dynamic>> status = Resources<dynamic>.init().obs;
-
-  Rx<Resources<PostsResponse>> opportunityStatus =
-      Resources<PostsResponse>.init().obs;
-  Rx<Resources<PostsResponse>> requestStatus =
-      Resources<PostsResponse>.init().obs;
+  Rx<Resources<dynamic>> opportunityStatus =
+      Resources<dynamic>.init().obs;
+  Rx<Resources<dynamic>> requestStatus = Resources<dynamic>.init().obs;
 
   RxList<PostDto> opportunityPosts = <PostDto>[].obs;
   RxList<PostDto> filteredOpportunityPosts = <PostDto>[].obs;
@@ -187,9 +184,14 @@ class MyPostsController extends GetxController {
 
   void deletePosts({required PostType type, String? id}) async {
     Get.back();
-    status.value = Resources.loading();
+
+    if (type == PostType.opportunity) {
+      opportunityStatus.value = Resources.loading();
+    } else if (type == PostType.request) {
+      requestStatus.value = Resources.loading();
+    }
+
     final result = await _deletePostUseCase(params: id);
-    status.value = result;
 
     if (result.status != Status.success) {
       AppStrings.deletedFailed.toToast();
@@ -199,9 +201,15 @@ class MyPostsController extends GetxController {
     AppStrings.deletedSuccessfully.toToast();
 
     if (type == PostType.opportunity) {
+      opportunityStatus.value = result;
       opportunityPosts.removeWhere((it) => it.id == id);
+      filteredOpportunityPosts.value = opportunityPosts.value;
+      filteredOpportunityPosts.refresh();
     } else if (type == PostType.request) {
+      requestStatus.value = result;
       requestPosts.removeWhere((it) => it.id == id);
+      filteredRequestPosts.value = requestPosts.value;
+      filteredRequestPosts.refresh();
     }
   }
 }

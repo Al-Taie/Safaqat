@@ -222,7 +222,7 @@ abstract class SafaqatApiServices {
   @MultiPart()
   @PUT('Post/Edit')
   Future<HttpResponse<BaseResponse<PostDto>>> editPost({
-    @Query('postId') String? postId,
+    @Query('PostId') String? postId,
     @Part(name: 'PostTitleA') String? titleAr,
     @Part(name: 'PostTitleE') String? titleEn,
     @Part(name: 'DescriptionA') String? descriptionAr,

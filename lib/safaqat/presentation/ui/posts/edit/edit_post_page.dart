@@ -188,14 +188,14 @@ class EditPostPage extends StatelessWidget {
                         () => CheckBoxWidget(
                           value: controller.showEmail,
                           onChanged: (state) => controller.showEmail = state,
-                          title: AppStrings.showPublisherName,
+                          title: AppStrings.showEmail,
                         ),
                       ),
                       Obx(
                         () => CheckBoxWidget(
                           value: controller.showPhone,
                           onChanged: (state) => controller.showPhone = state,
-                          title: AppStrings.showPublisherName,
+                          title: AppStrings.showPhone,
                         ),
                       ),
                     ],

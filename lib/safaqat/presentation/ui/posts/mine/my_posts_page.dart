@@ -69,62 +69,56 @@ class MyPostsPage extends StatelessWidget {
               ),
               onSearch: (String query) => controller.searchPosts(type, query),
             ),
-            body: Stack(
-              fit: StackFit.expand,
+            body: TabBarView(
               children: [
-                TabBarView(
-                  children: [
-                    Obx(
-                      () => PostItemsWidget(
-                        status: controller.opportunityStatus.value.status,
-                        apiCall: controller.getOpportunityPosts,
-                        scrollController:
-                            controller.opportunityScrollController,
-                        data: controller.filteredOpportunityPosts.value,
-                        isLogged: true,
-                        onEdit: (value) {
-                          EditPostPage(post: value).navTo();
-                        },
-                        onDelete: (value) {
-                          controller.deletePosts(
-                              type: PostType.opportunity, id: value.id);
-                        },
-                        onPressed: (value) {
-                          controller.postData = value;
-                        },
-                        onScrollUpPressed: () {
-                          controller.opportunityPageNumber--;
-                        },
-                        scrollButtonVisibility:
-                            controller.isOpportunityScrollable,
-                      ),
-                    ),
-                    Obx(
-                      () => PostItemsWidget(
-                        status: controller.requestStatus.value.status,
-                        apiCall: controller.getRequestPosts,
-                        scrollController: controller.requestScrollController,
-                        data: controller.filteredRequestPosts.value,
-                        isLogged: true,
-                        onEdit: (value) {
-                          EditPostPage(post: value).navTo();
-                        },
-                        onDelete: (value) {
-                          controller.deletePosts(
-                              type: PostType.request, id: value.id);
-                        },
-                        onPressed: (value) {
-                          controller.postData = value;
-                        },
-                        onScrollUpPressed: () {
-                          controller.requestPageNumber--;
-                        },
-                        scrollButtonVisibility: controller.isRequestScrollable,
-                      ),
-                    ),
-                  ],
+                Obx(
+                  () => PostItemsWidget(
+                    status: controller.opportunityStatus.value.status,
+                    apiCall: controller.getOpportunityPosts,
+                    scrollController:
+                        controller.opportunityScrollController,
+                    data: controller.filteredOpportunityPosts.value,
+                    isLogged: true,
+                    onEdit: (value) {
+                      EditPostPage(post: value).navTo();
+                    },
+                    onDelete: (value) {
+                      controller.deletePosts(
+                          type: PostType.opportunity, id: value.id);
+                    },
+                    onPressed: (value) {
+                      controller.postData = value;
+                    },
+                    onScrollUpPressed: () {
+                      controller.opportunityPageNumber--;
+                    },
+                    scrollButtonVisibility:
+                        controller.isOpportunityScrollable,
+                  ),
                 ),
-                LoadingView(resource: controller.status.value)
+                Obx(
+                  () => PostItemsWidget(
+                    status: controller.requestStatus.value.status,
+                    apiCall: controller.getRequestPosts,
+                    scrollController: controller.requestScrollController,
+                    data: controller.filteredRequestPosts.value,
+                    isLogged: true,
+                    onEdit: (value) {
+                      EditPostPage(post: value).navTo();
+                    },
+                    onDelete: (value) {
+                      controller.deletePosts(
+                          type: PostType.request, id: value.id);
+                    },
+                    onPressed: (value) {
+                      controller.postData = value;
+                    },
+                    onScrollUpPressed: () {
+                      controller.requestPageNumber--;
+                    },
+                    scrollButtonVisibility: controller.isRequestScrollable,
+                  ),
+                ),
               ],
             ),
           ),

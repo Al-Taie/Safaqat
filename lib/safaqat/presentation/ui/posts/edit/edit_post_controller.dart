@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 import 'package:safaqat/safaqat/app/extensions/boolean_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_body.dart';
@@ -169,6 +168,7 @@ class EditPostController extends GetxController {
   }
 
   void loadPost(PostDto? post) {
+    post?.let((it) => this.post = it);
     if (post == null) return;
 
     titleAr = post.titleAr ?? '';
