@@ -10,6 +10,7 @@ import 'package:safaqat/safaqat/presentation/ui/news/components/app_drawer.dart'
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/mine/my_posts_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/components/project_card_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/details/post_details_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/public/projects_controller.dart';
 
 class ProjectsPage extends StatelessWidget {
@@ -67,11 +68,12 @@ class ProjectsPage extends StatelessWidget {
                       name: item.ownerName ?? '-',
                       image: item.images.firstOrNull ?? '',
                       date: Utils.formatDate(dateStr: item.startDate),
-                      category: item.category?.name ?? '',
-                      cityName: item.city?.name ?? '-',
+                      convener: item.convener,
+                      sector: item.sector,
+                      city: item.city,
                       onPressed: () {
                         controller.projectData = item;
-                        // ProjectDetailsPage(event: controller.postData).navTo();
+                        ProjectDetailsPage(project: controller.projectData).navTo();
                       },
                     );
                   }),

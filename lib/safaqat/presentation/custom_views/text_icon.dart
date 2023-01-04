@@ -13,7 +13,7 @@ class TextIcon extends StatelessWidget {
     required this.text,
   }) : super(key: key);
 
-  final String text;
+  final String? text;
   final dynamic icon;
   final double size, width, height;
 
@@ -31,7 +31,7 @@ class TextIcon extends StatelessWidget {
             : Icon(icon, color: AppColors.shadeSecondary, size: size),
         const SizedBox(width: 4),
         Text(
-          text,
+          text ?? '-',
           style: AppTextStyle.contentSecondary,
         ),
       ],

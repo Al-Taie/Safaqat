@@ -27,7 +27,7 @@ class TextLabel extends StatelessWidget {
         text is Widget
             ? text
             : Text(
-                text ?? '',
+                text?.toString() ?? '',
                 style: style,
               ),
       ],

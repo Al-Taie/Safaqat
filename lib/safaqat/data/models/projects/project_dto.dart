@@ -49,9 +49,9 @@ class ProjectDto {
   @JsonKey(name: 'statusDesc')
   String? statusDesc;
   @JsonKey(name: 'telephone')
-  String? phone;
+  String? ownerPhone;
   @JsonKey(name: 'email')
-  String? email;
+  String? ownerEmail;
   @JsonKey(name: 'showTel')
   bool? showTel;
   @JsonKey(name: 'showEmail')
@@ -62,6 +62,8 @@ class ProjectDto {
   String? postDate;
 
   String get name => (Utils.isRTL ? nameAr : nameEn) ?? '-';
+  String get description => (Utils.isRTL ? descriptionAr : descriptionEn) ?? '-';
+  String get institute => (Utils.isRTL ? instituteNameAr : instituteNameEn) ?? '-';
 
   ProjectDto({
     this.id,
@@ -83,8 +85,8 @@ class ProjectDto {
     this.descriptionEn,
     this.postStatus,
     this.statusDesc,
-    this.phone,
-    this.email,
+    this.ownerPhone,
+    this.ownerEmail,
     this.showTel,
     this.showEmail,
     this.images,
@@ -94,7 +96,7 @@ class ProjectDto {
   @override
   String toString(){
     return '$nameAr,$nameEn,$instituteNameAr,$instituteNameEn,'
-        '$ownerName,$email,$phone,$city,$descriptionAr,$descriptionEn,'
+        '$ownerName,$ownerEmail,$ownerPhone,$city,$descriptionAr,$descriptionEn,'
         '$sector,$category,$convener';
   }
 

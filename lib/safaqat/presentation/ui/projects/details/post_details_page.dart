@@ -9,16 +9,16 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
-import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
+import 'package:safaqat/safaqat/data/models/projects/project_dto.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_icon.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_icon2.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/review/components/text_label.dart';
 
-class PostDetailsPage extends StatelessWidget {
-  const PostDetailsPage({Key? key, required this.post}) : super(key: key);
+class ProjectDetailsPage extends StatelessWidget {
+  const ProjectDetailsPage({Key? key, required this.project}) : super(key: key);
 
-  final PostDto post;
+  final ProjectDto project;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class PostDetailsPage extends StatelessWidget {
               SizedBox(
                 width: Get.width,
                 child: Text(
-                  (Utils.isRTL ? post.titleAr : post.titleEn) ?? '-',
+                  project.name,
                   style: AppTextStyle.title,
                 ),
               ),
@@ -58,14 +58,14 @@ class PostDetailsPage extends StatelessWidget {
                     children: [
                       TextIcon(
                         icon: AppDrawable.icName,
-                        text: post.ownerName ?? '-',
+                        text: project.ownerName ?? '-',
                         width: 12,
                         height: 12,
                       ),
                       const SizedBox(height: 4),
                       TextIcon(
                         icon: AppDrawable.icDate,
-                        text: Utils.formatDate(dateStr: post.postDate),
+                        text: Utils.formatDate(dateStr: project.postDate),
                       ),
                     ],
                   ),
@@ -73,13 +73,13 @@ class PostDetailsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextIcon(
-                        icon: Icons.event_available,
-                        text: post.type?.name ?? '-',
+                        icon: Icons.local_convenience_store_outlined,
+                        text: project.convener?.name ?? '-',
                       ),
                       const SizedBox(height: 4),
                       TextIcon(
                         icon: Icons.location_pin,
-                        text: post.city?.name ?? '-',
+                        text: project.city?.name ?? '-',
                       ),
                     ],
                   ),
@@ -103,13 +103,13 @@ class PostDetailsPage extends StatelessWidget {
                   // onPageChanged: callbackFunction,
                   scrollDirection: Axis.vertical,
                 ),
-                itemCount: post.images?.length ?? 0,
+                itemCount: project.images?.length ?? 0,
                 itemBuilder:
                     (BuildContext context, int itemIndex, int pageViewIndex) {
                   Widget child = ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: CachedNetworkImage(
-                      imageUrl: post.images?[itemIndex] ?? '',
+                      imageUrl: project.images?[itemIndex] ?? '',
                       fit: BoxFit.cover,
                       progressIndicatorBuilder:
                           (context, url, downloadProgress) => Center(
@@ -133,13 +133,13 @@ class PostDetailsPage extends StatelessWidget {
               SizedBox(
                 width: Get.width,
                 child: Text(
-                  post.description,
+                  project.description,
                   style: AppTextStyle.title
                       .copyWith(fontSize: 14, color: AppColors.shadePrimary),
                 ),
               ),
               const SizedBox(height: 16),
-              postInfo(post),
+              projectInfo(project),
             ],
           ),
         ),
@@ -148,7 +148,7 @@ class PostDetailsPage extends StatelessWidget {
   }
 }
 
-Widget postInfo(PostDto post) {
+Widget projectInfo(ProjectDto project) {
   return Column(
     children: [
       Container(
@@ -178,12 +178,12 @@ Widget postInfo(PostDto post) {
             rotateGesturesEnabled: false,
             myLocationEnabled: false,
             onMapCreated: (controller) =>
-                controller.animateCamera(post.coordinates!.toCameraUpdate()),
+                controller.animateCamera(project.coordinates!.toCameraUpdate()),
             initialCameraPosition: CameraPosition(
-              target: post.coordinates!.toLatLng(),
+              target: project.coordinates!.toLatLng(),
               zoom: 11,
             ),
-            markers: {post.coordinates!.toMarker()},
+            markers: {project.coordinates!.toMarker()},
           ),
         ),
       ),
@@ -194,12 +194,37 @@ Widget postInfo(PostDto post) {
         color: AppColors.shadeQuaternary,
       ),
       const SizedBox(height: 8),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          TextIcon2(
+            title: AppStrings.startDate,
+            icon: Icons.access_time_filled_outlined,
+            subTitle: Utils.formatDate(dateStr: project.startDate),
+          ),
+          Container(
+            width: 1,
+            height: 60,
+            color: AppColors.shadeQuaternary,
+          ),
+          TextIcon2(
+            title: AppStrings.endDate,
+            icon: Icons.access_time_filled_outlined,
+            subTitle: Utils.formatDate(dateStr: project.endDate),
+          ),
+          Container(
+            width: 1,
+            height: 60,
+            color: AppColors.shadeQuaternary,
+          ),
       TextIcon2(
-        title: AppStrings.expiryDate,
+        title: AppStrings.actualEndDate,
         icon: Icons.access_time_filled_outlined,
-        subTitle: Utils.formatDate(dateStr: post.expiryDate),
+        subTitle: Utils.formatDate(dateStr: project.actualEndDate),
       ),
-      const SizedBox(height: 10),
+        ],
+      ),
+      const SizedBox(height: 8),
       Container(
         height: 1,
         width: Get.width,
@@ -208,30 +233,39 @@ Widget postInfo(PostDto post) {
       const SizedBox(height: 8),
       TextLabel(
         label: '${AppStrings.phone}:',
-        text: post.ownerPhone,
+        text: project.ownerPhone,
       ),
       const SizedBox(height: 8),
       TextLabel(
         label: '${AppStrings.email}:',
-        text: post.ownerEmail,
+        text: project.ownerEmail,
       ),
       const SizedBox(height: 8),
       TextLabel(
         label: '${AppStrings.institute}:',
-        text: post.instituteName,
+        text: project.institute,
+      ),
+      const SizedBox(height: 8),
+      TextLabel(
+        label: '${AppStrings.convener}:',
+        text: project.convener?.name,
+      ),
+      const SizedBox(height: 8),
+      TextLabel(
+        label: '${AppStrings.sector}:',
+        text: project.sector?.name,
       ),
       const SizedBox(height: 8),
       TextLabel(
         label: '${AppStrings.category}:',
-        text: post.category?.name,
+        text: project.category?.name,
       ),
       const SizedBox(height: 8),
       TextLabel(
         label: '${AppStrings.value}:',
-        text: post.cost?.value,
+        text: '\$${project.cost}',
       ),
       const SizedBox(height: 8),
-
     ],
   );
 }

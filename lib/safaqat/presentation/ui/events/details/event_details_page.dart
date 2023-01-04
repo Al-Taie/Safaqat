@@ -235,7 +235,7 @@ Widget eventInfo(EventDto event) {
             children: [
               TextIcon(
                 icon: AppDrawable.icDate,
-                text: AppStrings.startAt,
+                text: AppStrings.startDate,
               ),
               const SizedBox(height: 4),
               Text(
@@ -255,7 +255,7 @@ Widget eventInfo(EventDto event) {
             children: [
               TextIcon(
                 icon: AppDrawable.icDate,
-                text: AppStrings.endAt,
+                text: AppStrings.endDate,
               ),
               const SizedBox(height: 4),
               Text(

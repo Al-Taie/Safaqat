@@ -6,6 +6,9 @@ import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/utils/show_menu.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
+import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
+import 'package:safaqat/safaqat/data/models/projects/project_convener_dto.dart';
+import 'package:safaqat/safaqat/data/models/projects/project_sector_dto.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/alert_dialog_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/card_icon.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_icon.dart';
@@ -17,15 +20,19 @@ class ProjectCardWidget extends StatelessWidget {
     required this.name,
     required this.image,
     required this.date,
-    required this.cityName,
-    required this.category,
+    required this.city,
+    required this.convener,
+    required this.sector,
     this.isLogged = false,
     this.onPressed,
     this.onDelete,
     this.onEdit,
   }) : super(key: key);
 
-  final String title, name, date, image, cityName, category;
+  final String title, name, date, image;
+  final CityDto? city;
+  final ProjectConvenerDto? convener;
+  final ProjectSectorDto? sector;
   final bool isLogged;
   final VoidCallback? onPressed, onEdit, onDelete;
 
@@ -78,14 +85,23 @@ class ProjectCardWidget extends StatelessWidget {
                           const SizedBox(width: 8),
                           TextIcon(
                             icon: Icons.location_pin,
-                            text: cityName,
+                            text: city?.name,
                           ),
                         ],
                       ),
                       const SizedBox(height: 4),
-                      TextIcon(
-                        icon: Icons.category,
-                        text: category,
+                      Row(
+                        children: [
+                          TextIcon(
+                            icon: Icons.local_convenience_store_outlined,
+                            text: convener?.name,
+                          ),
+                          const SizedBox(width: 8),
+                          TextIcon(
+                            icon: Icons.category,
+                            text: sector?.name,
+                          ),
+                        ],
                       ),
                     ],
                   )
