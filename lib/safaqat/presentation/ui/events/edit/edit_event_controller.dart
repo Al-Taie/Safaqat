@@ -2,9 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_webservice/places.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
-import 'package:safaqat/safaqat/app/extensions/int_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
@@ -117,10 +115,6 @@ class EditEventController extends GetxController {
   final _stakeholders = <Stakeholder>[].obs;
   List<Stakeholder> get stakeholders => _stakeholders.value;
   set stakeholders(List<Stakeholder> value) => _stakeholders.value = value;
-
-  final Rx<PlacesSearchResult?> _targetPlace = Rx(null);
-  PlacesSearchResult? get targetPlace => _targetPlace.value;
-  set targetPlace(PlacesSearchResult? value) => _targetPlace.value = value;
 
   void edit() async {
     status.value = Resources.loading();

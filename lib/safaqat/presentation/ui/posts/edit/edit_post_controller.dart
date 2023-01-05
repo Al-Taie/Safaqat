@@ -7,6 +7,7 @@ import 'package:safaqat/safaqat/app/extensions/boolean_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
+import 'package:safaqat/safaqat/data/models/events/coordinates_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_body.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
@@ -126,6 +127,11 @@ class EditPostController extends GetxController {
 
   set instituteEn(String value) => _instituteEn.value = value;
 
+  final _coordinates = CoordinatesDto().obs;
+  CoordinatesDto get coordinates => _coordinates.value;
+  set coordinates(CoordinatesDto value) => _coordinates.value = value;
+
+
   void edit() async {
     status.value = Resources.loading();
 
@@ -145,8 +151,7 @@ class EditPostController extends GetxController {
         showPhone: showPhone,
         type: type.index,
         city: city,
-        coordinates: locationController.targetPlace?.toCoordinates() ??
-            locationController.targetMarker?.toCoordinates(),
+        coordinates: coordinates,
       ),
     );
 
@@ -176,8 +181,7 @@ class EditPostController extends GetxController {
     detailsAr = post.descriptionAr ?? '';
     detailsEn = post.descriptionEn ?? '';
     expiryDate = post.expiryDate ?? '';
-    // FIXME: COORDINATES
-    // coordinates = post.coordinates ?? CoordinatesDto();
+    coordinates = post.coordinates ?? CoordinatesDto();
     showPhone = post.showPhone.isTrue;
     showEmail = post.showEmail.isTrue;
     country = post.country ?? CountryDto();
@@ -186,5 +190,7 @@ class EditPostController extends GetxController {
     instituteEn = post.instituteNameEn ?? '';
     post.type?.let((it) => it.toDomainOrNull().let((value) => type = value));
     post.category?.let((it) => category = it);
+
+    locationController.targetMarker = post.coordinates?.toMarker();
   }
 }

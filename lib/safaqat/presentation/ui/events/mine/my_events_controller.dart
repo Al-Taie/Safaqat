@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/app/config/types.dart';
+import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
 import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
@@ -25,30 +27,42 @@ class MyEventsController extends GetxController {
   final forumScrollController = ScrollController();
 
   final _isGeneralScrollable = false.obs;
+
   bool get isGeneralScrollable => _isGeneralScrollable.value;
+
   set isGeneralScrollable(bool value) => _isGeneralScrollable.value = value;
 
   final _isConferenceScrollable = false.obs;
+
   bool get isConferenceScrollable => _isConferenceScrollable.value;
+
   set isConferenceScrollable(bool value) =>
       _isConferenceScrollable.value = value;
 
   final _isTrainingCourseScrollable = false.obs;
+
   bool get isTrainingCourseScrollable => _isTrainingCourseScrollable.value;
+
   set isTrainingCourseScrollable(bool value) =>
       _isTrainingCourseScrollable.value = value;
 
   final _isExhibitionScrollable = false.obs;
+
   bool get isExhibitionScrollable => _isExhibitionScrollable.value;
+
   set isExhibitionScrollable(bool value) =>
       _isExhibitionScrollable.value = value;
 
   final _isSeminarScrollable = false.obs;
+
   bool get isSeminarScrollable => _isSeminarScrollable.value;
+
   set isSeminarScrollable(bool value) => _isSeminarScrollable.value = value;
 
   final _isForumScrollable = false.obs;
+
   bool get isForumScrollable => _isForumScrollable.value;
+
   set isForumScrollable(bool value) => _isForumScrollable.value = value;
 
   @override
@@ -154,32 +168,46 @@ class MyEventsController extends GetxController {
   var _forumMaxNumberOfPages = 1;
 
   final _generalPageNumber = 1.obs;
+
   int get generalPageNumber => _generalPageNumber.value;
+
   set generalPageNumber(int value) => _generalPageNumber.value = value;
 
   final _conferencePageNumber = 1.obs;
+
   int get conferencePageNumber => _conferencePageNumber.value;
+
   set conferencePageNumber(int value) => _conferencePageNumber.value = value;
 
   final _trainingCoursePageNumber = 1.obs;
+
   int get trainingCoursePageNumber => _trainingCoursePageNumber.value;
+
   set trainingCoursePageNumber(int value) =>
       _trainingCoursePageNumber.value = value;
 
   final _exhibitionPageNumber = 1.obs;
+
   int get exhibitionPageNumber => _exhibitionPageNumber.value;
+
   set exhibitionPageNumber(int value) => _exhibitionPageNumber.value = value;
 
   final _seminarPageNumber = 1.obs;
+
   int get seminarPageNumber => _seminarPageNumber.value;
+
   set seminarPageNumber(int value) => _seminarPageNumber.value = value;
 
   final _forumPageNumber = 1.obs;
+
   int get forumPageNumber => _forumPageNumber.value;
+
   set forumPageNumber(int value) => _forumPageNumber.value = value;
 
   final _eventData = EventDto().obs;
+
   EventDto get eventData => _eventData.value;
+
   set eventData(EventDto value) => _eventData.value = value;
 
   Rx<Resources<dynamic>> status = Resources<dynamic>.init().obs;
@@ -350,7 +378,7 @@ class MyEventsController extends GetxController {
   }
 
   void _pagination({
-    required VoidCallback apiCall,
+    required VoidCallbackNoParams apiCall,
     required ValueChanged<int> onValueChange,
     required ScrollController scrollController,
     required int pageNumber,
@@ -378,9 +406,7 @@ class MyEventsController extends GetxController {
 
   void deleteEvents({required EventType type, String? id}) async {
     Get.back();
-    status.value = Resources.loading();
     final result = await _deleteEventUseCase(params: id);
-    status.value = result;
 
     if (result.status != Status.success) {
       AppStrings.deletedFailed.toToast();
@@ -390,17 +416,35 @@ class MyEventsController extends GetxController {
     AppStrings.deletedSuccessfully.toToast();
 
     if (type == EventType.general) {
-      generalEvents.removeWhere((it) => it.id == id);
+      generalEvents.removeWithUpdate(
+        filteredGeneralEvents,
+        (it) => it.id == id,
+      );
     } else if (type == EventType.conference) {
-      conferenceEvents.removeWhere((it) => it.id == id);
+      conferenceEvents.removeWithUpdate(
+        filteredConferenceEvents,
+        (it) => it.id == id,
+      );
     } else if (type == EventType.trainingCourse) {
-      trainingCourseEvents.removeWhere((it) => it.id == id);
+      trainingCourseEvents.removeWithUpdate(
+        filteredTrainingCourseEvents,
+        (it) => it.id == id,
+      );
     } else if (type == EventType.exhibition) {
-      exhibitionEvents.removeWhere((it) => it.id == id);
+      exhibitionEvents.removeWithUpdate(
+        filteredExhibitionEvents,
+        (it) => it.id == id,
+      );
     } else if (type == EventType.seminar) {
-      seminarEvents.removeWhere((it) => it.id == id);
+      seminarEvents.removeWithUpdate(
+        filteredSeminarEvents,
+        (it) => it.id == id,
+      );
     } else {
-      forumEvents.removeWhere((it) => it.id == id);
+      forumEvents.removeWithUpdate(
+        filteredForumEvents,
+        (it) => it.id == id,
+      );
     }
   }
 }

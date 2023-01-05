@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_query.dart';
-import 'package:safaqat/safaqat/data/models/news/news_response.dart';
 import 'package:safaqat/safaqat/domain/entities/news/news_type.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecases/news/delete_news_usecase.dart';
@@ -103,12 +103,11 @@ class MyNewsController extends GetxController {
   NewsDto get newsData => _newsData.value;
   set newsData(NewsDto value) => _newsData.value = value;
 
-  Rx<Resources<dynamic>> status = Resources<dynamic>.init().obs;
-  Rx<Resources<NewsResponse>> acceptedStatus =
-      Resources<NewsResponse>.init().obs;
-  Rx<Resources<NewsResponse>> waitedStatus = Resources<NewsResponse>.init().obs;
-  Rx<Resources<NewsResponse>> rejectedStatus =
-      Resources<NewsResponse>.init().obs;
+  Rx<Resources<dynamic>> acceptedStatus =
+      Resources<dynamic>.init().obs;
+  Rx<Resources<dynamic>> waitedStatus = Resources<dynamic>.init().obs;
+  Rx<Resources<dynamic>> rejectedStatus =
+      Resources<dynamic>.init().obs;
 
   RxList<NewsDto> acceptedNews = <NewsDto>[].obs;
   RxList<NewsDto> filteredAcceptedNews = <NewsDto>[].obs;
@@ -226,9 +225,8 @@ class MyNewsController extends GetxController {
 
   void deleteNews({required NewsType type, String? id}) async {
     Get.back();
-    status.value = Resources.loading();
+
     final result = await _deleteNewsUseCase(params: id);
-    status.value = result;
 
     if (result.status != Status.success) {
       AppStrings.deletedFailed.toToast();
@@ -238,11 +236,20 @@ class MyNewsController extends GetxController {
     AppStrings.deletedSuccessfully.toToast();
 
     if (type == NewsType.accepted) {
-      acceptedNews.removeWhere((it) => it.id == id);
+      acceptedNews.removeWithUpdate(
+        filteredAcceptedNews,
+            (it) => it.id == id,
+      );
     } else if (type == NewsType.rejected) {
-      rejectedNews.removeWhere((it) => it.id == id);
+      rejectedNews.removeWithUpdate(
+        filteredRejectedNews,
+            (it) => it.id == id,
+      );
     } else {
-      waitedNews.removeWhere((it) => it.id == id);
+      waitedNews.removeWithUpdate(
+        filteredWaitedNews,
+            (it) => it.id == id,
+      );
     }
   }
 }

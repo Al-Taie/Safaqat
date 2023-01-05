@@ -19,6 +19,7 @@ import 'package:safaqat/safaqat/presentation/ui/events/map/event_map.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/add/components/post_details_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/add/components/post_info_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/edit/edit_post_controller.dart';
+import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 
 class EditPostPage extends StatelessWidget {
   const EditPostPage({Key? key, required this.post}) : super(key: key);
@@ -147,6 +148,8 @@ class EditPostPage extends StatelessWidget {
                           postTypeInitialValue: controller.type,
                           postCategoryInitialValue: controller.category,
                           locationController: controller.locationController,
+                          cameraPosition:
+                          controller.post.coordinates?.toCameraPosition(),
                           onCityChange: (city) {
                             controller.city = city;
                             controller.locationController.setCountryLocation(
@@ -158,7 +161,14 @@ class EditPostPage extends StatelessWidget {
                               controller.country = value,
                           onEndChange: (value) => controller.expiryDate = value,
                           onPressed: (LatLng value) {
-                            const EventMap().navTo();
+                            EventMap(
+                              cameraPosition:
+                              controller.locationController.geoLocation !=
+                                  null
+                                  ? null
+                                  : controller.post.coordinates
+                                  ?.toCameraPosition(),
+                            ).navTo();
                           },
                           expanded: controller.detailsExpanded.value,
                           categoryExpanded: controller.categoryExpanded.value,
@@ -205,7 +215,14 @@ class EditPostPage extends StatelessWidget {
                   color: AppColors.ternary,
                   textColor: AppColors.primaryColor,
                   text: AppStrings.edit,
-                  onPressed: controller.edit,
+                  onPressed: () {
+                    controller
+                        .locationController
+                        .targetPlace
+                        .toCoordinates()
+                        ?.let((value) { controller.coordinates = value; });
+                    controller.edit();
+                  },
                 ),
               ],
             ),

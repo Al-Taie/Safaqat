@@ -231,8 +231,11 @@ class EditEventPage extends StatelessWidget {
                   textColor: AppColors.primaryColor,
                   text: AppStrings.post,
                   onPressed: () {
-                    controller.targetPlace =
-                        controller.locationController.targetPlace;
+                    controller
+                        .locationController
+                        .targetPlace
+                        .toCoordinates()
+                        ?.let((value) { controller.coordinates = value; });
                     controller.edit();
                   },
                 ),

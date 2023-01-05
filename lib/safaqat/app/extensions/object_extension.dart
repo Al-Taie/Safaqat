@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
@@ -100,4 +101,12 @@ extension PostTypeDtoExtension on PostTypeDto? {
       : this?.type == PostType.request.index
           ? PostType.request
           : null;
+}
+
+extension RxListExtension<T> on RxList<T> {
+  void removeWithUpdate(RxList<T> list, ResultCallback<T, bool> selector) {
+    removeWhere((it) => selector(it));
+    list.value = value;
+    list.refresh();
+  }
 }

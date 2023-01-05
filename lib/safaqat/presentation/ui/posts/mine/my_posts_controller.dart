@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
-import 'package:safaqat/safaqat/data/models/posts/posts_response.dart';
 import 'package:safaqat/safaqat/domain/entities/posts/post_query.dart';
 import 'package:safaqat/safaqat/domain/entities/posts/post_type.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
@@ -89,8 +89,7 @@ class MyPostsController extends GetxController {
 
   set postData(PostDto value) => _postData.value = value;
 
-  Rx<Resources<dynamic>> opportunityStatus =
-      Resources<dynamic>.init().obs;
+  Rx<Resources<dynamic>> opportunityStatus = Resources<dynamic>.init().obs;
   Rx<Resources<dynamic>> requestStatus = Resources<dynamic>.init().obs;
 
   RxList<PostDto> opportunityPosts = <PostDto>[].obs;
@@ -185,12 +184,6 @@ class MyPostsController extends GetxController {
   void deletePosts({required PostType type, String? id}) async {
     Get.back();
 
-    if (type == PostType.opportunity) {
-      opportunityStatus.value = Resources.loading();
-    } else if (type == PostType.request) {
-      requestStatus.value = Resources.loading();
-    }
-
     final result = await _deletePostUseCase(params: id);
 
     if (result.status != Status.success) {
@@ -201,15 +194,15 @@ class MyPostsController extends GetxController {
     AppStrings.deletedSuccessfully.toToast();
 
     if (type == PostType.opportunity) {
-      opportunityStatus.value = result;
-      opportunityPosts.removeWhere((it) => it.id == id);
-      filteredOpportunityPosts.value = opportunityPosts.value;
-      filteredOpportunityPosts.refresh();
+      opportunityPosts.removeWithUpdate(
+        filteredOpportunityPosts,
+        (it) => it.id == id,
+      );
     } else if (type == PostType.request) {
-      requestStatus.value = result;
-      requestPosts.removeWhere((it) => it.id == id);
-      filteredRequestPosts.value = requestPosts.value;
-      filteredRequestPosts.refresh();
+      requestPosts.removeWithUpdate(
+        filteredRequestPosts,
+        (it) => it.id == id,
+      );
     }
   }
 }
