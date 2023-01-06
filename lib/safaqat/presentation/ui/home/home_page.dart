@@ -52,12 +52,12 @@ class HomePage extends StatelessWidget {
             status: controller.resources.status,
             onClickTryAgain: controller.getPosts,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Flexible(
                   flex: 1,
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(12.0),
                     child: CarouselSlider.builder(
                       options: CarouselOptions(
                         aspectRatio: 16 / 9,
@@ -142,15 +142,18 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-                  child: Text(
-                    AppStrings.opportunitiesAndRequests,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      color: AppColors.shadePrimary,
+                SizedBox(
+                  width: Get.width,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                    child: Text(
+                      AppStrings.opportunitiesAndRequests,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                        color: AppColors.shadePrimary,
+                      ),
                     ),
                   ),
                 ),

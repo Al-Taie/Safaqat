@@ -9,7 +9,7 @@ import 'package:safaqat/safaqat/presentation/ui/posts/public/posts_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/public/projects_page.dart';
 
 class CollectionPage extends StatelessWidget {
-  const CollectionPage({Key? key, this.logged = true}) : super(key: key);
+  const CollectionPage({Key? key, this.logged = false}) : super(key: key);
 
   final bool logged;
 
