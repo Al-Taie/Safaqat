@@ -13,6 +13,7 @@ import 'package:safaqat/safaqat/presentation/ui/news/details/news_details_page.d
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/public/news_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/mine/my_posts_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/mine/my_projects_page.dart';
 
 class NewsPage extends StatelessWidget {
   const NewsPage({Key? key, this.logged = false}) : super(key: key);
@@ -38,6 +39,7 @@ class NewsPage extends StatelessWidget {
                   onManageNews: const MyNewsPage().navTo,
                   onManageEvents: const MyEventsPage().navTo,
                   onManagePosts: const MyPostsPage().navTo,
+                  onManageProjects: const MyProjectsPage().navTo,
                   onProfile: () {},
                   onLogout: controller.logout,
                 )

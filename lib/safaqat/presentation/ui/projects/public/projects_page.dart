@@ -11,6 +11,7 @@ import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/mine/my_posts_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/components/project_card_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/details/post_details_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/mine/my_projects_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/public/projects_controller.dart';
 
 class ProjectsPage extends StatelessWidget {
@@ -36,6 +37,7 @@ class ProjectsPage extends StatelessWidget {
                   onManageNews: const MyNewsPage().navTo,
                   onManageEvents: const MyEventsPage().navTo,
                   onManagePosts: const MyPostsPage().navTo,
+                  onManageProjects: const MyProjectsPage().navTo,
                   onLogout: controller.logout,
                 )
               : null,

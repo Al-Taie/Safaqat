@@ -2,34 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
-import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
+import 'package:safaqat/safaqat/data/models/projects/project_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/posts/components/post_card_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/posts/details/post_details_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/components/project_card_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/details/post_details_page.dart';
 
-class PostItemsWidget extends StatelessWidget {
-  const PostItemsWidget({
+class ProjectItemsWidget extends StatelessWidget {
+  const ProjectItemsWidget({
     Key? key,
     required this.status,
     required this.apiCall,
-    required this.scrollController,
     required this.data,
     required this.onPressed,
     this.isLogged = false,
     this.onEdit,
     this.onDelete,
-    required this.onScrollUpPressed,
-    required this.scrollButtonVisibility,
   }) : super(key: key);
 
   final Status status;
-  final VoidCallback apiCall, onScrollUpPressed;
-  final bool isLogged, scrollButtonVisibility;
-  final ScrollController scrollController;
-  final List<PostDto> data;
-  final ValueChanged<PostDto> onPressed;
-  final ValueChanged<PostDto>? onDelete, onEdit;
+  final VoidCallback apiCall;
+  final bool isLogged;
+  final List<ProjectDto> data;
+  final ValueChanged<ProjectDto> onPressed;
+  final ValueChanged<ProjectDto>? onDelete, onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +33,6 @@ class PostItemsWidget extends StatelessWidget {
       status: status,
       onClickTryAgain: apiCall,
       child: ListView.builder(
-          controller: scrollController,
           physics: const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
@@ -50,13 +45,14 @@ class PostItemsWidget extends StatelessWidget {
           itemCount: data.length,
           itemBuilder: (context, index) {
             var item = data[index];
-            return PostCardWidget(
-              title: (Utils.isRTL ? item.titleAr : item.titleEn) ?? '-',
+            return ProjectCardWidget(
+              title: item.name,
               name: item.ownerName ?? '-',
               image: item.images.firstOrNull ?? '',
-              date: Utils.formatDate(dateStr: item.expiryDate),
-              type: item.type?.name ?? '-',
-              cityName: item.city?.name ?? '-',
+              date: Utils.formatDate(dateStr: item.startDate),
+              convener: item.convener,
+              sector: item.sector,
+              city: item.city,
               isLogged: isLogged,
               onEdit: () {
                 onEdit?.call(item);
@@ -66,7 +62,7 @@ class PostItemsWidget extends StatelessWidget {
               },
               onPressed: () {
                 onPressed(item);
-                PostDetailsPage(post: item).navTo();
+                ProjectDetailsPage(project: item).navTo();
               },
             );
           }),

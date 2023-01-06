@@ -12,6 +12,7 @@ import 'package:safaqat/safaqat/presentation/ui/posts/components/post_card_widge
 import 'package:safaqat/safaqat/presentation/ui/posts/details/post_details_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/mine/my_posts_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/public/posts_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/mine/my_projects_page.dart';
 
 class PostsPage extends StatelessWidget {
   const PostsPage({Key? key, this.logged = false}) : super(key: key);
@@ -36,6 +37,7 @@ class PostsPage extends StatelessWidget {
                   onManageNews: const MyNewsPage().navTo,
                   onManageEvents: const MyEventsPage().navTo,
                   onManagePosts: const MyPostsPage().navTo,
+                  onManageProjects: const MyProjectsPage().navTo,
                   onLogout: controller.logout,
                 )
               : null,

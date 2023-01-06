@@ -1,15 +1,26 @@
-
-
 import 'package:safaqat/safaqat/app/config/strings.dart';
 
-enum ProjectConvenerType{
+enum ProjectConvenerType {
   _,
-  governmental ,
+  governmental,
   private,
   mixed,
   foreign;
 
   static List<ProjectConvenerType> get items => values.skip(1).toList();
+
+  static ProjectConvenerType fromInt(int index) {
+    if (index == ProjectConvenerType.governmental.index) {
+      return ProjectConvenerType.governmental;
+    } else if (index == ProjectConvenerType.private.index) {
+      return ProjectConvenerType.private;
+    } else if (index == ProjectConvenerType.mixed.index) {
+      return ProjectConvenerType.mixed;
+    } else if (index == ProjectConvenerType.private.index) {
+      return ProjectConvenerType.private;
+    }
+    return ProjectConvenerType._;
+  }
 
   @override
   String toString() {
