@@ -7,6 +7,8 @@ final Map<String, String> arIQ = {
   addNewNewsKey: 'إضافة خبر جديد',
   addNewEventKey: 'إضافة مناسبة جديدة',
   addressKey: 'العنوان',
+  nameKey: 'الاسم',
+  costKey: 'الكلفة',
   agreeTermsAndPolicyKey:
       'اوافق على الاحكام والشروط الخاصة للتسجيل واستخدام منصة صفقات.',
   anotherEmailKey: 'الايميل الثاني',

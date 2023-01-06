@@ -125,6 +125,8 @@ final Map<String, String> enUS = {
   forumKey: 'Forum',
   conferenceKey: 'Conference',
   generalKey: 'General',
+  nameKey: 'Name',
+  costKey: 'Cost',
   startDateKey: 'Start date',
   endDateKey: 'End date',
   actualEndDateKey: 'Actual end date',

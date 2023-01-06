@@ -173,12 +173,15 @@ const showPhoneKey = 'showPhone';
 const showEmailKey = 'showEmail';
 const sectorKey = 'sector';
 const convenerKey = 'convener';
+const nameKey = 'name';
+const costKey = 'cost';
 
 class AppStrings {
   static final accountCreationAndTermsPolicy =
       accountCreationAndTermsPolicyKey.tr;
   static final accountWillBeActivatedSoon = accountWillBeActivatedSoonKey.tr;
   static final add = addKey.tr;
+  static final name = nameKey.tr;
   static final convener = convenerKey.tr;
   static final sector = sectorKey.tr;
   static final addNewEvent = addNewEventKey.tr;
@@ -209,6 +212,7 @@ class AppStrings {
   static final deletedFailed = deletedFailedKey.tr;
   static final deletedSuccessfully = deletedSuccessfullyKey.tr;
   static final details = detailsKey.tr;
+  static final cost = costKey.tr;
   static final dontHaveAccount = dontHaveAccountKey.tr;
   static final edit = editKey.tr;
   static final editEvent = editEventKey.tr;

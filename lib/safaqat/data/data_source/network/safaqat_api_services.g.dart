@@ -1462,13 +1462,13 @@ class _SafaqatApiServices implements SafaqatApiServices {
     }
     if (descriptionAr != null) {
       _data.fields.add(MapEntry(
-        'DescriptionA',
+        'DescA',
         descriptionAr,
       ));
     }
     if (descriptionNameEn != null) {
       _data.fields.add(MapEntry(
-        'DescriptionE',
+        'DescE',
         descriptionNameEn,
       ));
     }
@@ -1628,13 +1628,13 @@ class _SafaqatApiServices implements SafaqatApiServices {
     }
     if (descriptionAr != null) {
       _data.fields.add(MapEntry(
-        'DescriptionA',
+        'DescA',
         descriptionAr,
       ));
     }
     if (descriptionNameEn != null) {
       _data.fields.add(MapEntry(
-        'DescriptionE',
+        'DescE',
         descriptionNameEn,
       ));
     }

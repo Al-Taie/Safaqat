@@ -44,10 +44,11 @@ class EventMap extends StatelessWidget {
             () => GoogleMap(
               myLocationButtonEnabled: true,
               zoomControlsEnabled: true,
+              minMaxZoomPreference: const MinMaxZoomPreference(0, 16),
               initialCameraPosition: cameraPosition ??
                   CameraPosition(
                     target: controller.geoLocation.toLatLng(),
-                    zoom: 17,
+                    zoom: 16,
                   ),
               onMapCreated: (value) => controller.mapController = value,
               markers: {

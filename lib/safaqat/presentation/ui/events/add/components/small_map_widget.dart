@@ -48,6 +48,7 @@ class SmallMapWidget extends StatelessWidget {
               zoomGesturesEnabled: false,
               scrollGesturesEnabled: false,
               rotateGesturesEnabled: false,
+              minMaxZoomPreference: const MinMaxZoomPreference(0, 16),
               onMapCreated: (value) => controller.smallMapController = value,
               initialCameraPosition: cameraPosition ??
                   CameraPosition(

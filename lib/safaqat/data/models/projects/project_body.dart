@@ -38,12 +38,12 @@ class ProjectBody {
   String? startDate;
   String? endDate;
   String? actualEndDate;
-  ProjectConvenerDto? convener;
-  ProjectSectorDto? sector;
+  int? convener;
+  int? sector;
   CityDto? city;
   PostCategoryDto? category;
   CoordinatesDto? coordinates;
-  Float? cost;
+  double? cost;
   String? descriptionAr;
   String? descriptionEn;
   bool? showPhone;

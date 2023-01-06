@@ -59,7 +59,7 @@ class LocationController extends GetxController {
     var update = CameraUpdate.newCameraPosition(
       CameraPosition(
         target: pos,
-        zoom: 17,
+        zoom: 16,
       ),
     );
     try {
@@ -82,7 +82,7 @@ class LocationController extends GetxController {
     var update = CameraUpdate.newCameraPosition(
       CameraPosition(
         target: geoLocation.toLatLng(),
-        zoom: 17,
+        zoom: 16,
       ),
     );
 

@@ -8,6 +8,7 @@ enum ProjectConvenerType {
   foreign;
 
   static List<ProjectConvenerType> get items => values.skip(1).toList();
+  String get name => toString();
 
   static ProjectConvenerType fromInt(int index) {
     if (index == ProjectConvenerType.governmental.index) {

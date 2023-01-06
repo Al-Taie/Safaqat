@@ -210,9 +210,8 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
             startDate: body.startDate,
             endDate: body.endDate,
             actualEndDate: body.actualEndDate,
-            // FIXME: TYPE OF PARAM
-            convener: 0,
-            sector: 0,
+            convener: body.convener,
+            sector: body.sector,
             showEmail: body.showEmail,
             showPhone: body.showPhone,
             cityCode: body.city?.cityNo,
@@ -276,9 +275,8 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
             startDate: body.startDate,
             endDate: body.endDate,
             actualEndDate: body.actualEndDate,
-            // FIXME: TYPE OF PARAM
-            convener: 0,
-            sector: 0,
+            convener: body.convener,
+            sector: body.sector,
             showEmail: body.showEmail,
             showPhone: body.showPhone,
             cityCode: body.city?.cityNo,

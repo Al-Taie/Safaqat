@@ -216,6 +216,7 @@ Widget eventInfo(EventDto event) {
             scrollGesturesEnabled: false,
             rotateGesturesEnabled: false,
             myLocationEnabled: false,
+            minMaxZoomPreference: const MinMaxZoomPreference(0, 16),
             onMapCreated: (controller) =>
                 controller.animateCamera(event.coordinates!.toCameraUpdate()),
             initialCameraPosition: CameraPosition(

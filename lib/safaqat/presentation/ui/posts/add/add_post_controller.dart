@@ -104,9 +104,7 @@ class AddPostController extends GetxController {
   set type(PostType value) => _type.value = value;
 
   final _category = PostCategoryDto().obs;
-
   PostCategoryDto get category => _category.value;
-
   set category(PostCategoryDto value) => _category.value = value;
 
   final _instituteAr = ''.obs;

@@ -109,4 +109,9 @@ extension RxListExtension<T> on RxList<T> {
     list.value = value;
     list.refresh();
   }
+
+  void addWithUpdate(T item) {
+    add(item);
+    refresh();
+  }
 }

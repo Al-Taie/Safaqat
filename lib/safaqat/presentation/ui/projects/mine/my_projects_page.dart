@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
+import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/domain/entities/projects/project_convener_type.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_floating_button.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/add/add_project_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/components/project_items_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/mine/my_projects_controller.dart';
 
@@ -32,8 +34,7 @@ class MyProjectsPage extends StatelessWidget {
                 isExtended: controller.isFloatingButtonExtended.value,
                 onClick: () {
                   FocusScope.of(context).requestFocus(FocusNode());
-                  // TODO: IMPLEMENT ME
-                  // const AddProjectPage().navTo();
+                  const AddProjectPage().navTo();
                 },
               ),
             ),
