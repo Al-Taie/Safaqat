@@ -21,7 +21,7 @@ class PostsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(PostsController());
+    final PostsController controller = Get.find();
 
     return GestureDetector(
       onTap: () {

@@ -83,6 +83,7 @@ class PostDto {
     this.images,
   });
 
+  String get title => (Utils.isRTL ? titleAr : titleEn) ?? '-';
   String get description => (Utils.isRTL ? descriptionAr : descriptionEn) ?? '-';
   String get instituteName => (Utils.isRTL ? instituteNameAr : instituteNameEn) ?? '-';
 

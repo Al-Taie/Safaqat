@@ -9,6 +9,7 @@ final Map<String, String> arIQ = {
   addressKey: 'العنوان',
   nameKey: 'الاسم',
   costKey: 'الكلفة',
+  opportunitiesAndRequestsKey: 'الفرص والطلبات',
   agreeTermsAndPolicyKey:
       'اوافق على الاحكام والشروط الخاصة للتسجيل واستخدام منصة صفقات.',
   anotherEmailKey: 'الايميل الثاني',

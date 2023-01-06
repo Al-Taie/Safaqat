@@ -175,6 +175,7 @@ const sectorKey = 'sector';
 const convenerKey = 'convener';
 const nameKey = 'name';
 const costKey = 'cost';
+const opportunitiesAndRequestsKey = 'opportunitiesAndRequests';
 
 class AppStrings {
   static final accountCreationAndTermsPolicy =
@@ -346,6 +347,7 @@ class AppStrings {
   static final agricultural = agriculturalKey.tr;
   static final opportunity = opportunityKey.tr;
   static final request = requestKey.tr;
+  static final opportunitiesAndRequests = opportunitiesAndRequestsKey.tr;
   static final addNewPost = addNewPostKey.tr;
   static final addNewProject = addNewProjectKey.tr;
   static final type = typeKey.tr;

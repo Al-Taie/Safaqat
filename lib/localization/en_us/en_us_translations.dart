@@ -166,6 +166,7 @@ final Map<String, String> enUS = {
   industrialKey: 'Industrial',
   agriculturalKey: 'Agricultural',
   opportunityKey: 'Opportunity',
+  opportunitiesAndRequestsKey: 'Opportunities And Requests',
   requestKey: 'Request',
   typeKey: 'Type',
   addNewPostKey: 'Add new post',

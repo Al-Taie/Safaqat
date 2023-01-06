@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:safaqat/safaqat/app/utils/utils.dart';
 
 part 'news_dto.g.dart';
 
@@ -46,6 +47,9 @@ class NewsDto {
     this.statusDescription,
     this.ownerName,
   });
+
+  String get title => (Utils.isRTL ? titleAr : titleEn) ?? '-';
+  String get details => (Utils.isRTL ? detailsAr : detailsEn) ?? '-';
 
   factory NewsDto.fromJson(Map<String, dynamic> json) => _$NewsDtoFromJson(json);
 

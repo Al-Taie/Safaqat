@@ -22,7 +22,7 @@ class NewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(NewsController());
+    final NewsController controller = Get.find();
 
     return GestureDetector(
       onTap: () {

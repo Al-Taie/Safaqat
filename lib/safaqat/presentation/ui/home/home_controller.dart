@@ -5,87 +5,24 @@ import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
 import 'package:safaqat/safaqat/data/models/news/news_query.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/data/models/news/news_response.dart';
+import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/usecases/news/get_news_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecases/news/search_news_usecase.dart';
+import 'package:safaqat/safaqat/presentation/ui/news/public/news_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/posts/public/posts_controller.dart';
 
 class HomeController extends GetxController {
-  final GetNewsUseCase _getNewsUseCase = Get.put(GetNewsUseCase());
-  final SearchNewsUseCase _searchNewsUseCase = Get.put(SearchNewsUseCase());
-  final scrollController = ScrollController();
+  final PostsController _postsController = Get.find();
+  final NewsController _newsController = Get.find();
 
-  @override
-  void onInit() {
-    super.onInit();
-    scrollController.addListener(_pagination);
-    scrollController.addListener(_floatingButtonState);
-    getNews();
-  }
+  List<PostDto> get posts => _postsController.filteredPosts.value;
+  List<NewsDto> get news => _newsController.news.value;
 
-  final isFloatingButtonExtended = true.obs;
+  Resources<dynamic> get resources => _postsController.status.value;
 
-  final _pageNumber = 1.obs;
-  var _maxNumberOfPages = 1;
+  void getPosts() => _postsController.getPosts();
+  void logout() => _postsController.logout();
 
-  int get pageNumber => _pageNumber.value;
-
-  set pageNumber(int value) => _pageNumber.value = value;
-
-  final _newsData = NewsDto().obs;
-
-  NewsDto get newsData => _newsData.value;
-
-  set newsData(NewsDto value) => _newsData.value = value;
-
-  Rx<Resources<NewsResponse>> news = Resources<NewsResponse>.init().obs;
-
-  final _query = ''.obs;
-
-  String get query => _query.value;
-
-  set query(String value) => _query.value = value;
-
-  void getNews() async {
-    final body = NewsQuery(pageNumber: pageNumber);
-
-    news.value = Resources.loading();
-
-    final result = await _getNewsUseCase(params: body);
-    news.value = result;
-    _maxNumberOfPages = result.data?.numberOfPages ?? 1;
-  }
-
-  void searchNews() async {
-    news.value = Resources.loading();
-
-    final result = await _searchNewsUseCase(params: query);
-    final data = NewsResponse(numberOfPages: 1, news: result.data);
-
-    if (result.status == Status.success) {
-      news.value = Resources.success(data, result.statusCode);
-    } else if (result.status == Status.error) {
-      news.value = Resources.error(result.error, result.statusCode);
-    }
-  }
-
-  void _pagination() {
-    if (scrollController.position.isMaxScroll &&
-        (pageNumber < _maxNumberOfPages)) {
-      pageNumber++;
-      isFloatingButtonExtended.value = true;
-      getNews();
-    } else if (scrollController.position.isMinScroll && pageNumber > 1) {
-      pageNumber--;
-      isFloatingButtonExtended.value = true;
-      getNews();
-    }
-  }
-
-  void _floatingButtonState() {
-    if (scrollController.position.isMinScroll) {
-      isFloatingButtonExtended.value = true;
-    } else {
-      isFloatingButtonExtended.value = false;
-    }
-  }
+  void searchPosts(String query) => _postsController.searchPosts(query);
 }
