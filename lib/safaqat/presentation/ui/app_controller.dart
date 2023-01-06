@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/extensions/int_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
@@ -72,6 +73,7 @@ class AppController extends GetxController {
         postCategories.sort((a, b) => a.nameEn!.compareTo(b.nameEn!));
       } catch (e) {
         // SKIP
+        Logger.log(e);
       }
     }
   }

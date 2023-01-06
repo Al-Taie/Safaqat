@@ -149,7 +149,7 @@ class EditPostPage extends StatelessWidget {
                           postCategoryInitialValue: controller.category,
                           locationController: controller.locationController,
                           cameraPosition:
-                          controller.post.coordinates?.toCameraPosition(),
+                              controller.post.coordinates?.toCameraPosition(),
                           onCityChange: (city) {
                             controller.city = city;
                             controller.locationController.setCountryLocation(
@@ -163,11 +163,11 @@ class EditPostPage extends StatelessWidget {
                           onPressed: (LatLng value) {
                             EventMap(
                               cameraPosition:
-                              controller.locationController.geoLocation !=
-                                  null
-                                  ? null
-                                  : controller.post.coordinates
-                                  ?.toCameraPosition(),
+                                  controller.locationController.geoLocation !=
+                                          null
+                                      ? null
+                                      : controller.post.coordinates
+                                          ?.toCameraPosition(),
                             ).navTo();
                           },
                           expanded: controller.detailsExpanded.value,
@@ -216,11 +216,11 @@ class EditPostPage extends StatelessWidget {
                   textColor: AppColors.primaryColor,
                   text: AppStrings.edit,
                   onPressed: () {
-                    controller
-                        .locationController
-                        .targetPlace
+                    controller.locationController.targetPlace
                         .toCoordinates()
-                        ?.let((value) { controller.coordinates = value; });
+                        ?.let((value) {
+                      controller.coordinates = value;
+                    });
                     controller.edit();
                   },
                 ),

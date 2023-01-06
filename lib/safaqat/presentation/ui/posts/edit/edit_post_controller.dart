@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
@@ -24,7 +23,6 @@ class EditPostController extends GetxController {
   final AppController _appController = Get.find();
   final LocationController locationController = Get.find();
   final MyPostsController _myPostsController = Get.find();
-
   PostDto post = PostDto();
 
   final RxBool detailsExpanded = false.obs;
@@ -36,6 +34,7 @@ class EditPostController extends GetxController {
 
   static const int maxImages = 10;
   static const List<String> allowedImageTypes = ['png', 'jpg', 'jpeg'];
+
   final imageController = MultiImagePickerController(
     maxImages: maxImages,
     allowedImageTypes: allowedImageTypes,
@@ -48,93 +47,65 @@ class EditPostController extends GetxController {
   final postCategoryFormKey = GlobalKey<FormState>();
 
   RxList<CountryDto> get countries => _appController.countries;
-
   RxList<CityDto> get cities => _appController.cities;
-
   RxList<PostCategoryDto> get categories => _appController.postCategories;
 
   CountryDto get country => _appController.country;
-
   set country(CountryDto value) => _appController.country = value;
 
   CityDto get city => _appController.city;
-
   set city(CityDto value) => _appController.city = value;
 
   final _expiryDate = ''.obs;
-
   String get expiryDate => _expiryDate.value;
-
   set expiryDate(String value) => _expiryDate.value = value;
 
   final _titleAr = ''.obs;
-
   String get titleAr => _titleAr.value;
-
   set titleAr(String value) => _titleAr.value = value;
 
   final _titleEn = ''.obs;
-
   String get titleEn => _titleEn.value;
-
   set titleEn(String value) => _titleEn.value = value;
 
   final _detailsAr = ''.obs;
-
   String get detailsAr => _detailsAr.value;
-
   set detailsAr(String value) => _detailsAr.value = value;
 
   final _detailsEn = ''.obs;
-
   String get detailsEn => _detailsEn.value;
-
   set detailsEn(String value) => _detailsEn.value = value;
 
   final _showPhone = false.obs;
-
   bool get showPhone => _showPhone.value;
-
   set showPhone(bool value) => _showPhone.value = value;
 
   final _showEmail = false.obs;
-
   bool get showEmail => _showEmail.value;
-
   set showEmail(bool value) => _showEmail.value = value;
 
   final _type = PostType.opportunity.obs;
-
   PostType get type => _type.value;
-
   set type(PostType value) => _type.value = value;
 
   final _category = PostCategoryDto().obs;
-
   PostCategoryDto get category => _category.value;
-
   set category(PostCategoryDto value) => _category.value = value;
 
   final _instituteAr = ''.obs;
-
   String get instituteAr => _instituteAr.value;
-
   set instituteAr(String value) => _instituteAr.value = value;
 
   final _instituteEn = ''.obs;
-
   String get instituteEn => _instituteEn.value;
-
   set instituteEn(String value) => _instituteEn.value = value;
 
   final _coordinates = CoordinatesDto().obs;
   CoordinatesDto get coordinates => _coordinates.value;
   set coordinates(CoordinatesDto value) => _coordinates.value = value;
 
-
   void edit() async {
     status.value = Resources.loading();
-
     final params = EditPostParams(
       postId: post.id,
       body: PostBody(
@@ -190,7 +161,6 @@ class EditPostController extends GetxController {
     instituteEn = post.instituteNameEn ?? '';
     post.type?.let((it) => it.toDomainOrNull().let((value) => type = value));
     post.category?.let((it) => category = it);
-
     locationController.targetMarker = post.coordinates?.toMarker();
   }
 }
