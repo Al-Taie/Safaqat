@@ -1,7 +1,6 @@
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
@@ -61,6 +60,7 @@ class NotificationWidget extends StatelessWidget {
           padding: const EdgeInsets.all(4.0),
           child: SvgIconButton(
             icon: AppDrawable.icTrash,
+            padding: const EdgeInsets.all(8),
             onPressed: () async {
               await showDialog(
                 context: context,
