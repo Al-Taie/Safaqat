@@ -5,6 +5,8 @@ part 'notification_dto.g.dart';
 
 @JsonSerializable(ignoreUnannotated: false)
 class NotificationDto {
+  @JsonKey(name: 'id')
+  String? id;
   @JsonKey(name: 'customer_name')
   String? customerName;
   @JsonKey(name: 'date_time')
@@ -20,6 +22,7 @@ class NotificationDto {
   bool get isIncoming => type == NotificationType.incoming.index;
 
   NotificationDto({
+    this.id,
     this.customerName,
     this.date,
     this.type,

@@ -110,6 +110,11 @@ extension RxListExtension<T> on RxList<T> {
     list.refresh();
   }
 
+  void removeFromWithUpdate(ResultCallback<T, bool> selector) {
+    removeWhere((it) => selector(it));
+    refresh();
+  }
+
   void addWithUpdate(T item) {
     add(item);
     refresh();

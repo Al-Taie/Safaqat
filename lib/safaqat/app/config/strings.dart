@@ -26,6 +26,7 @@ const deleteDescriptionKey = 'deleteDescription';
 const deleteEventKey = 'deleteEvent';
 const deleteKey = 'delete';
 const deleteNewsKey = 'deleteNews';
+const deleteNotificationKey = 'deleteNotification';
 const deletePostKey = 'deletePost';
 const deleteProjectKey = 'deleteProject';
 const deletedFailedKey = 'deletedFailed';
@@ -208,6 +209,7 @@ class AppStrings {
   static final deleteDescription = deleteDescriptionKey.tr;
   static final deleteEvent = deleteEventKey.tr;
   static final deleteNews = deleteNewsKey.tr;
+  static final deleteNotification = deleteNotificationKey.tr;
   static final deletePost = deletePostKey.tr;
   static final deleteProject = deleteProjectKey.tr;
   static final deletedFailed = deletedFailedKey.tr;

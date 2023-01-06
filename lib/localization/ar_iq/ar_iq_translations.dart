@@ -27,6 +27,7 @@ final Map<String, String> arIQ = {
   deleteDescriptionKey: 'سيتم حذف الخبر. هل أنت متأكد أنك تريد الحذف؟',
   deleteKey: 'حذف',
   deleteNewsKey: 'حذف الخبر',
+  deleteNotificationKey: 'حذف الإشعار',
   deleteEventKey: 'حذف المناسبة',
   deletePostKey: 'حذف المنشور',
   deleteProjectKey: 'حذف المشروع',

@@ -513,6 +513,35 @@ class _SafaqatApiServices implements SafaqatApiServices {
   }
 
   @override
+  Future<HttpResponse<BaseResponse<dynamic>>> deleteNotification(id) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'notification_id': id};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BaseResponse<dynamic>>>(Options(
+          method: 'DELETE',
+          headers: _headers,
+          extra: _extra,
+        )
+            .compose(
+          _dio.options,
+          'Notification/Delete',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<dynamic>.fromJson(
+      _result.data!,
+          (json) => json as dynamic,
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+
+  @override
   Future<HttpResponse<BaseResponse<EventsResponse>>> getEvents(
     pageSize,
     pageNumber, {

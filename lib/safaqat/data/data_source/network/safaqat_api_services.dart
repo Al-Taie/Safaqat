@@ -111,6 +111,11 @@ abstract class SafaqatApiServices {
     @Query('pageNumber') int pageNumber,
   );
 
+  @DELETE('Notification/Delete')
+  Future<HttpResponse<BaseResponse<dynamic>>> deleteNotification(
+    @Query('notification_id') String? id,
+  );
+
   @GET('Events/List')
   Future<HttpResponse<BaseResponse<EventsResponse>>> getEvents(
       @Query('pageSize') int pageSize, @Query('pageNumber') int pageNumber,
@@ -193,10 +198,10 @@ abstract class SafaqatApiServices {
 
   @GET('Post/List')
   Future<HttpResponse<BaseResponse<PostsResponse>>> getMyPosts(
-      @Query('pageSize') int pageSize,
-      @Query('pageNumber') int pageNumber,
-      @Query('type') int type,
-      );
+    @Query('pageSize') int pageSize,
+    @Query('pageNumber') int pageNumber,
+    @Query('type') int type,
+  );
 
   @POST('Post/Create')
   @MultiPart()
@@ -243,8 +248,8 @@ abstract class SafaqatApiServices {
 
   @DELETE('Post/Delete')
   Future<HttpResponse<BaseResponse<dynamic>>> deletePost(
-      @Query('postId') String? postId,
-      );
+    @Query('postId') String? postId,
+  );
 
   @GET('Project/List')
   Future<HttpResponse<BaseResponse<ProjectsResponse>>> getProjects(
@@ -253,10 +258,10 @@ abstract class SafaqatApiServices {
 
   @GET('Project/List')
   Future<HttpResponse<BaseResponse<ProjectsResponse>>> getMyProjects(
-      @Query('pageSize') int pageSize,
-      @Query('pageNumber') int pageNumber,
-      @Query('type') int type,
-      );
+    @Query('pageSize') int pageSize,
+    @Query('pageNumber') int pageNumber,
+    @Query('type') int type,
+  );
 
   @POST('Project/Create')
   @MultiPart()
@@ -309,6 +314,6 @@ abstract class SafaqatApiServices {
 
   @DELETE('Project/Delete')
   Future<HttpResponse<BaseResponse<dynamic>>> deleteProject(
-      @Query('projectId') String? projectId,
-      );
+    @Query('projectId') String? projectId,
+  );
 }

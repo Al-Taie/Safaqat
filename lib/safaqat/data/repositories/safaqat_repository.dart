@@ -98,6 +98,12 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
   }
 
   @override
+  Future<Resources> deleteNotification({
+    String? id,
+  }) =>
+      _apiServices.deleteNotification(id).call();
+
+  @override
   Future<Resources<EventsResponse>> getEvents(
       {required int pageSize, required int pageNumber}) {
     return _apiServices.getEvents(pageSize, pageNumber).call();

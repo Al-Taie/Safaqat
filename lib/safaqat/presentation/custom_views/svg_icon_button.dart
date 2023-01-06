@@ -17,14 +17,9 @@ class SvgIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(50),
       child: Padding(
-        padding: EdgeInsets.only(
-            top: 16,
-            bottom: 16,
-            right: Utils.isRTL ? 0 : 10,
-            left: Utils.isRTL ? 10 : 0
-        ),
+        padding: const EdgeInsets.all(8),
         child: SvgPicture.asset(
           icon,
           color: AppColors.shadeSecondary,

@@ -54,6 +54,8 @@ abstract class SafaqatRepository {
       required int pageSize,
       required int pageNumber});
 
+  Future<Resources> deleteNotification({String? id});
+
   Future<Resources<EventsResponse>> getEvents(
       {required int pageSize, required int pageNumber});
 

@@ -25,6 +25,7 @@ final Map<String, String> enUS = {
       'The news will be deleted. Are you sure you want to delete it?',
   deleteKey: 'Delete',
   deleteNewsKey: 'Delete News',
+  deleteNotificationKey: 'Delete Notification',
   deleteEventKey: 'Delete Event',
   deletePostKey: 'Delete Post',
   deleteProjectKey: 'Delete Project',
