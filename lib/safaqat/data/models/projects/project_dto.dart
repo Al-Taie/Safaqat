@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
+import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/coordinates_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_convener_dto.dart';
@@ -34,6 +35,8 @@ class ProjectDto {
   ProjectSectorDto? sector;
   @JsonKey(name: 'city')
   CityDto? city;
+  @JsonKey(name: 'country')
+  CountryDto? country;
   @JsonKey(name: 'category')
   PostCategoryDto? category;
   @JsonKey(name: 'coordinates')
@@ -53,7 +56,7 @@ class ProjectDto {
   @JsonKey(name: 'email')
   String? ownerEmail;
   @JsonKey(name: 'showTel')
-  bool? showTel;
+  bool? showPhone;
   @JsonKey(name: 'showEmail')
   bool? showEmail;
   @JsonKey(name: 'images')
@@ -87,7 +90,7 @@ class ProjectDto {
     this.statusDesc,
     this.ownerPhone,
     this.ownerEmail,
-    this.showTel,
+    this.showPhone,
     this.showEmail,
     this.images,
     this.postDate,

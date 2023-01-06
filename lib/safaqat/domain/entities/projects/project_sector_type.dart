@@ -11,6 +11,17 @@ enum ProjectSectorType{
   static List<ProjectSectorType> get items => values.skip(1).toList();
   String get name => toString();
 
+  static ProjectSectorType fromInt(int index) {
+    if (index == ProjectSectorType.services.index) {
+      return ProjectSectorType.services;
+    } else if (index == ProjectSectorType.industrial.index) {
+      return ProjectSectorType.industrial;
+    } else if (index == ProjectSectorType.agricultural.index) {
+      return ProjectSectorType.agricultural;
+    }
+    return ProjectSectorType._;
+  }
+
   @override
   String toString() {
     switch (this) {

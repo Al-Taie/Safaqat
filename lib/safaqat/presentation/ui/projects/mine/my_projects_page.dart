@@ -9,6 +9,7 @@ import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_floating_button.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/add/add_project_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/components/project_items_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/edit/edit_project_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/mine/my_projects_controller.dart';
 
 class MyProjectsPage extends StatelessWidget {
@@ -81,8 +82,7 @@ class MyProjectsPage extends StatelessWidget {
                     data: controller.filteredGovernmentalProjects.value,
                     isLogged: true,
                     onEdit: (value) {
-                      // TODO: IMPLEMENT ME
-                      // EditProjectPage(project: value).navTo();
+                      EditProjectPage(project: value).navTo();
                     },
                     onDelete: (value) {
                       controller.deleteProjects(
@@ -102,8 +102,7 @@ class MyProjectsPage extends StatelessWidget {
                     data: controller.filteredPrivateProjects.value,
                     isLogged: true,
                     onEdit: (value) {
-                      // TODO: IMPLEMENT ME
-                      // EditProjectPage(project: value).navTo();
+                      EditProjectPage(project: value).navTo();
                     },
                     onDelete: (value) {
                       controller.deleteProjects(
@@ -123,8 +122,7 @@ class MyProjectsPage extends StatelessWidget {
                     data: controller.filteredMixedProjects.value,
                     isLogged: true,
                     onEdit: (value) {
-                      // TODO: IMPLEMENT ME
-                      // EditProjectPage(project: value).navTo();
+                      EditProjectPage(project: value).navTo();
                     },
                     onDelete: (value) {
                       controller.deleteProjects(
@@ -144,8 +142,7 @@ class MyProjectsPage extends StatelessWidget {
                     data: controller.filteredForeignProjects.value,
                     isLogged: true,
                     onEdit: (value) {
-                      // TODO: IMPLEMENT ME
-                      // EditProjectPage(project: value).navTo();
+                      EditProjectPage(project: value).navTo();
                     },
                     onDelete: (value) {
                       controller.deleteProjects(

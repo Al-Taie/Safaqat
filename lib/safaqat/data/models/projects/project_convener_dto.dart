@@ -9,8 +9,11 @@ class ProjectConvenerDto {
   String? nameAr;
   @JsonKey(name: 'nameE')
   String? nameEn;
+  @JsonKey(name: 'code')
+  int? code;
+
   String get name => (Utils.isRTL ? nameAr : nameEn) ?? '-';
-  ProjectConvenerDto({this.nameAr, this.nameEn});
+  ProjectConvenerDto({this.nameAr, this.nameEn, this.code});
 
   @override
   String toString(){

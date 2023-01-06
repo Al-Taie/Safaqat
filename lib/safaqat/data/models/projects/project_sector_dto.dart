@@ -9,8 +9,11 @@ class ProjectSectorDto {
   String? nameAr;
   @JsonKey(name: 'nameE')
   String? nameEn;
+  @JsonKey(name: 'code')
+  int? code;
+
   String get name => (Utils.isRTL ? nameAr : nameEn) ?? '-';
-  ProjectSectorDto({this.nameAr, this.nameEn});
+  ProjectSectorDto({this.nameAr, this.nameEn, this.code});
 
   @override
   String toString(){

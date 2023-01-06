@@ -6,37 +6,42 @@ import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
+import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
-import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
-import 'package:safaqat/safaqat/domain/entities/posts/post_type.dart';
+import 'package:safaqat/safaqat/data/models/projects/project_dto.dart';
+import 'package:safaqat/safaqat/domain/entities/projects/project_convener_type.dart';
+import 'package:safaqat/safaqat/domain/entities/projects/project_sector_type.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/checkbox_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/local_images_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/map/event_map.dart';
-import 'package:safaqat/safaqat/presentation/ui/posts/add/components/post_details_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/posts/add/components/post_info_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/posts/edit/edit_post_controller.dart';
-import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/add/add_project_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/add/components/project_details_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/add/components/project_info_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/edit/edit_project_controller.dart';
 
-class EditPostPage extends StatelessWidget {
-  const EditPostPage({Key? key, required this.post}) : super(key: key);
+class EditProjectPage extends StatelessWidget {
+  const EditProjectPage({
+    Key? key,
+    required this.project,
+  }) : super(key: key);
 
-  final PostDto post;
+  final ProjectDto project;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(EditPostController());
-    controller.loadPost(post);
+    final controller = Get.put(EditProjectController());
+    controller.loadProject(project);
 
     controller.status.listen((result) {
       switch (result.status) {
         case Status.success:
           Get.back();
           AppStrings.publishSuccess.toToast();
-
           break;
         case Status.error:
           AppStrings.publishFailed.toToast();
@@ -51,7 +56,7 @@ class EditPostPage extends StatelessWidget {
         backgroundColor: AppColors.background,
         appBar: AppBar(
           title: Text(
-            AppStrings.editPost,
+            AppStrings.editProject,
             style: AppTextStyle.title.copyWith(fontSize: 18),
           ),
           centerTitle: true,
@@ -77,17 +82,17 @@ class EditPostPage extends StatelessWidget {
                     ),
                     children: [
                       Obx(() {
-                        return PostInfoWidget(
+                        return ProjectInfoWidget(
                           title: AppStrings.arabic,
-                          postTitle: AppStrings.title,
+                          name: AppStrings.name,
                           content: AppStrings.content,
                           institute: AppStrings.institute,
-                          titleInitialValue: controller.titleAr,
+                          rtl: true,
+                          nameInitialValue: controller.nameAr,
                           contentInitialValue: controller.detailsAr,
                           instituteInitialValue: controller.instituteAr,
-                          rtl: true,
-                          onTitleChange: (String value) {
-                            controller.titleAr = value;
+                          onNameChange: (String value) {
+                            controller.nameAr = value;
                           },
                           onContentChange: (String value) {
                             controller.detailsAr = value;
@@ -108,16 +113,16 @@ class EditPostPage extends StatelessWidget {
                         height: 16,
                       ),
                       Obx(() {
-                        return PostInfoWidget(
+                        return ProjectInfoWidget(
                           title: AppStrings.english,
-                          postTitle: AppStrings.title,
+                          name: AppStrings.name,
                           content: AppStrings.content,
                           institute: AppStrings.institute,
-                          titleInitialValue: controller.titleEn,
+                          nameInitialValue: controller.nameEn,
                           contentInitialValue: controller.detailsEn,
                           instituteInitialValue: controller.instituteEn,
-                          onTitleChange: (String value) {
-                            controller.titleEn = value;
+                          onNameChange: (String value) {
+                            controller.nameEn = value;
                           },
                           onContentChange: (String value) {
                             controller.detailsEn = value;
@@ -136,17 +141,20 @@ class EditPostPage extends StatelessWidget {
                       }),
                       const SizedBox(height: 16),
                       Obx(() {
-                        return PostDetailsWidget(
+                        return ProjectDetailsWidget(
                           title: AppStrings.details,
-                          expiryDate: AppStrings.expiryDate,
                           cities: controller.cities.value,
                           countries: controller.countries.value,
                           categories: controller.categories.value,
+                          startDateInitialValue: controller.startDate,
+                          endDateInitialValue: controller.endDate,
+                          actualEndDateInitialValue: controller.actualEndDate,
+                          categoryInitialValue: controller.category,
                           cityInitialValue: controller.city.name,
                           countryInitialValue: controller.country.name,
-                          expiryDateInitialValue: controller.expiryDate,
-                          postTypeInitialValue: controller.type,
-                          postCategoryInitialValue: controller.category,
+                          convenerInitialValue: controller.convener,
+                          sectorInitialValue: controller.sector,
+                          costInitialValue: controller.cost,
                           locationController: controller.locationController,
                           cameraPosition:
                               controller.coordinates.toCameraPosition(),
@@ -159,7 +167,13 @@ class EditPostPage extends StatelessWidget {
                           },
                           onCountryChange: (value) =>
                               controller.country = value,
-                          onEndChange: (value) => controller.expiryDate = value,
+                          onStartDateChange: (value) =>
+                              controller.startDate = value,
+                          onEndDateChange: (value) =>
+                              controller.endDate = value,
+                          onActualEndDateChange: (value) =>
+                              controller.actualEndDate = value,
+                          onCostChange: (value) => controller.cost = value,
                           onPressed: (LatLng value) {
                             EventMap(
                               cameraPosition: controller
@@ -170,29 +184,38 @@ class EditPostPage extends StatelessWidget {
                             ).navTo();
                           },
                           expanded: controller.detailsExpanded.value,
-                          categoryExpanded: controller.categoryExpanded.value,
+                          sectorExpanded: controller.sectorExpanded.value,
                           onExpansionChanged: (bool value) {
                             controller.arabicExpanded.value = false;
                             controller.englishExpanded.value = false;
                             controller.imagesExpanded.value = false;
                             controller.detailsExpanded.value = value;
                           },
-                          onTypeExpansionChange: (bool value) =>
-                              controller.typeExpanded.value = value,
+                          onConvenerExpansionChange: (bool value) =>
+                              controller.convenerExpanded.value = value,
+                          onSectorChange: (ProjectSectorType value) {
+                            controller.sector = value;
+                          },
+                          onConvenerChange: (ProjectConvenerType value) {
+                            controller.convener = value;
+                          },
                           onCategoryChange: (PostCategoryDto value) {
                             controller.category = value;
                           },
-                          onTypeChange: (PostType value) {
-                            controller.type = value;
+                          categoryExpanded: controller.categoryExpanded.value,
+                          convenerExpanded: controller.convenerExpanded.value,
+                          onSectorExpansionChange: (bool value) {
+                            controller.sectorExpanded.value = value;
                           },
-                          typeExpanded: controller.typeExpanded.value,
                           onCategoryExpansionChange: (bool value) {
                             controller.categoryExpanded.value = value;
                           },
-                          postTypeFormKey: controller.postTypeFormKey,
-                          postCategoryFormKey: controller.postCategoryFormKey,
+                          convenerFormKey: controller.convenerFormKey,
+                          sectorFormKey: controller.sectorFormKey,
+                          categoryFormKey: controller.categoryFormKey,
                         );
                       }),
+                      const SizedBox(height: 16),
                       Obx(
                         () => CheckBoxWidget(
                           value: controller.showEmail,
@@ -213,15 +236,8 @@ class EditPostPage extends StatelessWidget {
                 CustomButton(
                   color: AppColors.ternary,
                   textColor: AppColors.primaryColor,
-                  text: AppStrings.edit,
-                  onPressed: () {
-                    controller.locationController.targetPlace
-                        .toCoordinates()
-                        ?.let((value) {
-                      controller.coordinates = value;
-                    });
-                    controller.edit();
-                  },
+                  text: AppStrings.post,
+                  onPressed: controller.edit,
                 ),
               ],
             ),
