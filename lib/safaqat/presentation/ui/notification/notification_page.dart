@@ -15,6 +15,7 @@ class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final NotificationController controller = Get.put(NotificationController());
+    final color = AppColors.primaryColor.withOpacity(0.1);
 
     return SafeArea(
       child: Scaffold(
@@ -43,10 +44,7 @@ class NotificationPage extends StatelessWidget {
                     child: Center(
                       child: Obx(
                         () => Text(
-                          controller.notifications.value.data?.notifications
-                                  ?.length
-                                  .toString() ??
-                              '-',
+                          controller.notifications.value.length.toString(),
                           style: const TextStyle(
                             fontWeight: FontWeight.normal,
                             fontSize: 12,
@@ -102,37 +100,41 @@ class NotificationPage extends StatelessWidget {
               ),
               Obx(
                 () {
-                  var notifications =
-                      controller.notifications.value.data?.notifications ?? [];
+                  var notifications = controller.notifications.value;
                   return Flexible(
                     child: StatusWidget(
-                      status: controller.notifications.value.status,
+                      status: controller.state.value.status,
                       onClickTryAgain: controller.getNotificationsIncome,
-                      child: ListView.builder(
-                          controller: controller.incomeScrollController,
-                          physics: const BouncingScrollPhysics(
-                            parent: AlwaysScrollableScrollPhysics(),
-                          ),
-                          padding: const EdgeInsets.fromLTRB(
-                            0,
-                            0,
-                            0,
-                            16,
-                          ),
-                          itemCount: notifications.length,
-                          itemBuilder: (context, index) {
-                            var item = notifications[index];
-                            return NotificationWidget(
-                              name: item.customerName ?? '-',
-                              read: item.isRead,
-                              description: item.description ?? '-',
-                              incoming: item.isIncoming,
-                              date: Utils.formatDate(
-                                dateStr: item.date,
-                                format: Utils.dateTimeFormat,
-                              ),
-                            );
-                          }),
+                      child: ListView.separated(
+                        controller: controller.incomeScrollController,
+                        physics: const BouncingScrollPhysics(
+                          parent: AlwaysScrollableScrollPhysics(),
+                        ),
+                        padding: const EdgeInsets.fromLTRB(
+                          0,
+                          0,
+                          0,
+                          16,
+                        ),
+                        itemCount: notifications.length,
+                        itemBuilder: (context, index) {
+                          var item = notifications[index];
+                          return NotificationWidget(
+                            name: item.customerName ?? '-',
+                            read: item.isRead,
+                            color: color,
+                            description: item.description ?? '-',
+                            incoming: item.isIncoming,
+                            date: Utils.formatDate(
+                              dateStr: item.date,
+                              format: Utils.dateTimeFormat,
+                            ),
+                            onDelete: () => controller.delete(item),
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) =>
+                            Divider(color: color),
+                      ),
                     ),
                   );
                 },
