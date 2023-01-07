@@ -98,7 +98,7 @@ abstract class SafaqatRepository {
   Future<Resources<ProjectsResponse>> getMyProjects({
     required int pageSize,
     required int pageNumber,
-    required int type,
+    required int convener,
   });
 
   Future<Resources<ProjectDto>> addProject({required ProjectBody body});

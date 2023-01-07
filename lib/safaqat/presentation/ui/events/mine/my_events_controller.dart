@@ -416,32 +416,32 @@ class MyEventsController extends GetxController {
     AppStrings.deletedSuccessfully.toToast();
 
     if (type == EventType.general) {
-      generalEvents.removeWithUpdate(
+      generalEvents.removeWithUpdate2(
         filteredGeneralEvents,
         (it) => it.id == id,
       );
     } else if (type == EventType.conference) {
-      conferenceEvents.removeWithUpdate(
+      conferenceEvents.removeWithUpdate2(
         filteredConferenceEvents,
         (it) => it.id == id,
       );
     } else if (type == EventType.trainingCourse) {
-      trainingCourseEvents.removeWithUpdate(
+      trainingCourseEvents.removeWithUpdate2(
         filteredTrainingCourseEvents,
         (it) => it.id == id,
       );
     } else if (type == EventType.exhibition) {
-      exhibitionEvents.removeWithUpdate(
+      exhibitionEvents.removeWithUpdate2(
         filteredExhibitionEvents,
         (it) => it.id == id,
       );
     } else if (type == EventType.seminar) {
-      seminarEvents.removeWithUpdate(
+      seminarEvents.removeWithUpdate2(
         filteredSeminarEvents,
         (it) => it.id == id,
       );
     } else {
-      forumEvents.removeWithUpdate(
+      forumEvents.removeWithUpdate2(
         filteredForumEvents,
         (it) => it.id == id,
       );

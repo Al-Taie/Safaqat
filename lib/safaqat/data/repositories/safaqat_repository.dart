@@ -302,9 +302,9 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
   Future<Resources<ProjectsResponse>> getMyProjects({
     required int pageSize,
     required int pageNumber,
-    required int type,
+    required int convener,
   }) =>
-      _apiServices.getMyProjects(pageSize, pageNumber, type).call();
+      _apiServices.getMyProjects(pageSize, pageNumber, convener).call();
 
   @override
   Future<Resources<PostsResponse>> getPosts({

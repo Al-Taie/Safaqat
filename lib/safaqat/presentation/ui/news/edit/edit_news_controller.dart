@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/data/models/news/edit/edit_news_body.dart';
 import 'package:safaqat/safaqat/data/models/news/news_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/news/edit_news_params.dart';
@@ -61,13 +62,16 @@ class EditNewsController extends GetxController {
     status.value = result;
 
     if (result.status == Status.success) {
-      var index = _myNewsController.waitedNews.indexOf(news);
-      _myNewsController.waitedNews.remove(news);
-      _myNewsController.waitedNews.insert(index, result.data!);
+      _myNewsController.waitedNews.replaceWithUpdate2(
+        newItem: result.data!,
+        oldItem: news,
+        list: _myNewsController.filteredWaitedNews,
+      );
     }
   }
 
   void loadNews(NewsDto? news) {
+    news?.let((it) => this.news = it);
     if (news == null) return;
 
     titleAr = news.titleAr ?? '';

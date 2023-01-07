@@ -260,7 +260,7 @@ abstract class SafaqatApiServices {
   Future<HttpResponse<BaseResponse<ProjectsResponse>>> getMyProjects(
     @Query('pageSize') int pageSize,
     @Query('pageNumber') int pageNumber,
-    @Query('type') int type,
+    @Query('convener') int convener,
   );
 
   @POST('Project/Create')

@@ -16,10 +16,8 @@ import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/checkbox_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
-import 'package:safaqat/safaqat/presentation/custom_views/local_images_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/map/event_map.dart';
-import 'package:safaqat/safaqat/presentation/ui/projects/add/add_project_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/add/components/project_details_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/add/components/project_info_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/edit/edit_project_controller.dart';
@@ -150,8 +148,8 @@ class EditProjectPage extends StatelessWidget {
                           endDateInitialValue: controller.endDate,
                           actualEndDateInitialValue: controller.actualEndDate,
                           categoryInitialValue: controller.category,
-                          cityInitialValue: controller.city.name,
                           countryInitialValue: controller.country.name,
+                          cityInitialValue: controller.city.name,
                           convenerInitialValue: controller.convener,
                           sectorInitialValue: controller.sector,
                           costInitialValue: controller.cost,
@@ -237,7 +235,14 @@ class EditProjectPage extends StatelessWidget {
                   color: AppColors.ternary,
                   textColor: AppColors.primaryColor,
                   text: AppStrings.post,
-                  onPressed: controller.edit,
+                  onPressed: () {
+                    controller.locationController.targetMarker
+                        .toCoordinates()
+                        ?.let((value) {
+                      controller.coordinates = value;
+                    });
+                    controller.edit();
+                  },
                 ),
               ],
             ),

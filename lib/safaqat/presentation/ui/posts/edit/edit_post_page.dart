@@ -215,7 +215,7 @@ class EditPostPage extends StatelessWidget {
                   textColor: AppColors.primaryColor,
                   text: AppStrings.edit,
                   onPressed: () {
-                    controller.locationController.targetPlace
+                    controller.locationController.targetMarker
                         .toCoordinates()
                         ?.let((value) {
                       controller.coordinates = value;

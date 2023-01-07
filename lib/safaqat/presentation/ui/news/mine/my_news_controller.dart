@@ -236,17 +236,17 @@ class MyNewsController extends GetxController {
     AppStrings.deletedSuccessfully.toToast();
 
     if (type == NewsType.accepted) {
-      acceptedNews.removeWithUpdate(
+      acceptedNews.removeWithUpdate2(
         filteredAcceptedNews,
             (it) => it.id == id,
       );
     } else if (type == NewsType.rejected) {
-      rejectedNews.removeWithUpdate(
+      rejectedNews.removeWithUpdate2(
         filteredRejectedNews,
             (it) => it.id == id,
       );
     } else {
-      waitedNews.removeWithUpdate(
+      waitedNews.removeWithUpdate2(
         filteredWaitedNews,
             (it) => it.id == id,
       );

@@ -521,25 +521,24 @@ class _SafaqatApiServices implements SafaqatApiServices {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<BaseResponse<dynamic>>>(Options(
-          method: 'DELETE',
-          headers: _headers,
-          extra: _extra,
-        )
+      method: 'DELETE',
+      headers: _headers,
+      extra: _extra,
+    )
             .compose(
-          _dio.options,
-          'Notification/Delete',
-          queryParameters: queryParameters,
-          data: _data,
-        )
+              _dio.options,
+              'Notification/Delete',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = BaseResponse<dynamic>.fromJson(
       _result.data!,
-          (json) => json as dynamic,
+      (json) => json as dynamic,
     );
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
-
 
   @override
   Future<HttpResponse<BaseResponse<EventsResponse>>> getEvents(
@@ -751,7 +750,6 @@ class _SafaqatApiServices implements SafaqatApiServices {
     }
 
     stakeholders?.let((it) {
-
       it.toMultiPart().apply((value) {
         _data.fields.addAll(value.fields);
         _data.files.addAll(value.files);
@@ -1419,13 +1417,13 @@ class _SafaqatApiServices implements SafaqatApiServices {
   Future<HttpResponse<BaseResponse<ProjectsResponse>>> getMyProjects(
     pageSize,
     pageNumber,
-    type,
+    convener,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'pageSize': pageSize,
       r'pageNumber': pageNumber,
-      r'type': type,
+      r'convener': convener,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};

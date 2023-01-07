@@ -233,7 +233,7 @@ class EditEventPage extends StatelessWidget {
                   onPressed: () {
                     controller
                         .locationController
-                        .targetPlace
+                        .targetMarker
                         .toCoordinates()
                         ?.let((value) { controller.coordinates = value; });
                     controller.edit();

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/geocoding.dart';
@@ -10,7 +12,7 @@ import 'package:safaqat/safaqat/domain/entities/posts/post_type.dart';
 extension ObjectExtension on Object? {
   double? toDoubleOrNull() {
     try {
-      return this as double;
+      return double.tryParse(toString());
     } catch (e) {
       return null;
     }
@@ -104,10 +106,11 @@ extension PostTypeDtoExtension on PostTypeDto? {
 }
 
 extension RxListExtension<T> on RxList<T> {
-  void removeWithUpdate(RxList<T> list, ResultCallback<T, bool> selector) {
-    removeWhere((it) => selector(it));
-    list.value = value;
+  void removeWithUpdate2(RxList<T> list, ResultCallback<T, bool> selector) {
+    list.removeWhere((it) => selector(it));
     list.refresh();
+    removeWhere((it) => selector(it));
+    refresh();
   }
 
   void removeFromWithUpdate(ResultCallback<T, bool> selector) {
@@ -115,8 +118,37 @@ extension RxListExtension<T> on RxList<T> {
     refresh();
   }
 
+  void replaceWithUpdate2(
+      {required T oldItem, required T newItem, required RxList<T> list}) {
+    int listIndex = list.indexOf(oldItem);
+    int index = indexOf(oldItem);
+
+    if (listIndex != -1) {
+      list.removeAt(listIndex);
+      list.insert(listIndex, newItem);
+      list.refresh();
+    }
+    if (index != -1) {
+      removeAt(index);
+      insert(index, newItem);
+      refresh();
+    }
+  }
+
+  void removeWithUpdate(ResultCallback<T, bool> selector) {
+    removeWhere((it) => selector(it));
+    refresh();
+  }
+
   void addWithUpdate(T item) {
     add(item);
+    refresh();
+  }
+
+  void replaceWithUpdate(T item) {
+    int index = indexOf(item);
+    removeAt(index);
+    insert(index, item);
     refresh();
   }
 }

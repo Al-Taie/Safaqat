@@ -194,12 +194,12 @@ class MyPostsController extends GetxController {
     AppStrings.deletedSuccessfully.toToast();
 
     if (type == PostType.opportunity) {
-      opportunityPosts.removeWithUpdate(
+      opportunityPosts.removeWithUpdate2(
         filteredOpportunityPosts,
         (it) => it.id == id,
       );
     } else if (type == PostType.request) {
-      requestPosts.removeWithUpdate(
+      requestPosts.removeWithUpdate2(
         filteredRequestPosts,
         (it) => it.id == id,
       );

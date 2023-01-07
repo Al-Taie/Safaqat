@@ -33,7 +33,7 @@ class NewsPage extends StatelessWidget {
           backgroundColor: AppColors.background,
           drawer: logged
               ? AppDrawer(
-                  name: 'Full Name',
+                  name: '-',
                   imageUrl:
                       'https://st2.depositphotos.com/1006318/5909/v/600/depositphotos_59095205-stock-illustration-businessman-profile-icon.jpg',
                   onManageNews: const MyNewsPage().navTo,

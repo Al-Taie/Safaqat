@@ -147,40 +147,53 @@ class EditEventController extends GetxController {
     if (result.status == Status.success) {
       switch (type) {
         case EventType.general:
-          var index = _myEventsController.generalEvents.indexOf(event);
-          _myEventsController.generalEvents.remove(event);
-          _myEventsController.generalEvents.insert(index, result.data!);
+          _myEventsController.generalEvents.replaceWithUpdate2(
+            newItem: result.data!,
+            oldItem: event,
+            list: _myEventsController.filteredGeneralEvents,
+          );
           break;
         case EventType.conference:
-          var index = _myEventsController.conferenceEvents.indexOf(event);
-          _myEventsController.conferenceEvents.remove(event);
-          _myEventsController.conferenceEvents.insert(index, result.data!);
+          _myEventsController.conferenceEvents.replaceWithUpdate2(
+            newItem: result.data!,
+            oldItem: event,
+            list: _myEventsController.filteredConferenceEvents,
+          );
           break;
         case EventType.trainingCourse:
-          var index = _myEventsController.trainingCourseEvents.indexOf(event);
-          _myEventsController.trainingCourseEvents.remove(event);
-          _myEventsController.trainingCourseEvents.insert(index, result.data!);
+          _myEventsController.trainingCourseEvents.replaceWithUpdate2(
+            newItem: result.data!,
+            oldItem: event,
+            list: _myEventsController.filteredTrainingCourseEvents,
+          );
           break;
         case EventType.exhibition:
-          var index = _myEventsController.exhibitionEvents.indexOf(event);
-          _myEventsController.exhibitionEvents.remove(event);
-          _myEventsController.exhibitionEvents.insert(index, result.data!);
+          _myEventsController.exhibitionEvents.replaceWithUpdate2(
+            newItem: result.data!,
+            oldItem: event,
+            list: _myEventsController.filteredExhibitionEvents,
+          );
           break;
         case EventType.seminar:
-          var index = _myEventsController.seminarEvents.indexOf(event);
-          _myEventsController.seminarEvents.remove(event);
-          _myEventsController.seminarEvents.insert(index, result.data!);
+          _myEventsController.seminarEvents.replaceWithUpdate2(
+            newItem: result.data!,
+            oldItem: event,
+            list: _myEventsController.filteredSeminarEvents,
+          );
           break;
         case EventType.forum:
-          var index = _myEventsController.forumEvents.indexOf(event);
-          _myEventsController.forumEvents.remove(event);
-          _myEventsController.forumEvents.insert(index, result.data!);
+          _myEventsController.forumEvents.replaceWithUpdate2(
+            newItem: result.data!,
+            oldItem: event,
+            list: _myEventsController.filteredForumEvents,
+          );
           break;
       }
     }
   }
 
   void loadEvents(EventDto? event) {
+    event?.let((it) => this.event = it);
     if (event == null) return;
 
     titleAr = event.titleAr ?? '';

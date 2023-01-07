@@ -14,6 +14,6 @@ class GetMyProjectsUseCase
       _safaqatRepository.getMyProjects(
         pageSize: params.pageSize,
         pageNumber: params.pageNumber,
-        type: params.type,
+        convener: params.convener,
       );
 }

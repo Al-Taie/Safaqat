@@ -6,6 +6,7 @@ import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/shared_preferences.dart';
 import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_body.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_dto.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
@@ -54,6 +55,7 @@ class NotificationController extends GetxController {
 
     final result = await _getNotificationsUseCase(params: body);
     state.value = result;
+    result.data?.notifications?.let((value) => notifications.value = value);
     _maxNumberOfPagesIncome = result.data?.numberOfPages ?? 1;
   }
 

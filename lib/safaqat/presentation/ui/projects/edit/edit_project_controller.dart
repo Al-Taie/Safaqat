@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/extensions/boolean_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
+import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/coordinates_dto.dart';
@@ -115,7 +116,6 @@ class EditProjectController extends GetxController {
 
   void edit() async {
     status.value = Resources.loading();
-
     final params = EditProjectParams(
         projectId: project.id,
         body: ProjectBody(
@@ -135,8 +135,7 @@ class EditProjectController extends GetxController {
           showPhone: showPhone,
           convener: convener.index,
           city: city,
-          coordinates: locationController.targetPlace?.toCoordinates() ??
-              locationController.targetMarker?.toCoordinates(),
+          coordinates: coordinates,
         ));
 
     final result = await _editProjectUseCase(params: params);
@@ -145,17 +144,32 @@ class EditProjectController extends GetxController {
     if (result.status == Status.success) {
       switch (convener) {
         case ProjectConvenerType.governmental:
-          _myProjectsController.governmentalProjects
-              .addWithUpdate(result.data!);
+          _myProjectsController.governmentalProjects.replaceWithUpdate2(
+            newItem: result.data!,
+            oldItem: project,
+            list: _myProjectsController.filteredGovernmentalProjects,
+          );
           break;
         case ProjectConvenerType.private:
-          _myProjectsController.privateProjects.addWithUpdate(result.data!);
+          _myProjectsController.privateProjects.replaceWithUpdate2(
+            newItem: result.data!,
+            oldItem: project,
+            list: _myProjectsController.filteredPrivateProjects,
+          );
           break;
         case ProjectConvenerType.mixed:
-          _myProjectsController.mixedProjects.addWithUpdate(result.data!);
+          _myProjectsController.mixedProjects.replaceWithUpdate2(
+            newItem: result.data!,
+            oldItem: project,
+            list: _myProjectsController.filteredMixedProjects,
+          );
           break;
         case ProjectConvenerType.foreign:
-          _myProjectsController.foreignProjects.addWithUpdate(result.data!);
+          _myProjectsController.foreignProjects.replaceWithUpdate2(
+            newItem: result.data!,
+            oldItem: project,
+            list: _myProjectsController.filteredForeignProjects,
+          );
           break;
         default:
           break;

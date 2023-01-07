@@ -108,7 +108,7 @@ class MyProjectsController extends GetxController {
   void getGovernmentalProjects() async {
     final params = ProjectQuery(
       pageNumber: governmentalPageNumber,
-      type: ProjectConvenerType.governmental.index,
+      convener: ProjectConvenerType.governmental.index,
     );
 
     governmentalStatus.value = Resources.loading();
@@ -127,7 +127,7 @@ class MyProjectsController extends GetxController {
   void getPrivateProjects() async {
     final params = ProjectQuery(
       pageNumber: privatePageNumber,
-      type: ProjectConvenerType.private.index,
+      convener: ProjectConvenerType.private.index,
     );
 
     privateStatus.value = Resources.loading();
@@ -146,7 +146,7 @@ class MyProjectsController extends GetxController {
   void getMixedProjects() async {
     final params = ProjectQuery(
       pageNumber: mixedPageNumber,
-      type: ProjectConvenerType.mixed.index,
+      convener: ProjectConvenerType.mixed.index,
     );
 
     mixedStatus.value = Resources.loading();
@@ -165,7 +165,7 @@ class MyProjectsController extends GetxController {
   void getForeignProjects() async {
     final params = ProjectQuery(
       pageNumber: foreignPageNumber,
-      type: ProjectConvenerType.foreign.index,
+      convener: ProjectConvenerType.foreign.index,
     );
 
     foreignStatus.value = Resources.loading();
@@ -249,22 +249,22 @@ class MyProjectsController extends GetxController {
     AppStrings.deletedSuccessfully.toToast();
 
     if (type == ProjectConvenerType.governmental) {
-      governmentalProjects.removeWithUpdate(
+      governmentalProjects.removeWithUpdate2(
         filteredGovernmentalProjects,
         (it) => it.id == id,
       );
     } else if (type == ProjectConvenerType.private) {
-      privateProjects.removeWithUpdate(
+      privateProjects.removeWithUpdate2(
         filteredPrivateProjects,
         (it) => it.id == id,
       );
     } else if (type == ProjectConvenerType.mixed) {
-      mixedProjects.removeWithUpdate(
+      mixedProjects.removeWithUpdate2(
         filteredMixedProjects,
             (it) => it.id == id,
       );
     } else if (type == ProjectConvenerType.foreign) {
-      foreignProjects.removeWithUpdate(
+      foreignProjects.removeWithUpdate2(
         filteredForeignProjects,
             (it) => it.id == id,
       );
