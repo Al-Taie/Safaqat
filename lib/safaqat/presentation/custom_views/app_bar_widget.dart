@@ -83,47 +83,55 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 if (isSearchEnabled)
                   Obx(
-                    () => Align(
-                      alignment:
-                          Utils.isRTL ? Alignment.topLeft : Alignment.topRight,
-                      child: Card(
-                        margin: EdgeInsets.zero,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        elevation: 3,
-                        shadowColor: AppColors.shadow,
-                        child: AnimatedSize(
-                          duration: const Duration(milliseconds: 150),
-                          child: SizedBox(
-                            height: height,
-                            width: isAnimated.value
-                                ? MediaQuery.of(context).size.width * 0.8
-                                : 50,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                isAnimated.value
-                                    ? Expanded(
-                                        child: animatedSearchFiled(
-                                          searchFocusNode: searchFocusNode,
-                                          onSearching: onSearch,
-                                        ),
-                                      )
-                                    : Container(),
-                                IconButton(
-                                  splashColor: Colors.grey,
-                                  icon: SvgPicture.asset(
-                                    AppDrawable.icSearch,
-                                    color: AppColors.shadeSecondary,
+                    () => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Align(
+                        alignment: Utils.isRTL
+                            ? Alignment.topLeft
+                            : Alignment.topRight,
+                        child: Card(
+                          margin: EdgeInsets.zero,
+                          color: AppColors.background,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          elevation: 3,
+                          shadowColor: AppColors.shadow,
+                          child: AnimatedSize(
+                            duration: const Duration(milliseconds: 150),
+                            child: SizedBox(
+                              height: height,
+                              width: isAnimated.value ? Get.width * 0.8 : 50,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  isAnimated.value
+                                      ? Expanded(
+                                          child: animatedSearchFiled(
+                                            searchFocusNode: searchFocusNode,
+                                            onSearching: onSearch,
+                                          ),
+                                        )
+                                      : Container(),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0),
+                                    child: GestureDetector(
+                                      child: SvgPicture.asset(
+                                        AppDrawable.icSearch,
+                                        width: 24,
+                                        height: 24,
+                                        color: AppColors.shadeSecondary,
+                                      ),
+                                      onTap: () {
+                                        isAnimated.value =
+                                            isAnimated.value ? false : true;
+                                        searchFocusNode.requestFocus();
+                                      },
+                                    ),
                                   ),
-                                  onPressed: () {
-                                    isAnimated.value =
-                                        isAnimated.value ? false : true;
-                                    searchFocusNode.requestFocus();
-                                  },
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
