@@ -1819,4 +1819,163 @@ class _SafaqatApiServices implements SafaqatApiServices {
     }
     return requestOptions;
   }
+
+  @override
+  Future<HttpResponse<BaseResponse<List<ServiceDto>>>>
+  getServices() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BaseResponse<List<ServiceDto>>>>(
+            Options(
+              method: 'GET',
+              headers: _headers,
+              extra: _extra,
+            )
+                .compose(
+              _dio.options,
+              'Contract/ServiceCodes',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<List<ServiceDto>>.fromJson(
+      _result.data!,
+          (json) => (json as List<dynamic>)
+          .map<ServiceDto>(
+              (i) => ServiceDto.fromJson(i as Map<String, dynamic>))
+          .toList(),
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<BaseResponse<ContractResponse>>> getContracts(
+      pageSize,
+      pageNumber, {
+        noAuth = true,
+      }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'pageSize': pageSize,
+      r'pageNumber': pageNumber,
+    };
+    final _headers = <String, dynamic>{r'No-Authentication': noAuth};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BaseResponse<ContractResponse>>>(Options(
+          method: 'GET',
+          headers: _headers,
+          extra: _extra,
+        )
+            .compose(
+          _dio.options,
+          'Contract/List',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<ContractResponse>.fromJson(
+      _result.data!,
+          (json) => ContractResponse.fromJson(json as Map<String, dynamic>),
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<BaseResponse<ContractResponse>>> getMyContracts(
+      pageSize,
+      pageNumber,
+      projectId,
+      ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'pageSize': pageSize,
+      r'pageNumber': pageNumber,
+      r'projId': projectId,
+    };
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BaseResponse<ContractResponse>>>(Options(
+          method: 'GET',
+          headers: _headers,
+          extra: _extra,
+        )
+            .compose(
+          _dio.options,
+          'Contract/List',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<ContractResponse>.fromJson(
+      _result.data!,
+          (json) => ContractResponse.fromJson(json as Map<String, dynamic>),
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<BaseResponse<dynamic>>> deleteContract(contractId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'ContractId': contractId};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BaseResponse<dynamic>>>(Options(
+          method: 'DELETE',
+          headers: _headers,
+          extra: _extra,
+        )
+            .compose(
+          _dio.options,
+          'Contract/Delete',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<dynamic>.fromJson(
+      _result.data!,
+          (json) => json as dynamic,
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<BaseResponse<dynamic>>> closeContract(contractId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'ContractId': contractId};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BaseResponse<dynamic>>>(Options(
+          method: 'PUT',
+          headers: _headers,
+          extra: _extra,
+        )
+            .compose(
+          _dio.options,
+          'Contract/Close',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<dynamic>.fromJson(
+      _result.data!,
+          (json) => json as dynamic,
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
 }

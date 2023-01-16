@@ -14,6 +14,8 @@ import 'package:safaqat/safaqat/data/models/auth/login/login_dto.dart';
 import 'package:safaqat/safaqat/data/models/auth/register/register_body.dart';
 import 'package:safaqat/safaqat/data/models/base_response.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
+import 'package:safaqat/safaqat/data/models/contract/contract_response.dart';
+import 'package:safaqat/safaqat/data/models/contract/service_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
 import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
@@ -316,4 +318,29 @@ abstract class SafaqatApiServices {
   Future<HttpResponse<BaseResponse<dynamic>>> deleteProject(
     @Query('projectId') String? projectId,
   );
+
+  @GET('Contract/ServiceCodes')
+  Future<HttpResponse<BaseResponse<List<ServiceDto>>>> getServices();
+
+  @GET('Contract/List')
+  Future<HttpResponse<BaseResponse<ContractResponse>>> getContracts(
+      @Query('pageSize') int pageSize, @Query('pageNumber') int pageNumber,
+      {@Header('No-Authentication') bool noAuth = true});
+
+  @GET('Contract/List')
+  Future<HttpResponse<BaseResponse<ContractResponse>>> getMyContracts(
+      @Query('pageSize') int pageSize,
+      @Query('pageNumber') int pageNumber,
+      @Query('projId') String projectId,
+      );
+
+  @DELETE('Contract/Delete')
+  Future<HttpResponse<BaseResponse<dynamic>>> deleteContract(
+      @Query('ContractId') String? contractId,
+      );
+
+  @DELETE('Contract/Close')
+  Future<HttpResponse<BaseResponse<dynamic>>> closeContract(
+      @Query('ContractId') String? contractId,
+      );
 }
