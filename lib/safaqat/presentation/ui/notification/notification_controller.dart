@@ -1,25 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/shared_preferences.dart';
-import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
 import 'package:safaqat/safaqat/app/extensions/widget_extension.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_body.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_dto.dart';
 import 'package:safaqat/safaqat/data/models/notifications/notification_response.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
-import 'package:safaqat/safaqat/domain/usecases/notification/delete_notification_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/notification/read_notification_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecases/notification/get_notification_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationController extends GetxController {
   final GetNotificationsUseCase _getNotificationsUseCase =
       Get.put(GetNotificationsUseCase());
-  final DeleteNotificationUseCase _deleteNotificationUseCase =
-  Get.put(DeleteNotificationUseCase());
+  final ReadNotificationUseCase _readNotificationUseCase =
+  Get.put(ReadNotificationUseCase());
   final incomeScrollController = ScrollController();
   final outgoingScrollController = ScrollController();
   final SharedPreferences _preferences = Get.find();
@@ -71,17 +68,6 @@ class NotificationController extends GetxController {
     }
   }
 
-  void delete(NotificationDto notification) async {
-    Get.back();
-
-    final result = await _deleteNotificationUseCase(params: notification.id);
-
-    if (result.status != Status.success) {
-      AppStrings.deletedFailed.toToast();
-      return;
-    }
-
-    AppStrings.deletedSuccessfully.toToast();
-    notifications.removeFromWithUpdate((it) => it.id == notification.id);
-  }
+  void read(NotificationDto notification) async =>
+    await _readNotificationUseCase(params: notification.id.toString());
 }

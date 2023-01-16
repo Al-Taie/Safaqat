@@ -3,10 +3,10 @@ import 'package:safaqat/safaqat/app/core/usecases/param_usecase.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/domain/repositories/safaqat_repository.dart';
 
-class DeleteNotificationUseCase extends ParamUseCase<Resources, String?> {
+class ReadNotificationUseCase extends ParamUseCase<Resources, String?> {
   final SafaqatRepository _safaqatRepository = Get.find();
 
   @override
   Future<Resources> call({required String? params}) =>
-      _safaqatRepository.deleteNotification(id: params);
+      _safaqatRepository.readNotification(id: params);
 }

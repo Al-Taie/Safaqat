@@ -499,7 +499,7 @@ class _SafaqatApiServices implements SafaqatApiServices {
     )
                 .compose(
                   _dio.options,
-                  'Notification/GetNotification',
+                  'Notification/List',
                   queryParameters: queryParameters,
                   data: _data,
                 )
@@ -513,7 +513,7 @@ class _SafaqatApiServices implements SafaqatApiServices {
   }
 
   @override
-  Future<HttpResponse<BaseResponse<dynamic>>> deleteNotification(id) async {
+  Future<HttpResponse<BaseResponse<dynamic>>> readNotification(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'notification_id': id};
     queryParameters.removeWhere((k, v) => v == null);
@@ -521,13 +521,13 @@ class _SafaqatApiServices implements SafaqatApiServices {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<BaseResponse<dynamic>>>(Options(
-      method: 'DELETE',
+      method: 'PUT',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'Notification/Delete',
+              'Notification/Shown',
               queryParameters: queryParameters,
               data: _data,
             )

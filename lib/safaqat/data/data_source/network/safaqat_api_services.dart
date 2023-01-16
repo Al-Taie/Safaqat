@@ -104,15 +104,15 @@ abstract class SafaqatApiServices {
     @Query('news_id') String? newsId,
   );
 
-  @GET('Notification/GetNotification')
+  @GET('Notification/List')
   Future<HttpResponse<BaseResponse<NotificationsResponse>>> getNotification(
     @Query('customerId') String customerId,
     @Query('pageSize') int pageSize,
     @Query('pageNumber') int pageNumber,
   );
 
-  @DELETE('Notification/Delete')
-  Future<HttpResponse<BaseResponse<dynamic>>> deleteNotification(
+  @PUT('Notification/Shown')
+  Future<HttpResponse<BaseResponse<dynamic>>> readNotification(
     @Query('notification_id') String? id,
   );
 

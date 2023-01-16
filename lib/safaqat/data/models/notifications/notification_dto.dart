@@ -5,8 +5,8 @@ part 'notification_dto.g.dart';
 
 @JsonSerializable(ignoreUnannotated: false)
 class NotificationDto {
-  @JsonKey(name: 'id')
-  String? id;
+  @JsonKey(name: 'nNo')
+  int? id;
   @JsonKey(name: 'customer_name')
   String? customerName;
   @JsonKey(name: 'date_time')

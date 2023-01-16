@@ -129,7 +129,7 @@ class NotificationPage extends StatelessWidget {
                               dateStr: item.date,
                               format: Utils.dateTimeFormat,
                             ),
-                            onDelete: () => controller.delete(item),
+                            onRead: () => controller.read(item),
                           );
                         },
                         separatorBuilder: (BuildContext context, int index) =>

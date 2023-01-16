@@ -98,10 +98,10 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
   }
 
   @override
-  Future<Resources> deleteNotification({
+  Future<Resources> readNotification({
     String? id,
   }) =>
-      _apiServices.deleteNotification(id).call();
+      _apiServices.readNotification(id).call();
 
   @override
   Future<Resources<EventsResponse>> getEvents(
