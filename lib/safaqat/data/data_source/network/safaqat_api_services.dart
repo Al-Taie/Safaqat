@@ -14,6 +14,7 @@ import 'package:safaqat/safaqat/data/models/auth/login/login_dto.dart';
 import 'package:safaqat/safaqat/data/models/auth/register/register_body.dart';
 import 'package:safaqat/safaqat/data/models/base_response.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
+import 'package:safaqat/safaqat/data/models/contract/contract_dto.dart';
 import 'package:safaqat/safaqat/data/models/contract/contract_response.dart';
 import 'package:safaqat/safaqat/data/models/contract/service_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
@@ -27,6 +28,7 @@ import 'package:safaqat/safaqat/data/models/notifications/notification_response.
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/posts_response.dart';
+import 'package:safaqat/safaqat/data/models/projects/cost_category_dto.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_dto.dart';
 import 'package:safaqat/safaqat/data/models/projects/projects_response.dart';
 import 'package:safaqat/safaqat/domain/entities/events/stakeholder.dart';
@@ -314,6 +316,9 @@ abstract class SafaqatApiServices {
     @Part(name: 'Images') List<File>? images,
   });
 
+  @GET('Project/Cost')
+  Future<HttpResponse<BaseResponse<List<CostCategoryDto>>>> getCostCategories();
+
   @DELETE('Project/Delete')
   Future<HttpResponse<BaseResponse<dynamic>>> deleteProject(
     @Query('projectId') String? projectId,
@@ -339,8 +344,51 @@ abstract class SafaqatApiServices {
       @Query('ContractId') String? contractId,
       );
 
-  @DELETE('Contract/Close')
+  @PUT('Contract/Close')
   Future<HttpResponse<BaseResponse<dynamic>>> closeContract(
       @Query('ContractId') String? contractId,
       );
+
+  @POST('Project/Create')
+  @MultiPart()
+  Future<HttpResponse<BaseResponse<ContractDto>>> publishContract({
+    @Part(name: 'ProjId') String? projectId,
+    @Part(name: 'ContNameA') String? nameAr,
+    @Part(name: 'ContNameE') String? nameEn,
+    @Part(name: 'DescA') String? descriptionAr,
+    @Part(name: 'DescE') String? descriptionNameEn,
+    @Part(name: 'ContractorA') String? contractorNameAr,
+    @Part(name: 'ContractorE') String? contractorNameEn,
+    @Part(name: 'ContValue') double? contractValue,
+    @Part(name: 'ValueCurrency') int? currency,
+    @Part(name: 'ServiceCode') int? serviceCode,
+    @Part(name: 'StartDate') String? startDate,
+    @Part(name: 'FinishDate') String? endDate,
+    @Part(name: 'ShowTel') bool? showPhone,
+    @Part(name: 'ShowEmail') bool? showEmail,
+    @Part(name: 'ShowInPostPage') bool? showInPostPage,
+    @Part(name: 'Images') List<File>? images,
+  });
+
+  @PUT('Project/Edit')
+  @MultiPart()
+  Future<HttpResponse<BaseResponse<ContractDto>>> editContract({
+    @Query('ContractId') String? contractId,
+    @Part(name: 'ProjId') String? projectId,
+    @Part(name: 'ContNameA') String? nameAr,
+    @Part(name: 'ContNameE') String? nameEn,
+    @Part(name: 'DescA') String? descriptionAr,
+    @Part(name: 'DescE') String? descriptionNameEn,
+    @Part(name: 'ContractorA') String? contractorNameAr,
+    @Part(name: 'ContractorE') String? contractorNameEn,
+    @Part(name: 'ContValue') double? contractValue,
+    @Part(name: 'ValueCurrency') int? currency,
+    @Part(name: 'ServiceCode') int? serviceCode,
+    @Part(name: 'StartDate') String? startDate,
+    @Part(name: 'FinishDate') String? endDate,
+    @Part(name: 'ShowTel') bool? showPhone,
+    @Part(name: 'ShowEmail') bool? showEmail,
+    @Part(name: 'ShowInPostPage') bool? showInPostPage,
+    @Part(name: 'Images') List<File>? images,
+  });
 }

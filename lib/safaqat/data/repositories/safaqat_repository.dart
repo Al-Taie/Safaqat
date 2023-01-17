@@ -4,6 +4,10 @@ import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/extensions/network_resource_wrapper.dart';
 import 'package:safaqat/safaqat/data/data_source/network/safaqat_api_services.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
+import 'package:safaqat/safaqat/data/models/contract/contract_body.dart';
+import 'package:safaqat/safaqat/data/models/contract/contract_dto.dart';
+import 'package:safaqat/safaqat/data/models/contract/contract_response.dart';
+import 'package:safaqat/safaqat/data/models/contract/service_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
 import 'package:safaqat/safaqat/data/models/events/event_body.dart';
@@ -18,6 +22,7 @@ import 'package:safaqat/safaqat/data/models/posts/post_body.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/posts_response.dart';
+import 'package:safaqat/safaqat/data/models/projects/cost_category_dto.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_body.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_dto.dart';
 import 'package:safaqat/safaqat/data/models/projects/projects_response.dart';
@@ -234,6 +239,14 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
       _apiServices.deleteProject(projectId).call();
 
   @override
+  Future<Resources> deleteContract({String? contractId}) =>
+      _apiServices.deleteContract(contractId).call();
+
+  @override
+  Future<Resources> closeContract({String? contractId}) =>
+      _apiServices.closeContract(contractId).call();
+
+  @override
   Future<Resources<PostDto>> editPost({
     String? postId,
     required PostBody body,
@@ -307,6 +320,15 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
       _apiServices.getMyProjects(pageSize, pageNumber, convener).call();
 
   @override
+  Future<Resources<ContractResponse>> getMyContracts({
+    required int pageSize,
+    required int pageNumber,
+    required String projectId,
+  }) =>
+      _apiServices.getMyContracts(pageSize, pageNumber, projectId).call();
+
+
+  @override
   Future<Resources<PostsResponse>> getPosts({
     required int pageSize,
     required int pageNumber,
@@ -321,6 +343,71 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
       _apiServices.getProjects(pageSize, pageNumber).call();
 
   @override
+  Future<Resources<ContractResponse>> getContracts({
+    required int pageSize,
+    required int pageNumber,
+  }) =>
+      _apiServices.getContracts(pageSize, pageNumber).call();
+
+
+  @override
   Future<Resources<List<PostCategoryDto>>> getPostCategories() =>
       _apiServices.getPostCategories().call();
+
+  @override
+  Future<Resources<List<ServiceDto>>> getServices() =>
+      _apiServices.getServices().call();
+
+  @override
+  Future<Resources<List<CostCategoryDto>>> getCostCategories() =>
+      _apiServices.getCostCategories().call();
+
+  @override
+  Future<Resources<ContractDto>> addContract({required ContractBody body}) =>
+      _apiServices
+          .publishContract(
+        nameAr: body.nameAr,
+        nameEn: body.nameEn,
+        projectId: body.projectId,
+        descriptionAr: body.descriptionAr,
+        descriptionNameEn: body.descriptionEn,
+        contractorNameAr: body.contractorNameAr,
+        contractorNameEn: body.contractorNameEn,
+        currency: body.currency,
+        contractValue: body.value,
+        serviceCode: body.serviceCode,
+        startDate: body.startDate,
+        endDate: body.endDate,
+        showEmail: body.showEmail,
+        showPhone: body.showPhone,
+        showInPostPage: body.showInPostPage,
+        images: body.images,
+      )
+          .call();
+
+  @override
+  Future<Resources<ContractDto>> editContract({
+    String? contractId,
+    required ContractBody body,
+  }) =>
+      _apiServices
+          .editContract(
+        nameAr: body.nameAr,
+        nameEn: body.nameEn,
+        projectId: body.projectId,
+        descriptionAr: body.descriptionAr,
+        descriptionNameEn: body.descriptionEn,
+        contractorNameAr: body.contractorNameAr,
+        contractorNameEn: body.contractorNameEn,
+        currency: body.currency,
+        contractValue: body.value,
+        serviceCode: body.serviceCode,
+        startDate: body.startDate,
+        endDate: body.endDate,
+        showEmail: body.showEmail,
+        showPhone: body.showPhone,
+        showInPostPage: body.showInPostPage,
+        // images: body.images,
+      )
+          .call();
 }

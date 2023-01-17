@@ -1,4 +1,8 @@
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
+import 'package:safaqat/safaqat/data/models/contract/contract_body.dart';
+import 'package:safaqat/safaqat/data/models/contract/contract_dto.dart';
+import 'package:safaqat/safaqat/data/models/contract/contract_response.dart';
+import 'package:safaqat/safaqat/data/models/contract/service_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/customer/customer_response.dart';
 import 'package:safaqat/safaqat/data/models/events/event_dto.dart';
@@ -13,6 +17,7 @@ import 'package:safaqat/safaqat/data/models/posts/post_body.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/posts_response.dart';
+import 'package:safaqat/safaqat/data/models/projects/cost_category_dto.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_body.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_dto.dart';
 import 'package:safaqat/safaqat/data/models/projects/projects_response.dart';
@@ -111,4 +116,30 @@ abstract class SafaqatRepository {
   Future<Resources> deleteProject({String? projectId});
 
   Future<Resources<List<PostCategoryDto>>> getPostCategories();
+
+  Future<Resources> deleteContract({String? contractId});
+
+  Future<Resources> closeContract({String? contractId});
+
+  Future<Resources<ContractResponse>> getMyContracts({
+    required int pageSize,
+    required int pageNumber,
+    required String projectId,
+  });
+
+  Future<Resources<ContractResponse>> getContracts({
+    required int pageSize,
+    required int pageNumber,
+  });
+
+  Future<Resources<List<ServiceDto>>> getServices();
+
+  Future<Resources<List<CostCategoryDto>>> getCostCategories();
+
+  Future<Resources<ContractDto>> addContract({required ContractBody body});
+
+  Future<Resources<ContractDto>> editContract({
+    String? contractId,
+    required ContractBody body,
+  });
 }

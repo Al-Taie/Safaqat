@@ -1225,7 +1225,6 @@ class _SafaqatApiServices implements SafaqatApiServices {
     images,
   }) async {
     const _extra = <String, dynamic>{};
-    Logger.log(postId);
     final queryParameters = <String, dynamic>{r'PostId': postId};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -1780,6 +1779,38 @@ class _SafaqatApiServices implements SafaqatApiServices {
   }
 
   @override
+  Future<HttpResponse<BaseResponse<List<CostCategoryDto>>>>
+      getCostCategories() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BaseResponse<List<CostCategoryDto>>>>(
+            Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+                .compose(
+                  _dio.options,
+                  'Project/Cost',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<List<CostCategoryDto>>.fromJson(
+      _result.data!,
+      (json) => (json as List<dynamic>)
+          .map<CostCategoryDto>(
+              (i) => CostCategoryDto.fromJson(i as Map<String, dynamic>))
+          .toList(),
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
   Future<HttpResponse<BaseResponse<dynamic>>> deleteProject(projectId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'projectId': projectId};
@@ -1807,43 +1838,28 @@ class _SafaqatApiServices implements SafaqatApiServices {
     return httpResponse;
   }
 
-  RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
-    if (T != dynamic &&
-        !(requestOptions.responseType == ResponseType.bytes ||
-            requestOptions.responseType == ResponseType.stream)) {
-      if (T == String) {
-        requestOptions.responseType = ResponseType.plain;
-      } else {
-        requestOptions.responseType = ResponseType.json;
-      }
-    }
-    return requestOptions;
-  }
-
   @override
-  Future<HttpResponse<BaseResponse<List<ServiceDto>>>>
-  getServices() async {
+  Future<HttpResponse<BaseResponse<List<ServiceDto>>>> getServices() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<BaseResponse<List<ServiceDto>>>>(
-            Options(
-              method: 'GET',
-              headers: _headers,
-              extra: _extra,
-            )
-                .compose(
+        _setStreamType<HttpResponse<BaseResponse<List<ServiceDto>>>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
               _dio.options,
               'Contract/ServiceCodes',
               queryParameters: queryParameters,
               data: _data,
             )
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = BaseResponse<List<ServiceDto>>.fromJson(
       _result.data!,
-          (json) => (json as List<dynamic>)
+      (json) => (json as List<dynamic>)
           .map<ServiceDto>(
               (i) => ServiceDto.fromJson(i as Map<String, dynamic>))
           .toList(),
@@ -1854,10 +1870,10 @@ class _SafaqatApiServices implements SafaqatApiServices {
 
   @override
   Future<HttpResponse<BaseResponse<ContractResponse>>> getContracts(
-      pageSize,
-      pageNumber, {
-        noAuth = true,
-      }) async {
+    pageSize,
+    pageNumber, {
+    noAuth = true,
+  }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'pageSize': pageSize,
@@ -1868,20 +1884,20 @@ class _SafaqatApiServices implements SafaqatApiServices {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<BaseResponse<ContractResponse>>>(Options(
-          method: 'GET',
-          headers: _headers,
-          extra: _extra,
-        )
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
             .compose(
-          _dio.options,
-          'Contract/List',
-          queryParameters: queryParameters,
-          data: _data,
-        )
+              _dio.options,
+              'Contract/List',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = BaseResponse<ContractResponse>.fromJson(
       _result.data!,
-          (json) => ContractResponse.fromJson(json as Map<String, dynamic>),
+      (json) => ContractResponse.fromJson(json as Map<String, dynamic>),
     );
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -1889,10 +1905,10 @@ class _SafaqatApiServices implements SafaqatApiServices {
 
   @override
   Future<HttpResponse<BaseResponse<ContractResponse>>> getMyContracts(
-      pageSize,
-      pageNumber,
-      projectId,
-      ) async {
+    pageSize,
+    pageNumber,
+    projectId,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'pageSize': pageSize,
@@ -1903,20 +1919,20 @@ class _SafaqatApiServices implements SafaqatApiServices {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<BaseResponse<ContractResponse>>>(Options(
-          method: 'GET',
-          headers: _headers,
-          extra: _extra,
-        )
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
             .compose(
-          _dio.options,
-          'Contract/List',
-          queryParameters: queryParameters,
-          data: _data,
-        )
+              _dio.options,
+              'Contract/List',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = BaseResponse<ContractResponse>.fromJson(
       _result.data!,
-          (json) => ContractResponse.fromJson(json as Map<String, dynamic>),
+      (json) => ContractResponse.fromJson(json as Map<String, dynamic>),
     );
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -1931,20 +1947,20 @@ class _SafaqatApiServices implements SafaqatApiServices {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<BaseResponse<dynamic>>>(Options(
-          method: 'DELETE',
-          headers: _headers,
-          extra: _extra,
-        )
+      method: 'DELETE',
+      headers: _headers,
+      extra: _extra,
+    )
             .compose(
-          _dio.options,
-          'Contract/Delete',
-          queryParameters: queryParameters,
-          data: _data,
-        )
+              _dio.options,
+              'Contract/Delete',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = BaseResponse<dynamic>.fromJson(
       _result.data!,
-          (json) => json as dynamic,
+      (json) => json as dynamic,
     );
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -1959,23 +1975,324 @@ class _SafaqatApiServices implements SafaqatApiServices {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<BaseResponse<dynamic>>>(Options(
-          method: 'PUT',
-          headers: _headers,
-          extra: _extra,
-        )
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
             .compose(
-          _dio.options,
-          'Contract/Close',
-          queryParameters: queryParameters,
-          data: _data,
-        )
+              _dio.options,
+              'Contract/Close',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = BaseResponse<dynamic>.fromJson(
       _result.data!,
-          (json) => json as dynamic,
+      (json) => json as dynamic,
     );
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
+  @override
+  Future<HttpResponse<BaseResponse<ContractDto>>> publishContract({
+    projectId,
+    nameAr,
+    nameEn,
+    descriptionAr,
+    descriptionNameEn,
+    contractorNameAr,
+    contractorNameEn,
+    contractValue,
+    currency,
+    serviceCode,
+    startDate,
+    endDate,
+    showPhone,
+    showEmail,
+    showInPostPage,
+    images,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    if (projectId != null) {
+      _data.fields.add(MapEntry(
+        'ProjId',
+        projectId,
+      ));
+    }
+    if (nameAr != null) {
+      _data.fields.add(MapEntry(
+        'ContNameA',
+        nameAr,
+      ));
+    }
+    if (nameEn != null) {
+      _data.fields.add(MapEntry(
+        'ContNameE',
+        nameEn,
+      ));
+    }
+    if (descriptionAr != null) {
+      _data.fields.add(MapEntry(
+        'DescA',
+        descriptionAr,
+      ));
+    }
+    if (descriptionNameEn != null) {
+      _data.fields.add(MapEntry(
+        'DescE',
+        descriptionNameEn,
+      ));
+    }
+    if (contractorNameAr != null) {
+      _data.fields.add(MapEntry(
+        'ContractorA',
+        contractorNameAr,
+      ));
+    }
+    if (contractorNameEn != null) {
+      _data.fields.add(MapEntry(
+        'ContractorE',
+        contractorNameEn,
+      ));
+    }
+    if (contractValue != null) {
+      _data.fields.add(MapEntry(
+        'ContValue',
+        contractValue.toString(),
+      ));
+    }
+    if (currency != null) {
+      _data.fields.add(MapEntry(
+        'ValueCurrency',
+        currency.toString(),
+      ));
+    }
+    if (serviceCode != null) {
+      _data.fields.add(MapEntry(
+        'ServiceCode',
+        serviceCode.toString(),
+      ));
+    }
+    if (startDate != null) {
+      _data.fields.add(MapEntry(
+        'StartDate',
+        startDate,
+      ));
+    }
+    if (endDate != null) {
+      _data.fields.add(MapEntry(
+        'FinishDate',
+        endDate,
+      ));
+    }
+    if (showPhone != null) {
+      _data.fields.add(MapEntry(
+        'ShowTel',
+        showPhone.toString(),
+      ));
+    }
+    if (showEmail != null) {
+      _data.fields.add(MapEntry(
+        'ShowEmail',
+        showEmail.toString(),
+      ));
+    }
+    if (showInPostPage != null) {
+      _data.fields.add(MapEntry(
+        'ShowInPostPage',
+        showInPostPage.toString(),
+      ));
+    }
+    if (images != null) {
+      _data.files.addAll(images.map((i) => MapEntry(
+          'Images',
+          MultipartFile.fromFileSync(
+            i.path,
+            filename: i.path.split(Platform.pathSeparator).last,
+          ))));
+    }
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BaseResponse<ContractDto>>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'Project/Create',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<ContractDto>.fromJson(
+      _result.data!,
+      (json) => ContractDto.fromJson(json as Map<String, dynamic>),
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<BaseResponse<ContractDto>>> editContract({
+    contractId,
+    projectId,
+    nameAr,
+    nameEn,
+    descriptionAr,
+    descriptionNameEn,
+    contractorNameAr,
+    contractorNameEn,
+    contractValue,
+    currency,
+    serviceCode,
+    startDate,
+    endDate,
+    showPhone,
+    showEmail,
+    showInPostPage,
+    images,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'ContractId': contractId};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    if (projectId != null) {
+      _data.fields.add(MapEntry(
+        'ProjId',
+        projectId,
+      ));
+    }
+    if (nameAr != null) {
+      _data.fields.add(MapEntry(
+        'ContNameA',
+        nameAr,
+      ));
+    }
+    if (nameEn != null) {
+      _data.fields.add(MapEntry(
+        'ContNameE',
+        nameEn,
+      ));
+    }
+    if (descriptionAr != null) {
+      _data.fields.add(MapEntry(
+        'DescA',
+        descriptionAr,
+      ));
+    }
+    if (descriptionNameEn != null) {
+      _data.fields.add(MapEntry(
+        'DescE',
+        descriptionNameEn,
+      ));
+    }
+    if (contractorNameAr != null) {
+      _data.fields.add(MapEntry(
+        'ContractorA',
+        contractorNameAr,
+      ));
+    }
+    if (contractorNameEn != null) {
+      _data.fields.add(MapEntry(
+        'ContractorE',
+        contractorNameEn,
+      ));
+    }
+    if (contractValue != null) {
+      _data.fields.add(MapEntry(
+        'ContValue',
+        contractValue.toString(),
+      ));
+    }
+    if (currency != null) {
+      _data.fields.add(MapEntry(
+        'ValueCurrency',
+        currency.toString(),
+      ));
+    }
+    if (serviceCode != null) {
+      _data.fields.add(MapEntry(
+        'ServiceCode',
+        serviceCode.toString(),
+      ));
+    }
+    if (startDate != null) {
+      _data.fields.add(MapEntry(
+        'StartDate',
+        startDate,
+      ));
+    }
+    if (endDate != null) {
+      _data.fields.add(MapEntry(
+        'FinishDate',
+        endDate,
+      ));
+    }
+    if (showPhone != null) {
+      _data.fields.add(MapEntry(
+        'ShowTel',
+        showPhone.toString(),
+      ));
+    }
+    if (showEmail != null) {
+      _data.fields.add(MapEntry(
+        'ShowEmail',
+        showEmail.toString(),
+      ));
+    }
+    if (showInPostPage != null) {
+      _data.fields.add(MapEntry(
+        'ShowInPostPage',
+        showInPostPage.toString(),
+      ));
+    }
+    if (images != null) {
+      _data.files.addAll(images.map((i) => MapEntry(
+          'Images',
+          MultipartFile.fromFileSync(
+            i.path,
+            filename: i.path.split(Platform.pathSeparator).last,
+          ))));
+    }
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BaseResponse<ContractDto>>>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'Project/Edit',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<ContractDto>.fromJson(
+      _result.data!,
+      (json) => ContractDto.fromJson(json as Map<String, dynamic>),
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
+    if (T != dynamic &&
+        !(requestOptions.responseType == ResponseType.bytes ||
+            requestOptions.responseType == ResponseType.stream)) {
+      if (T == String) {
+        requestOptions.responseType = ResponseType.plain;
+      } else {
+        requestOptions.responseType = ResponseType.json;
+      }
+    }
+    return requestOptions;
+  }
 }

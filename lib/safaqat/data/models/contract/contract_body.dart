@@ -4,43 +4,37 @@ import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/coordinates_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
 
-class ProjectBody {
-  ProjectBody({
-    this.id,
+class ContractBody {
+  ContractBody({
+    this.projectId,
     this.nameAr,
     this.nameEn,
-    this.instituteNameAr,
-    this.instituteNameEn,
     this.startDate,
     this.endDate,
-    this.actualEndDate,
-    this.convener,
-    this.sector,
-    this.city,
-    this.category,
-    this.coordinates,
-    this.cost,
     this.descriptionAr,
     this.descriptionEn,
+    this.contractorNameAr,
+    this.contractorNameEn,
+    this.currency,
+    this.value,
+    this.serviceCode,
+    this.showInPostPage,
     this.showPhone,
     this.showEmail,
     this.images,
   });
 
-  String? id;
   String? nameAr;
   String? nameEn;
-  String? instituteNameAr;
-  String? instituteNameEn;
   String? startDate;
   String? endDate;
-  String? actualEndDate;
-  int? convener;
-  int? sector;
-  CityDto? city;
-  PostCategoryDto? category;
-  CoordinatesDto? coordinates;
-  double? cost;
+  String? projectId;
+  String? contractorNameAr;
+  String? contractorNameEn;
+  double? value;
+  int? currency;
+  int? serviceCode;
+  bool? showInPostPage;
   String? descriptionAr;
   String? descriptionEn;
   bool? showPhone;
