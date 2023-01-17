@@ -20,11 +20,13 @@ final Map<String, String> enUS = {
   confirmPasswordKey: 'Confirm password',
   contentKey: 'Content',
   countryKey: 'Country',
+  contractsKey: 'Contracts',
   dateKey: 'Date',
   deleteDescriptionKey:
       'The news will be deleted. Are you sure you want to delete it?',
   deleteKey: 'Delete',
   deleteNewsKey: 'Delete News',
+  deleteContractKey: 'Delete Contract',
   deleteNotificationKey: 'Delete Notification',
   deleteEventKey: 'Delete Event',
   deletePostKey: 'Delete Post',
@@ -179,4 +181,9 @@ final Map<String, String> enUS = {
   sectorKey: 'Sector',
   convenerKey: 'Convener',
   locationKey: 'Location',
+  solicitationKey: 'Solicitation',
+  ongoingKey: 'Ongoing',
+  plannedKey: 'Planned',
+  closedKey: 'Closed',
+  closedKey: 'Closed',
 };

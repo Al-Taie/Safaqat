@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/contracts/public/contracts_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/public/events_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/public/news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/public/posts_page.dart';
@@ -20,7 +21,7 @@ class CollectionPage extends StatelessWidget {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: DefaultTabController(
-        length: 4,
+        length: 5,
         child: SafeArea(
           child: Scaffold(
             backgroundColor: AppColors.background,
@@ -49,6 +50,10 @@ class CollectionPage extends StatelessWidget {
                     padding: const EdgeInsets.all(11.7),
                     child: Text(AppStrings.projects),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(11.7),
+                    child: Text(AppStrings.contracts),
+                  ),
                 ],
               ),
             ),
@@ -59,6 +64,7 @@ class CollectionPage extends StatelessWidget {
                 EventsPage(logged: logged),
                 PostsPage(logged: logged), // PostsPage(isLogged: logged),
                 ProjectsPage(logged: logged), // PostsPage(isLogged: logged),
+                ContractsPage(logged: logged), // PostsPage(isLogged: logged),
               ],
             ),
           ),

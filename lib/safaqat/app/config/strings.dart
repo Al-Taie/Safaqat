@@ -26,6 +26,7 @@ const deleteDescriptionKey = 'deleteDescription';
 const deleteEventKey = 'deleteEvent';
 const deleteKey = 'delete';
 const deleteNewsKey = 'deleteNews';
+const deleteContractKey = 'deleteContract';
 const deleteNotificationKey = 'deleteNotification';
 const deletePostKey = 'deletePost';
 const deleteProjectKey = 'deleteProject';
@@ -177,6 +178,12 @@ const convenerKey = 'convener';
 const nameKey = 'name';
 const costKey = 'cost';
 const opportunitiesAndRequestsKey = 'opportunitiesAndRequests';
+const solicitationKey = 'solicitation';
+const ongoingKey = 'ongoing';
+const plannedKey = 'planned';
+const closedKey = 'closed';
+const contractsKey = 'contracts';
+
 
 class AppStrings {
   static final accountCreationAndTermsPolicy =
@@ -209,6 +216,7 @@ class AppStrings {
   static final deleteDescription = deleteDescriptionKey.tr;
   static final deleteEvent = deleteEventKey.tr;
   static final deleteNews = deleteNewsKey.tr;
+  static final deleteContract = deleteContractKey.tr;
   static final deleteNotification = deleteNotificationKey.tr;
   static final deletePost = deletePostKey.tr;
   static final deleteProject = deleteProjectKey.tr;
@@ -291,6 +299,7 @@ class AppStrings {
   static final profile = profileKey.tr;
   static final profilePicture = profilePictureKey.tr;
   static final projects = projectsKey.tr;
+  static final contracts = contractsKey.tr;
   static final publish = publishKey.tr;
   static final publishFailed = publishFailedKey.tr;
   static final publishSuccess = publishSuccessKey.tr;
@@ -357,4 +366,8 @@ class AppStrings {
   static final editProject = editProjectKey.tr;
   static final showPhone = showPhoneKey.tr;
   static final showEmail = showEmailKey.tr;
+  static final solicitation = solicitationKey.tr;
+  static final ongoing = ongoingKey.tr;
+  static final planned = plannedKey.tr;
+  static final closed = closedKey.tr;
 }

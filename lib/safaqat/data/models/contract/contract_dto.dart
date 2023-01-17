@@ -93,6 +93,12 @@ class ContractDto {
   }
 
   String get name => (Utils.isRTL ? nameAr : nameEn) ?? '-';
+  String get contractor => (Utils.isRTL ? contractorAr : contractorEn) ?? '-';
   String get description => (Utils.isRTL ? descriptionAr : descriptionEn) ?? '-';
 
+  @override
+  String toString(){
+    return '$nameAr,$nameEn,$contractorAr,$contractorEn,'
+        '$projectId';
+  }
 }

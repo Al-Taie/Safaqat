@@ -31,6 +31,7 @@ final Map<String, String> arIQ = {
   deleteEventKey: 'حذف المناسبة',
   deletePostKey: 'حذف المنشور',
   deleteProjectKey: 'حذف المشروع',
+  deleteContractKey: 'حذف العقد',
   deletedFailedKey: 'فشل الحذف!',
   deletedSuccessfullyKey: 'تم الحذف بنجاح',
   dontHaveAccountKey: 'لا تمتلك حساباً؟ سجل الان',
@@ -176,4 +177,10 @@ final Map<String, String> arIQ = {
   sectorKey: 'القطاع',
   convenerKey: 'المنظم',
   locationKey: 'الموفع',
+  solicitationKey: 'استدراج عروض',
+  ongoingKey: 'مستمر',
+  plannedKey: 'مخطط',
+  closedKey: 'أَغلِق',
+  contractsKey: 'العقود',
+
 };
