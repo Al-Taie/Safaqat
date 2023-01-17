@@ -182,5 +182,6 @@ final Map<String, String> arIQ = {
   plannedKey: 'مخطط',
   closedKey: 'أَغلِق',
   contractsKey: 'العقود',
+  contractorKey: 'المتعاقد',
 
 };

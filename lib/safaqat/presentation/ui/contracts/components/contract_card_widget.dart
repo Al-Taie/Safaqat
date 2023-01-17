@@ -88,7 +88,7 @@ class ContractCardWidget extends StatelessWidget {
                         ],
                       ),
                       TextIcon(
-                        icon: Icons.category,
+                        icon: Icons.category_outlined,
                         text: service?.name,
                       ),
                     ],

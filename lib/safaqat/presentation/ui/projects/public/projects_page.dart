@@ -10,7 +10,7 @@ import 'package:safaqat/safaqat/presentation/ui/news/components/app_drawer.dart'
 import 'package:safaqat/safaqat/presentation/ui/news/mine/my_news_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/posts/mine/my_posts_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/components/project_card_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/projects/details/post_details_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/details/project_details_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/mine/my_projects_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/public/projects_controller.dart';
 

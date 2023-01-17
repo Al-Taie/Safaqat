@@ -16,11 +16,13 @@ class ContractDto {
     this.statusDesc,
     this.descriptionAr,
     this.descriptionEn,
+    this.phone,
+    this.email,
     this.showPhone,
     this.showEmail,
     this.postStatus,
     this.startDate,
-    this.finishDate,
+    this.endDate,
     this.service,
     this.images,});
 
@@ -37,11 +39,13 @@ class ContractDto {
     statusDesc = json['statusDesc'];
     descriptionAr = json['descA'];
     descriptionEn = json['descE'];
+    phone = json['phone'];
+    email = json['email'];
     showPhone = json['showTel'];
     showEmail = json['showEmail'];
     postStatus = json['postStatus'];
     startDate = json['startDate'];
-    finishDate = json['finishDate'];
+    endDate = json['finishDate'];
     service = json['serviceCode'] != null ? ServiceDto.fromJson(json['serviceCode']) : null;
     images = json['images'] != null ? json['images'].cast<String>() : [];
   }
@@ -58,11 +62,13 @@ class ContractDto {
   dynamic statusDesc;
   String? descriptionAr;
   String? descriptionEn;
+  String? phone;
+  String? email;
   bool? showPhone;
   bool? showEmail;
   int? postStatus;
   String? startDate;
-  String? finishDate;
+  String? endDate;
   ServiceDto? service;
   List<String>? images;
 
@@ -80,11 +86,13 @@ class ContractDto {
     map['statusDesc'] = statusDesc;
     map['descA'] = descriptionAr;
     map['descE'] = descriptionEn;
+    map['phone'] = phone;
+    map['email'] = email;
     map['showTel'] = showPhone;
     map['showEmail'] = showEmail;
     map['postStatus'] = postStatus;
     map['startDate'] = startDate;
-    map['finishDate'] = finishDate;
+    map['finishDate'] = endDate;
     if (service != null) {
       map['serviceCode'] = service?.toJson();
     }

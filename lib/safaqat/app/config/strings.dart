@@ -183,6 +183,7 @@ const ongoingKey = 'ongoing';
 const plannedKey = 'planned';
 const closedKey = 'closed';
 const contractsKey = 'contracts';
+const contractorKey = 'contractor';
 
 
 class AppStrings {
@@ -233,6 +234,7 @@ class AppStrings {
   static final endDate = endDateKey.tr;
   static final actualEndDate = actualEndDateKey.tr;
   static final english = englishKey.tr;
+  static final contractor = contractorKey.tr;
   static final enterWithoutRegister = enterWithoutRegisterKey.tr;
   static final evenType = eventTypeKey.tr;
   static final eventAttend = eventAttendKey.tr;

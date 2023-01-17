@@ -6,7 +6,7 @@ import 'package:safaqat/safaqat/data/models/projects/project_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/projects/components/project_card_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/projects/details/post_details_page.dart';
+import 'package:safaqat/safaqat/presentation/ui/projects/details/project_details_page.dart';
 
 class ProjectItemsWidget extends StatelessWidget {
   const ProjectItemsWidget({

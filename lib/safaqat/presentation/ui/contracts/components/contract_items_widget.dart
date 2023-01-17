@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/data/models/contract/contract_dto.dart';
@@ -6,6 +7,7 @@ import 'package:safaqat/safaqat/domain/entities/contracts/contract_status.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/contracts/components/contract_card_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/contracts/details/contract_details_page.dart';
 
 class ContractItemsWidget extends StatelessWidget {
   const ContractItemsWidget({
@@ -60,8 +62,7 @@ class ContractItemsWidget extends StatelessWidget {
               },
               onPressed: () {
                 onPressed(item);
-                // TODO: IMPLEMENT ME
-                // ContractDetailsPage(contract: item).navTo();
+                ContractDetailsPage(contract: item).navTo();
               },
             );
           }),

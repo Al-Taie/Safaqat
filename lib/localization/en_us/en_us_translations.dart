@@ -21,6 +21,7 @@ final Map<String, String> enUS = {
   contentKey: 'Content',
   countryKey: 'Country',
   contractsKey: 'Contracts',
+  contractorKey: 'Contractor',
   dateKey: 'Date',
   deleteDescriptionKey:
       'The news will be deleted. Are you sure you want to delete it?',

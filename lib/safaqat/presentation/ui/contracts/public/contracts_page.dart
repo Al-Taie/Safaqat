@@ -7,6 +7,7 @@ import 'package:safaqat/safaqat/domain/entities/contracts/contract_status.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/contracts/components/contract_card_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/contracts/details/contract_details_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/contracts/public/contracts_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/mine/my_events_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/app_drawer.dart';
@@ -74,7 +75,7 @@ class ContractsPage extends StatelessWidget {
                       status: ContractStatus.fromInt(item.status ?? 0),
                       onPressed: () {
                         controller.contractData = item;
-                        // ContractDetailsPage(contract: controller.contractData).navTo();
+                        ContractDetailsPage(contract: controller.contractData).navTo();
                       },
                     );
                   }),
