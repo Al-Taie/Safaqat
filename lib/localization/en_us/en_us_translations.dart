@@ -6,6 +6,8 @@ final Map<String, String> enUS = {
   addKey: 'Add',
   addNewNewsKey: 'Add new news',
   addNewEventKey: 'Add new event',
+  addNewContractKey: 'Add new contract',
+  manageContractsKey: 'Manage Contracts',
   addressKey: 'Address',
   agreeTermsAndPolicyKey:
       'I agree to the terms and conditions for registering and using the deals platform.',

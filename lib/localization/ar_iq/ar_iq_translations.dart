@@ -183,5 +183,6 @@ final Map<String, String> arIQ = {
   closedKey: 'أَغلِق',
   contractsKey: 'العقود',
   contractorKey: 'المتعاقد',
-
+  addNewContractKey: 'إضافة عقد جديد',
+  manageContractsKey: 'إدارة العقود',
 };

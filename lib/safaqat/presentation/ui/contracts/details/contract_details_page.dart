@@ -155,20 +155,6 @@ Widget contractInfo(ContractDto contract) {
         color: AppColors.shadeQuaternary,
       ),
       const SizedBox(height: 8),
-      SizedBox(
-        width: Get.width,
-        child: Text(
-          AppStrings.location,
-          style: AppTextStyle.title.copyWith(fontSize: 16),
-        ),
-      ),
-      const SizedBox(height: 8),
-      Container(
-        height: 1,
-        width: Get.width,
-        color: AppColors.shadeQuaternary,
-      ),
-      const SizedBox(height: 8),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

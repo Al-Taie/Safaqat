@@ -39,7 +39,7 @@ class ContractDto {
     statusDesc = json['statusDesc'];
     descriptionAr = json['descA'];
     descriptionEn = json['descE'];
-    phone = json['phone'];
+    phone = json['telephone'];
     email = json['email'];
     showPhone = json['showTel'];
     showEmail = json['showEmail'];
@@ -86,7 +86,7 @@ class ContractDto {
     map['statusDesc'] = statusDesc;
     map['descA'] = descriptionAr;
     map['descE'] = descriptionEn;
-    map['phone'] = phone;
+    map['telephone'] = phone;
     map['email'] = email;
     map['showTel'] = showPhone;
     map['showEmail'] = showEmail;

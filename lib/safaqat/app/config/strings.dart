@@ -5,6 +5,8 @@ const accountWillBeActivatedSoonKey = 'accountWillBeActivatedSoon';
 const addKey = 'add';
 const addNewEventKey = 'addNewEvent';
 const addNewNewsKey = 'addNewNews';
+const addNewContractKey = 'addNewContract';
+const manageContractsKey = 'manageContracts';
 const addressKey = 'address';
 const agreeTermsAndPolicyKey = 'agreeTermsAndPolicy';
 const anotherEmailKey = 'anotherEmail';
@@ -196,6 +198,8 @@ class AppStrings {
   static final sector = sectorKey.tr;
   static final addNewEvent = addNewEventKey.tr;
   static final addNewNews = addNewNewsKey.tr;
+  static final addNewContract = addNewContractKey.tr;
+  static final manageContracts = manageContractsKey.tr;
   static final address = addressKey.tr;
   static final agreeTermsAndPolicy = agreeTermsAndPolicyKey.tr;
   static final anotherEmail = anotherEmailKey.tr;

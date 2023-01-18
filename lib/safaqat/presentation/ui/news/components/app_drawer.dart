@@ -16,6 +16,7 @@ class AppDrawer extends StatelessWidget {
     this.onManageEvents,
     this.onManagePosts,
     this.onManageProjects,
+    this.onManageContracts,
     this.onSettings,
     this.onSupport,
     this.onTerms,
@@ -28,6 +29,7 @@ class AppDrawer extends StatelessWidget {
       onManageEvents,
       onManagePosts,
       onManageProjects,
+      onManageContracts,
       onSettings,
       onSupport,
       onTerms,
@@ -143,6 +145,11 @@ class AppDrawer extends StatelessWidget {
             text: AppStrings.manageProjects,
             icon: Icons.construction,
             onClick: onManageProjects,
+          ),
+          item(
+            text: AppStrings.manageContracts,
+            icon: Icons.document_scanner_outlined,
+            onClick: onManageContracts,
           ),
           // item(
           //   text: AppStrings.settings,
