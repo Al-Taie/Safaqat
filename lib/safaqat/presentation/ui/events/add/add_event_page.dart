@@ -250,6 +250,7 @@ class AddEventPage extends StatelessWidget {
                           },
                         );
                       }),
+                      const SizedBox(height: 16),
                       Obx(
                         () => CheckBoxWidget(
                           value: controller.showName,

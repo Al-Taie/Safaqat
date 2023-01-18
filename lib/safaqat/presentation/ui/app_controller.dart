@@ -3,28 +3,33 @@ import 'package:safaqat/safaqat/app/extensions/int_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
+import 'package:safaqat/safaqat/data/models/contract/service_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
 import 'package:safaqat/safaqat/domain/usecases/auth/register/get_cities_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecases/auth/register/get_countires_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/contracts/get_services_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecases/posts/get_post_categories_usecase.dart';
 
 class AppController extends GetxController {
   final _getCountriesUseCase = Get.put(GetCountriesUseCase());
   final _getCitiesUseCase = Get.put(GetCitiesUseCase());
-  final _getPostCategories = Get.put(GetPostCategoriesUseCase());
+  final _getPostCategoriesUseCase = Get.put(GetPostCategoriesUseCase());
+  final _getServicesUseCase = Get.put(GetServicesUseCase());
 
   @override
   void onInit() {
     super.onInit();
     _getCountries();
     _getCategories();
+    _getServices();
   }
 
   final RxList<CountryDto> countries = <CountryDto>[].obs;
   final RxList<CityDto> cities = <CityDto>[].obs;
 
   final RxList<PostCategoryDto> postCategories = <PostCategoryDto>[].obs;
+  final RxList<ServiceDto> services = <ServiceDto>[].obs;
 
   final RxList<String> tagsAr = <String>[].obs;
   final RxList<String> tagsEn = <String>[].obs;
@@ -61,7 +66,7 @@ class AppController extends GetxController {
   }
 
   void _getCategories() async {
-    final result = await _getPostCategories();
+    final result = await _getPostCategoriesUseCase();
     if (result.data != null) {
       postCategories.value = result.data!
           .toList()
@@ -75,6 +80,13 @@ class AppController extends GetxController {
         // SKIP
         Logger.log(e);
       }
+    }
+  }
+
+  void _getServices() async {
+    final result = await _getServicesUseCase();
+    if (result.data != null) {
+      services.value = result.data!;
     }
   }
 }

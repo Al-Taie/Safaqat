@@ -1,38 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:safaqat/safaqat/app/config/colors.dart';
 import 'package:safaqat/safaqat/app/config/drawable.dart';
 import 'package:safaqat/safaqat/app/config/strings.dart';
 import 'package:safaqat/safaqat/app/config/text_style.dart';
-import 'package:safaqat/safaqat/app/extensions/animated_navigation.dart';
 import 'package:safaqat/safaqat/app/extensions/toast_manager.dart';
-import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
-import 'package:safaqat/safaqat/domain/entities/posts/post_type.dart';
 import 'package:safaqat/safaqat/domain/entities/resources.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/checkbox_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_button.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/loading_view.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/local_images_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
-import 'package:safaqat/safaqat/presentation/ui/events/map/event_map.dart';
-import 'package:safaqat/safaqat/presentation/ui/posts/add/add_post_controller.dart';
-import 'package:safaqat/safaqat/presentation/ui/posts/add/components/post_details_widget.dart';
-import 'package:safaqat/safaqat/presentation/ui/posts/add/components/post_info_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/contracts/add/add_contract_controller.dart';
+import 'package:safaqat/safaqat/presentation/ui/contracts/add/components/contract_details_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/contracts/add/components/contract_info_widget.dart';
 
-class AddPostPage extends StatelessWidget {
-  const AddPostPage({Key? key}) : super(key: key);
+class AddContractPage extends StatelessWidget {
+  const AddContractPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(AddPostController());
+    final controller = Get.put(AddContractController());
 
     controller.status.listen((result) {
       switch (result.status) {
         case Status.success:
           Get.back();
           AppStrings.publishSuccess.toToast();
-
           break;
         case Status.error:
           AppStrings.publishFailed.toToast();
@@ -47,7 +41,7 @@ class AddPostPage extends StatelessWidget {
         backgroundColor: AppColors.background,
         appBar: AppBar(
           title: Text(
-            AppStrings.addNewPost,
+            AppStrings.addNewContract,
             style: AppTextStyle.title.copyWith(fontSize: 18),
           ),
           centerTitle: true,
@@ -73,20 +67,20 @@ class AddPostPage extends StatelessWidget {
                     ),
                     children: [
                       Obx(() {
-                        return PostInfoWidget(
+                        return ContractInfoWidget(
                           title: AppStrings.arabic,
-                          postTitle: AppStrings.title,
+                          name: AppStrings.name,
                           content: AppStrings.content,
-                          institute: AppStrings.institute,
+                          contractor: AppStrings.contractor,
                           rtl: true,
-                          onTitleChange: (String value) {
-                            controller.titleAr = value;
+                          onNameChange: (String value) {
+                            controller.nameAr = value;
                           },
                           onContentChange: (String value) {
                             controller.detailsAr = value;
                           },
-                          onInstituteChange: (String value) {
-                            controller.detailsAr = value;
+                          onContractorChange: (String value) {
+                            controller.contractorAr = value;
                           },
                           expanded: controller.arabicExpanded.value,
                           onExpansionChanged: (bool value) {
@@ -101,19 +95,19 @@ class AddPostPage extends StatelessWidget {
                         height: 16,
                       ),
                       Obx(() {
-                        return PostInfoWidget(
+                        return ContractInfoWidget(
                           title: AppStrings.english,
-                          postTitle: AppStrings.title,
+                          name: AppStrings.name,
                           content: AppStrings.content,
-                          institute: AppStrings.institute,
-                          onTitleChange: (String value) {
-                            controller.titleEn = value;
+                          contractor: AppStrings.contractor,
+                          onNameChange: (String value) {
+                            controller.nameEn = value;
                           },
                           onContentChange: (String value) {
                             controller.detailsEn = value;
                           },
-                          onInstituteChange: (String value) {
-                            controller.detailsEn = value;
+                          onContractorChange: (String value) {
+                            controller.contractorEn = value;
                           },
                           expanded: controller.englishExpanded.value,
                           onExpansionChanged: (bool value) {
@@ -126,48 +120,47 @@ class AddPostPage extends StatelessWidget {
                       }),
                       const SizedBox(height: 16),
                       Obx(() {
-                        return PostDetailsWidget(
+                        return ContractDetailsWidget(
                           title: AppStrings.details,
-                          expiryDate: AppStrings.expiryDate,
-                          cities: controller.cities.value,
-                          countries: controller.countries.value,
-                          categories: controller.categories.value,
-                          locationController: controller.locationController,
-                          onCityChange: (city) {
-                            controller.city = city;
-                            controller.locationController.setCountryLocation(
-                              city: city.name,
-                              country: controller.country.name,
-                            );
-                          },
-                          onCountryChange: (value) =>
-                              controller.country = value,
-                          onEndChange: (value) => controller.expiryDate = value,
-                          onPressed: (LatLng value) {
-                            const EventMap().navTo();
-                          },
+                          services: controller.services.value,
+                          startDateInitialValue: null,
+                          endDateInitialValue: null,
+                          serviceInitialValue: null,
+                          statusInitialValue: null,
+                          onServiceChange: (value) =>
+                              controller.service = value,
+                          onCurrencyChange: (value) =>
+                              controller.currency = value,
+                          onStatusChange: (value) =>
+                              controller.contractStatus = value,
+                          onStartDateChange: (value) =>
+                              controller.startDate = value,
+                          onEndDateChange: (value) =>
+                              controller.endDate = value,
+                          onCostChange: (value) => controller.cost = value,
                           expanded: controller.detailsExpanded.value,
-                          categoryExpanded: controller.categoryExpanded.value,
+                          statusExpanded:
+                              controller.contractStatusExpanded.value,
+                          currencyExpanded: controller.currencyExpanded.value,
                           onExpansionChanged: (bool value) {
                             controller.arabicExpanded.value = false;
                             controller.englishExpanded.value = false;
                             controller.imagesExpanded.value = false;
                             controller.detailsExpanded.value = value;
                           },
-                          onTypeExpansionChange: (bool value) =>
-                              controller.typeExpanded.value = value,
-                          onCategoryChange: (PostCategoryDto value) {
-                            controller.category = value;
+                          serviceExpanded: controller.serviceExpanded.value,
+                          onCurrencyExpansionChange: (bool value) {
+                            controller.currencyExpanded.value = value;
                           },
-                          onTypeChange: (PostType value) {
-                            controller.type = value;
+                          onServiceExpansionChange: (bool value) {
+                            controller.serviceExpanded.value = value;
                           },
-                          typeExpanded: controller.typeExpanded.value,
-                          onCategoryExpansionChange: (bool value) {
-                            controller.categoryExpanded.value = value;
+                          onStatusExpansionChange: (bool value) {
+                            controller.contractStatusExpanded.value = value;
                           },
-                          postTypeFormKey: controller.postTypeFormKey,
-                          postCategoryFormKey: controller.postCategoryFormKey,
+                          statusFormKey: controller.contractStatusFormKey,
+                          currencyFormKey: controller.currencyFormKey,
+                          serviceFormKey: controller.serviceFormKey,
                         );
                       }),
                       const SizedBox(height: 16),
@@ -199,6 +192,13 @@ class AddPostPage extends StatelessWidget {
                           value: controller.showPhone,
                           onChanged: (state) => controller.showPhone = state,
                           title: AppStrings.showPhone,
+                        ),
+                      ),
+                      Obx(
+                            () => CheckBoxWidget(
+                          value: controller.showInPostPage,
+                          onChanged: (state) => controller.showInPostPage = state,
+                          title: AppStrings.showInPostPage,
                         ),
                       ),
                     ],

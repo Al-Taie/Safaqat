@@ -229,6 +229,7 @@ class ProjectDetailsWidget extends StatelessWidget {
           initialValue: costInitialValue,
           textAlign: TextAlign.left,
           onTextChanged: onCostChange,
+          keyboardType: TextInputType.number,
         ),
       ],
     );

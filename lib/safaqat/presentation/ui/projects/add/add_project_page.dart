@@ -208,6 +208,7 @@ class AddProjectPage extends StatelessWidget {
                           },
                         );
                       }),
+                      const SizedBox(height: 16),
                       Obx(
                         () => CheckBoxWidget(
                           value: controller.showEmail,

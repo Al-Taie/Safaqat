@@ -17,13 +17,17 @@ class CheckBoxWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Checkbox(
-          value: value,
-          onChanged: (value) {
-            onChanged?.call(value == true);
-          },
-          checkColor: AppColors.primaryColor,
-          activeColor: AppColors.ternary,
+        SizedBox(
+          height: 32,
+          width: 32,
+          child: Checkbox(
+            value: value,
+            onChanged: (value) {
+              onChanged?.call(value == true);
+            },
+            checkColor: AppColors.primaryColor,
+            activeColor: AppColors.ternary,
+          ),
         ),
         Flexible(
           child: Text(

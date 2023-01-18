@@ -175,6 +175,7 @@ const editPostKey = 'editPost';
 const editProjectKey = 'editProject';
 const showPhoneKey = 'showPhone';
 const showEmailKey = 'showEmail';
+const showInPostPageKey = 'showInPostPage';
 const sectorKey = 'sector';
 const convenerKey = 'convener';
 const nameKey = 'name';
@@ -186,6 +187,9 @@ const plannedKey = 'planned';
 const closedKey = 'closed';
 const contractsKey = 'contracts';
 const contractorKey = 'contractor';
+const dinarKey = 'dinar';
+const dollarKey = 'dollar';
+const currencyKey = 'currency';
 
 
 class AppStrings {
@@ -193,6 +197,9 @@ class AppStrings {
       accountCreationAndTermsPolicyKey.tr;
   static final accountWillBeActivatedSoon = accountWillBeActivatedSoonKey.tr;
   static final add = addKey.tr;
+  static final dinar = dinarKey.tr;
+  static final dollar = dollarKey.tr;
+  static final currency = currencyKey.tr;
   static final name = nameKey.tr;
   static final convener = convenerKey.tr;
   static final sector = sectorKey.tr;
@@ -372,6 +379,7 @@ class AppStrings {
   static final editProject = editProjectKey.tr;
   static final showPhone = showPhoneKey.tr;
   static final showEmail = showEmailKey.tr;
+  static final showInPostPage = showInPostPageKey.tr;
   static final solicitation = solicitationKey.tr;
   static final ongoing = ongoingKey.tr;
   static final planned = plannedKey.tr;

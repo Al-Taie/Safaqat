@@ -178,6 +178,7 @@ final Map<String, String> enUS = {
   addNewPostKey: 'Add new post',
   addNewProjectKey: 'Add new project',
   showEmailKey: 'Show email',
+  showInPostPageKey: 'Show in post page',
   showPhoneKey: 'Show phone',
   editPostKey: 'Edit post',
   editProjectKey: 'Edit project',
@@ -188,5 +189,7 @@ final Map<String, String> enUS = {
   ongoingKey: 'Ongoing',
   plannedKey: 'Planned',
   closedKey: 'Closed',
-  closedKey: 'Closed',
+  dinarKey: 'Dinar',
+  dollarKey: 'Dollar',
+  currencyKey: 'Currency',
 };

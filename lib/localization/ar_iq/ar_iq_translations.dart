@@ -185,4 +185,10 @@ final Map<String, String> arIQ = {
   contractorKey: 'المتعاقد',
   addNewContractKey: 'إضافة عقد جديد',
   manageContractsKey: 'إدارة العقود',
+  dinarKey: 'دينار',
+  dollarKey: 'دولار',
+  currencyKey: 'العملة',
+  showEmailKey: 'إظهار الايميل',
+  showPhoneKey: 'إظهار رقم الهاتف',
+  showInPostPageKey: 'العرض ضمن الفرص والطلبات',
 };
