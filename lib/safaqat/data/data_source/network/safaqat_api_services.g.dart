@@ -2125,7 +2125,7 @@ class _SafaqatApiServices implements SafaqatApiServices {
     )
             .compose(
               _dio.options,
-              'Project/Create',
+              'Contract/Create',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -2270,7 +2270,7 @@ class _SafaqatApiServices implements SafaqatApiServices {
     )
             .compose(
               _dio.options,
-              'Project/Edit',
+              'Contract/Edit',
               queryParameters: queryParameters,
               data: _data,
             )

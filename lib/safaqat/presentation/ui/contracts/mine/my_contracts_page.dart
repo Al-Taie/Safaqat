@@ -7,6 +7,7 @@ import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/custom_floating_button.dart';
 import 'package:safaqat/safaqat/presentation/ui/contracts/add/add_contract_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/contracts/components/contract_items_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/contracts/edit/edit_contract_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/contracts/mine/my_contracts_controller.dart';
 
 class MyContractsPage extends StatelessWidget {
@@ -49,8 +50,7 @@ class MyContractsPage extends StatelessWidget {
                 data: controller.filteredContracts.value,
                 isLogged: true,
                 onEdit: (value) {
-                  // TODO: IMPLEMENT ME
-                  // EditContractPage(contract: value).navTo();
+                  EditContractPage(contract: value).navTo();
                 },
                 onDelete: (value) {
                   controller.deleteContracts(

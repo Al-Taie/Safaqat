@@ -10,7 +10,7 @@ class ContractDto {
     this.nameEn,
     this.contractorAr,
     this.contractorEn,
-    this.status,
+    this.contractStatus,
     this.value,
     this.currency,
     this.statusDesc,
@@ -33,7 +33,7 @@ class ContractDto {
     nameEn = json['contNameE'];
     contractorAr = json['contractorA'];
     contractorEn = json['contractorE'];
-    status = json['contStatus'];
+    contractStatus = json['contStatus'];
     value = json['contValue'];
     currency = json['valueCurrency'];
     statusDesc = json['statusDesc'];
@@ -56,7 +56,7 @@ class ContractDto {
   String? nameEn;
   String? contractorAr;
   String? contractorEn;
-  int? status;
+  int? contractStatus;
   int? value;
   int? currency;
   dynamic statusDesc;
@@ -80,7 +80,7 @@ class ContractDto {
     map['contNameE'] = nameEn;
     map['contractorA'] = contractorAr;
     map['contractorE'] = contractorEn;
-    map['contStatus'] = status;
+    map['contStatus'] = contractStatus;
     map['contValue'] = value;
     map['valueCurrency'] = currency;
     map['statusDesc'] = statusDesc;

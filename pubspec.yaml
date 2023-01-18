@@ -43,6 +43,7 @@ dependencies:
   url_launcher: ^6.1.7
   flutter_draggable_gridview: ^0.0.7
   cached_network_image: ^3.2.3
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test: {sdk: flutter}

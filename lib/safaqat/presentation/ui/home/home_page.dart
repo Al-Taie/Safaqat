@@ -9,6 +9,7 @@ import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/status_widget.dart';
+import 'package:safaqat/safaqat/presentation/ui/contracts/mine/my_contracts_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/mine/my_events_page.dart';
 import 'package:safaqat/safaqat/presentation/ui/home/home_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/news/components/app_drawer.dart';
@@ -40,6 +41,7 @@ class HomePage extends StatelessWidget {
           onManagePosts: const MyPostsPage().navTo,
           onManageProjects: const MyProjectsPage().navTo,
           onProfile: () {},
+          onManageContracts: const MyContractsPage().navTo,
           onLogout: controller.logout,
         )
             : null,

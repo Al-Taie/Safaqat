@@ -90,6 +90,7 @@ class ContractCardWidget extends StatelessWidget {
                       TextIcon(
                         icon: Icons.category_outlined,
                         text: service?.name,
+                        autoSize: true,
                       ),
                     ],
                   )

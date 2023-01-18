@@ -52,7 +52,7 @@ class ContractItemsWidget extends StatelessWidget {
               image: item.images.firstOrNull ?? '',
               date: Utils.formatDate(dateStr: item.startDate),
               service: item.service,
-              status: ContractStatus.fromInt(item.status ?? 0),
+              status: ContractStatus.fromInt(item.contractStatus ?? 0),
               isLogged: isLogged,
               onEdit: () {
                 onEdit?.call(item);

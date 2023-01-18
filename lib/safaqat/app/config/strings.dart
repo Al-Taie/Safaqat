@@ -173,6 +173,7 @@ const addNewProjectKey = 'addNewProject';
 const typeKey = 'type';
 const editPostKey = 'editPost';
 const editProjectKey = 'editProject';
+const editContractKey = 'editContract';
 const showPhoneKey = 'showPhone';
 const showEmailKey = 'showEmail';
 const showInPostPageKey = 'showInPostPage';
@@ -377,6 +378,7 @@ class AppStrings {
   static final type = typeKey.tr;
   static final editPost = editPostKey.tr;
   static final editProject = editProjectKey.tr;
+  static final editContract = editContractKey.tr;
   static final showPhone = showPhoneKey.tr;
   static final showEmail = showEmailKey.tr;
   static final showInPostPage = showInPostPageKey.tr;

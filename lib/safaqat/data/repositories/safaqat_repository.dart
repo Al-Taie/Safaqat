@@ -395,6 +395,7 @@ class SafaqatRepositoryImpl extends SafaqatRepository {
         nameAr: body.nameAr,
         nameEn: body.nameEn,
         projectId: body.projectId,
+        contractId: contractId,
         descriptionAr: body.descriptionAr,
         descriptionNameEn: body.descriptionEn,
         contractorNameAr: body.contractorNameAr,

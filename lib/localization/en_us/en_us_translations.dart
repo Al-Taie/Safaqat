@@ -182,6 +182,7 @@ final Map<String, String> enUS = {
   showPhoneKey: 'Show phone',
   editPostKey: 'Edit post',
   editProjectKey: 'Edit project',
+  editContractKey: 'Edit contract',
   sectorKey: 'Sector',
   convenerKey: 'Convener',
   locationKey: 'Location',

@@ -73,7 +73,7 @@ class ContractDetailsPage extends StatelessWidget {
                     children: [
                       TextIcon(
                         icon: Icons.local_convenience_store_outlined,
-                        text: ContractStatus.fromInt(contract.status ?? 0).name,
+                        text: ContractStatus.fromInt(contract.contractStatus ?? 0).name,
                       ),
                       TextIcon(
                         icon: Icons.category_outlined,
@@ -199,7 +199,7 @@ Widget contractInfo(ContractDto contract) {
       const SizedBox(height: 8),
       TextLabel(
         label: '${AppStrings.status}:',
-        text: ContractStatus.fromInt(contract.status ?? 0),
+        text: ContractStatus.fromInt(contract.contractStatus ?? 0),
       ),
       const SizedBox(height: 8),
       TextLabel(

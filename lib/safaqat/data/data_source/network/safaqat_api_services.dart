@@ -349,7 +349,7 @@ abstract class SafaqatApiServices {
       @Query('ContractId') String? contractId,
       );
 
-  @POST('Project/Create')
+  @POST('Contract/Create')
   @MultiPart()
   Future<HttpResponse<BaseResponse<ContractDto>>> publishContract({
     @Part(name: 'ProjId') String? projectId,
@@ -370,7 +370,7 @@ abstract class SafaqatApiServices {
     @Part(name: 'Images') List<File>? images,
   });
 
-  @PUT('Project/Edit')
+  @PUT('Contract/Edit')
   @MultiPart()
   Future<HttpResponse<BaseResponse<ContractDto>>> editContract({
     @Query('ContractId') String? contractId,
