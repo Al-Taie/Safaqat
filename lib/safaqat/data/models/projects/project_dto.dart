@@ -4,6 +4,7 @@ import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/coordinates_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
+import 'package:safaqat/safaqat/data/models/projects/cost_category_dto.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_convener_dto.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_sector_dto.dart';
 
@@ -42,7 +43,7 @@ class ProjectDto {
   @JsonKey(name: 'coordinates')
   CoordinatesDto? coordinates;
   @JsonKey(name: 'cost')
-  int? cost;
+  CostCategoryDto? cost;
   @JsonKey(name: 'descA')
   String? descriptionAr;
   @JsonKey(name: 'descE')

@@ -8,12 +8,12 @@ import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
+import 'package:safaqat/safaqat/data/models/projects/cost_category_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/projects/project_convener_type.dart';
 import 'package:safaqat/safaqat/domain/entities/projects/project_sector_type.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/autocomplete_textfield.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/dropdown_field.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/expansion_widget.dart';
-import 'package:safaqat/safaqat/presentation/custom_views/textfiled_form.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/add/components/small_map_widget.dart';
 import 'package:safaqat/safaqat/presentation/ui/events/map/location_controller.dart';
 
@@ -56,39 +56,52 @@ class ProjectDetailsWidget extends StatelessWidget {
     required this.categories,
     required this.categoryFormKey,
     this.categoryInitialValue,
+    required this.costs,
+    required this.costExpanded,
+    required this.onCostExpansionChange,
+    required this.costFormKey,
   }) : super(key: key);
 
   final String title;
   final ValueChanged<String> onStartDateChange,
       onEndDateChange,
-      onActualEndDateChange,
-      onCostChange;
-  final bool expanded, convenerExpanded, sectorExpanded, categoryExpanded;
+      onActualEndDateChange;
+  final bool expanded,
+      convenerExpanded,
+      sectorExpanded,
+      categoryExpanded,
+      costExpanded;
   final ValueChanged<bool> onExpansionChanged,
       onSectorExpansionChange,
       onCategoryExpansionChange,
-      onConvenerExpansionChange;
+      onConvenerExpansionChange,
+      onCostExpansionChange;
   final ValueChanged<CountryDto> onCountryChange;
   final ValueChanged<CityDto> onCityChange;
   final ValueChanged<ProjectConvenerType> onConvenerChange;
   final ValueChanged<ProjectSectorType> onSectorChange;
   final ValueChanged<PostCategoryDto> onCategoryChange;
+  final ValueChanged<CostCategoryDto> onCostChange;
   final List<CountryDto> countries;
   final List<CityDto> cities;
+  final List<CostCategoryDto> costs;
   final List<PostCategoryDto> categories;
   final ValueChanged<LatLng> onPressed;
   final LocationController locationController;
-  final GlobalKey<FormState> convenerFormKey, sectorFormKey, categoryFormKey;
+  final GlobalKey<FormState> convenerFormKey,
+      sectorFormKey,
+      categoryFormKey,
+      costFormKey;
   final String? startDateInitialValue,
       endDateInitialValue,
       actualEndDateInitialValue,
       cityInitialValue,
-      countryInitialValue,
-      costInitialValue;
+      countryInitialValue;
   final CameraPosition? cameraPosition;
   final ProjectConvenerType? convenerInitialValue;
   final ProjectSectorType? sectorInitialValue;
   final PostCategoryDto? categoryInitialValue;
+  final CostCategoryDto? costInitialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -130,6 +143,17 @@ class ProjectDetailsWidget extends StatelessWidget {
           onExpansionChanged: onCategoryExpansionChange,
           onSelected: (value) => onCategoryChange(value),
           items: categories,
+          displayStringForOption: (item) => item.name,
+        ),
+        const SizedBox(height: 8),
+        DropdownField<CostCategoryDto>(
+          initialValue: costInitialValue,
+          hint: AppStrings.cost,
+          formKey: costFormKey,
+          expanded: costExpanded,
+          onExpansionChanged: onCostExpansionChange,
+          onSelected: (value) => onCostChange(value),
+          items: costs,
           displayStringForOption: (item) => item.name,
         ),
         const SizedBox(height: 8),
@@ -221,15 +245,6 @@ class ProjectDetailsWidget extends StatelessWidget {
           onSaved: (val) {
             if (val != null) onActualEndDateChange(val);
           },
-        ),
-        const SizedBox(height: 8),
-        TextFiledForm(
-          hintText: AppStrings.cost,
-          prefixIcon: const Icon(Icons.monetization_on),
-          initialValue: costInitialValue,
-          textAlign: TextAlign.left,
-          onTextChanged: onCostChange,
-          keyboardType: TextInputType.number,
         ),
       ],
     );

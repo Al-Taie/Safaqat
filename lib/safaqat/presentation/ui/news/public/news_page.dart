@@ -42,7 +42,6 @@ class NewsPage extends StatelessWidget {
                   onManagePosts: const MyPostsPage().navTo,
                   onManageProjects: const MyProjectsPage().navTo,
                   onProfile: () {},
-                  onManageContracts: const MyContractsPage().navTo,
                   onLogout: controller.logout,
                 )
               : null,

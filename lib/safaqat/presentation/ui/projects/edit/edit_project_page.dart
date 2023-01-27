@@ -144,6 +144,7 @@ class EditProjectPage extends StatelessWidget {
                           cities: controller.cities.value,
                           countries: controller.countries.value,
                           categories: controller.categories.value,
+                          costs: controller.costs.value,
                           startDateInitialValue: controller.startDate,
                           endDateInitialValue: controller.endDate,
                           actualEndDateInitialValue: controller.actualEndDate,
@@ -202,15 +203,20 @@ class EditProjectPage extends StatelessWidget {
                           },
                           categoryExpanded: controller.categoryExpanded.value,
                           convenerExpanded: controller.convenerExpanded.value,
+                          costExpanded: controller.costExpanded.value,
                           onSectorExpansionChange: (bool value) {
                             controller.sectorExpanded.value = value;
                           },
                           onCategoryExpansionChange: (bool value) {
                             controller.categoryExpanded.value = value;
                           },
+                          onCostExpansionChange: (bool value) {
+                            controller.costExpanded.value = value;
+                          },
                           convenerFormKey: controller.convenerFormKey,
                           sectorFormKey: controller.sectorFormKey,
                           categoryFormKey: controller.categoryFormKey,
+                          costFormKey: controller.costFormKey,
                         );
                       }),
                       const SizedBox(height: 16),

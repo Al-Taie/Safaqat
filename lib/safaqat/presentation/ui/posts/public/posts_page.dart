@@ -39,7 +39,6 @@ class PostsPage extends StatelessWidget {
                   onManageEvents: const MyEventsPage().navTo,
                   onManagePosts: const MyPostsPage().navTo,
                   onManageProjects: const MyProjectsPage().navTo,
-                  onManageContracts: const MyContractsPage().navTo,
                   onLogout: controller.logout,
                 )
               : null,

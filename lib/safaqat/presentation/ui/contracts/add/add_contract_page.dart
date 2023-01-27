@@ -16,11 +16,13 @@ import 'package:safaqat/safaqat/presentation/ui/contracts/add/components/contrac
 import 'package:safaqat/safaqat/presentation/ui/contracts/add/components/contract_info_widget.dart';
 
 class AddContractPage extends StatelessWidget {
-  const AddContractPage({Key? key}) : super(key: key);
+  const AddContractPage({Key? key, required this.projectId}) : super(key: key);
+
+  final String projectId;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(AddContractController());
+    final controller = Get.put(AddContractController(projectId: projectId));
 
     controller.status.listen((result) {
       switch (result.status) {

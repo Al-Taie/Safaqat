@@ -62,7 +62,7 @@ class ProjectItemsWidget extends StatelessWidget {
               },
               onPressed: () {
                 onPressed(item);
-                ProjectDetailsPage(project: item).navTo();
+                ProjectDetailsPage(project: item, logged: isLogged).navTo();
               },
             );
           }),

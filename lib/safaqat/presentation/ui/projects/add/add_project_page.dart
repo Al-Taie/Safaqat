@@ -86,7 +86,7 @@ class AddProjectPage extends StatelessWidget {
                             controller.detailsAr = value;
                           },
                           onInstituteChange: (String value) {
-                            controller.detailsAr = value;
+                            controller.instituteAr = value;
                           },
                           expanded: controller.arabicExpanded.value,
                           onExpansionChanged: (bool value) {
@@ -113,7 +113,7 @@ class AddProjectPage extends StatelessWidget {
                             controller.detailsEn = value;
                           },
                           onInstituteChange: (String value) {
-                            controller.detailsEn = value;
+                            controller.instituteEn = value;
                           },
                           expanded: controller.englishExpanded.value,
                           onExpansionChanged: (bool value) {
@@ -131,14 +131,7 @@ class AddProjectPage extends StatelessWidget {
                           cities: controller.cities.value,
                           countries: controller.countries.value,
                           categories: controller.categories.value,
-                          startDateInitialValue: null,
-                          endDateInitialValue: null,
-                          actualEndDateInitialValue: null,
-                          categoryInitialValue: null,
-                          cityInitialValue: null,
-                          countryInitialValue: null,
-                          convenerInitialValue: null,
-                          sectorInitialValue: null,
+                          costs: controller.costs.value,
                           locationController: controller.locationController,
                           onCityChange: (city) {
                             controller.city = city;
@@ -181,15 +174,20 @@ class AddProjectPage extends StatelessWidget {
                           },
                           categoryExpanded: controller.categoryExpanded.value,
                           convenerExpanded: controller.convenerExpanded.value,
+                          costExpanded: controller.costExpanded.value,
                           onSectorExpansionChange: (bool value) {
                             controller.sectorExpanded.value = value;
                           },
                           onCategoryExpansionChange: (bool value) {
                             controller.categoryExpanded.value = value;
                           },
+                          onCostExpansionChange: (bool value) {
+                            controller.costExpanded.value = value;
+                          },
                           convenerFormKey: controller.convenerFormKey,
                           sectorFormKey: controller.sectorFormKey,
                           categoryFormKey: controller.categoryFormKey,
+                          costFormKey: controller.costFormKey,
                         );
                       }),
                       const SizedBox(height: 16),

@@ -15,6 +15,7 @@ class ContractBody {
     this.descriptionEn,
     this.contractorNameAr,
     this.contractorNameEn,
+    this.contractStatus,
     this.currency,
     this.value,
     this.serviceCode,
@@ -33,6 +34,7 @@ class ContractBody {
   String? contractorNameEn;
   double? value;
   int? currency;
+  int? contractStatus;
   int? serviceCode;
   bool? showInPostPage;
   String? descriptionAr;

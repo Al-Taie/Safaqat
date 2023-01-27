@@ -40,7 +40,7 @@ class ProjectBody {
   CityDto? city;
   PostCategoryDto? category;
   CoordinatesDto? coordinates;
-  double? cost;
+  int? cost;
   String? descriptionAr;
   String? descriptionEn;
   bool? showPhone;

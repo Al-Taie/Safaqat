@@ -6,16 +6,19 @@ import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/contract/service_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
+import 'package:safaqat/safaqat/data/models/projects/cost_category_dto.dart';
 import 'package:safaqat/safaqat/domain/usecases/auth/register/get_cities_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecases/auth/register/get_countires_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecases/contracts/get_services_usecase.dart';
 import 'package:safaqat/safaqat/domain/usecases/posts/get_post_categories_usecase.dart';
+import 'package:safaqat/safaqat/domain/usecases/projects/get_cost_categories_usecase.dart';
 
 class AppController extends GetxController {
   final _getCountriesUseCase = Get.put(GetCountriesUseCase());
   final _getCitiesUseCase = Get.put(GetCitiesUseCase());
   final _getPostCategoriesUseCase = Get.put(GetPostCategoriesUseCase());
   final _getServicesUseCase = Get.put(GetServicesUseCase());
+  final _getCostCategoriesUseCase = Get.put(GetCostCategoriesUseCase());
 
   @override
   void onInit() {
@@ -23,6 +26,7 @@ class AppController extends GetxController {
     _getCountries();
     _getCategories();
     _getServices();
+    _getCosts();
   }
 
   final RxList<CountryDto> countries = <CountryDto>[].obs;
@@ -30,23 +34,20 @@ class AppController extends GetxController {
 
   final RxList<PostCategoryDto> postCategories = <PostCategoryDto>[].obs;
   final RxList<ServiceDto> services = <ServiceDto>[].obs;
+  final RxList<CostCategoryDto> costs = <CostCategoryDto>[].obs;
 
   final RxList<String> tagsAr = <String>[].obs;
   final RxList<String> tagsEn = <String>[].obs;
 
   final _country = CountryDto().obs;
-
   CountryDto get country => _country.value;
-
   set country(CountryDto value) {
     _country.value = value;
     _getCities();
   }
 
   final _city = CityDto().obs;
-
   CityDto get city => _city.value;
-
   set city(CityDto value) => _city.value = value;
 
   void _getCountries() async {
@@ -87,6 +88,13 @@ class AppController extends GetxController {
     final result = await _getServicesUseCase();
     if (result.data != null) {
       services.value = result.data!;
+    }
+  }
+
+  void _getCosts() async {
+    final result = await _getCostCategoriesUseCase();
+    if (result.data != null) {
+      costs.value = result.data!;
     }
   }
 }

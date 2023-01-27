@@ -6,6 +6,7 @@ import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
+import 'package:safaqat/safaqat/data/models/projects/cost_category_dto.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_body.dart';
 import 'package:safaqat/safaqat/domain/entities/projects/project_convener_type.dart';
 import 'package:safaqat/safaqat/domain/entities/projects/project_sector_type.dart';
@@ -28,6 +29,7 @@ class AddProjectController extends GetxController {
   final RxBool convenerExpanded = false.obs;
   final RxBool sectorExpanded = false.obs;
   final RxBool categoryExpanded = false.obs;
+  final RxBool costExpanded = false.obs;
 
   static const int maxImages = 10;
   static const List<String> allowedImageConvenerTypes = ['png', 'jpg', 'jpeg'];
@@ -44,9 +46,11 @@ class AddProjectController extends GetxController {
   final convenerFormKey = GlobalKey<FormState>();
   final sectorFormKey = GlobalKey<FormState>();
   final categoryFormKey = GlobalKey<FormState>();
+  final costFormKey = GlobalKey<FormState>();
 
   RxList<CountryDto> get countries => _appController.countries;
   RxList<CityDto> get cities => _appController.cities;
+  RxList<CostCategoryDto> get costs => _appController.costs;
 
   CountryDto get country => _appController.country;
   set country(CountryDto value) => _appController.country = value;
@@ -70,9 +74,9 @@ class AddProjectController extends GetxController {
   String get actualEndDate => _actualEndDate.value;
   set actualEndDate(String value) => _actualEndDate.value = value;
 
-  final _cost = ''.obs;
-  String get cost => _cost.value;
-  set cost(String value) => _cost.value = value;
+  final _cost = CostCategoryDto().obs;
+  CostCategoryDto get cost => _cost.value;
+  set cost(CostCategoryDto value) => _cost.value = value;
 
   final _nameAr = ''.obs;
   String get nameAr => _nameAr.value;
@@ -124,7 +128,7 @@ class AddProjectController extends GetxController {
       descriptionEn: detailsEn,
       instituteNameAr: instituteAr,
       instituteNameEn: instituteEn,
-      cost: cost.toDoubleOrNull(),
+      cost: cost.code,
       sector: sector.index,
       startDate: startDate,
       endDate: endDate,

@@ -119,7 +119,7 @@ class EditContractController extends GetxController {
           contractorNameAr: contractorAr,
           contractorNameEn: contractorEn,
           value: cost.toDoubleOrNull(),
-          // status: contractStatus.index,
+          contractStatus: contractStatus.index,
           startDate: startDate,
           endDate: endDate,
           currency: currency.index,

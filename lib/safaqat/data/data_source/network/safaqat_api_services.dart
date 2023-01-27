@@ -56,7 +56,7 @@ abstract class SafaqatApiServices {
 
   @GET('City/CityOnCode')
   Future<HttpResponse<BaseResponse<List<CityDto>>>> getCities(
-      @Query('CountryCode') int countryCode);
+      @Query('CountryNo') int countryCode);
 
   @GET('Country/List')
   Future<HttpResponse<BaseResponse<List<CountryDto>>>> getCountries();
@@ -145,7 +145,7 @@ abstract class SafaqatApiServices {
     @Part(name: 'EventType') int? type,
     @Part(name: 'EAttendanceType') int? attendanceType,
     @Part(name: 'CountryNo') int? countryNo,
-    @Part(name: 'CityCode') int? cityCode,
+    @Part(name: 'CityNo') int? cityCode,
     @Part(name: 'Coordinates.latitude') double? latitude,
     @Part(name: 'Coordinates.longitude') double? longitude,
     @Part(name: 'StartDate') String? startDate,
@@ -176,7 +176,7 @@ abstract class SafaqatApiServices {
     @Part(name: 'EventType') int? type,
     @Part(name: 'EAttendanceType') int? attendanceType,
     @Part(name: 'CountryNo') int? countryNo,
-    @Part(name: 'CityCode') int? cityCode,
+    @Part(name: 'CityNo') int? cityCode,
     @Part(name: 'Coordinates.latitude') double? latitude,
     @Part(name: 'Coordinates.longitude') double? longitude,
     @Part(name: 'StartDate') String? startDate,
@@ -278,11 +278,11 @@ abstract class SafaqatApiServices {
     @Part(name: 'InstituteNameE') String? instituteNameEn,
     @Part(name: 'ProjConvener') int? convener,
     @Part(name: 'ProjSector') int? sector,
-    @Part(name: 'Category') int? category,
-    @Part(name: 'CityCode') int? cityCode,
+    @Part(name: 'CategoryCode') int? category,
+    @Part(name: 'CityNo') int? cityCode,
     @Part(name: 'Coordinates.latitude') double? latitude,
     @Part(name: 'Coordinates.longitude') double? longitude,
-    @Part(name: 'Cost') double? cost,
+    @Part(name: 'Cost') int? cost,
     @Part(name: 'StartDate') String? startDate,
     @Part(name: 'EndDate') String? endDate,
     @Part(name: 'ActualEndDate') String? actualEndDate,
@@ -303,11 +303,11 @@ abstract class SafaqatApiServices {
     @Part(name: 'InstituteNameE') String? instituteNameEn,
     @Part(name: 'ProjConvener') int? convener,
     @Part(name: 'ProjSector') int? sector,
-    @Part(name: 'Category') int? category,
-    @Part(name: 'CityCode') int? cityCode,
+    @Part(name: 'CategoryCode') int? category,
+    @Part(name: 'CityNo') int? cityCode,
     @Part(name: 'Coordinates.latitude') double? latitude,
     @Part(name: 'Coordinates.longitude') double? longitude,
-    @Part(name: 'Cost') double? cost,
+    @Part(name: 'Cost') int? cost,
     @Part(name: 'StartDate') String? startDate,
     @Part(name: 'EndDate') String? endDate,
     @Part(name: 'ActualEndDate') String? actualEndDate,
@@ -359,6 +359,7 @@ abstract class SafaqatApiServices {
     @Part(name: 'DescE') String? descriptionNameEn,
     @Part(name: 'ContractorA') String? contractorNameAr,
     @Part(name: 'ContractorE') String? contractorNameEn,
+    @Part(name: 'ContStatus') int? contractStatus,
     @Part(name: 'ContValue') double? contractValue,
     @Part(name: 'ValueCurrency') int? currency,
     @Part(name: 'ServiceCode') int? serviceCode,
@@ -381,6 +382,7 @@ abstract class SafaqatApiServices {
     @Part(name: 'DescE') String? descriptionNameEn,
     @Part(name: 'ContractorA') String? contractorNameAr,
     @Part(name: 'ContractorE') String? contractorNameEn,
+    @Part(name: 'ContStatus') int? contractStatus,
     @Part(name: 'ContValue') double? contractValue,
     @Part(name: 'ValueCurrency') int? currency,
     @Part(name: 'ServiceCode') int? serviceCode,

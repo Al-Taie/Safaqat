@@ -38,6 +38,6 @@ enum ContractStatus {
     } else if (index == ContractStatus.closed.index) {
       return ContractStatus.closed;
     }
-    return ContractStatus._;
+    return ContractStatus.closed;
   }
 }

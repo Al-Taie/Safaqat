@@ -10,142 +10,167 @@ import 'package:safaqat/safaqat/app/config/text_style.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
 import 'package:safaqat/safaqat/app/utils/utils.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_dto.dart';
-import 'package:safaqat/safaqat/presentation/custom_views/svg_icon_button.dart';
+import 'package:safaqat/safaqat/presentation/custom_views/app_bar_widget.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_icon.dart';
 import 'package:safaqat/safaqat/presentation/custom_views/text_icon2.dart';
 import 'package:safaqat/safaqat/presentation/ui/auth/review/components/text_label.dart';
+import 'package:safaqat/safaqat/presentation/ui/contracts/mine/my_contracts_page.dart';
 
 class ProjectDetailsPage extends StatelessWidget {
-  const ProjectDetailsPage({Key? key, required this.project}) : super(key: key);
+  const ProjectDetailsPage({
+    Key? key,
+    required this.project,
+    this.logged = false,
+  }) : super(key: key);
 
   final ProjectDto project;
+  final bool logged;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.background,
-        appBar: AppBar(
-          title: Text(
-            AppStrings.details,
-            style: AppTextStyle.title.copyWith(fontSize: 18),
-          ),
-          centerTitle: true,
+    return DefaultTabController(
+      length: 2,
+      child: SafeArea(
+        child: Scaffold(
           backgroundColor: AppColors.background,
-          elevation: 0,
-          leading: SvgIconButton(
-            icon: AppDrawable.icBack,
-            onPressed: Get.back,
+          appBar: AppBarWidget(
+            width: Get.width,
+            onBackPressed: Get.back,
+            title: AppStrings.details,
+            bottom: TabBar(
+              isScrollable: true,
+              labelColor: AppColors.primaryColor,
+              indicatorColor: AppColors.primaryColor,
+              unselectedLabelColor: AppColors.shadePrimary,
+              tabs: [
+                Padding(
+                  padding: const EdgeInsets.all(11.7),
+                  child: Text(AppStrings.details),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(11.7),
+                  child: Text(AppStrings.contracts),
+                ),
+              ],
+            ),
           ),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: ListView(
+          body: TabBarView(
             children: [
-              SizedBox(
-                width: Get.width,
-                child: Text(
-                  project.name,
-                  style: AppTextStyle.title,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextIcon(
-                        icon: AppDrawable.icName,
-                        text: project.ownerName ?? '-',
-                        width: 12,
-                        height: 12,
-                      ),
-                      const SizedBox(height: 4),
-                      TextIcon(
-                        icon: AppDrawable.icDate,
-                        text: Utils.formatDate(dateStr: project.postDate),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextIcon(
-                        icon: Icons.local_convenience_store_outlined,
-                        text: project.convener?.name ?? '-',
-                      ),
-                      const SizedBox(height: 4),
-                      TextIcon(
-                        icon: Icons.location_pin,
-                        text: project.city?.name ?? '-',
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              CarouselSlider.builder(
-                options: CarouselOptions(
-                  height: 300,
-                  aspectRatio: 16 / 9,
-                  viewportFraction: 0.8,
-                  initialPage: 0,
-                  enableInfiniteScroll: true,
-                  reverse: false,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 3),
-                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enlargeCenterPage: true,
-                  enlargeFactor: 0.3,
-                  // onPageChanged: callbackFunction,
-                  scrollDirection: Axis.vertical,
-                ),
-                itemCount: project.images?.length ?? 0,
-                itemBuilder:
-                    (BuildContext context, int itemIndex, int pageViewIndex) {
-                  Widget child = ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: CachedNetworkImage(
-                      imageUrl: project.images?[itemIndex] ?? '',
-                      fit: BoxFit.cover,
-                      progressIndicatorBuilder:
-                          (context, url, downloadProgress) => Center(
-                        child: CircularProgressIndicator(
-                            strokeWidth: 3,
-                            color: AppColors.primaryColor,
-                            value: downloadProgress.progress),
-                      ),
-                      errorWidget: (context, url, error) => const Icon(
-                        Icons.error,
-                        color: Colors.red,
-                      ),
-                    ),
-                  );
-
-                  return GestureDetector(
-                      onTap: () => Get.dialog(child), child: child);
-                },
-              ),
-              const SizedBox(height: 16),
-              SizedBox(
-                width: Get.width,
-                child: Text(
-                  project.description,
-                  style: AppTextStyle.title
-                      .copyWith(fontSize: 14, color: AppColors.shadePrimary),
-                ),
-              ),
-              const SizedBox(height: 16),
-              projectInfo(project),
+              projectDetails(project),
+              MyContractsPage(
+                  projectId: project.id.toString(),
+                logged: logged
+              )
             ],
           ),
         ),
       ),
     );
   }
+}
+
+Widget projectDetails(ProjectDto project) {
+  return ListView(
+    padding: const EdgeInsets.all(16.0),
+    children: [
+      SizedBox(
+        width: Get.width,
+        child: Text(
+          project.name,
+          style: AppTextStyle.title,
+        ),
+      ),
+      const SizedBox(height: 4),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextIcon(
+                icon: AppDrawable.icName,
+                text: project.ownerName ?? '-',
+                width: 12,
+                height: 12,
+              ),
+              const SizedBox(height: 4),
+              TextIcon(
+                icon: AppDrawable.icDate,
+                text: Utils.formatDate(dateStr: project.postDate),
+              ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextIcon(
+                icon: Icons.local_convenience_store_outlined,
+                text: project.convener?.name ?? '-',
+              ),
+              const SizedBox(height: 4),
+              TextIcon(
+                icon: Icons.location_pin,
+                text: project.city?.name ?? '-',
+              ),
+            ],
+          ),
+        ],
+      ),
+      const SizedBox(height: 16),
+      CarouselSlider.builder(
+        options: CarouselOptions(
+          height: 300,
+          aspectRatio: 16 / 9,
+          viewportFraction: 0.8,
+          initialPage: 0,
+          enableInfiniteScroll: true,
+          reverse: false,
+          autoPlay: true,
+          autoPlayInterval: const Duration(seconds: 3),
+          autoPlayAnimationDuration: const Duration(milliseconds: 800),
+          autoPlayCurve: Curves.fastOutSlowIn,
+          enlargeCenterPage: true,
+          enlargeFactor: 0.3,
+          // onPageChanged: callbackFunction,
+          scrollDirection: Axis.vertical,
+        ),
+        itemCount: project.images?.length ?? 0,
+        itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
+          Widget child = ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: CachedNetworkImage(
+              imageUrl: project.images?[itemIndex] ?? '',
+              fit: BoxFit.cover,
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  Center(
+                child: CircularProgressIndicator(
+                    strokeWidth: 3,
+                    color: AppColors.primaryColor,
+                    value: downloadProgress.progress),
+              ),
+              errorWidget: (context, url, error) => const Icon(
+                Icons.error,
+                color: Colors.red,
+              ),
+            ),
+          );
+
+          return GestureDetector(onTap: () => Get.dialog(child), child: child);
+        },
+      ),
+      const SizedBox(height: 16),
+      SizedBox(
+        width: Get.width,
+        child: Text(
+          project.description,
+          style: AppTextStyle.title
+              .copyWith(fontSize: 14, color: AppColors.shadePrimary),
+        ),
+      ),
+      const SizedBox(height: 16),
+      projectInfo(project),
+    ],
+  );
 }
 
 Widget projectInfo(ProjectDto project) {
@@ -217,11 +242,11 @@ Widget projectInfo(ProjectDto project) {
             height: 60,
             color: AppColors.shadeQuaternary,
           ),
-      TextIcon2(
-        title: AppStrings.actualEndDate,
-        icon: Icons.access_time_filled_outlined,
-        subTitle: Utils.formatDate(dateStr: project.actualEndDate),
-      ),
+          TextIcon2(
+            title: AppStrings.actualEndDate,
+            icon: Icons.access_time_filled_outlined,
+            subTitle: Utils.formatDate(dateStr: project.actualEndDate),
+          ),
         ],
       ),
       const SizedBox(height: 8),
@@ -263,7 +288,7 @@ Widget projectInfo(ProjectDto project) {
       const SizedBox(height: 8),
       TextLabel(
         label: '${AppStrings.value}:',
-        text: '\$${project.cost}',
+        text: project.cost?.name ?? '-',
       ),
       const SizedBox(height: 8),
     ],

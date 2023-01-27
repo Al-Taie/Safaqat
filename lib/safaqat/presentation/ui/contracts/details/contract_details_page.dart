@@ -78,6 +78,7 @@ class ContractDetailsPage extends StatelessWidget {
                       TextIcon(
                         icon: Icons.category_outlined,
                         text: contract.service?.name ?? '-',
+                        autoSize: true,
                       ),
                     ],
                   ),
@@ -205,6 +206,7 @@ Widget contractInfo(ContractDto contract) {
       TextLabel(
         label: '${AppStrings.services}:',
         text: contract.service?.name,
+        autoSize: true,
       ),
       const SizedBox(height: 8),
       TextLabel(

@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:safaqat/safaqat/app/extensions/boolean_extension.dart';
+import 'package:safaqat/safaqat/app/extensions/list_extension.dart';
 import 'package:safaqat/safaqat/app/extensions/object_extension.dart';
-import 'package:safaqat/safaqat/app/utils/logger.dart';
 import 'package:safaqat/safaqat/data/models/city/city_dto.dart';
 import 'package:safaqat/safaqat/data/models/country/country_dto.dart';
 import 'package:safaqat/safaqat/data/models/events/coordinates_dto.dart';
 import 'package:safaqat/safaqat/data/models/posts/post_category_dto.dart';
+import 'package:safaqat/safaqat/data/models/projects/cost_category_dto.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_body.dart';
 import 'package:safaqat/safaqat/data/models/projects/project_dto.dart';
 import 'package:safaqat/safaqat/domain/entities/projects/edit_project_params.dart';
@@ -32,14 +33,17 @@ class EditProjectController extends GetxController {
   final RxBool convenerExpanded = false.obs;
   final RxBool sectorExpanded = false.obs;
   final RxBool categoryExpanded = false.obs;
+  final RxBool costExpanded = false.obs;
 
   RxList<PostCategoryDto> get categories => _appController.postCategories;
+  RxList<CostCategoryDto> get costs => _appController.costs;
 
   final Rx<Resources> status = Resources.init().obs;
 
   final convenerFormKey = GlobalKey<FormState>();
   final sectorFormKey = GlobalKey<FormState>();
   final categoryFormKey = GlobalKey<FormState>();
+  final costFormKey = GlobalKey<FormState>();
 
   RxList<CountryDto> get countries => _appController.countries;
   RxList<CityDto> get cities => _appController.cities;
@@ -66,9 +70,9 @@ class EditProjectController extends GetxController {
   String get actualEndDate => _actualEndDate.value;
   set actualEndDate(String value) => _actualEndDate.value = value;
 
-  final _cost = ''.obs;
-  String get cost => _cost.value;
-  set cost(String value) => _cost.value = value;
+  final _cost = CostCategoryDto().obs;
+  CostCategoryDto get cost => _cost.value;
+  set cost(CostCategoryDto value) => _cost.value = value;
 
   final _nameAr = ''.obs;
   String get nameAr => _nameAr.value;
@@ -125,7 +129,7 @@ class EditProjectController extends GetxController {
           descriptionEn: detailsEn,
           instituteNameAr: instituteAr,
           instituteNameEn: instituteEn,
-          cost: cost.toDoubleOrNull(),
+          cost: cost.code,
           sector: sector.index,
           startDate: startDate,
           endDate: endDate,
@@ -193,7 +197,8 @@ class EditProjectController extends GetxController {
     showEmail = project.showEmail.isTrue;
     country = project.country ?? CountryDto();
     city = project.city ?? CityDto();
-    cost = project.cost?.toString() ?? '';
+    costs.find(selector: (it) => it.code == project.cost)
+        ?.let((it) => cost = it);
     instituteAr = project.instituteNameAr ?? '';
     instituteEn = project.instituteNameEn ?? '';
     project.sector?.let((it) =>

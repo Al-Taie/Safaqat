@@ -12,6 +12,9 @@ import 'package:safaqat/safaqat/domain/usecases/contracts/delete_contract_usecas
 import 'package:safaqat/safaqat/domain/usecases/contracts/get_my_contracts_usecase.dart';
 
 class MyContractsController extends GetxController {
+  MyContractsController({required this.projectId});
+  final String projectId;
+
   final GetMyContractsUseCase _getMyContractsUseCase =
       Get.put(GetMyContractsUseCase());
   final DeleteContractUseCase _deleteContractUseCase =
@@ -62,6 +65,7 @@ class MyContractsController extends GetxController {
   void getContracts() async {
     final params = ContractQuery(
       pageNumber: pageNumber,
+      projectId: projectId
     );
 
     status.value = Resources.loading();

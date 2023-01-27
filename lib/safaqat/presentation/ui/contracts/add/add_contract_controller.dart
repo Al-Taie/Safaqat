@@ -13,9 +13,12 @@ import 'package:safaqat/safaqat/presentation/ui/app_controller.dart';
 import 'package:safaqat/safaqat/presentation/ui/contracts/mine/my_contracts_controller.dart';
 
 class AddContractController extends GetxController {
+  AddContractController({required this.projectId});
+
   final _addContractUseCase = Get.put(AddContractUseCase());
   final AppController _appController = Get.find();
   final MyContractsController _myContractsController = Get.find();
+  final String projectId;
 
   final RxBool detailsExpanded = false.obs;
   final RxBool arabicExpanded = false.obs;
@@ -107,12 +110,13 @@ class AddContractController extends GetxController {
     final ContractBody body = ContractBody(
       nameAr: nameAr,
       nameEn: nameEn,
+      projectId: projectId,
       descriptionAr: detailsAr,
       descriptionEn: detailsEn,
       contractorNameAr: contractorAr,
       contractorNameEn: contractorEn,
       value: cost.toDoubleOrNull(),
-      // status: contractStatus.index,
+      contractStatus: contractStatus.index,
       startDate: startDate,
       endDate: endDate,
       currency: currency.index,
