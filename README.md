@@ -19,6 +19,7 @@ Safaqat is a cross-platform Flutter application architected with robust clean co
   - **Data Layer**: Handles API integration, local storage, and data mapping.
   - **Domain Layer**: Contains business logic, entities, and use case abstractions.
   - **Presentation Layer**: Manages UI, controllers, and state. Also each featue has a separated package.
+- **Organized by feature**: each major feature (auth, contracts, events, news, etc.) has its own subdirectory under `presentation/ui`.
 - **Repository Pattern**: All data sources (remote APIs, local cache, etc.) are abstracted behind interfaces, enabling easy mocking and testing.
 - **Dependency Injection**: Leveraging GetX’s DI for efficient and decoupled dependency management.
 - **Reactive State Management**: Using GetX controllers and observables for predictable, testable state flows.
@@ -38,26 +39,27 @@ Safaqat is a cross-platform Flutter application architected with robust clean co
 
 ```plaintext
 Safaqat/
-│
-├── android/                       # Android-specific code (Kotlin, Gradle)
-├── ios/                           # iOS-specific code (Swift/ObjC, Xcode configs)
-├── assets/                        # Images, fonts, lottie, SVGs, etc.
+|
+├── android/                    # Native Android code (Kotlin, resources, manifests, Gradle)
+├── assets/
+│   ├── drawable/               # SVGs, PNGs, and splash/logo images
+│   └── fonts/                  # Custom font files (Cairo)
+├── ios/                        # Native iOS code (Swift/ObjC, Xcode configs, assets)
 ├── lib/
+│   ├── localization/           # App localization (translations, language files)
 │   └── safaqat/
-│       ├── data/                  # Data sources, DTOs, API clients, repositories
-│       ├── domain/                # Entities, repository interfaces, use cases
-│       ├── presentation/
-│       │   ├── localization/      # Locale files, delegates, language utils
-│       │   ├── features/          # Feature modules (auth, home, profile, etc.)
-│       │   ├── controllers/       # GetX controllers (ViewModels)
-│       │   ├── widgets/           # Reusable and feature widgets
-│       │   └── themes/            # Theming, dark/light modes, styles
-│       └── core/                  # Shared utilities, constants, helpers, DI
-│   └── app_binding.dart           # App-wide dependency injection setup
-├── test/                          # Unit and widget tests, organized by feature
-├── pubspec.yaml                   # Project dependencies and Flutter configs
-├── analysis_options.yaml          # Linting and analysis rules
-└── README.md                      # Project documentation
+│       ├── app/                # App-wide config, core utilities, extensions, constants
+│       ├── data/               # Data sources, models, repositories (API, DTOs)
+│       ├── domain/             # Entities, repository interfaces, use cases (business logic)
+│       └── presentation/       
+│           ├── custom_views/   # Reusable custom widgets
+│           └── ui/             # Feature-specific UIs (auth, contracts, home, news, notification, profile, etc.)
+│   ├── app_binding.dart        # Dependency injection setup (GetX bindings)
+│   └── main.dart               # App entry point
+├── test/                       # Test files (e.g., widget tests)
+├── pubspec.yaml                # Flutter project dependencies and config
+├── analysis_options.yaml       # Static analysis (linter) rules
+└── README.md                   # Project documentation
 ```
 
 ---
